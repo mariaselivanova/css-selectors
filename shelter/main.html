@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>shelter</title>
-  <link rel="icon" href="../../assets/icons/paw-solid.svg" type="image/x-icon">
+  <link rel="icon" href="./assets/icons/paw-solid.svg" type="image/x-icon">
   <link href="./style.css" rel="stylesheet">
 </head>
 
@@ -13,23 +13,23 @@
 
   <header class="header">
     <div class="header__wrapper">
-      <div class="header__logo">
+      <a href="#" class="header__logo">
         <h1 class="header__title">Cozy House</h1>
         <p class="header__subtitle">Shelter for pets in Boston</p>
-      </div>
+      </a>
       <nav class="header__nav">
         <ul class="header__list">
           <li>
             <a class="header__item header__item_active">About the shelter</a>
           </li>
           <li>
-            <a href="../pets/index.html" class="header__item">Our pets</a>
+            <a href="./pages/pets/index.html" class="header__item">Our pets</a>
           </li>
           <li>
-            <a class="header__item">Help the shelter</a>
+            <a class="header__item" href="#help">Help the shelter</a>
           </li>
           <li>
-            <a class="header__item">Contacts</a>
+            <a class="header__item" href="#footer">Contacts</a>
           </li>
         </ul>
       </nav>
@@ -46,7 +46,7 @@
             love
             you more than anybody else in the world, you will see!
           </p>
-          <button class="notonly__button" type="button">Make a friend</button>
+          <a class="notonly__button" href="#ourfriends">Make a friend</a>
         </div>
         <div class="notonly__image"></div>
       </div>
@@ -66,7 +66,7 @@
         </div>
       </div>
     </section>
-    <section class="ourfriends content__section">
+    <section id="ourfriends" class="ourfriends content__section">
       <div class="ourfriends__wrapper">
         <h3 class="ourfriends__title">Our friends who are&nbsp;looking for a house</h3>
         <div class="ourfriends__main">
@@ -74,19 +74,19 @@
           <div class="ourfriends__cards">
 
             <article class="ourfriends__card">
-              <img src="../../assets/images/pets-katrine.png" alt="a cat named Katrine">
+              <img src="./assets/images/pets-katrine.png" alt="a cat named Katrine">
               <h3 class="ourfriends__names">Katrine</h3>
               <a class="ourfriends__link">Learn more</a>
             </article>
 
             <article class="ourfriends__card">
-              <img src="../../assets/images/pets-jennifer.png" alt="a dog named jennifer">
+              <img src="./assets/images/pets-jennifer.png" alt="a dog named jennifer">
               <h3 class="ourfriends__names">Jennifer</h3>
               <a class="ourfriends__link">Learn more</a>
             </article>
 
             <article class="ourfriends__card">
-              <img src="../../assets/images/pets-woody.png" alt="a dog named woody">
+              <img src="./assets/images/pets-woody.png" alt="a dog named woody">
               <h3 class="ourfriends__names">Woody</h3>
               <a class="ourfriends__link">Learn more</a>
             </article>
@@ -94,48 +94,48 @@
           </div>
           <button class="ourfriends__arrow ourfriends__arrow_right" type="button"></button>
         </div>
-        <a class="ourfriends__learnmore">Get to know the rest</a>
+        <a href="./pages/pets/index.html" class="ourfriends__learnmore">Get to know the rest</a>
       </div>
     </section>
 
-    <section class="help">
+    <section id="help" class="help">
       <div class="help__wrapper">
         <h3 class="help__title">How you can&nbsp;help our shelter</h3>
         <ul class="help__list">
           <li class="help__item">
-            <img alt="pet food" src="../../assets/images/petfood.svg">
+            <img alt="pet food" src="./assets/images/petfood.svg">
             <span>Pet food</span>
           </li>
           <li class="help__item">
-            <img alt="transportation" src="../../assets/images/transportation.svg">
+            <img alt="transportation" src="./assets/images/transportation.svg">
             <span>Transportation</span>
           </li>
           <li class="help__item">
-            <img alt="toys" src="../../assets/images/icon-toys.svg">
+            <img alt="toys" src="./assets/images/icon-toys.svg">
             <span>Toys</span>
           </li>
           <li class="help__item">
-            <img alt="bowls and cups" src="../../assets/images/bowls-and-cups.svg">
+            <img alt="bowls and cups" src="./assets/images/bowls-and-cups.svg">
             <span>Bowls and cups</span>
           </li>
           <li class="help__item">
-            <img alt="shampoos" src="../../assets/images/shampoos.svg">
+            <img alt="shampoos" src="./assets/images/shampoos.svg">
             <span>Shampoos</span>
           </li>
           <li class="help__item">
-            <img alt="vitamins" src="../../assets/images/vitamins.svg">
+            <img alt="vitamins" src="./assets/images/vitamins.svg">
             <span>Vitamins</span>
           </li>
           <li class="help__item">
-            <img alt="medicines" src="../../assets/images/medicines.svg">
+            <img alt="medicines" src="./assets/images/medicines.svg">
             <span>Medicines</span>
           </li>
           <li class="help__item">
-            <img alt="collars or leashes" src="../../assets/images/collars-or-leashes.svg">
+            <img alt="collars or leashes" src="./assets/images/collars-or-leashes.svg">
             <span>Collars / leashes</span>
           </li>
           <li class="help__item">
-            <img alt="sleepinf ares" src="../../assets/images/sleeping-area.svg">
+            <img alt="sleepinf ares" src="./assets/images/sleeping-area.svg">
             <span>Sleeping areas</span>
           </li>
         </ul>
@@ -147,10 +147,10 @@
         <div class="inaddition__info">
           <h3 class="inaddition__title">You can also make a donation</h3>
           <span class="inaddition__card-name">Name of the bank / Type of bank account</span>
-          <div class="inaddition__card">
-            <img src="../../assets/images/credit-card.svg" alt="card">
+          <a class="inaddition__card">
+            <img src="./assets/images/credit-card.svg" alt="card">
             <span class="inaddition__card-number">8380 2880 8028 8791 7435</span>
-          </div>
+          </a>
           <p class="inaddition__paragraph">Legal information and lorem ipsum dolor sit amet, consectetur adipiscing
             elit. Maecenas a ipsum at libero
             sagittis dignissim sed ac diam. Praesent ultrices maximus tortor et vulputate. Interdum et malesuada fames
@@ -160,34 +160,35 @@
       </div>
     </section>
   </main>
-  <footer class="footer">
+  <footer id="footer" class="footer">
     <div class="footer__wrapper">
       <div class="footer__section">
         <h3 class="footer__title">For questions and&nbsp;suggestions</h3>
         <a class="footer__link" href="mailto:email@shelter.com">
-          <img src="../../assets/images/icon-email.svg" alt="email">
+          <img src="./assets/images/icon-email.svg" alt="email">
           email@shelter.com
         </a>
-        <a class="footer__link" href="tel:+13 674 567 75 54">
-          <img src="../../assets/images/phone.svg" alt="email">
+        <a class="footer__link" href="tel:+136745677554">
+          <img src="./assets/images/phone.svg" alt="email">
           +13 674 567 75 54
         </a>
       </div>
 
       <div class="footer__section footer__section_type_adress">
         <h3 class="footer__title">We are waiting for your visit</h3>
-        <a class="footer__link" href="https://www.google.com/maps?q=1+Central+Street,+Boston&um=1&ie=UTF-8&sa=X&ved=2ahUKEwif-KbU1_P9AhUJBrkGHXPtAokQ_AUoAXoECAEQAw">
-          <img src="../../assets/images/pin.svg" alt="email">
+        <a class="footer__link" target="_blank" href="https://goo.gl/maps/cNHBq1wRcCcCPAMF8">
+          <img src="./assets/images/pin.svg" alt="email">
           1 Central Street, Boston (entrance from the store)
         </a>
-        <a class="footer__link" href="https://www.google.com/maps/search/+18+South+Park,+London/@51.466769,-0.1938309,11z/data=!3m1!4b1">
-          <img src="../../assets/images/pin.svg" alt="email">
+        <a class="footer__link" target="_blank" href="https://goo.gl/maps/cNHBq1wRcCcCPAMF8">
+          <img src="./assets/images/pin.svg" alt="email">
           18 South Park, London
         </a>
       </div>
       <div class="footer__img"></div>
     </div>
   </footer>
+  <script src="./index.js"></script>
 </body>
 
 </html>
