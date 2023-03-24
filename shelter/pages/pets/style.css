@@ -1,10 +1,15 @@
 @import url(../../assets/fonts/fonts.css);
 
+html {
+  scroll-behavior: smooth;
+}
+
 .page {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  scroll-behavior: smooth;
 }
 
 .content {
@@ -37,6 +42,11 @@
   justify-content: center;
   align-items: flex-start;
   gap: 10px;
+  text-decoration: none;
+}
+
+.header__logo:hover .header__title {
+  color: #292929;
 }
 
 .header__title {
@@ -48,6 +58,7 @@
   color: #545454;
   letter-spacing: 0.06em;
   margin: 0;
+  transition: all 1s ease;
 }
 
 .header__subtitle {
@@ -79,12 +90,22 @@
   padding: 3px;
   cursor: pointer;
   text-decoration: none;
+  transition: all 0.5s ease;
+}
+
+.header__item:hover {
+  color: #292929;
+}
+
+.header__item:active {
+  border-bottom: 3px solid #F1CDB3;
 }
 
 .header__item_active {
   color: #292929;
   cursor: auto;
-  border-bottom: 3px solid #F1CDB3
+  border-bottom: 3px solid #F1CDB3;
+  pointer-events: none;
 }
 
 .ourfriends {
@@ -116,6 +137,9 @@
 }
 
 .ourfriends__cards {
+  margin: 0 auto;
+  width: 100%;
+  justify-content: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -131,6 +155,18 @@
   border-radius: 9px;
   gap: 30px;
   padding-bottom: 30px;
+  transition: all 0.5s ease;
+}
+
+.ourfriends__card:hover {
+  background: #FFFFFF;
+  box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+  cursor: pointer;
+}
+
+.ourfriends__card:hover .ourfriends__link {
+  background: #FDDCC4;
+  border: 2px solid #FDDCC4;
 }
 
 .ourfriends__names {
@@ -155,6 +191,7 @@
   padding: 15px 45px;
   border: 2px solid #F1CDB3;
   border-radius: 100px;
+  transition: all 1s ease;
 }
 
 .ourfriends__btn {
@@ -173,6 +210,7 @@
   font-size: 20px;
   line-height: 115%;
   letter-spacing: 0.06em;
+  transition: all 1s ease;
 }
 
 .ourfriends__btn_inactive {
@@ -183,6 +221,28 @@
 
 .ourfriends__btn_active {
   background: transparent;
+}
+
+.ourfriends__btn_active:hover {
+  cursor: pointer;
+  background: #FDDCC4;
+  border: 2px solid #FDDCC4;
+}
+
+.ourfriends__btn_active:active {
+  background: #F1CDB3;
+  border: 2px solid #F1CDB3;
+}
+
+.ourfriends__btn_normal:hover {
+  background: #FDDCC4;
+  border: 2px solid #FDDCC4;
+  cursor: pointer;
+}
+
+.ourfriends__btn_normal:active {
+  background: #F1CDB3;
+  border: 2px solid #F1CDB3;
 }
 
 .ourfriends__nav {
@@ -253,4 +313,9 @@
   flex-direction: row;
   align-items: center;
   gap: 20px;
+}
+
+.footer__link:hover {
+  color: #FDDCC4;
+  text-shadow: black 1px 0 10px;
 }
