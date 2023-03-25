@@ -210,7 +210,6 @@ html {
   color: #292929;
   background-repeat: no-repeat;
   background-position: center;
-  background: #F1CDB3;
   font-family: 'Georgia';
   font-style: normal;
   font-weight: 400;
@@ -220,14 +219,9 @@ html {
   transition: all 1s ease;
 }
 
-.ourfriends__btn_inactive {
+.ourfriends__btn:disabled{
   color: #CDCDCD;
   border: 2px solid #CDCDCD;
-  background: transparent;
-}
-
-.ourfriends__btn_active {
-  background: transparent;
 }
 
 .ourfriends__btn_active:hover {
@@ -241,13 +235,17 @@ html {
   border: 2px solid #F1CDB3;
 }
 
-.ourfriends__btn_normal:hover {
+.ourfriends__btn_num {
+  background:  #F1CDB3;
+}
+
+.ourfriends__btn_num:hover {
   background: #FDDCC4;
   border: 2px solid #FDDCC4;
   cursor: pointer;
 }
 
-.ourfriends__btn_normal:active {
+.ourfriends__btn_num:active {
   background: #F1CDB3;
   border: 2px solid #F1CDB3;
 }
