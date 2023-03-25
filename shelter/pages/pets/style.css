@@ -1,4 +1,4 @@
-@import url(../../assets/fonts/fonts.css);
+@import url('../../assets/fonts/fonts.css');
 
 html {
   scroll-behavior: smooth;
@@ -22,7 +22,7 @@ html {
 .header {
   width: 100%;
   background: #FFFFFF;
-  margin-top: 28px;
+  margin-top: 30px;
   padding-bottom: 30px;
 }
 
@@ -47,6 +47,11 @@ html {
 
 .header__logo:hover .header__title {
   color: #292929;
+  text-shadow: 2px -2px 4px rgba(195, 195, 197, 0.73);
+}
+
+.header__logo:hover .header__subtitle {
+  text-shadow: 2px -2px 4px rgba(195, 195, 197, 0.73);
 }
 
 .header__title {
@@ -71,6 +76,7 @@ html {
   letter-spacing: 0.1em;
   margin: 0;
   padding-left: 3px;
+  transition: all 1s ease;
 }
 
 .header__list {
@@ -254,12 +260,16 @@ html {
   gap: 22px;
 }
 
+.ourfriends__img {
+  object-fit: contain;
+}
+
 /* footer */
 
 .footer {
   padding-top: 40px;
   width: 100%;
-  background: url(../../assets/images/noise_transparent@2x.png), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
+  background: url('../../assets/images/noise_transparent@2x.png'), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
 }
 
 .footer__wrapper {
@@ -315,9 +325,10 @@ html {
   flex-direction: row;
   align-items: center;
   gap: 20px;
+  transition: all 1s ease;
 }
 
 .footer__link:hover {
   color: #FDDCC4;
-  text-shadow: black 1px 0 10px;
+  text-shadow: 2px -2px 4px rgba(195, 195, 197, 0.73);
 }
