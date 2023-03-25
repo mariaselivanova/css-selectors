@@ -1,4 +1,4 @@
-@import url(./assets/fonts/fonts.css);
+@import url('./assets/fonts/fonts.css');
 
 html {
   scroll-behavior: smooth;
@@ -57,6 +57,11 @@ html {
 
 .header__logo:hover .header__title {
   color: #FDDCC4;
+  text-shadow: 2px -2px 4px rgba(195, 195, 197, 0.73)
+}
+
+.header__logo:hover .header__subtitle {
+  text-shadow: 2px -2px 4px rgba(195, 195, 197, 0.73)
 }
 
 .header__subtitle {
@@ -69,6 +74,7 @@ html {
   letter-spacing: 0.1em;
   margin: 0;
   padding-left: 5px;
+  transition: all 0.5s ease;
 }
 
 .header__list {
@@ -109,7 +115,7 @@ html {
 /* notonly */
 
 .notonly {
-  background: url(./assets/images/noise_transparent@2x.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
+  background: url('./assets/images/noise_transparent@2x.png'), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
   margin: 0 auto;
   padding-top: 183px;
   width: 100%;
@@ -378,6 +384,10 @@ html {
   background: #FDDCC4;
 }
 
+.ourfriends__img {
+  object-fit: contain;
+}
+
 /* help */
 
 .help {
@@ -502,6 +512,7 @@ html {
   width: 349px;
   padding: 10px 15px;
   box-sizing: border-box;
+  text-decoration: none;
   transition: all 1s ease;
 }
 
@@ -536,7 +547,7 @@ html {
 .footer {
   padding-top: 40px;
   width: 100%;
-  background: url(./assets/images/noise_transparent@2x.png), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
+  background: url('./assets/images/noise_transparent@2x.png'), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
 }
 
 .footer__wrapper {
@@ -597,5 +608,5 @@ html {
 
 .footer__link:hover {
   color: #FDDCC4;
-  text-shadow: black 1px 0 10px;
+  text-shadow: 2px -2px 4px rgba(195, 195, 197, 0.73)
 }
