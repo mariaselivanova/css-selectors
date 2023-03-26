@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>shelter</title>
-  <link rel="icon" href="./assets/icons/paw-solid.svg" type="image/x-icon">
+  <link rel="icon" href="./assets/icons/favicon.ico" type="image/x-icon">
   <link href="./style.css" rel="stylesheet">
 </head>
 
@@ -14,7 +14,7 @@
   <header class="header">
     <div class="header__wrapper">
       <a href="#" class="header__logo">
-        <h1 class="header__title">Cozy House</h1>
+        <p class="header__title">Cozy House</p>
         <p class="header__subtitle">Shelter for pets in Boston</p>
       </a>
       <nav class="header__nav">
@@ -37,10 +37,11 @@
   </header>
 
   <main class="content">
+
     <section class="notonly">
       <div class="notonly__wrapper">
         <div class="notonly__info">
-          <h2 class="notonly__title">Not only people need a house</h2>
+          <h1 class="notonly__title">Not only people need a house</h1>
           <p class="notonly__text">
             We offer to give a chance to a little and nice puppy with an extremely wide and open heart. He or she will
             love
@@ -51,11 +52,12 @@
         <div class="notonly__image"></div>
       </div>
     </section>
+
     <section class="about">
       <div class="about__wrapper">
         <div class="about__img"></div>
         <div class="about__info">
-          <h3 class="about__title">About the shelter “Cozy House”</h3>
+          <h2 class="about__title">About the shelter “Cozy House”</h2>
           <p class="about__paragraph">Currently we have 121 dogs and 342 cats on our hands and statistics show that only
             20% of them will find a family. The others will continue to live with us and will be waiting for a lucky
             chance to become dearly loved.</p>
@@ -66,9 +68,10 @@
         </div>
       </div>
     </section>
+
     <section id="ourfriends" class="ourfriends">
       <div class="ourfriends__wrapper">
-        <h3 class="ourfriends__title">Our friends who are&nbsp;looking for a house</h3>
+        <h2 class="ourfriends__title">Our friends who are&nbsp;looking for a house</h2>
         <div class="ourfriends__main">
           <button class="ourfriends__arrow" type="button"></button>
           <div class="ourfriends__cards">
@@ -76,19 +79,19 @@
             <article class="ourfriends__card">
               <img class="ourfriends__img" src="./assets/images/pets-katrine.png" alt="a cat named Katrine">
               <h3 class="ourfriends__names">Katrine</h3>
-              <a class="ourfriends__link">Learn more</a>
+              <button type="button" class="ourfriends__link">Learn more</button>
             </article>
 
             <article class="ourfriends__card">
               <img class="ourfriends__img" src="./assets/images/pets-jennifer.png" alt="a dog named jennifer">
               <h3 class="ourfriends__names">Jennifer</h3>
-              <a class="ourfriends__link">Learn more</a>
+              <button type="button" class="ourfriends__link">Learn more</button>
             </article>
 
             <article class="ourfriends__card">
               <img class="ourfriends__img" src="./assets/images/pets-woody.png" alt="a dog named woody">
               <h3 class="ourfriends__names">Woody</h3>
-              <a class="ourfriends__link">Learn more</a>
+              <button type="button" class="ourfriends__link">Learn more</button>
             </article>
 
           </div>
@@ -100,7 +103,7 @@
 
     <section id="help" class="help">
       <div class="help__wrapper">
-        <h3 class="help__title">How you can&nbsp;help our shelter</h3>
+        <h2 class="help__title">How you can&nbsp;help our shelter</h2>
         <ul class="help__list">
           <li class="help__item">
             <img alt="pet food" src="./assets/images/petfood.svg">
@@ -141,14 +144,15 @@
         </ul>
       </div>
     </section>
+
     <section class="inaddition">
       <div class="inaddition__wrapper">
         <div class="inaddition__pic"></div>
         <div class="inaddition__info">
-          <h3 class="inaddition__title">You can also make a donation</h3>
+          <h2 class="inaddition__title">You can also make a donation</h2>
           <span class="inaddition__card-name">Name of the bank / Type of bank account</span>
           <a href="#!" class="inaddition__card">
-            <img src="./assets/images/credit-card.svg" alt="card">
+            <div class="inaddition_card-icon"></div>
             <span class="inaddition__card-number">8380 2880 8028 8791 7435</span>
           </a>
           <p class="inaddition__paragraph">Legal information and lorem ipsum dolor sit amet, consectetur adipiscing
@@ -159,17 +163,19 @@
         </div>
       </div>
     </section>
+
   </main>
+
   <footer id="footer" class="footer">
     <div class="footer__wrapper">
       <div class="footer__section">
         <h3 class="footer__title">For questions and&nbsp;suggestions</h3>
         <a class="footer__link" href="mailto:email@shelter.com">
-          <img src="./assets/images/icon-email.svg" alt="email">
+          <div class="footer__icon footer__icon_type_email"></div>
           email@shelter.com
         </a>
         <a class="footer__link" href="tel:+136745677554">
-          <img src="./assets/images/phone.svg" alt="email">
+          <div class="footer__icon footer__icon_type_phone"></div>
           +13 674 567 75 54
         </a>
       </div>
@@ -177,11 +183,11 @@
       <div class="footer__section footer__section_type_adress">
         <h3 class="footer__title">We are waiting for your visit</h3>
         <a class="footer__link" target="_blank" href="https://goo.gl/maps/cNHBq1wRcCcCPAMF8">
-          <img src="./assets/images/pin.svg" alt="email">
+          <div class="footer__icon footer__icon_type_adress footer__icon_type_adress_double"></div>
           1 Central Street, Boston (entrance from the store)
         </a>
         <a class="footer__link" target="_blank" href="https://goo.gl/maps/cNHBq1wRcCcCPAMF8">
-          <img src="./assets/images/pin.svg" alt="email">
+          <div class="footer__icon footer__icon_type_adress"></div>
           18 South Park, London
         </a>
       </div>

@@ -24,6 +24,9 @@ html {
   background: #FFFFFF;
   margin-top: 30px;
   padding-bottom: 30px;
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: 400;
 }
 
 .header__wrapper {
@@ -67,9 +70,6 @@ html {
 }
 
 .header__subtitle {
-  font-family: 'Arial';
-  font-style: normal;
-  font-weight: 400;
   font-size: 13px;
   line-height: 15px;
   color: #292929;
@@ -88,9 +88,6 @@ html {
 }
 
 .header__item {
-  font-family: 'Arial';
-  font-style: normal;
-  font-weight: 400;
   font-size: 15px;
   line-height: 160%;
   color: #545454;
@@ -118,6 +115,8 @@ html {
 .ourfriends {
   background: #F6F6F6;
   width: 100%;
+  font-family: 'Georgia';
+  font-style: normal;
 }
 
 .ourfriends__wrapper {
@@ -130,8 +129,6 @@ html {
 }
 
 .ourfriends__title {
-  font-family: 'Georgia';
-  font-style: normal;
   font-weight: 400;
   font-size: 35px;
   line-height: 130%;
@@ -160,7 +157,7 @@ html {
   flex-direction: column;
   align-items: center;
   border-radius: 9px;
-  gap: 30px;
+  gap: 31px;
   padding-bottom: 30px;
   transition: all 0.5s ease;
 }
@@ -178,8 +175,6 @@ html {
 
 .ourfriends__names {
   margin: 0;
-  font-family: 'Georgia';
-  font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 23px;
@@ -188,8 +183,6 @@ html {
 }
 
 .ourfriends__link {
-  font-family: 'Georgia';
-  font-style: normal;
   font-weight: 400;
   font-size: 17px;
   line-height: 130%;
@@ -199,6 +192,12 @@ html {
   border: 2px solid #F1CDB3;
   border-radius: 100px;
   transition: all 1s ease;
+  background: transparent;
+  font-family: 'Georgia';
+}
+
+.ourfriends__link:hover {
+  cursor: pointer;
 }
 
 .ourfriends__btn {
@@ -210,13 +209,12 @@ html {
   color: #292929;
   background-repeat: no-repeat;
   background-position: center;
-  font-family: 'Georgia';
-  font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 115%;
   letter-spacing: 0.06em;
   transition: all 1s ease;
+  font-family: 'Georgia';
 }
 
 .ourfriends__btn:disabled{
@@ -267,6 +265,8 @@ html {
 .footer {
   padding-top: 40px;
   width: 100%;
+  font-family: 'Georgia';
+  font-style: normal;
   background: url('../../assets/images/noise_transparent@2x.png'), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
 }
 
@@ -289,7 +289,7 @@ html {
 .footer__section {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 38px;
   width: 320px;
   margin-top: 16px;
 }
@@ -300,8 +300,6 @@ html {
 }
 
 .footer__title {
-  font-family: 'Georgia';
-  font-style: normal;
   font-weight: 400;
   font-size: 35px;
   line-height: 130%;
@@ -313,8 +311,6 @@ html {
 .footer__link {
   text-decoration: none;
   color: #F1CDB3;
-  font-family: 'Georgia';
-  font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 115%;
@@ -322,6 +318,7 @@ html {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: flex-start;
   gap: 20px;
   transition: all 1s ease;
 }
@@ -329,4 +326,31 @@ html {
 .footer__link:hover {
   color: #FDDCC4;
   text-shadow: 2px -2px 4px rgba(195, 195, 197, 0.73);
+}
+
+.footer__icon {
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.footer__icon_type_email {
+  background-image: url('../../assets/images/icon-email.svg');
+  width: 40px;
+  height: 36px;
+}
+
+.footer__icon_type_phone {
+  background-image: url('../../assets/images/phone.svg');
+  width: 40px;
+  height: 32px;
+}
+
+.footer__icon_type_adress {
+  background-image: url('../../assets/images/pin.svg');
+  width: 22px;
+  height: 32px;
+}
+
+.footer__icon_type_adress_double {
+  padding-left: 10px;
 }

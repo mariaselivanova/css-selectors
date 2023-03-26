@@ -1,4 +1,4 @@
-@import url('./assets/fonts/fonts.css');
+@import url(./assets/fonts/fonts.css);
 
 html {
   scroll-behavior: smooth;
@@ -11,17 +11,20 @@ html {
   align-items: center;
 }
 
+.content {
+  margin: 0 auto;
+  width: 100%;
+}
+
 /* header */
 
 .header {
   width: 100%;
   position: absolute;
   top: 30px;
-}
-
-.content {
-  margin: 0 auto;
-  width: 100%;
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: 400;
 }
 
 .header__wrapper {
@@ -65,9 +68,6 @@ html {
 }
 
 .header__subtitle {
-  font-family: 'Arial';
-  font-style: normal;
-  font-weight: 400;
   font-size: 13px;
   line-height: 15px;
   color: #FFFFFF;
@@ -86,9 +86,6 @@ html {
 }
 
 .header__item {
-  font-family: 'Arial';
-  font-style: normal;
-  font-weight: 400;
   font-size: 15px;
   line-height: 160%;
   color: #CDCDCD;
@@ -119,6 +116,9 @@ html {
   margin: 0 auto;
   padding-top: 183px;
   width: 100%;
+  font-family: 'Georgia';
+  font-style: normal;
+  font-weight: 400;
 }
 
 .notonly__wrapper {
@@ -138,13 +138,11 @@ html {
 
 .notonly__title {
   margin: 7px 0 25px;
-  font-family: 'Georgia';
-  font-style: normal;
-  font-weight: 400;
   font-size: 44px;
   line-height: 130%;
   color: #FFFFFF;
   max-width: 310px;
+  font-weight: 400;
 }
 
 .notonly__text {
@@ -165,9 +163,6 @@ html {
   text-align: center;
   padding-top: 15px;
   padding-bottom: 15px;
-  font-family: 'Georgia';
-  font-style: normal;
-  font-weight: 400;
   font-size: 17px;
   line-height: 130%;
   letter-spacing: 0.06em;
@@ -247,6 +242,8 @@ html {
   background: #F6F6F6;
   padding-top: 83px;
   padding-bottom: 100px;
+  font-family: 'Georgia';
+  font-style: normal;
 }
 
 .ourfriends__wrapper {
@@ -261,8 +258,6 @@ html {
 .ourfriends__title {
   text-align: center;
   max-width: 450px;
-  font-family: 'Georgia';
-  font-style: normal;
   font-weight: 400;
   font-size: 35px;
   line-height: 130%;
@@ -339,8 +334,6 @@ html {
 
 .ourfriends__names {
   margin: 0;
-  font-family: 'Georgia';
-  font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 23px;
@@ -360,13 +353,16 @@ html {
   border: 2px solid #F1CDB3;
   border-radius: 100px;
   transition: all 1s ease;
+  background: transparent;
+}
+
+.ourfriends__link:hover {
+  cursor: pointer;
 }
 
 .ourfriends__learnmore {
   background: #F1CDB3;
   border-radius: 100px;
-  font-family: 'Georgia';
-  font-style: normal;
   font-weight: 400;
   font-size: 17px;
   line-height: 130%;
@@ -390,6 +386,8 @@ html {
 
 .help {
   width: 100%;
+  font-family: 'Georgia';
+  font-style: normal;
 }
 
 .help__wrapper {
@@ -402,8 +400,6 @@ html {
 }
 
 .help__title {
-  font-family: 'Georgia';
-  font-style: normal;
   font-weight: 400;
   font-size: 35px;
   line-height: 130%;
@@ -433,8 +429,6 @@ html {
   flex-direction: column;
   align-items: center;
   gap: 30px;
-  font-family: 'Georgia';
-  font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 115%;
@@ -451,8 +445,9 @@ html {
 .inaddition {
   width: 100%;
   background: #F6F6F6;
-  padding-top: 80px;
-  padding-bottom: 100px;
+  padding: 80px 0 100px;
+  font-family: 'Georgia';
+  font-style: normal;
 }
 
 .inaddition__wrapper {
@@ -481,8 +476,6 @@ html {
 
 .inaddition__title {
   width: 300px;
-  font-family: 'Georgia';
-  font-style: normal;
   font-weight: 400;
   font-size: 35px;
   line-height: 130%;
@@ -492,8 +485,6 @@ html {
 }
 
 .inaddition__card-name {
-  font-family: 'Georgia';
-  font-style: normal;
   font-weight: 400;
   font-size: 15px;
   line-height: 110%;
@@ -521,8 +512,6 @@ html {
 
 .inaddition__card-number {
   border-radius: 9px;
-  font-family: 'Georgia';
-  font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 115%;
@@ -540,9 +529,21 @@ html {
   margin: 0;
 }
 
+.inaddition_card-icon {
+  background-image: url('./assets/images/credit-card.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 30px;
+  height: 23px;
+}
+
 /* footer */
 
 .footer {
+  font-family: 'Georgia';
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.06em;
   padding-top: 40px;
   width: 100%;
   background: url('./assets/images/noise_transparent@2x.png'), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
@@ -567,7 +568,7 @@ html {
 .footer__section {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 37px;
   width: 320px;
   margin-top: 16px;
 }
@@ -578,22 +579,17 @@ html {
 }
 
 .footer__title {
-  font-family: 'Georgia';
-  font-style: normal;
-  font-weight: 400;
   font-size: 35px;
   line-height: 130%;
-  letter-spacing: 0.06em;
   color: #FFFFFF;
   margin: 0;
+  font-weight: 400;
+  letter-spacing: 0.06em;
 }
 
 .footer__link {
   text-decoration: none;
   color: #F1CDB3;
-  font-family: 'Georgia';
-  font-style: normal;
-  font-weight: 400;
   font-size: 20px;
   line-height: 115%;
   letter-spacing: 0.06em;
@@ -606,5 +602,33 @@ html {
 
 .footer__link:hover {
   color: #FDDCC4;
-  text-shadow: 2px -2px 4px rgba(195, 195, 197, 0.73)
+  text-shadow: 2px -2px 4px rgba(195, 195, 197, 0.73);
+
+}
+
+.footer__icon {
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.footer__icon_type_email {
+  background-image: url('./assets/images/icon-email.svg');
+  width: 40px;
+  height: 36px;
+}
+
+.footer__icon_type_phone {
+  background-image: url('./assets/images/phone.svg');
+  width: 40px;
+  height: 32px;
+}
+
+.footer__icon_type_adress {
+  background-image: url('./assets/images/pin.svg');
+  width: 22px;
+  height: 32px;
+}
+
+.footer__icon_type_adress_double {
+  padding-left: 10px;
 }
