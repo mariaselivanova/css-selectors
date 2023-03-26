@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>shelter</title>
-  <link rel="icon" href="../../assets/icons/paw-solid.svg" type="image/x-icon">
+  <link rel="icon" href="../../assets/icons/favicon.ico" type="image/x-icon">
   <link href="./style.css" rel="stylesheet">
 </head>
 
@@ -14,7 +14,7 @@
   <header class="header">
     <div class="header__wrapper">
       <a href="../../main.html" class="header__logo">
-        <h1 class="header__title">Cozy House</h1>
+        <p class="header__title">Cozy House</p>
         <p class="header__subtitle">Shelter for pets in Boston</p>
       </a>
       <nav class="header__nav">
@@ -37,57 +37,60 @@
   </header>
 
   <main class="content">
+
     <section class="ourfriends">
       <div class="ourfriends__wrapper">
-        <h2 class="ourfriends__title">Our friends who are&nbsp;looking for a house</h2>
+        <h1 class="ourfriends__title">Our friends who are&nbsp;looking for a house</h1>
         <div class="ourfriends__cards">
+
           <article class="ourfriends__card">
             <img class="ourfriends__img" src="../../assets/images/pets-katrine.png" alt="a cat named Katrine">
-            <h3 class="ourfriends__names">Katrine</h3>
-            <a class="ourfriends__link">Learn more</a>
+            <h2 class="ourfriends__names">Katrine</h2>
+            <button type="button" class="ourfriends__link">Learn more</button>
           </article>
 
           <article class="ourfriends__card">
             <img class="ourfriends__img" src="../../assets/images/pets-jennifer.png" alt="a dog named jennifer">
-            <h3 class="ourfriends__names">Jennifer</h3>
-            <a class="ourfriends__link">Learn more</a>
+            <h2 class="ourfriends__names">Jennifer</h2>
+            <button type="button" class="ourfriends__link">Learn more</button>
           </article>
 
           <article class="ourfriends__card">
             <img class="ourfriends__img" src="../../assets/images/pets-woody.png" alt="a dog named woody">
-            <h3 class="ourfriends__names">Woody</h3>
-            <a class="ourfriends__link">Learn more</a>
+            <h2 class="ourfriends__names">Woody</h2>
+            <button type="button" class="ourfriends__link">Learn more</button>
           </article>
 
           <article class="ourfriends__card">
             <img class="ourfriends__img" src="../../assets/images/sophia.png" alt="a dog named sophia">
-            <h3 class="ourfriends__names">Sophia</h3>
-            <a class="ourfriends__link">Learn more</a>
+            <h2 class="ourfriends__names">Sophia</h2>
+            <button type="button" class="ourfriends__link">Learn more</button>
           </article>
 
           <article class="ourfriends__card">
             <img class="ourfriends__img" src="../../assets/images/pets-timmy.png" alt="a cat named timmy">
-            <h3 class="ourfriends__names">Timmy</h3>
-            <a class="ourfriends__link">Learn more</a>
+            <h2 class="ourfriends__names">Timmy</h2>
+            <button type="button" class="ourfriends__link">Learn more</button>
           </article>
 
           <article class="ourfriends__card">
             <img class="ourfriends__img" src="../../assets/images/pets-charly.png" alt="a dog named charly">
-            <h3 class="ourfriends__names">Charly</h3>
-            <a class="ourfriends__link">Learn more</a>
+            <h2 class="ourfriends__names">Charly</h2>
+            <button type="button" class="ourfriends__link">Learn more</button>
           </article>
 
           <article class="ourfriends__card">
             <img class="ourfriends__img" src="../../assets/images/pets-scarlet.png" alt="a dog named Scarlett">
-            <h3 class="ourfriends__names">Scarlett</h3>
-            <a class="ourfriends__link">Learn more</a>
+            <h2 class="ourfriends__names">Scarlett</h2>
+            <button type="button" class="ourfriends__link">Learn more</button>
           </article>
 
           <article class="ourfriends__card">
             <img class="ourfriends__img" src="../../assets/images/freddie.png" alt="a cat named freddie">
-            <h3 class="ourfriends__names">Freddie</h3>
-            <a class="ourfriends__link">Learn more</a>
+            <h2 class="ourfriends__names">Freddie</h2>
+            <button type="button" class="ourfriends__link">Learn more</button>
           </article>
+
         </div>
         <div class="ourfriends__nav">
           <button disabled class="ourfriends__btn" type="button">&lt;&lt;</button>
@@ -98,17 +101,19 @@
         </div>
       </div>
     </section>
+
   </main>
+
   <footer id="footer" class="footer">
     <div class="footer__wrapper">
       <div class="footer__section">
         <h3 class="footer__title">For questions and&nbsp;suggestions</h3>
         <a class="footer__link" href="mailto:email@shelter.com">
-          <img src="../../assets/images/icon-email.svg" alt="email">
+          <div class="footer__icon footer__icon_type_email"></div>
           email@shelter.com
         </a>
         <a class="footer__link" href="tel:+136745677554">
-          <img src="../../assets/images/phone.svg" alt="email">
+          <div class="footer__icon footer__icon_type_phone"></div>
           +13 674 567 75 54
         </a>
       </div>
@@ -116,11 +121,11 @@
       <div class="footer__section footer__section_type_adress">
         <h3 class="footer__title">We are waiting for your visit</h3>
         <a class="footer__link" target="_blank" href="https://goo.gl/maps/xAVKGXs4goebckRD6">
-          <img src="../../assets/images/pin.svg" alt="email">
+          <div class="footer__icon footer__icon_type_adress footer__icon_type_adress_double"></div>
           1 Central Street, Boston (entrance from the store)
         </a>
         <a class="footer__link" target="_blank" href="https://goo.gl/maps/xAVKGXs4goebckRD6">
-          <img src="../../assets/images/pin.svg" alt="email">
+          <div class="footer__icon footer__icon_type_adress"></div>
           18 South Park, London
         </a>
       </div>
