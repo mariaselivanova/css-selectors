@@ -286,8 +286,8 @@ html {
   border: 2px solid #F1CDB3;
   border-radius: 50%;
   background: transparent;
-  width: 50px;
-  height: 50px;
+  width: 52px;
+  height: 52px;
   color: #292929;
   background-image: url('./assets/images/Arrow.svg');
   background-repeat: no-repeat;
@@ -568,13 +568,13 @@ html {
 .footer__section {
   display: flex;
   flex-direction: column;
-  gap: 37px;
+  gap: 38px;
   width: 320px;
   margin-top: 16px;
 }
 
 .footer__section_type_adress {
-  gap: 34px;
+  gap: 33px;
   padding-left: 5px;
 }
 
