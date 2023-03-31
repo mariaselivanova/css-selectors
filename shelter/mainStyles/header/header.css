@@ -1,0 +1,8 @@
+.header {
+  width: 100%;
+  position: absolute;
+  top: 30px;
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: 400;
+}

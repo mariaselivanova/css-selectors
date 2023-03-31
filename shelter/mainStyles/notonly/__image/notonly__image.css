@@ -1,0 +1,58 @@
+.notonly__image {
+  background-image: url("../../../assets/images/start-screen-puppy.png");
+  background-position: bottom;
+  background-size: contain;
+  transition: all 0.5s ease;
+  background-repeat: no-repeat;
+  width: 698px;
+  height: 728px;
+}
+
+@media screen and (max-width: 1270px) {
+  .notonly__image {
+    height: 600px;
+    width: 100%;
+    max-width: 698px;
+
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .notonly__image {
+    height: 500px;
+    align-self: flex-end;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .notonly__image {
+    height: 592px;
+    background-position: right;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .notonly__image {
+    height: 480px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .notonly__image {
+    height: 380px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .notonly__image {
+    height: 300px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .notonly__image {
+    height: 271.77px;
+    align-self: center;
+    background-position: center left 40px;
+  }
+}

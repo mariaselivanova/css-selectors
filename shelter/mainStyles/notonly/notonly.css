@@ -1,0 +1,22 @@
+.notonly {
+  background: url('../../assets/images/noise_transparent@2x.png'), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
+  margin: 0 auto;
+  padding-top: 183px;
+  width: 100%;
+  font-family: 'Georgia';
+  font-style: normal;
+  font-weight: 400;
+  transition: padding 0.5s ease;
+}
+
+@media screen and (max-width: 1000px) {
+  .notonly {
+    padding-top: 100px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .notonly {
+    padding-top: 143px;
+  }
+}

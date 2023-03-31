@@ -1,0 +1,28 @@
+.notonly__title {
+  margin: 7px 0 25px;
+  font-size: 44px;
+  line-height: 130%;
+  color: #FFFFFF;
+  max-width: 310px;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 750px) {
+  .notonly__title {
+    text-align: center;
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .notonly__title {
+    letter-spacing: 0.06em;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .notonly__title {
+    font-size: 25px;
+    width: 200px;
+  }
+}
