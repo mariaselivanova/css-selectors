@@ -1,0 +1,19 @@
+.about__img {
+  background-image: url('../../../assets/images/about-pets.png');
+  height: 408px;
+  width: 300px;
+  background-size: contain;
+}
+
+@media screen and (max-width: 1150px) {
+  .about__img {
+    align-self: center;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .about__img {
+    width: 260px;
+    height: 353.6px;
+  }
+}

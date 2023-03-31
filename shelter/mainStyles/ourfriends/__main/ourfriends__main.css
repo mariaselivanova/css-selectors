@@ -1,0 +1,38 @@
+.ourfriends__main {
+  margin: 60px auto 61px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  transition: all 0.5s ease;
+}
+
+@media screen and (max-width: 1050px) {
+  .ourfriends__main {
+    width: 87%;
+    min-width: 708px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .ourfriends__main {
+    width: 70%;
+    min-width: 400px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .ourfriends__main {
+    min-width: 0;
+    width: 270px;
+    display: grid;
+    display: grid;
+    grid-template-columns: repeat(2, 95px);
+    grid-template-rows: 435px 52px;
+    row-gap: 20px;
+    column-gap: 80px;
+    margin-bottom: 42px;
+    margin-top: 42px;
+  }
+}

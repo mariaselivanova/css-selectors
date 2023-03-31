@@ -2,7 +2,7 @@
   display: none;
 }
 
-@media screen and (max-width: 767.5px) {
+@media screen and (width < 768px) {
   .header__burger {
     display: block;
     background-image: url('../../../assets/images/Burger.svg');
@@ -11,5 +11,10 @@
     border: none;
     background-color: transparent;
     align-self: center;
+    cursor: pointer;
+  }
+
+  .header__burger:hover {
+    box-shadow: 1px 0px 25px 17px rgba(20,22,21,0.75);
   }
 }

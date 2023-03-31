@@ -9,13 +9,14 @@
   transition: padding 0.5s ease;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (width < 1280px) {
   .notonly {
-    padding-top: 100px;
+    padding-top: 14.2%;
   }
 }
 
-@media screen and (max-width: 900px) {
+
+@media screen and (max-width: 800px) {
   .notonly {
     padding-top: 143px;
   }

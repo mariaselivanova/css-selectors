@@ -1,0 +1,8 @@
+.ourfriends__wrapper {
+  margin: 0 auto;
+  width: 94%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
