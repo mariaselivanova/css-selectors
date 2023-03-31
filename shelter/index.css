@@ -685,7 +685,6 @@ html {
   }
 
   .inaddition__wrapper {
-    display: flex;
     flex-direction: column-reverse;
     align-items: center;
   }
@@ -819,6 +818,7 @@ html {
 /* phone */
 
 @media screen and (max-width: 750px) {
+
   .header__nav {
     display: none;
   }
@@ -870,9 +870,98 @@ html {
     font-size: 15px;
     gap: 20px;
   }
+
+  .inaddition__pic {
+    margin-top: 42px;
+    background-position: center;
+    width: 100%;
+    height: auto;
+    min-height: 135.2px;
+    background-size: contain;
+  }
+
+  .inaddition__title {
+    text-align: center;
+    font-size: 25px;
+    width: 225px;
+  }
+
+  .inaddition__card-name {
+    text-align: center;
+    letter-spacing: normal;
+  }
+
+  .inaddition__info {
+    align-items: center;
+    width: 89%;
+  }
+
+  .inaddition__paragraph {
+    text-align: center;
+  }
+
+  .inaddition__card-number {
+    font-size: 15px;
+
+  }
+
+  .inaddition__card {
+    width: 281px;
+    align-items: center;
+  }
+
+  .inaddition {
+    padding-top: 42px;
+    padding-bottom: 41.8px;
+  }
+
+  .inaddition__wrapper {
+    width: 100%;
+  }
+  .footer__section_type_adress {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 722px) {
+  .footer__title {
+    font-size: 25px;
+    text-align: center;
+    width: 85%;
+    align-self: center;
+  }
+
+  .footer__section {
+    width: 300px;
+  }
+
+
 }
 
 @media screen and (max-width: 500px) {
+  .footer__wrapper {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    row-gap: 25px;
+  }
+
+  .footer__link {
+    padding-left: 30px;
+  }
+
+  .footer__link_type_email {
+    padding-left: 25px;
+  }
+
+  .inaddition__info {
+    gap: 22px;
+  }
+
+  .inaddition__paragraph {
+    text-align: justify;
+  }
 
   .help__list {
     grid-template-columns: repeat(2, 130px);
@@ -901,6 +990,7 @@ html {
   }
 
   .notonly__image {
+    padding: 0;
     min-height: 350px;
     align-self: center;
   }
@@ -968,13 +1058,24 @@ html {
   .ourfriends {
     padding-top: 42px;
   }
+
+  .footer__link_type_adress {
+    padding: 0;
+  }
 }
 
 @media screen and (max-width: 350px) {
+  .footer__section_type_adress {
+    gap: 40px;
+  }
+
+
+  .footer__wrapper {
+    gap: 20px;
+  }
   .notonly__image {
     min-height: 271.77px;
     background-position: center left 50px;
-    padding: 0;
   }
 
   .notonly__info {
@@ -1007,5 +1108,11 @@ html {
 
   .help__list {
     padding-bottom: 42px;
+  }
+
+  .footer__img {
+    width: 260px;
+    background-position: center;
+    background-size: contain;
   }
 }
