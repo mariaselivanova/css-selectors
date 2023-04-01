@@ -1,0 +1,33 @@
+.footer__wrapper {
+  margin: 0 auto;
+  width: 94.5%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 1048px) {
+  .footer__wrapper {
+    justify-content: space-around;
+    align-items: center;
+    row-gap: 65px;
+    width: 88%;
+  }
+}
+
+@media screen and (width < 768px) {
+  .footer__wrapper {
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    row-gap: 25px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .footer__wrapper {
+    gap: 20px;
+  }
+}

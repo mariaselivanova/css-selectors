@@ -1,0 +1,23 @@
+
+.footer__img {
+  background-image: url('../../../assets/images/footer-puppy.svg');
+  width: 300px;
+  height: 310px;
+  margin-left: 30px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 1048px) {
+  .footer__img {
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .footer__img {
+    width: 260px;
+    height: 269px;
+  }
+}
