@@ -12,9 +12,10 @@
     background-color: transparent;
     align-self: center;
     cursor: pointer;
+    transition: transform 0.5s ease;
   }
 
   .header__burger:hover {
-    box-shadow: 1px 0px 25px 17px rgba(20,22,21,0.75);
+    transform: scale(110%);
   }
 }
