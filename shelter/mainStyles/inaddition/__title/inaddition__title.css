@@ -1,0 +1,22 @@
+.inaddition__title {
+  width: 300px;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #545454;
+  margin: 0;
+}
+
+@media screen and (width < 768px) {
+  .inaddition__title {
+    font-size: calc(25px + (35 - 25) * (100vw - 320px) / (768 - 320));
+  }
+}
+
+@media screen and (max-width: 665px) {
+  .inaddition__title {
+    text-align: center;
+    width: 225px;
+  }
+}

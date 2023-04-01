@@ -1,0 +1,21 @@
+.footer__title {
+  font-size: 35px;
+  line-height: 130%;
+  color: #FFFFFF;
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+
+@media screen and (width < 786px) {
+  .footer__title {
+  font-size: calc(25px + (35 - 25) * (100vw - 320px) / (768 - 320));
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .footer__title {
+    text-align: center;
+    width: 85%;
+  }
+}

@@ -1,0 +1,27 @@
+.ourfriends__cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 82.5%;
+  min-width: 840px;
+  transition: all 0.5s ease;
+}
+
+@media screen and (width < 1280px) {
+  .ourfriends__cards {
+    width: 82%;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .ourfriends__cards {
+    min-width: 580px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .ourfriends__cards {
+    min-width: 0;
+    width: 270px;
+  }
+}

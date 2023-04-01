@@ -1,0 +1,40 @@
+.notonly__image {
+  background-image: url("../../../assets/images/start-screen-puppy.png");
+  background-position: bottom;
+  background-size: contain;
+  transition: all 0.5s ease;
+  background-repeat: no-repeat;
+  max-width: 698px;
+  width: 100%;
+  height: 728px;
+}
+
+@media screen and (width < 1280px) {
+  .notonly__image {
+    height: calc(593px + (728 - 593) * (100vw - 768px) / (1280 - 768));
+
+  }
+}
+
+@media screen and (width < 800px) {
+  .notonly__image {
+    background-position: right;
+    margin: 0 0 0 10px;
+  }
+}
+
+@media screen and (width < 768px) {
+  .notonly__image {
+    margin: 0;
+    height: calc(260px + (593 - 260) * (100vw - 320px) / (768 - 320));
+  }
+}
+
+
+ @media screen and (max-width: 350px) {
+  .notonly__image {
+    height: 271.77px;
+    align-self: center;
+    background-position: center left 40px;
+  }
+}

@@ -1,0 +1,21 @@
+.about__title {
+  font-family: 'Georgia';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #545454;
+  max-width: 350px;
+  margin: 0;
+}
+
+@media screen and (width < 768px) {
+  .about__title {
+    max-width: 100%;
+    text-align: center;
+    margin-bottom: 3px;
+    font-size: calc(25px + (35 - 25) * (100vw - 320px) / (768 - 320));
+  }
+}
+
