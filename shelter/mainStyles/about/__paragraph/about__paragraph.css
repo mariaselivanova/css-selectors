@@ -1,0 +1,21 @@
+.about__paragraph {
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 160%;
+  color: #4C4C4C;
+  margin: 0;
+}
+
+@media screen and (width < 768px) {
+  .about__paragraph {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .about__paragraph {
+    text-align: justify;
+  }
+}

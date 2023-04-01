@@ -1,0 +1,14 @@
+.inaddition {
+  width: 100%;
+  background: #F6F6F6;
+  padding: 80px 0 100px;
+  font-family: 'Georgia';
+  font-style: normal;
+}
+
+@media screen and (max-width: 665px) {
+  .inaddition {
+    padding-top: 42px;
+    padding-bottom: 41.8px;
+  }
+}

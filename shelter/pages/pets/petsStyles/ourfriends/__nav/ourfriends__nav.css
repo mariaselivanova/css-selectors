@@ -1,0 +1,22 @@
+.ourfriends__nav {
+  margin-top: 59px;
+  margin-bottom: 100px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+@media screen and (width < 1280px) {
+  .ourfriends__nav {
+    margin-top: calc(40px + (59 - 40) * (100vw - 768px) / (1280 - 768));
+    margin-bottom: calc(76px + (100 - 76) * (100vw - 768px) / (1280 - 768));
+  }
+}
+
+@media screen and (width < 768px) {
+  .ourfriends__nav {
+    margin-top: 42px;
+    margin-bottom: calc(42px + (76 - 42) * (100vw - 320px) / (768 - 320));
+    gap: calc(10px + (20 - 10) * (100vw - 320px) / (768 - 320));
+  }
+}

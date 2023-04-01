@@ -1,0 +1,7 @@
+.header__list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 445px;
+  list-style-type: none;
+}

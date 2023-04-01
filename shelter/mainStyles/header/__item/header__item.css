@@ -1,0 +1,23 @@
+.header__item {
+  font-size: 15px;
+  line-height: 160%;
+  color: #CDCDCD;
+  padding: 3px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.5s ease;
+}
+
+.header__item:hover {
+  color: #FAFAFA;
+}
+
+.header__item:active {
+  border-bottom: 3px solid #F1CDB3;
+}
+
+.header__item_active {
+  border-bottom: 3px solid #F1CDB3;
+  color: #FAFAFA;
+  pointer-events: none;
+}

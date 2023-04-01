@@ -1,0 +1,32 @@
+.footer__link {
+  text-decoration: none;
+  color: #F1CDB3;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  transition: all 1s ease;
+}
+
+.footer__link:hover {
+  color: #FDDCC4;
+  text-shadow: 2px -2px 4px rgba(195, 195, 197, 0.73);
+
+}
+
+@media screen and (max-width: 500px) {
+  .footer__link {
+    padding-left: 30px;
+  }
+
+  .footer__link_type_email {
+    padding-left: 25px;
+  }
+
+  .footer__link_type_adress {
+    padding-left: 15px;
+  }
+}
