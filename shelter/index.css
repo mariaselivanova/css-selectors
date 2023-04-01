@@ -33,167 +33,18 @@
 @import url(./mainStyles/ourfriends/__link/ourfriends__link.css);
 @import url(./mainStyles/ourfriends/__learnmore/ourfriends__learnmore.css);
 @import url(./mainStyles/ourfriends/__img/ourfriends__img.css);
-
-
-/* help */
-
-.help {
-  width: 100%;
-  font-family: 'Georgia';
-  font-style: normal;
-}
-
-.help__wrapper {
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 90%;
-  max-width: 1100px;
-  transition: all 0.5 ease;
-}
-
-.help__title {
-  font-weight: 400;
-  font-size: 35px;
-  line-height: 130%;
-  letter-spacing: 0.06em;
-  color: #545454;
-  max-width: 310px;
-  text-align: center;
-  margin-top: 80px;
-  margin-bottom: 60px;
-  transition: all 0.5 ease;
-}
-
-.help__list {
-  width: 100%;
-  margin: 0;
-  list-style-type: none;
-  padding: 0;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  column-gap: 120px;
-  row-gap: 55px;
-  justify-content: center;
-  padding-bottom: 100px;
-  transition: all 0.5 ease;
-}
-
-.help__item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 115%;
-  letter-spacing: 0.06em;
-  color: #545454;
-  transition: all 0.5 ease;
-}
-
-.help__item_fl {
-  gap: 35px;
-}
-
-/* inaddition */
-
-.inaddition {
-  width: 100%;
-  background: #F6F6F6;
-  padding: 80px 0 100px;
-  font-family: 'Georgia';
-  font-style: normal;
-}
-
-.inaddition__wrapper {
-  width: 72%;
-  max-width: 915px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: 0 auto;
-}
-
-.inaddition__pic {
-  background-image: url('./assets/images/donation-dog.png');
-  background-repeat: no-repeat;
-  width: 505px;
-  margin-top: 10px;
-}
-
-.inaddition__info {
-  max-width: 380px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.inaddition__title {
-  width: 300px;
-  font-weight: 400;
-  font-size: 35px;
-  line-height: 130%;
-  letter-spacing: 0.06em;
-  color: #545454;
-  margin: 0;
-}
-
-.inaddition__card-name {
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 110%;
-  letter-spacing: 0.06em;
-  color: #545454;
-}
-
-.inaddition__card {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  background: #F1CDB3;
-  border-radius: 9px;
-  width: 349px;
-  padding: 10px 15px;
-  box-sizing: border-box;
-  text-decoration: none;
-  transition: all 1s ease;
-}
-
-.inaddition__card:hover {
-  background: #FDDCC4;
-  cursor: pointer;
-}
-
-.inaddition__card-number {
-  border-radius: 9px;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 115%;
-  letter-spacing: 0.06em;
-  color: #545454;
-}
-
-.inaddition__paragraph {
-  font-family: 'Arial';
-  font-style: italic;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 18px;
-  color: #B2B2B2;
-  margin: 0;
-}
-
-.inaddition_card-icon {
-  background-image: url('./assets/images/credit-card.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 30px;
-  height: 23px;
-}
+@import url(./mainStyles/help/help.css);
+@import url(./mainStyles/help/__wrapper/help__wrapper.css);
+@import url(./mainStyles/help/__title/help__title.css);
+@import url(./mainStyles/help/__list/help__list.css);
+@import url(./mainStyles/help/__item/help__item.css);
+@import url(./mainStyles/inaddition/inaddition.css);
+@import url(./mainStyles/inaddition/__wrapper/inaddition__wrapper.css);
+@import url(./mainStyles/inaddition/__pic/inaddition__pic.css);
+@import url(./mainStyles/inaddition/__info/inaddition__info.css);
+@import url(./mainStyles/inaddition/__title/inaddition__title.css);
+@import url(./mainStyles/inaddition/__card/inaddition__card.css);
+@import url(./mainStyles/inaddition/__paragraph/inaddition__paragraph.css);
 
 /* footer */
 
@@ -297,30 +148,6 @@
 /* media queries */
 /* tablet */
 
-@media screen and (max-width: 1260px) {
-
-  .help__list {
-    column-gap: 10%;
-  }
-}
-
-@media screen and (max-width: 1250px) {
-
-  .inaddition__wrapper {
-    flex-direction: column-reverse;
-    align-items: center;
-  }
-
-  .inaddition__pic {
-    height: 261px;
-    margin-top: 60px;
-  }
-
-  .inaddition__info {
-    max-width: 700px;
-    width: 68%;
-  }
-}
 
 @media screen and (max-width: 1048px) {
   .footer__wrapper {
@@ -345,18 +172,6 @@
   }
 }
 
-
-@media screen and (max-width: 940px) {
-
-
-  .help__list {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(130px, 170px));
-    grid-template-rows: repeat(3, 113px);
-    grid-column-gap: 8.7%;
-  }
-}
-
 @media screen and (max-width: 770px) {
   .footer__wrapper {
     justify-content: center;
@@ -367,59 +182,6 @@
 
 @media screen and (max-width: 750px) {
 
-
-  .help__item {
-    font-size: 15px;
-    gap: 20px;
-  }
-
-  .inaddition__pic {
-    margin-top: 42px;
-    background-position: center;
-    width: 100%;
-    height: auto;
-    min-height: 135.2px;
-    background-size: contain;
-  }
-
-  .inaddition__title {
-    text-align: center;
-    font-size: 25px;
-    width: 225px;
-  }
-
-  .inaddition__card-name {
-    text-align: center;
-    letter-spacing: normal;
-  }
-
-  .inaddition__info {
-    align-items: center;
-    width: 89%;
-  }
-
-  .inaddition__paragraph {
-    text-align: center;
-  }
-
-  .inaddition__card-number {
-    font-size: 15px;
-
-  }
-
-  .inaddition__card {
-    width: 281px;
-    align-items: center;
-  }
-
-  .inaddition {
-    padding-top: 42px;
-    padding-bottom: 41.8px;
-  }
-
-  .inaddition__wrapper {
-    width: 100%;
-  }
   .footer__section_type_adress {
     padding: 0;
   }
@@ -457,24 +219,8 @@
     padding-left: 25px;
   }
 
-  .inaddition__info {
-    gap: 22px;
-  }
-
   .inaddition__paragraph {
     text-align: justify;
-  }
-
-  .help__list {
-    grid-template-columns: repeat(2, 130px);
-    grid-template-rows: repeat(auto-fit, 87px);
-    grid-column-gap: 10%;
-    grid-row-gap: 30px;
-  }
-
-  .help__item {
-    font-size: 15px;
-    gap: 20px;
   }
 
   .footer__link_type_adress {
@@ -488,33 +234,6 @@
   }
   .footer__wrapper {
     gap: 20px;
-  }
-
-  .help__title {
-    font-size: 25px;
-    max-width: 230px;
-    margin-top: 42px;
-    margin-bottom: 42px;
-  }
-
-  .help__item-pic {
-    width: 38%;
-  }
-
-  .help__item-pic_type_shampoo {
-    width: 20%;
-  }
-
-  .help__item-pic_type_food {
-    width: 30%;
-  }
-
-  .help__item_fl {
-    gap: 25px;
-  }
-
-  .help__list {
-    padding-bottom: 42px;
   }
 
   .footer__img {

@@ -1,0 +1,22 @@
+.inaddition__info {
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media screen and (max-width: 1250px) {
+
+  .inaddition__info {
+    width: 70%;
+    max-width: 700px;
+  }
+}
+
+@media screen and (max-width: 665px) {
+  .inaddition__info {
+    align-items: center;
+    width: 89%;
+    gap: 22px;
+  }
+}

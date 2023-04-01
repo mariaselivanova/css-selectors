@@ -1,8 +1,10 @@
 .about__img {
   background-image: url('../../../assets/images/about-pets.png');
   height: 408px;
-  width: 300px;
+  max-width: 300px;
+  width: 100%;
   background-size: contain;
+  background-repeat: no-repeat;
 }
 
 @media screen and (max-width: 1150px) {
@@ -11,9 +13,8 @@
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (width < 768px) {
   .about__img {
-    width: 260px;
-    height: 353.6px;
+    height: calc(353.6px + (408 - 353.6) * (100vw - 320px) / (768 - 320));
   }
 }
