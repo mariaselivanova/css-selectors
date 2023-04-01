@@ -10,10 +10,9 @@
 
 @media screen and (max-width: 1048px) {
   .footer__wrapper {
-    justify-content: space-around;
+    width: 83.3%;
     align-items: center;
     row-gap: 65px;
-    width: 88%;
   }
 }
 
@@ -22,12 +21,6 @@
     justify-content: center;
     flex-direction: column;
     width: 100%;
-    row-gap: 25px;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .footer__wrapper {
     gap: 20px;
   }
 }
