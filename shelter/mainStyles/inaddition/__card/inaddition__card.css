@@ -43,7 +43,7 @@
 @media screen and (width < 768px) {
   .inaddition__card {
     width: calc(281px + (349 - 281) * (100vw - 320px) / (768 - 320));
-
+    margin-top: 5px;
   }
 
   .inaddition__card-number {
@@ -55,6 +55,7 @@
 
   .inaddition__card-name {
     text-align: center;
+    letter-spacing: normal;
   }
 
   .inaddition__card {
