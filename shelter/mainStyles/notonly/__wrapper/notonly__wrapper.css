@@ -13,7 +13,7 @@
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (width < 800px) {
   .notonly__wrapper {
     display: flex;
     flex-direction: column;

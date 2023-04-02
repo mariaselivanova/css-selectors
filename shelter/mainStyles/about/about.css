@@ -3,8 +3,9 @@
   transition: margin 0.5s ease;
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (width < 768px) {
   .about {
-    margin: 40px auto 42px;
+    margin-top: calc(40px + (80 - 40) * (100vw - 320px) / (768 - 320));
+    margin-bottom: calc(42px + (100 - 42) * (100vw - 320px) / (768 - 320));;
   }
 }

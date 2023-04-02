@@ -5,11 +5,12 @@
   font-family: 'Georgia';
   font-style: normal;
   width: 100%;
+  transition: all 0.5s ease;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (width < 768px) {
   .ourfriends {
-    padding-top: 42px;
-    padding-bottom: 42px;
+    padding-top: calc(42px + (80 - 42) * (100vw - 320px) / (768 - 320));
+    padding-bottom: calc(42px + (100 - 42) * (100vw - 320px) / (768 - 320));;
   }
 }
