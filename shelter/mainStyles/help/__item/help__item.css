@@ -12,7 +12,17 @@
 }
 
 .help__item_fl {
-  gap: 35px;
+  gap: 32px;
+  margin-top: 3px;
+}
+
+.help__item_type_collars {
+  gap: 34px;
+  margin-top: 3px;
+}
+
+.help__item_type_bowls {
+  gap: 32px;
 }
 
 @media screen and (width < 1280px) {
@@ -28,6 +38,7 @@
 }
 
 @media screen and (max-width: 350px) {
+
   .help__item {
     gap: 20px;
   }
@@ -45,6 +56,18 @@
   }
 
   .help__item_fl {
-    gap: 25px;
+    gap: 22px;
+  }
+
+  .help__item_type_bowls {
+    gap: 22px;
+  }
+
+  .help__item_type_collars {
+    gap: 22px;
+  }
+
+  .help__item_type_sleep {
+    gap: 18px;
   }
 }
