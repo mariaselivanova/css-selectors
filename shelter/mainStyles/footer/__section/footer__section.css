@@ -17,11 +17,11 @@
     width: 302px;
     justify-content: center;
     align-items: center;
+    gap: 40px;
   }
 
   .footer__section_type_adress {
     margin-top: 20px;
     margin-bottom: 2px;
-    gap: 38px;
   }
 }
