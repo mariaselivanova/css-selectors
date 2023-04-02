@@ -10,6 +10,7 @@
   row-gap: 55px;
   justify-content: center;
   padding-bottom: 100px;
+  transition: padding-bottom 0.5s ease;
 }
 
 @media screen and (width < 1280px) {
@@ -27,6 +28,12 @@
   }
 }
 
+@media screen and (width < 768px) {
+  .help__list {
+    padding-bottom:calc(42px + (100 - 42) * (100vw - 320px) / (768 - 320));
+  }
+}
+
 @media screen and (max-width: 600px) {
   .help__list {
     grid-template-columns: repeat(2, 130px);
@@ -38,6 +45,5 @@
 @media screen and (max-width: 350px) {
   .help__list {
     grid-row-gap: 30px;
-    padding-bottom: 42px;
   }
 }
