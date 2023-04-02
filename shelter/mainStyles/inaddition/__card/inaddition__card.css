@@ -54,6 +54,7 @@
 @media screen and (max-width: 665px) {
 
   .inaddition__card-name {
+    margin-top: 4px;
     text-align: center;
     letter-spacing: normal;
   }
