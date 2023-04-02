@@ -18,7 +18,7 @@
   background: #FDDCC4;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (width < 800px) {
   .notonly__button {
     align-self: center;
   }
