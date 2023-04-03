@@ -20,5 +20,6 @@
  @media screen and (width < 768px) {
   .footer__link_type_adress {
     width: 300px;
+    line-height: 120%;
   }
 }
