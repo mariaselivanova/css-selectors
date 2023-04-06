@@ -6,8 +6,8 @@ const page = document.querySelector(".page");
 fetch("./data.json")
   .then((response) => response.json())
   .then((data) => {
-    const slicedData = data.slice(0, 3)
-    slicedData.forEach((item) => {
+    data.forEach((item) => {
+      console.log(data)
       const card = document.createElement("article");
       card.classList.add("ourfriends__card");
       card.setAttribute("bread", item.breed);

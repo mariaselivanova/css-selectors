@@ -47,55 +47,6 @@
       <div class="ourfriends__wrapper">
         <h1 class="ourfriends__title">Our friends who are&nbsp;looking for a house</h1>
         <div class="ourfriends__cards">
-
-          <article class="ourfriends__card">
-            <img class="ourfriends__img" src="../../assets/images/pets-katrine.png" alt="a cat named Katrine">
-            <h2 class="ourfriends__names">Katrine</h2>
-            <button type="button" class="ourfriends__link">Learn more</button>
-          </article>
-
-          <article class="ourfriends__card">
-            <img class="ourfriends__img" src="../../assets/images/pets-jennifer.png" alt="a dog named jennifer">
-            <h2 class="ourfriends__names">Jennifer</h2>
-            <button type="button" class="ourfriends__link">Learn more</button>
-          </article>
-
-          <article class="ourfriends__card">
-            <img class="ourfriends__img" src="../../assets/images/pets-woody.png" alt="a dog named woody">
-            <h2 class="ourfriends__names">Woody</h2>
-            <button type="button" class="ourfriends__link">Learn more</button>
-          </article>
-
-          <article class="ourfriends__card">
-            <img class="ourfriends__img" src="../../assets/images/sophia.png" alt="a dog named sophia">
-            <h2 class="ourfriends__names">Sophia</h2>
-            <button type="button" class="ourfriends__link">Learn more</button>
-          </article>
-
-          <article class="ourfriends__card">
-            <img class="ourfriends__img" src="../../assets/images/pets-timmy.png" alt="a cat named timmy">
-            <h2 class="ourfriends__names">Timmy</h2>
-            <button type="button" class="ourfriends__link">Learn more</button>
-          </article>
-
-          <article class="ourfriends__card">
-            <img class="ourfriends__img" src="../../assets/images/pets-charly.png" alt="a dog named charly">
-            <h2 class="ourfriends__names">Charly</h2>
-            <button type="button" class="ourfriends__link">Learn more</button>
-          </article>
-
-          <article class="ourfriends__card">
-            <img class="ourfriends__img" src="../../assets/images/pets-scarlet.png" alt="a dog named Scarlett">
-            <h2 class="ourfriends__names">Scarlett</h2>
-            <button type="button" class="ourfriends__link">Learn more</button>
-          </article>
-
-          <article class="ourfriends__card">
-            <img class="ourfriends__img" src="../../assets/images/freddie.png" alt="a cat named freddie">
-            <h2 class="ourfriends__names">Freddie</h2>
-            <button type="button" class="ourfriends__link">Learn more</button>
-          </article>
-
         </div>
         <div class="ourfriends__nav">
           <button disabled class="ourfriends__btn" type="button">&lt;&lt;</button>
@@ -137,6 +88,38 @@
       <div class="footer__img"></div>
     </div>
   </footer>
+  <div id="popup" class="popup">
+    <div class="popup__wrapper">
+      <button id="closeButton" class="popup__close-button"></button>
+      <div class="popup__content">
+        <div class="popup__info">
+          <h2 class="popup__title"></h2>
+          <p class="popup__name"></p>
+          <p class="popup__paragraph"></p>
+          <dl class="popup__list">
+            <div class="popup__list-item">
+              <dt class="popup__list-feature">Age:</dt>
+              <dd class="popup__list-definition popup__list-definition_age"></dd>
+            </div>
+            <div class="popup__list-item">
+              <dt class="popup__list-feature">Inoculations:</dt>
+              <dd class="popup__list-definition popup__list-definition_inoculations"></dd>
+            </div>
+            <div class="popup__list-item">
+              <dt class="popup__list-feature">Diseases:</dt>
+              <dd class="popup__list-definition popup__list-definition_diseases"></dd>
+            </div>
+            <div class="popup__list-item">
+              <dt class="popup__list-feature">Parasites:</dt>
+              <dd class="popup__list-definition popup__list-definition_parasites"></dd>
+            </div>
+          </dl>
+        </div>
+        <img class="popup__photo" src="" alt="">
+      </div>
+    </div>
+  </div>
+  <script src="./index.js"></script>
 </body>
 
 </html>
