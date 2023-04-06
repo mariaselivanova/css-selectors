@@ -79,3 +79,16 @@ popup.addEventListener("click", (event) => {
     closePopup();
   }
 });
+
+//Бургер-меню
+
+const burgerIcon = document.querySelector(".header__burger");
+const burgerNav = document.querySelector(".header__burger-nav");
+
+function toggleBurgerMenu() {
+  page.classList.toggle("page_no-scroll");
+  burgerIcon.classList.toggle("header__burger_active");
+  burgerNav.classList.toggle("header__burger-nav_active");
+}
+
+ burgerIcon.addEventListener("click", toggleBurgerMenu)

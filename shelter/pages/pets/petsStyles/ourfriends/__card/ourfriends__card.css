@@ -9,31 +9,6 @@
   transition: all 0.5s ease;
 }
 
-@media screen and (width < 1000px) {
-  .ourfriends__card:last-of-type {
-    display: none;
-  }
-
-  .ourfriends__card:nth-of-type(7) {
-    display: none;
-  }
-
-}
-
-@media screen and (width < 650px) {
-  .ourfriends__card:nth-of-type(6) {
-    display: none;
-  }
-
-  .ourfriends__card:nth-of-type(5) {
-    display: none;
-  }
-
-  .ourfriends__card:nth-of-type(4) {
-    display: none;
-  }
-}
-
 .ourfriends__card:hover {
   background: #FFFFFF;
   box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
