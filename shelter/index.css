@@ -51,4 +51,14 @@
 @import url(./mainStyles/footer/__link/footer__link.css);
 @import url(./mainStyles/footer/__section/footer__section.css);
 @import url(./mainStyles/footer/__title/footer__title.css);
-@import url(./mainStyles/footer/__wrapper/footer__wrapper.css)
+@import url(./mainStyles/footer/__wrapper/footer__wrapper.css);
+@import url(./mainStyles/popup/popup.css);
+@import url(./mainStyles/popup/__close-button/popup__close-button.css);
+@import url(./mainStyles/popup/__content/popup__content.css);
+@import url(./mainStyles/popup/__info/popup__info.css);
+@import url(./mainStyles/popup/__list/popup__list.css);
+@import url(./mainStyles/popup/__name/popup__name.css);
+@import url(./mainStyles/popup/__paragraph/popup__paragraph.css);
+@import url(./mainStyles/popup/__photo/popup__photo.css);
+@import url(./mainStyles/popup/__title/popup__title.css);
+@import url(./mainStyles/popup/__wrapper/popup__wrapper.css);

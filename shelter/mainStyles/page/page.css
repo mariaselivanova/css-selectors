@@ -14,3 +14,7 @@ html {
   width: 100%;
   flex: 1;
 }
+
+.page_no-scroll {
+  overflow: hidden;
+}
