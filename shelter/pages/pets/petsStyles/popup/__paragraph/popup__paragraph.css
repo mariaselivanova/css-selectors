@@ -1,0 +1,10 @@
+.popup__paragraph {
+  max-width: 350px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 113%;
+  letter-spacing: 0.06em;
+  color: #000000;
+  margin: 0 0 40px;
+}

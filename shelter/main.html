@@ -39,6 +39,24 @@
         </ul>
       </nav>
     </div>
+
+      <nav class="header__burger-nav">
+        <ul class="header__burger-list">
+          <li>
+            <a class="header__burger-item header__burger-item_active">About the shelter</a>
+          </li>
+          <li>
+            <a href="./pages/pets/index.html" class="header__burger-item">Our pets</a>
+          </li>
+          <li>
+            <a class="header__burger-item" href="#help">Help the shelter</a>
+          </li>
+          <li>
+            <a class="header__burger-item" href="#footer">Contacts</a>
+          </li>
+        </ul>
+      </nav>
+
   </header>
 
   <main class="content">
@@ -57,9 +75,6 @@
         <div class="notonly__image"></div>
       </div>
     </section>
-
-
-
 
     <section class="about">
       <div class="about__wrapper">
@@ -83,25 +98,6 @@
         <div class="ourfriends__main">
           <button class="ourfriends__arrow" type="button"></button>
           <div class="ourfriends__cards">
-
-            <article class="ourfriends__card">
-              <img class="ourfriends__img" src="./assets/images/pets-katrine.png" alt="a cat named Katrine">
-              <h3 class="ourfriends__names">Katrine</h3>
-              <button type="button" class="ourfriends__link">Learn more</button>
-            </article>
-
-            <article class="ourfriends__card">
-              <img class="ourfriends__img" src="./assets/images/pets-jennifer.png" alt="a dog named jennifer">
-              <h3 class="ourfriends__names">Jennifer</h3>
-              <button type="button" class="ourfriends__link">Learn more</button>
-            </article>
-
-            <article class="ourfriends__card">
-              <img class="ourfriends__img" src="./assets/images/pets-woody.png" alt="a dog named woody">
-              <h3 class="ourfriends__names">Woody</h3>
-              <button type="button" class="ourfriends__link">Learn more</button>
-            </article>
-
           </div>
           <button class="ourfriends__arrow ourfriends__arrow_right" type="button"></button>
         </div>
@@ -186,7 +182,6 @@
           +13 674 567 75 54
         </a>
       </div>
-
       <div class="footer__section footer__section_type_adress">
         <h3 class="footer__title">We are waiting for your visit</h3>
         <a class="footer__link footer__link_type_adress" target="_blank" href="https://goo.gl/maps/cNHBq1wRcCcCPAMF8">
@@ -201,6 +196,38 @@
       <div class="footer__img"></div>
     </div>
   </footer>
+
+  <div id="popup" class="popup">
+    <div class="popup__wrapper">
+      <button id="closeButton" class="popup__close-button"></button>
+      <div class="popup__content">
+        <div class="popup__info">
+          <h2 class="popup__title"></h2>
+          <p class="popup__name"></p>
+          <p class="popup__paragraph"></p>
+          <dl class="popup__list">
+            <div class="popup__list-item">
+              <dt class="popup__list-feature">Age:</dt>
+              <dd class="popup__list-definition popup__list-definition_age"></dd>
+            </div>
+            <div class="popup__list-item">
+              <dt class="popup__list-feature">Inoculations:</dt>
+              <dd class="popup__list-definition popup__list-definition_inoculations"></dd>
+            </div>
+            <div class="popup__list-item">
+              <dt class="popup__list-feature">Diseases:</dt>
+              <dd class="popup__list-definition popup__list-definition_diseases"></dd>
+            </div>
+            <div class="popup__list-item">
+              <dt class="popup__list-feature">Parasites:</dt>
+              <dd class="popup__list-definition popup__list-definition_parasites"></dd>
+            </div>
+          </dl>
+        </div>
+        <img class="popup__photo" src="" alt="">
+      </div>
+    </div>
+  </div>
   <script src="./index.js"></script>
 </body>
 

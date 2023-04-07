@@ -26,3 +26,13 @@
 @import url(./petsStyles/ourfriends/__nav/ourfriends__nav.css);
 @import url(./petsStyles/ourfriends/__title/ourfriends__title.css);
 @import url(./petsStyles/ourfriends/__wrapper/ourfriends__wrapper.css);
+@import url(./petsStyles/popup/popup.css);
+@import url(./petsStyles/popup/__close-button/popup__close-button.css);
+@import url(./petsStyles/popup/__content/popup__content.css);
+@import url(./petsStyles/popup/__info/popup__info.css);
+@import url(./petsStyles/popup/__list/popup__list.css);
+@import url(./petsStyles/popup/__name/popup__name.css);
+@import url(./petsStyles/popup/__paragraph/popup__paragraph.css);
+@import url(./petsStyles/popup/__photo/popup__photo.css);
+@import url(./petsStyles/popup/__title/popup__title.css);
+@import url(./petsStyles/popup/__wrapper/popup__wrapper.css);

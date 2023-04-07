@@ -1,33 +1,10 @@
-const cardsContainer = document.querySelector(".ourfriends__cards");
 const popup = document.getElementById("popup");
 const popupClose = document.getElementById("closeButton");
 const page = document.querySelector(".page");
-
-fetch("./data.json")
-  .then((response) => response.json())
-  .then((data) => {
-    const slicedData = data.slice(0, 3)
-    slicedData.forEach((item) => {
-      const card = document.createElement("article");
-      card.classList.add("ourfriends__card");
-      card.setAttribute("bread", item.breed);
-      card.setAttribute("description", item.description);
-      card.setAttribute("age", item.age);
-      card.setAttribute("inoculations", item.inoculations)
-      card.setAttribute("diseases", item.diseases)
-      card.setAttribute("parasites", item.parasites)
-      card.innerHTML = `<img class="ourfriends__img" src="${item.img}" alt=${item.name}>
-      <h3 class="ourfriends__names">${item.name}</h3>
-      <button type="button" class="ourfriends__link">Learn more</button>`;
-
-      cardsContainer.appendChild(card);
-    });
-    addCardEventListeners();
-  });
+const pets = document.querySelectorAll(".ourfriends__card")
 
 function addCardEventListeners() {
   const cards = document.querySelectorAll(".ourfriends__card");
-
   cards.forEach((card) => {
     card.addEventListener("click", () => {
       const cardTitle = card.querySelector('.ourfriends__names')
@@ -79,16 +56,3 @@ popup.addEventListener("click", (event) => {
     closePopup();
   }
 });
-
-//Бургер-меню
-
-const burgerIcon = document.querySelector(".header__burger");
-const burgerNav = document.querySelector(".header__burger-nav");
-
-function toggleBurgerMenu() {
-  page.classList.toggle("page_no-scroll");
-  burgerIcon.classList.toggle("header__burger_active");
-  burgerNav.classList.toggle("header__burger-nav_active");
-}
-
- burgerIcon.addEventListener("click", toggleBurgerMenu)
