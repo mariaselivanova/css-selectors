@@ -8,7 +8,7 @@
   transition: all 0.5s ease;
 }
 
-@media screen and (max-width: 1050px) {
+@media screen and (width < 1280px) {
   .ourfriends__main {
     width: 87%;
     min-width: 708px;
