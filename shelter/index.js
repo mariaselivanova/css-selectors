@@ -267,14 +267,26 @@ function addCardEventListeners() {
   });
 }
 
+//возвращаем диапазон по ширине окна
+function getRangeByWidth(width) {
+  if (width >= 1280) {
+    return 'desktop';
+  } else if (width >= 768) {
+    return 'tablet';
+  } else {
+    return 'mobile';
+  }
+}
 let prevWindowWidth = window.innerWidth;
-let resizeTimeout;
+let currentRange;
+currentRange = getRangeByWidth(prevWindowWidth);
 
 window.addEventListener("resize", () => {
   const currentWindowWidth = window.innerWidth;
-  if (currentWindowWidth !== prevWindowWidth) {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
+  const currentRangeWidth = getRangeByWidth(currentWindowWidth);
+
+  if (currentRangeWidth !== currentRange) {
+      currentRange = currentRangeWidth;
       let newSlide = init();
       pastArr = newSlide.pastArr;
       currArr = newSlide.currArr;
@@ -285,7 +297,6 @@ window.addEventListener("resize", () => {
           displayCards(data, currArr, pastArr, nextArr);
         });
       prevWindowWidth = currentWindowWidth;
-    }, 200);
   }
 });
 
