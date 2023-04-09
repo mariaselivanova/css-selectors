@@ -1,5 +1,3 @@
-//TODO:
-//слайдер - сделать адапттив
 const page = document.querySelector(".page");
 
 //контейнеры для карточек
@@ -55,13 +53,6 @@ function handleClickOutsideMenu(event) {
 
 //Слайдер
 
-//Получаем карточки
-fetch("./data.json")
-  .then((response) => response.json())
-  .then((data) => {
-    displayCards(data, currArr, pastArr, nextArr);
-  })
-
 //Сколько карточек отображать
 function calculateCardAmount() {
   const width = window.innerWidth;
@@ -92,7 +83,7 @@ function clearArray(arr) {
   return [];
 }
 
-// Инициализация слайдера
+//Инициализация слайдера
 function init() {
   let cardAmount = calculateCardAmount();
   let pastArr = [];
@@ -300,6 +291,13 @@ window.addEventListener("resize", () => {
 
 // Инициализация слайдера
 let { pastArr, currArr, nextArr } = init();
+
+//Получаем карточки
+fetch("./data.json")
+  .then((res) => res.json())
+  .then((cards) => {
+    displayCards(cards, currArr, pastArr, nextArr);
+  })
 
 //ПОПАП
 function showPopup(title, breed, description, img, age, inoculations, diseases, parasites, type) {
