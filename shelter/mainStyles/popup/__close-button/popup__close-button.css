@@ -25,3 +25,9 @@
   background-color: #F1CDB3;
   border: 2px solid #F1CDB3;
 }
+
+@media screen and (width < 750px) {
+  .popup__close-button {
+    right: -30px;
+  }
+}

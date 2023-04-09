@@ -8,3 +8,17 @@
   justify-content: space-between;
   position: relative;
 }
+
+@media screen and (width < 1000px) {
+  .popup__content {
+    width: 630px;
+    height: 350px;
+  }
+}
+
+@media screen and (width < 750px) {
+  .popup__content {
+    width: 240px;
+    height: 341px;
+  }
+}
