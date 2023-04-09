@@ -1,26 +1,79 @@
 .ourfriends__cards {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 990px;
+  transition: transform 0.5s ease;
+  display: flex;
+  overflow-x: hidden;
+  flex-wrap: nowrap;
+  scroll-behavior: smooth;
+  gap: 90px;
+}
+.current{
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  width: 82.5%;
-  min-width: 840px;
+  width: 100%;
+  width: 990px;
+  gap: 90px;
+}
+
+.previous{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  width: 990px;
+  gap: 90px;
+}
+
+.next{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  width: 990px;
+  gap: 90px;
+}
+
+@media screen and (width < 1280px) {
+  .current {
+    width: 580px;
+    gap: 40px;
+  }
+  .previous {
+    width: 580px;
+    gap: 40px;
+  }
+  .next {
+    width: 580px;
+    gap: 40px;
+  }
 }
 
 @media screen and (width < 1280px) {
   .ourfriends__cards {
-    width: 82%;
+    width: 580px;
+    gap: 40px;
   }
 }
 
-@media screen and (max-width: 1050px) {
-  .ourfriends__cards {
-    min-width: 580px;
+@media screen and (width < 768px) {
+  .current {
+    width: 270px;
+  }
+  .previous {
+    width: 270px;
+  }
+  .next {
+    width: 270px;
   }
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (width < 768px) {
   .ourfriends__cards {
-    min-width: 0;
     width: 270px;
   }
 }

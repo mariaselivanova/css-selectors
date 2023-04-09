@@ -36,3 +36,6 @@
 @import url(./petsStyles/popup/__photo/popup__photo.css);
 @import url(./petsStyles/popup/__title/popup__title.css);
 @import url(./petsStyles/popup/__wrapper/popup__wrapper.css);
+@import url(./petsStyles/popup/__breed-info/popup__breed-info.css);
+@import url(./petsStyles/popup/__span/popup__span.css);
+@import url(./petsStyles/popup/__type/popup__type.css);

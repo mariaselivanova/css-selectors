@@ -62,3 +62,6 @@
 @import url(./mainStyles/popup/__photo/popup__photo.css);
 @import url(./mainStyles/popup/__title/popup__title.css);
 @import url(./mainStyles/popup/__wrapper/popup__wrapper.css);
+@import url(./mainStyles/popup/__breed-info/popup__breed-info.css);
+@import url(./mainStyles/popup/__type/popup__type.css);
+@import url(./mainStyles/popup/__span/popup__span.css);

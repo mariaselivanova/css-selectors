@@ -5,3 +5,16 @@
   overflow: hidden;
   border-radius: 9px;
 }
+
+@media screen and (width < 1000px) {
+  .popup__photo {
+    width: 350px;
+    height: 350px;
+  }
+}
+
+@media screen and (width < 750px) {
+  .popup__photo  {
+    display: none;
+  }
+}
