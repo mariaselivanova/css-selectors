@@ -351,7 +351,7 @@ function scrollToAnchor(anchor) {
   if (anchorElement) {
     setTimeout(() => {
       anchorElement.scrollIntoView({ behavior: "smooth" });
-    }, 200);
+    }, 300);
   }
 }
 scrollToAnchor(".help");
