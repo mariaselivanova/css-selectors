@@ -281,7 +281,7 @@ function showPopup(title, breed, description, img, age, inoculations, diseases, 
 
 function closePopup() {
   popup.classList.remove("popup_open");
- page.style.overflow = 'visible';
+  page.style.overflow = 'visible';
 }
 
 popupClose.addEventListener("click", closePopup);
