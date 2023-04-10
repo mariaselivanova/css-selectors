@@ -346,12 +346,15 @@ popup.addEventListener("click", (event) => {
   }
 });
 
-function scrollToAnchor(anchor) {
-  const anchorElement = document.querySelector(anchor);
-  if (anchorElement) {
-    setTimeout(() => {
-      anchorElement.scrollIntoView({ behavior: "smooth" });
-    }, 300);
+function scrollToAnchor() {
+  const hash = window.location.hash;
+  if (hash === "#help") {
+    const anchorElement = document.querySelector(hash);
+    if (anchorElement) {
+      setTimeout(() => {
+        anchorElement.scrollIntoView({ behavior: "smooth" });
+      }, 300);
+    }
   }
 }
 scrollToAnchor(".help");
