@@ -18,17 +18,13 @@
 .ourfriends__btn:disabled{
   color: #CDCDCD;
   border: 2px solid #CDCDCD;
+  pointer-events: none;
 }
 
-.ourfriends__btn_active:hover {
+.ourfriends__btn:hover {
   cursor: pointer;
   background: #FDDCC4;
   border: 2px solid #FDDCC4;
-}
-
-.ourfriends__btn_active:active {
-  background: #F1CDB3;
-  border: 2px solid #F1CDB3;
 }
 
 .ourfriends__btn_num {

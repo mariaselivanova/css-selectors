@@ -1,9 +1,11 @@
 const page = document.querySelector(".page");
 
-//контейнеры для карточек
+//контейнеры для карточек, стрелки
 const currentCardContainer = document.querySelector(".current");
 const nextCardContainer = document.querySelector(".next");
 const pastCardContainer = document.querySelector(".previous");
+const arrowLeft = document.querySelector(".ourfriends__arrow");
+const arrowRight = document.querySelector(".ourfriends__arrow_right");
 
 //попап
 const popup = document.getElementById("popup");
@@ -70,7 +72,7 @@ function calculateCardAmount() {
 function generateArray(arr, numOfCards) {
   let newArr = [];
   while (newArr.length < numOfCards) {
-    let randomValue = Math.floor(Math.random() * 8) + 1;
+    let randomValue = Math.floor(Math.random() * 8);
     if (!arr.includes(randomValue) && !newArr.includes(randomValue)) {
       newArr.push(randomValue);
     }
@@ -138,13 +140,13 @@ function removeCards() {
 function displaySlide(data) {
   const card = document.createElement("article");
   card.classList.add("ourfriends__card");
-  card.setAttribute("breed", data.breed);
-  card.setAttribute("description", data.description);
-  card.setAttribute("age", data.age);
-  card.setAttribute("inoculations", data.inoculations);
-  card.setAttribute("diseases", data.diseases);
-  card.setAttribute("parasites", data.parasites);
-  card.setAttribute("type", data.type);
+  card.setAttribute("data-breed", data.breed);
+  card.setAttribute("data-description", data.description);
+  card.setAttribute("data-age", data.age);
+  card.setAttribute("data-inoculations", data.inoculations);
+  card.setAttribute("data-diseases", data.diseases);
+  card.setAttribute("data-parasites", data.parasites);
+  card.setAttribute("data-type", data.type);
   card.innerHTML = `<img class="ourfriends__img" src="${data.img}" alt=${data.name}>
   <h3 class="ourfriends__names">${data.name}</h3>
   <button type="button" class="ourfriends__link">Learn more</button>`;
@@ -156,18 +158,14 @@ function displayCards(data, currArr, pastArr, nextArr) {
 
   removeCards();
 
-  const changedIndexesCurrent = currArr.map((num) => num - 1);
-  const changedIndexesPast = pastArr.map((num) => num - 1);
-  const changedIndexesNext = nextArr.map((num) => num - 1);
-
   const filteredCardsCurrent = data.filter((card, index) => {
-    return changedIndexesCurrent.includes(index);
+    return currArr.includes(index);
   });
   const filteredCardsPast = data.filter((card, index) => {
-    return changedIndexesPast.includes(index);
+    return pastArr.includes(index);
   });
   const filteredCardsNext = data.filter((card, index) => {
-    return changedIndexesNext.includes(index);
+    return nextArr.includes(index);
   });
 
   filteredCardsCurrent.forEach((item) => {
@@ -183,7 +181,9 @@ function displayCards(data, currArr, pastArr, nextArr) {
 }
 
 // Обработка нажатий на стрелки
-document.querySelector(".ourfriends__arrow").addEventListener("click", () => {
+arrowLeft.addEventListener("click", () => {
+  arrowLeft.style.pointerEvents = 'none';
+  arrowRight.style.pointerEvents = 'none';
   currentCardContainer.style.transition = `transform 1s ease`;
   pastCardContainer.style.transition = `transform 1s ease`;
   if (window.innerWidth >= 1280) {
@@ -210,11 +210,15 @@ document.querySelector(".ourfriends__arrow").addEventListener("click", () => {
         pastCardContainer.style.transition = `none`;
         currentCardContainer.style.transform = `initial`;
         pastCardContainer.style.transform = `initial`;
+        arrowLeft.style.pointerEvents = 'auto';
+        arrowRight.style.pointerEvents = 'auto';
       });
   }, 1000);
 });
 
-document.querySelector(".ourfriends__arrow_right").addEventListener("click", () => {
+arrowRight.addEventListener("click", () => {
+  arrowLeft.style.pointerEvents = 'none';
+  arrowRight.style.pointerEvents = 'none';
   currentCardContainer.style.transition = `transform 1s ease`;
   nextCardContainer.style.transition = `transform 1s ease`;
 
@@ -242,6 +246,8 @@ document.querySelector(".ourfriends__arrow_right").addEventListener("click", () 
         nextCardContainer.style.transition = `none`;
         currentCardContainer.style.transform = `initial`;
         nextCardContainer.style.transform = `initial`;
+        arrowLeft.style.pointerEvents = 'auto';
+        arrowRight.style.pointerEvents = 'auto';
       });
   }, 1000);
 });
@@ -252,15 +258,15 @@ function addCardEventListeners() {
     card.addEventListener("click", () => {
       const cardTitle = card.querySelector('.ourfriends__names')
       const cardPhoto = card.querySelector('.ourfriends__img')
-      const breed = card.getAttribute("breed");
-      const description = card.getAttribute("description");
+      const breed = card.getAttribute("data-breed");
+      const description = card.getAttribute("data-description");
       const title = cardTitle.textContent
       const img = cardPhoto.src
-      const age = card.getAttribute("age");
-      const inoculations = card.getAttribute("inoculations")
-      const diseases = card.getAttribute("diseases")
-      const parasites = card.getAttribute("parasites")
-      const type = card.getAttribute("type")
+      const age = card.getAttribute("data-age");
+      const inoculations = card.getAttribute("data-inoculations")
+      const diseases = card.getAttribute("data-diseases")
+      const parasites = card.getAttribute("data-parasites")
+      const type = card.getAttribute("data-type")
 
       showPopup(title, breed, description, img, age, inoculations, diseases, parasites, type);
     });
@@ -338,3 +344,55 @@ popup.addEventListener("click", (event) => {
     closePopup();
   }
 });
+
+
+console.log(
+  `
+  110/110
+  1. Реализация burger menu на обеих страницах: +26
+    -при ширине страницы меньше 768рх панель навигации скрывается, появляется бургер-иконка: +2
+    -при нажатии на бургер-иконку, справа плавно появляется адаптивное меню шириной 320px, бургер-иконка плавно поворачивается на 90 градусов: +4
+    -высота адаптивного меню занимает всю высоту экрана: +2
+    -при повторном нажатии на бургер-иконку или на свободное от бургер-меню пространство адаптивное меню плавно скрывается уезжая за правую часть экрана, бургер-иконка плавно поворачивается на 90 градусов обратно: +4
+    -бургер-иконка создана при помощи html+css, без использования изображений: +2
+    -ссылки в адаптивном меню работают, обеспечивая плавную прокрутку по якорям, сохраняются заданные на первом этапе выполнения задания требования интерактивности элементов меню: +2
+    -при клике по ссылке в адаптивном меню адаптивное меню плавно скрывается вправо, бургер-иконка поворачивается на 90 градусов обратно: +2
+    -бургер-меню соответствует макету (центрирование по вертикали и горизонтали элементов меню, расположение иконки). При этом на странице Pets цветовая схема может быть как темная, так и светлая: +2
+    -область, свободная от бургер-меню, затемняется: +2
+    -страница под бургер-меню не прокручивается: +4
+  2. Реализация слайдера-карусели на странице Main: +36
+    -при нажатии на стрелки происходит переход к новому блоку элементов: +4
+    -смена блоков происходит с соответствующей анимацией карусели (способ выполнения анимации не проверяется): +4
+    -слайдер бесконечен, т.е. можно бесконечно много нажимать влево или вправо, и каждый раз будет прокрутка в эту сторону с новым набором карточек: +4
+    -при переключении влево или вправо прокручивается ровно столько карточек, сколько показывается при текущей ширине экрана (3 для 1280px, 2 для 768px, 1 для 320px): +4
+    -каждый новый слайд содержит псевдослучайный набор карточек животных, т.е. формируется из исходных объектов в случайном порядке со следующими условиями:
+    -в текущем блоке слайда карточки с питомцами не повторяются: +4
+    -в следующем блоке нет дублирования карточек с текущим блоком. Например в слайдере из 3 элементов, следующий выезжающий слайд будет содержать 3 (из 8 доступных) новых карточки питомца, таких, каких не было среди 3х карточек на предыдущем уехавшем слайде: +4
+    -сохраняется только одно предыдущее состояние. Т.е. при последовательном переходе два раза влево, а потом два раза вправо, мы получим набор карточек, отличный от исходного: +4
+    -при каждой перезагрузке страницы формируется новая последовательность карточек: +2
+    -генерация наборов карточек происходит на основе 8 объектов с данными о животными: +2
+    -при изменении ширины экрана (от 1280px до 320px и обратно), слайдер перестраивается и работает без перезагрузки страницы: +4
+  3. Реализация пагинации на странице Pets: +36
+    -при перезагрузке страницы всегда открывается первая страница пагинации: +2
+    -при нажатии кнопок > или < открывается следующая или предыдущая страница пагинации соответственно: +2
+    -при нажатии кнопок >> или << открывается последняя или первая страница пагинации соответственно: +2
+    -при открытии первой страницы кнопки << и < неактивны: +2
+    -при открытии последней страницы кнопки > и >> неактивны: +2
+    -в кружке по центру указан номер текущей страницы. При переключении страниц номер меняется на актуальный: +2
+    -каждая страница пагинации содержит псевдослучайный набор питомцев, т.е. формируется из исходных объектов в случайном порядке со следующими условиями:
+    -при загрузке страницы формируется массив из 48 объектов питомцев. Каждый из 8 питомцев должен встречаться ровно 6 раз: +4
+    -при каждой перезагрузке страницы формируется новый массив со случайной последовательностью: +4
+    -карточки питомцев не должны повторяться на одной странице: +4
+    -при переключении страницы данные меняются (для >1280px меняется порядок карточек, для остальных - меняется набор и порядок карточек): +4
+    -при неизменных размерах области пагинации, в том числе размерах окна браузера, и без перезагрузки страницы, возвращаясь на страницу под определенным номером, контент на ней всегда будет одинаков. Т.е. карточки питомцев будут в том же расположении, что и были до перехода на другие страницы: +2
+    -общее количество страниц при ширине экрана 1280px - 6, при 768px - 8, при 320px - 16 страниц: +2
+    -при изменении ширины экрана (от 1280px до 320px и обратно), пагинация перестраивается и работает без перезагрузки страницы: +4
+  4. Реализация попап на обеих страницах: +12
+    -попап появляется при нажатии на любое место карточки с описанием конкретного животного: +2
+    -часть страницы вне попапа затемняется: +2
+    -при открытии попапа вертикальный скролл страницы становится неактивным, при закрытии - снова активным: +2
+    -при нажатии на область вокруг попапа или на кнопку с крестиком попап закрывается, при этом при нажатии на сам попап ничего не происходит: +2
+    -кнопка с крестиком интерактивная: +2
+    -окно попапа (не считая кнопку с крестиком) центрировано по всем осям, размеры элементов попапа и их расположение совпадают с макетом: +2
+  `
+)
