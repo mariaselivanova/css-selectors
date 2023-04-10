@@ -6,9 +6,8 @@
   width: 990px;
   transition: transform 0.5s ease;
   display: flex;
-  overflow-x: hidden;
+  overflow: hidden;
   flex-wrap: nowrap;
-  scroll-behavior: smooth;
   gap: 90px;
 }
 .current{
