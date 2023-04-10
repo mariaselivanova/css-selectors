@@ -1,9 +1,11 @@
 const page = document.querySelector(".page");
 
-//контейнеры для карточек
+//контейнеры для карточек, стрелки
 const currentCardContainer = document.querySelector(".current");
 const nextCardContainer = document.querySelector(".next");
 const pastCardContainer = document.querySelector(".previous");
+const arrowLeft = document.querySelector(".ourfriends__arrow");
+const arrowRight = document.querySelector(".ourfriends__arrow_right");
 
 //попап
 const popup = document.getElementById("popup");
@@ -70,7 +72,7 @@ function calculateCardAmount() {
 function generateArray(arr, numOfCards) {
   let newArr = [];
   while (newArr.length < numOfCards) {
-    let randomValue = Math.floor(Math.random() * 8) + 1;
+    let randomValue = Math.floor(Math.random() * 8);
     if (!arr.includes(randomValue) && !newArr.includes(randomValue)) {
       newArr.push(randomValue);
     }
@@ -156,18 +158,14 @@ function displayCards(data, currArr, pastArr, nextArr) {
 
   removeCards();
 
-  const changedIndexesCurrent = currArr.map((num) => num - 1);
-  const changedIndexesPast = pastArr.map((num) => num - 1);
-  const changedIndexesNext = nextArr.map((num) => num - 1);
-
   const filteredCardsCurrent = data.filter((card, index) => {
-    return changedIndexesCurrent.includes(index);
+    return currArr.includes(index);
   });
   const filteredCardsPast = data.filter((card, index) => {
-    return changedIndexesPast.includes(index);
+    return pastArr.includes(index);
   });
   const filteredCardsNext = data.filter((card, index) => {
-    return changedIndexesNext.includes(index);
+    return nextArr.includes(index);
   });
 
   filteredCardsCurrent.forEach((item) => {
@@ -183,7 +181,9 @@ function displayCards(data, currArr, pastArr, nextArr) {
 }
 
 // Обработка нажатий на стрелки
-document.querySelector(".ourfriends__arrow").addEventListener("click", () => {
+arrowLeft.addEventListener("click", () => {
+  arrowLeft.style.pointerEvents = 'none';
+  arrowRight.style.pointerEvents = 'none';
   currentCardContainer.style.transition = `transform 1s ease`;
   pastCardContainer.style.transition = `transform 1s ease`;
   if (window.innerWidth >= 1280) {
@@ -210,11 +210,15 @@ document.querySelector(".ourfriends__arrow").addEventListener("click", () => {
         pastCardContainer.style.transition = `none`;
         currentCardContainer.style.transform = `initial`;
         pastCardContainer.style.transform = `initial`;
+        arrowLeft.style.pointerEvents = 'auto';
+        arrowRight.style.pointerEvents = 'auto';
       });
   }, 1000);
 });
 
-document.querySelector(".ourfriends__arrow_right").addEventListener("click", () => {
+arrowRight.addEventListener("click", () => {
+  arrowLeft.style.pointerEvents = 'none';
+  arrowRight.style.pointerEvents = 'none';
   currentCardContainer.style.transition = `transform 1s ease`;
   nextCardContainer.style.transition = `transform 1s ease`;
 
@@ -242,6 +246,8 @@ document.querySelector(".ourfriends__arrow_right").addEventListener("click", () 
         nextCardContainer.style.transition = `none`;
         currentCardContainer.style.transform = `initial`;
         nextCardContainer.style.transform = `initial`;
+        arrowLeft.style.pointerEvents = 'auto';
+        arrowRight.style.pointerEvents = 'auto';
       });
   }, 1000);
 });
