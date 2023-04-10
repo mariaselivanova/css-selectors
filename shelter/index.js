@@ -346,10 +346,10 @@ popup.addEventListener("click", (event) => {
   }
 });
 
-function scrollToAnchor() {
+function scrollToAnchor(link) {
   const hash = window.location.hash;
   if (hash === "#help") {
-    const anchorElement = document.querySelector(hash);
+    const anchorElement = document.querySelector(link);
     if (anchorElement) {
       setTimeout(() => {
         anchorElement.scrollIntoView({ behavior: "smooth" });
