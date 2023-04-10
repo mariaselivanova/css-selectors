@@ -353,7 +353,7 @@ function scrollToAnchor(link) {
     if (anchorElement) {
       setTimeout(() => {
         anchorElement.scrollIntoView({ behavior: "smooth" });
-      }, 300);
+      }, 400);
     }
   }
 }
