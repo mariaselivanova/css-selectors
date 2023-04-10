@@ -71,6 +71,7 @@
     text-decoration: none;
     cursor: pointer;
     transition: all 0.5s ease;
+    padding-bottom: 4px;
   }
 
   .header__burger-item:hover {
