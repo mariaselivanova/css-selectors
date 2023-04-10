@@ -113,7 +113,7 @@ function forward(pastArray, currentArray, nextArray) {
   nextArray = clearArray(nextArray);
   nextArray = generateArray(currentArray, cardAmount);
 
-  return { pastArray, currentArray, nextArray};
+  return { pastArray, currentArray, nextArray };
 }
 
 //Прокрутка влево
@@ -177,6 +177,7 @@ function displayCards(data, currArr, pastArr, nextArr) {
   filteredCardsNext.forEach((item) => {
     nextCardContainer.appendChild(displaySlide(item));
   });
+
   addCardEventListeners();
 }
 
@@ -292,17 +293,17 @@ window.addEventListener("resize", () => {
   const currentRangeWidth = getRangeByWidth(currentWindowWidth);
 
   if (currentRangeWidth !== currentRange) {
-      currentRange = currentRangeWidth;
-      let newSlide = init();
-      pastArr = newSlide.pastArr;
-      currArr = newSlide.currArr;
-      nextArr = newSlide.nextArr;
-      fetch("./data.json")
-        .then((response) => response.json())
-        .then((data) => {
-          displayCards(data, currArr, pastArr, nextArr);
-        });
-      prevWindowWidth = currentWindowWidth;
+    currentRange = currentRangeWidth;
+    let newSlide = init();
+    pastArr = newSlide.pastArr;
+    currArr = newSlide.currArr;
+    nextArr = newSlide.nextArr;
+    fetch("./data.json")
+      .then((response) => response.json())
+      .then((data) => {
+        displayCards(data, currArr, pastArr, nextArr);
+      });
+    prevWindowWidth = currentWindowWidth;
   }
 });
 
@@ -345,6 +346,15 @@ popup.addEventListener("click", (event) => {
   }
 });
 
+function scrollToAnchor(anchor) {
+  const anchorElement = document.querySelector(anchor);
+  if (anchorElement) {
+    setTimeout(() => {
+      anchorElement.scrollIntoView({ behavior: "smooth" });
+    }, 200);
+  }
+}
+scrollToAnchor(".help");
 
 console.log(
   `
