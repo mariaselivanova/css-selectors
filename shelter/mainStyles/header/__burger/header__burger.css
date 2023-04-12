@@ -85,7 +85,5 @@
   .header__burger-item_active {
     color: #FAFAFA;
     border-bottom: 3px solid #F1CDB3;
-    cursor: auto;
-    pointer-events: none;
   }
 }
