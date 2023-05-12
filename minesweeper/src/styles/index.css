@@ -12,6 +12,10 @@
   width: 100%;
   background-color: #1c1c21;
   text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .title {
@@ -25,6 +29,9 @@
 .main {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 .board-section {
@@ -51,13 +58,13 @@
   border-radius: 5px;
 }
 
-.board > [data-status="hidden"] {
+.tile[data-status="hidden"] {
   background-color: #217d9e;
   cursor: pointer;
   border-radius: 3px;
 }
 
-.board > [data-status="mine"] {
+.tile[data-status="mine"] {
   border-radius: 3px;
   background-image: url(../assets/bomb-solid.svg);
   background-position: center;
@@ -66,7 +73,7 @@
   background-color: #fd4190;
 }
 
-.board > [data-status="number"] {
+.tile[data-status="number"] {
   background-color: none;
   border: 1px solid #444663;
   text-align: center;
@@ -79,7 +86,7 @@
   font-weight: bold;
 }
 
-.board > [data-status="marked"] {
+.tile[data-status="marked"] {
   background-color: rgb(214, 140, 21);
   border-radius: 3px;
   display: flex;
@@ -122,3 +129,36 @@
   color: #888888;
 }
 
+.default-cursor {
+ pointer-events: none;
+}
+
+.click-counter,
+.timer {
+  color: #CCC;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+}
+
+.new-game-btn {
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  background-color: #444663;
+  color: #CCC;
+  border-radius: 15px;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.7s ease;
+}
+
+.new-game-btn:hover {
+  opacity: 0.6;
+}
+
+.counter-section {
+  display: flex;
+  flex-direction: column;
+}

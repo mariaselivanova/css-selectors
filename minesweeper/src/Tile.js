@@ -12,18 +12,21 @@ export default class Tile {
     if (!this.isHidden || this.isMarked) {
       return;
     }
-
     this.isHidden = false;
+
     if (this.isMine) {
       this.el.dataset.status = "mine";
       this.el.textContent = '';
       return;
     }
+
     this.el.dataset.status = "number";
     this.el.textContent = num;
+
     if (num === 0) {
       this.el.textContent = "";
     }
+
     switch (num) {
       case 1:
         this.el.classList.add('one');
@@ -58,7 +61,6 @@ export default class Tile {
     if (!this.isHidden) {
       return;
     }
-
     this.isMarked = !this.isMarked;
     if (this.isMarked) {
       this.el.dataset.status = "marked"
