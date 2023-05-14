@@ -1,7 +1,10 @@
+import { selectors, content } from "./utils/constants";
+
 export default class Timer {
   constructor() {
     this.timer = null;
     this.elapsedTime = 0;
+    this.timerElement = document.querySelector(selectors.TIMER);
   }
 
   start() {
@@ -26,7 +29,6 @@ export default class Timer {
   }
 
   updateDisplay() {;
-    const timer = document.querySelector(".timer");
-    timer.textContent = "Timer: " + this.elapsedTime + 's';
+    this.timerElement.textContent = content.TIMER + this.elapsedTime + 's';
   }
 }

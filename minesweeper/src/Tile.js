@@ -1,56 +1,61 @@
+import {
+  tiles,
+  content,
+  classes } from "./utils/constants";
+
 export default class Tile {
   constructor(x, y, el, isMine) {
     this.x = x;
     this.y = y;
     this.el = el;
     this.isMine = isMine;
-    this.isHidden = true;
-    this.isMarked = false;
+    this.isUnknown = true;
+    this.isRightClicked = false;
   }
 
   reveal(num) {
-    if (!this.isHidden || this.isMarked) {
+    if (!this.isUnknown || this.isRightClicked) {
       return;
     }
-    this.isHidden = false;
+    this.isUnknown = false;
 
     if (this.isMine) {
-      this.el.dataset.status = "mine";
-      this.el.textContent = '';
+      this.el.dataset.type = tiles.MINE;
+      this.el.textContent = content.EMPTY;
       return;
     }
 
-    this.el.dataset.status = "number";
+    this.el.dataset.type = tiles.NUMBER;
     this.el.textContent = num;
 
     if (num === 0) {
-      this.el.textContent = "";
+      this.el.textContent = content.EMPTY;
     }
 
     switch (num) {
       case 1:
-        this.el.classList.add('one');
+        this.el.classList.add(classes.ONE);
         break;
       case 2:
-        this.el.classList.add('two');
+        this.el.classList.add(classes.TWO);
         break;
       case 3:
-        this.el.classList.add('three');
+        this.el.classList.add(classes.THREE);
         break;
       case 4:
-        this.el.classList.add('four');
+        this.el.classList.add(classes.FOUR);
         break;
       case 5:
-        this.el.classList.add('five');
+        this.el.classList.add(classes.FIVE);
         break;
       case 6:
-        this.el.classList.add('six');
+        this.el.classList.add(classes.SIX);
         break;
       case 7:
-        this.el.classList.add('seven');
+        this.el.classList.add(classes.SEVEN);
         break;
       case 8:
-        this.el.classList.add('eight');
+        this.el.classList.add(classes.EIGHT);
         break;
       default:
         break;
@@ -58,16 +63,16 @@ export default class Tile {
   }
 
   toggleMark() {
-    if (!this.isHidden) {
+    if (!this.isUnknown) {
       return;
     }
-    this.isMarked = !this.isMarked;
-    if (this.isMarked) {
-      this.el.dataset.status = "marked"
-      this.el.textContent = "?"
+    this.isRightClicked = !this.isRightClicked;
+    if (this.isRightClicked) {
+      this.el.dataset.type = tiles.RIGHT_CLICKED
+      this.el.textContent = content.QUESTION_MARK
     } else {
-      this.el.dataset.status = "hidden"
-      this.el.textContent = ""
+      this.el.dataset.type = tiles.UNKNOWN
+      this.el.textContent = content.EMPTY
     }
   }
 }
