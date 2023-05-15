@@ -12,6 +12,10 @@ export const elements = {
   H1: 'h1',
   BUTTON: 'button',
   MAIN: 'main',
+  P: 'p',
+  SELECT: 'select',
+  OPTION: 'option',
+  INPUT: 'input',
 }
 
 export const classes = {
@@ -30,12 +34,14 @@ export const classes = {
   NEW_GAME_BTN: 'new-game-btn',
   MAIN: 'main',
   COUNTER_SECTION: 'counter-section',
-  P: 'p',
   TIMER: 'timer',
   CLICK_COUNTER: 'click-counter',
   BOARD_SECTION: 'board-section',
   SUBTEXT: 'subtext',
   BOARD: 'board',
+  GAME_SIZE_OPTIONS: 'game-size-options',
+  GAME_SIZE_OPTION: 'game-size-option',
+  MINE_COUNT_SLIDER: 'mine-count-slider',
 }
 
 export const tiles = {

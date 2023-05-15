@@ -5,20 +5,87 @@ import {
   elements,
   classes,
   tiles,
-  content } from './utils/constants';
+  content
+} from './utils/constants';
 
 export default class Board {
   constructor(size, numberOfMines) {
     this.size = size;
     this.numberOfMines = numberOfMines;
     this.board = [];
-    this.timer = new Timer();
+    this.timer = new Timer(() => this.saveGame());
     this.clickCount = 0;
     this.firstMove = true;
     this.isGameOver = false;
     this.subtext = document.querySelector(selectors.SUBTEXT);
     this.boardElement = document.querySelector(selectors.BOARD);
     this.clickCountElement = document.querySelector(selectors.CLICK_COUNTER);
+  }
+
+  loadGame() {
+    const savedGameState = localStorage.getItem('gameState');
+    if (savedGameState) {
+      const {
+        size,
+        numberOfMines,
+        timerElapsed,
+        clickCount,
+        firstMove,
+        isGameOver,
+        board: savedBoard,
+      } = JSON.parse(savedGameState);
+      this.size = size;
+      this.numberOfMines = numberOfMines;
+      this.timer.elapsedTime = timerElapsed;
+      this.clickCount = clickCount;
+      this.firstMove = firstMove;
+      this.isGameOver = isGameOver;
+      this.updateClickCountDisplay();
+
+      this.board = Array.from(savedBoard, row => {
+        return row.map(element => {
+          const el = document.createElement(elements.DIV);
+          if (element.isUnknown) {
+            el.dataset.type = tiles.UNKNOWN;
+          } else if (element.isMine) {
+            el.dataset.type = tiles.MINE;
+          } else {
+            el.dataset.type = tiles.NUMBER;
+          }
+          el.classList.add(classes.TILE);
+          const tile = new Tile(element.x, element.y, el, element.isMine, element.isUnknown, element.isRightClicked, element.number);
+          el.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            this.handleRightClick(tile);
+          });
+          el.addEventListener('click', () => {
+            this.handleLeftClick(tile, el);
+          });
+          return tile;
+        });
+      });
+
+      if (this.isGameOver) {
+        this.handleLose();
+      }
+      if (!this.timer.timer && timerElapsed !== 0) {
+        this.timer.start();
+      }
+    }
+    return this.board
+  }
+
+  saveGame() {
+    const gameState = {
+      size: this.size,
+      numberOfMines: this.numberOfMines,
+      timerElapsed: this.timer.elapsedTime,
+      clickCount: this.clickCount,
+      firstMove: this.firstMove,
+      isGameOver: this.isGameOver,
+      board: this.board
+    };
+    localStorage.setItem('gameState', JSON.stringify(gameState));
   }
 
   checkifTimer() {
@@ -29,6 +96,17 @@ export default class Board {
 
   checkIfMines(mines, x, y) {
     return mines.some(mine => mine.x === x && mine.y === y);
+  }
+
+  updateClickCountDisplay() {
+    this.clickCountElement.textContent = content.CLICK_COUNTER + this.clickCount;
+  }
+
+  clearBoard() {
+    while (this.boardElement.firstChild) {
+      this.boardElement.removeChild(this.boardElement.firstChild);
+    }
+    this.board = [];
   }
 
   openTile(board, tile) {
@@ -56,7 +134,7 @@ export default class Board {
         const el = document.createElement(elements.DIV);
         el.classList.add(classes.TILE)
         el.dataset.type = tiles.UNKNOWN;
-        const tile = new Tile(x, y, el, false);
+        const tile = new Tile(x, y, el, false, true, false);
         el.addEventListener('contextmenu', (e) => {
           e.preventDefault();
           this.handleRightClick(tile);
@@ -77,6 +155,7 @@ export default class Board {
     this.checkifTimer();
     tile.toggleMark();
     this.updateMinesLeft();
+    this.saveGame()
   }
 
   handleFirstMove(tile) {
@@ -89,12 +168,15 @@ export default class Board {
     if (this.firstMove) {
       this.handleFirstMove(tile)
     }
-    this.checkifTimer();
-    this.clickCount++;
-    this.updateClickCountDisplay()
-    this.openTile(this.board, tile)
-    this.checkIfWin();
-    this.checkIfLose(el);
+    if (tile.isUnknown) {
+      this.checkifTimer();
+      this.clickCount++;
+      this.updateClickCountDisplay()
+      this.openTile(this.board, tile)
+      this.checkIfWin();
+      this.checkIfLose(el);
+      this.saveGame()
+    }
   }
 
   findNeighbourTiles(board, tile) {
@@ -173,6 +255,7 @@ export default class Board {
 
 
   resetGame() {
+    localStorage.removeItem('gameState');
     this.isGameOver = false;
     this.clickCount = 0;
     this.firstMove = true;
@@ -181,10 +264,28 @@ export default class Board {
     this.clearBoard();
   }
 
-  clearBoard() {
-    while (this.boardElement.firstChild) {
-      this.boardElement.removeChild(this.boardElement.firstChild);
-    }
-    this.board = [];
+  handleWin() {
+    this.handlGameOver()
+    this.subtext.textContent = content.WIN_MESSAGE.FISRT_PART + this.timer.elapsedTime
+      + content.WIN_MESSAGE.SECOND_PART + this.clickCount + content.WIN_MESSAGE.THIRD_PART;
   }
+
+  handleLose() {
+    this.handlGameOver()
+    this.subtext.textContent = content.GAME_OVER_MESSAGE;
+    const mines = this.board.flat().filter(tile => tile.isMine);
+    mines.forEach(mine => {
+      mine.el.dataset.type = tiles.MINE
+    })
+  }
+
+  handlGameOver() {
+    this.isGameOver = true;
+    this.timer.stop();
+    const unknownTiles = document.querySelectorAll(selectors.UNKNOWN_TILES);
+    unknownTiles.forEach(tile => {
+      tile.classList.add(classes.DEFAULT_CURSOR);
+    });
+  }
+
 }

@@ -4,13 +4,63 @@ import {
   classes } from "./utils/constants";
 
 export default class Tile {
-  constructor(x, y, el, isMine) {
+  constructor(x, y, el, isMine, isUnknown, isRightClicked, num) {
     this.x = x;
     this.y = y;
     this.el = el;
     this.isMine = isMine;
-    this.isUnknown = true;
-    this.isRightClicked = false;
+    this.isUnknown = isUnknown;
+    this.isRightClicked = isRightClicked;
+    this.number = null;
+    this.setRightClicked();
+    this.setIsNum(num);
+  }
+
+  setIsNum(num) {
+    if (!this.isUnknown && !this.isMine) {
+      this.el.dataset.type = tiles.NUMBER;
+      this.el.textContent = num;
+      this.number = num;
+
+      if (num === 0) {
+        this.el.textContent = content.EMPTY;
+      }
+      switch (num) {
+        case 1:
+          this.el.classList.add(classes.ONE);
+          break;
+        case 2:
+          this.el.classList.add(classes.TWO);
+          break;
+        case 3:
+          this.el.classList.add(classes.THREE);
+          break;
+        case 4:
+          this.el.classList.add(classes.FOUR);
+          break;
+        case 5:
+          this.el.classList.add(classes.FIVE);
+          break;
+        case 6:
+          this.el.classList.add(classes.SIX);
+          break;
+        case 7:
+          this.el.classList.add(classes.SEVEN);
+          break;
+        case 8:
+          this.el.classList.add(classes.EIGHT);
+          break;
+        default:
+          break;
+      }
+    }
+  }
+
+  setRightClicked() {
+    if (this.isRightClicked) {
+      this.el.dataset.type = tiles.RIGHT_CLICKED
+      this.el.textContent = content.QUESTION_MARK
+    }
   }
 
   reveal(num) {
@@ -27,6 +77,8 @@ export default class Tile {
 
     this.el.dataset.type = tiles.NUMBER;
     this.el.textContent = num;
+    this.number = num;
+
 
     if (num === 0) {
       this.el.textContent = content.EMPTY;

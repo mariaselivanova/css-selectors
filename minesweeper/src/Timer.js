@@ -1,10 +1,11 @@
 import { selectors, content } from "./utils/constants";
 
 export default class Timer {
-  constructor() {
+  constructor(saveCallback) {
     this.timer = null;
     this.elapsedTime = 0;
     this.timerElement = document.querySelector(selectors.TIMER);
+    this.saveCallback = saveCallback;
   }
 
   start() {
@@ -15,6 +16,7 @@ export default class Timer {
   updateTimer(startTime) {
     this.elapsedTime = Math.floor((Date.now() - startTime) / 1000);
     this.updateDisplay();
+    this.saveCallback();
   }
 
   stop() {
