@@ -13,6 +13,16 @@ export default class Timer {
     this.timer = setInterval(() => this.updateTimer(start), 1000);
   }
 
+  continue() {
+    const start = Date.now() - (this.elapsedTime * 1000);
+    this.timer = setInterval(() => {
+      const currentTime = Date.now();
+      this.elapsedTime = Math.floor((currentTime - start) / 1000);
+      this.updateDisplay();
+      this.saveCallback();
+    }, 1000);
+  }
+
   updateTimer(startTime) {
     this.elapsedTime = Math.floor((Date.now() - startTime) / 1000);
     this.updateDisplay();

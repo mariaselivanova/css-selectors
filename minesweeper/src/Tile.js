@@ -17,7 +17,7 @@ export default class Tile {
   }
 
   setIsNum(num) {
-    if (!this.isUnknown && !this.isMine) {
+    if (!this.isUnknown && !this.isMine && !this.isRightClicked) {
       this.el.dataset.type = tiles.NUMBER;
       this.el.textContent = num;
       this.number = num;

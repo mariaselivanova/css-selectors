@@ -2,7 +2,6 @@
 //It is acceptable to change the appearance for the mobile version (for example, hide the buttons in the burger menu)
 //the game should include sound effects for events such as revealing a cell, flagging a cell, and game over (win and lose).
 //the latest 10 results are saved in the high score table and can be viewed in any way (for example, by pressing a button)
-//implement the functionality to save the game (for example, using localStorage), so that when the page is reloaded, a player can continue from where he left off
 //dark/light themes of the game
 
 

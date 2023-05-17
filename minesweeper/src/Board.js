@@ -22,6 +22,18 @@ export default class Board {
     this.clickCountElement = document.querySelector(selectors.CLICK_COUNTER);
   }
 
+  checkForOpenedMine() {
+    for (const row of this.board) {
+      for (const tile of row) {
+        if (!tile.isUnknown && tile.isMine) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
   loadGame() {
     const savedGameState = localStorage.getItem('gameState');
     if (savedGameState) {
@@ -64,12 +76,13 @@ export default class Board {
           return tile;
         });
       });
-
-      if (this.isGameOver) {
+      if (this.checkForOpenedMine()) {
         this.handleLose();
       }
-      if (!this.timer.timer && timerElapsed !== 0) {
-        this.timer.start();
+      this.checkIfWin();
+      this.timer.updateDisplay();
+      if (timerElapsed !== 0 && !this.isGameOver) {
+        this.timer.continue();
       }
     }
     return this.board
