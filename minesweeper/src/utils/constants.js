@@ -4,6 +4,8 @@ export const selectors = {
   CLICK_COUNTER: '.click-counter',
   UNKNOWN_TILES: '.tile[data-type="unknown"]',
   TIMER: '.timer',
+  BODY: '.body',
+  HEADER: '.header',
 }
 
 export const elements = {
@@ -42,6 +44,7 @@ export const classes = {
   GAME_SIZE_OPTIONS: 'game-size-options',
   GAME_SIZE_OPTION: 'game-size-option',
   MINE_COUNT_SLIDER: 'mine-count-slider',
+  CHANGE_THEME_BTN: 'change-theme-btn',
 }
 
 export const tiles = {

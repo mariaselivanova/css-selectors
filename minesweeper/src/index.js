@@ -2,8 +2,6 @@
 //It is acceptable to change the appearance for the mobile version (for example, hide the buttons in the burger menu)
 //the game should include sound effects for events such as revealing a cell, flagging a cell, and game over (win and lose).
 //the latest 10 results are saved in the high score table and can be viewed in any way (for example, by pressing a button)
-//dark/light themes of the game
-
 
 import './styles/index.css';
 import Board from './Board';
@@ -61,6 +59,8 @@ const mineCountSlider = createAndAppendElement(elements.INPUT, counterSection, c
 mineCountSlider.type = 'range';
 mineCountSlider.min = '1';
 mineCountSlider.max = '99';
+const themeBtn = createAndAppendElement(elements.BUTTON, counterSection, classes.CHANGE_THEME_BTN);
+themeBtn.textContent = 'Toggle theme';
 
 timer.textContent = content.TIMER_INITIAL;
 clickCounter.textContent = content.CLICK_COUNTER_INITIAL;
@@ -120,6 +120,10 @@ resetButton.addEventListener('click', saveAndResetGame);
 optionsGameSize.addEventListener('change', saveAndResetGame);
 
 mineCountSlider.addEventListener('input', saveAndResetGame);
+
+themeBtn.addEventListener('click', () => {
+  board.toggleTheme();
+})
 
 
 

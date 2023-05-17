@@ -19,7 +19,22 @@ export default class Board {
     this.isGameOver = false;
     this.subtext = document.querySelector(selectors.SUBTEXT);
     this.boardElement = document.querySelector(selectors.BOARD);
+    this.page = document.querySelector(selectors.BODY);
+    this.header = document.querySelector(selectors.HEADER);
     this.clickCountElement = document.querySelector(selectors.CLICK_COUNTER);
+    this.isDarkTheme = false;
+  }
+
+  toggleTheme() {
+    this.isDarkTheme = !this.isDarkTheme;
+
+    if (this.isDarkTheme) {
+      this.page.classList.add('dark-theme');
+      this.header.classList.add('dark-theme-header');
+    } else {
+      this.page.classList.remove('dark-theme');
+      this.header.classList.remove('dark-theme-header');
+    }
   }
 
   checkForOpenedMine() {
