@@ -1,5 +1,10 @@
 import Tile from './Tile';
 import Timer from './Timer';
+import Sound from './Sound';
+import leftClickSound from './assets/Retro8.ogg';
+import rightClickSound from './assets/Retro3.ogg';
+import winSound from './assets/Retro10.ogg';
+import loseSound from './assets/Modern13.ogg';
 import {
   selectors,
   elements,
@@ -21,6 +26,17 @@ export default class Board {
     this.boardElement = document.querySelector(selectors.BOARD);
     this.clickCountElement = document.querySelector(selectors.CLICK_COUNTER);
     this.isDarkTheme = false;
+    this.leftClickSound = new Sound(leftClickSound);
+    this.rightClickSound = new Sound(rightClickSound);
+    this.winSound = new Sound(winSound);
+    this.loseSound = new Sound(loseSound);
+  }
+
+  toggleSound() {
+    this.leftClickSound.toggleMute();
+    this.rightClickSound.toggleMute();
+    this.winSound.toggleMute();
+    this.loseSound.toggleMute();
   }
 
   checkForOpenedMine() {
@@ -44,7 +60,7 @@ export default class Board {
     }
     this.handlGameOver()
     this.subtext.textContent = content.WIN_MESSAGE.FISRT_PART + this.timer.elapsedTime
-      + content.WIN_MESSAGE.SECOND_PART + this.clickCount + content.WIN_MESSAGE.THIRD_PART;
+      + (this.timer.elapsedTime === 1 ? content.WIN_MESSAGE.SECOND_PART_SINGULAR : content.WIN_MESSAGE.SECOND_PART) + this.clickCount + (this.clickCount === 1 ? content.WIN_MESSAGE.THIRD_PART_SINGULAR : content.WIN_MESSAGE.THIRD_PART);
   }
 
   loadGame() {
@@ -142,6 +158,11 @@ export default class Board {
   }
 
   openTile(board, tile) {
+
+    if (!tile.isUnknown) {
+      return;
+    }
+
     const neighbourTiles = this.findNeighbourTiles(board, tile);
     const neighbourMines = neighbourTiles.filter(adjacentTile => adjacentTile.isMine);
 
@@ -151,7 +172,7 @@ export default class Board {
       tile.reveal(neighbourMines.length);
       if (neighbourMines.length === 0) {
         neighbourTiles.forEach(tile => {
-          if (tile.isUnknown) {
+          if (tile.isUnknown && !tile.isRightClicked) {
             this.openTile(board, tile);
           }
         });
@@ -183,11 +204,13 @@ export default class Board {
   }
 
   handleRightClick(tile) {
-    if (this.isGameOver) return
+    if (this.isGameOver || !tile.isUnknown) return
+    this.rightClickSound.play();
     this.checkifTimer();
     tile.toggleMark();
     this.updateMinesLeft();
     this.saveGame()
+    console.log(tile)
   }
 
   handleFirstMove(tile) {
@@ -200,7 +223,7 @@ export default class Board {
     if (this.firstMove) {
       this.handleFirstMove(tile)
     }
-    if (tile.isUnknown) {
+    if (tile.isUnknown && !tile.isRightClicked) {
       this.checkifTimer();
       this.clickCount++;
       this.updateClickCountDisplay()
@@ -208,6 +231,9 @@ export default class Board {
       this.checkIfWin();
       this.checkIfLose(el);
       this.saveGame()
+      if (!this.isGameOver) {
+        this.leftClickSound.play()
+      }
     }
   }
 
@@ -229,7 +255,7 @@ export default class Board {
           adjacentY < this.size
         ) {
           const adjacentTile = board[adjacentX][adjacentY];
-          neighbourTiles.push(adjacentTile);
+            neighbourTiles.push(adjacentTile);
         }
       }
     }
@@ -299,19 +325,21 @@ export default class Board {
   handleWin() {
     this.handlGameOver()
     this.subtext.textContent = content.WIN_MESSAGE.FISRT_PART + this.timer.elapsedTime
-      + content.WIN_MESSAGE.SECOND_PART + this.clickCount + content.WIN_MESSAGE.THIRD_PART;
-    this.addScore('win', this.clickCount, this.timer.elapsedTime, this.size, this.numberOfMines)
+      + (this.timer.elapsedTime === 1 ?content.WIN_MESSAGE.SECOND_PART_SINGULAR : content.WIN_MESSAGE.SECOND_PART) + this.clickCount + (this.clickCount === 1 ? content.WIN_MESSAGE.THIRD_PART_SINGULAR : content.WIN_MESSAGE.THIRD_PART);
+    this.addScore('WIN 🏆', this.clickCount, this.timer.elapsedTime, this.size, this.numberOfMines)
+    this.winSound.play();
+
   }
 
   handleLose() {
-    this.handlGameOver()
+    this.handlGameOver();
+    this.loseSound.play();
     this.subtext.textContent = content.GAME_OVER_MESSAGE;
     const mines = this.board.flat().filter(tile => tile.isMine);
     mines.forEach(mine => {
       mine.el.dataset.type = tiles.MINE
       mine.el.textContent = ''
     })
-      this.addScore('lose', this.clickCount, this.timer.elapsedTime, this.size, this.numberOfMines)
   }
 
   handlGameOver() {
@@ -323,12 +351,14 @@ export default class Board {
     });
   }
 
-  addScore(gameStatus, numOfClicks, elapsedTime, boardSize, numberOfMines) {
+  addScore(gameStatus, numOfClicks, time, boardSize, numberOfMines) {
     let scores = JSON.parse(localStorage.getItem('lastTenScores'))
     if (!scores) {
       scores = [];
     }
-    const gameStatistics = { gameStatus, numOfClicks, elapsedTime, boardSize, numberOfMines };
+    const elapsedTime = `${time}s`
+    const boardSizeFormat = `${boardSize} x ${boardSize}`
+    const gameStatistics = { gameStatus, numOfClicks, elapsedTime, boardSizeFormat, numberOfMines };
     scores.push(gameStatistics);
     const lastTenResults = scores.slice(-10);
     console.log(lastTenResults)

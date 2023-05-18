@@ -39,7 +39,7 @@ const scoreSection = createAndAppendElement(elements.DIV, main, classes.SCORE_SE
 const resultsTable = createAndAppendElement(elements.TABLE, scoreSection, classes.RESULTS_TABLE);
 const tableHeader = createAndAppendElement(elements.THEAD, resultsTable, classes.THEAD);
 const tableRowHeader = createAndAppendElement(elements.TR, tableHeader, classes.TR);
-const headerCells = ['Result', 'Clicks', 'Time', 'Size', 'Mines'];
+const headerCells = ['result', 'clicks', 'time', 'size', 'mines'];
 headerCells.forEach(headerText => {
   const headerCell = createAndAppendElement(elements.TH, tableRowHeader, classes.TH);
   headerCell.textContent = headerText;
@@ -49,11 +49,11 @@ const tableBody = createAndAppendElement(elements.TBODY, resultsTable, classes.T
 
 // board - section
 const boardSection = createAndAppendElement(elements.DIV, main, classes.BOARD_SECTION);
+const subtext = createAndAppendElement(elements.P, boardSection, classes.SUBTEXT);
 const mineCountSlider = createAndAppendElement(elements.INPUT, boardSection, classes.MINE_COUNT_SLIDER);
 mineCountSlider.type = 'range';
 mineCountSlider.min = '1';
 mineCountSlider.max = '99';
-const subtext = createAndAppendElement(elements.P, boardSection, classes.SUBTEXT);
 const boardTable = createAndAppendElement(elements.DIV, boardSection, classes.BOARD);
 const optionsWrapper = createAndAppendElement(elements.DIV, boardSection, classes.OPTIONS_WRAPPER);
 const sizeWrapper = createAndAppendElement(elements.DIV, optionsWrapper, classes.SIZE_WRAPPER);
@@ -70,19 +70,21 @@ option10.value = 10;
 option15.value = 15;
 option25.value = 25;
 const themeBtn = createAndAppendElement(elements.BUTTON, optionsWrapper, classes.CHANGE_THEME_BTN);
-const btnWrapper = createAndAppendElement(elements.DIV, boardSection, classes.BTN_WRAPPER);
+const changeSoundBtn = createAndAppendElement(elements.BUTTON, optionsWrapper, classes.CHANGE_SOUND_BTN);
+
+const wrapper = createAndAppendElement(elements.DIV, boardSection, classes.WRAPPER);
+const btnWrapper = createAndAppendElement(elements.DIV, wrapper, classes.BTN_WRAPPER);
 const resetButton = createAndAppendElement(elements.BUTTON, btnWrapper, classes.NEW_GAME_BTN);
 resetButton.textContent = content.RESET_BTN_MESSAGE;
+const checkResultsButton = createAndAppendElement(elements.BUTTON, btnWrapper, classes.CHECK_RESULTS_BTN);
+checkResultsButton.textContent = 'show results'
 
-const counterWrapper = createAndAppendElement(elements.DIV, btnWrapper, classes.COUNTER_WRAPPER);
+const counterWrapper = createAndAppendElement(elements.DIV, wrapper, classes.COUNTER_WRAPPER);
 const timer = createAndAppendElement(elements.P, counterWrapper, classes.TIMER);
 const clickCounter = createAndAppendElement(elements.P, counterWrapper, classes.CLICK_COUNTER);
 
 timer.textContent = content.TIMER_INITIAL;
 clickCounter.textContent = content.CLICK_COUNTER_INITIAL;
-
-const checkResultsButton = createAndAppendElement(elements.BUTTON, boardSection, classes.CHECK_RESULTS_BTN);
-checkResultsButton.textContent = 'results'
 
 const savedGameState = localStorage.getItem('gameState');
 let board;
@@ -149,18 +151,31 @@ themeBtn.addEventListener('click', () => {
 function updateResults() {
   results.getResults().forEach(game => {
     const tableRow = createAndAppendElement(elements.TR, tableBody, classes.TR);
-    const { gameStatus, numOfClicks, elapsedTime, boardSize, numberOfMines } = game;
-    const gameData = [gameStatus, numOfClicks, elapsedTime, boardSize, numberOfMines];
+    const { gameStatus, numOfClicks, elapsedTime, boardSizeFormat, numberOfMines } = game;
+    const gameData = [gameStatus, numOfClicks, elapsedTime, boardSizeFormat, numberOfMines];
     gameData.forEach(data => {
       const tableCell = createAndAppendElement(elements.TD, tableRow, classes.TD);
       tableCell.textContent = data;
+
     });
   })
 }
 
 updateResults()
 
+let showResults
 checkResultsButton.addEventListener('click', () => {
   resultsTable.classList.toggle('table-visible')
+  showResults = !showResults;
+  if (showResults) {
+    checkResultsButton.textContent = 'hide results';
+  } else {
+    checkResultsButton.textContent = 'show results';
+  }
+})
+
+changeSoundBtn.addEventListener('click', () => {
+  board.toggleSound();
+  changeSoundBtn.classList.toggle('sound-off');
 })
 

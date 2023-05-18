@@ -68,6 +68,8 @@ export const classes = {
   SIZE_WRAPPER: 'size-wrapper',
   BTN_WRAPPER: 'btn-wrapper',
   CHECK_RESULTS_BTN: 'check-results-btn',
+  WRAPPER: 'wrapper',
+  CHANGE_SOUND_BTN: 'change-sound-btn'
 }
 
 export const tiles = {
@@ -83,18 +85,19 @@ export const content = {
   GAME_OVER_MESSAGE: 'Game over. Try again',
   CLICK_COUNTER: 'clicks: ',
   CLICK_COUNTER_INITIAL: 'clicks: 0',
-  MINES_LEFT: 'Mines left: ',
-  MINES_LEFT_INITIAL: 'Mines left: 10',
+  MINES_LEFT: 'mines left: ',
+  MINES_LEFT_INITIAL: 'mines left: 10',
   WIN_MESSAGE: {
     FISRT_PART: 'Hooray! You found all mines in ',
     SECOND_PART: ' seconds and ',
+    SECOND_PART_SINGULAR: ' second and ',
     THIRD_PART: ' moves',
+    THIRD_PART_SINGULAR: ' move',
   },
-  RESET_BTN_MESSAGE: 'Start over',
+  RESET_BTN_MESSAGE: 'start over',
   TITLE: 'minesweeper',
   TIMER: 'time: ',
   TIMER_INITIAL: 'time: 0s',
-  CHECK_RESULTS_BTN: 'results',
 }
 
 export const sizeProperty = '--size'

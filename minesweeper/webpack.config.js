@@ -26,6 +26,18 @@ module.exports = {
         exclude: '/node_modules/'
       },
       {
+        test: /\.(ogg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'assets/'
+            }
+          }
+        ]
+      },
+      {
         test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
         type: 'asset/resource',
       },
