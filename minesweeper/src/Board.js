@@ -19,22 +19,9 @@ export default class Board {
     this.isGameOver = false;
     this.subtext = document.querySelector(selectors.SUBTEXT);
     this.boardElement = document.querySelector(selectors.BOARD);
-    this.page = document.querySelector(selectors.BODY);
-    this.header = document.querySelector(selectors.HEADER);
     this.clickCountElement = document.querySelector(selectors.CLICK_COUNTER);
     this.isDarkTheme = false;
-  }
-
-  toggleTheme() {
-    this.isDarkTheme = !this.isDarkTheme;
-
-    if (this.isDarkTheme) {
-      this.page.classList.add('dark-theme');
-      this.header.classList.add('dark-theme-header');
-    } else {
-      this.page.classList.remove('dark-theme');
-      this.header.classList.remove('dark-theme-header');
-    }
+    this.isReload = false;
   }
 
   checkForOpenedMine() {
@@ -61,6 +48,7 @@ export default class Board {
         isGameOver,
         board: savedBoard,
       } = JSON.parse(savedGameState);
+      this.isReload = true
       this.size = size;
       this.numberOfMines = numberOfMines;
       this.timer.elapsedTime = timerElapsed;
@@ -68,7 +56,6 @@ export default class Board {
       this.firstMove = firstMove;
       this.isGameOver = isGameOver;
       this.updateClickCountDisplay();
-
       this.board = Array.from(savedBoard, row => {
         return row.map(element => {
           const el = document.createElement(elements.DIV);
@@ -91,6 +78,7 @@ export default class Board {
           return tile;
         });
       });
+
       if (this.checkForOpenedMine()) {
         this.handleLose();
       }
@@ -284,6 +272,7 @@ export default class Board {
 
   resetGame() {
     localStorage.removeItem('gameState');
+    this.isReload = false;
     this.isGameOver = false;
     this.clickCount = 0;
     this.firstMove = true;
@@ -296,6 +285,9 @@ export default class Board {
     this.handlGameOver()
     this.subtext.textContent = content.WIN_MESSAGE.FISRT_PART + this.timer.elapsedTime
       + content.WIN_MESSAGE.SECOND_PART + this.clickCount + content.WIN_MESSAGE.THIRD_PART;
+    if (!this.isReload) {
+      this.addScore('win', this.clickCount, this.timer.elapsedTime, this.size, this.numberOfMines)
+    }
   }
 
   handleLose() {
@@ -304,7 +296,11 @@ export default class Board {
     const mines = this.board.flat().filter(tile => tile.isMine);
     mines.forEach(mine => {
       mine.el.dataset.type = tiles.MINE
+      mine.el.textContent = ''
     })
+    if (!this.isReload) {
+      this.addScore('lose', this.clickCount, this.timer.elapsedTime, this.size, this.numberOfMines)
+    }
   }
 
   handlGameOver() {
@@ -316,4 +312,14 @@ export default class Board {
     });
   }
 
+  addScore(gameStatus, numOfClicks, elapsedTime, boardSize, numberOfMines) {
+    let scores = JSON.parse(localStorage.getItem('lastTenScores'))
+    if (!scores) {
+      scores = [];
+    }
+    const gameStatistics = { gameStatus, numOfClicks, elapsedTime, boardSize, numberOfMines };
+    scores.push(gameStatistics);
+    const lastTenResults = scores.slice(0, 10);
+    localStorage.setItem("lastTenScores", JSON.stringify(lastTenResults))
+  }
 }

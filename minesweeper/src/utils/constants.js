@@ -6,6 +6,10 @@ export const selectors = {
   TIMER: '.timer',
   BODY: '.body',
   HEADER: '.header',
+  SCORE_SECTION: '.score-section',
+  TABLE_BODY: '.table_body',
+  CHANGE_THEME_BTN: '.change-theme-btn',
+  GAME_SIZE_OPTIONS_TEXT: '.game-size-options-text',
 }
 
 export const elements = {
@@ -18,6 +22,12 @@ export const elements = {
   SELECT: 'select',
   OPTION: 'option',
   INPUT: 'input',
+  THEAD: 'thead',
+  TR: 'tr',
+  TABLE: 'TABLE',
+  TH: 'th',
+  TBODY: 'tbody',
+  TD: 'td',
 }
 
 export const classes = {
@@ -39,12 +49,23 @@ export const classes = {
   TIMER: 'timer',
   CLICK_COUNTER: 'click-counter',
   BOARD_SECTION: 'board-section',
+  SCORE_SECTION: 'score-section',
   SUBTEXT: 'subtext',
   BOARD: 'board',
   GAME_SIZE_OPTIONS: 'game-size-options',
   GAME_SIZE_OPTION: 'game-size-option',
   MINE_COUNT_SLIDER: 'mine-count-slider',
   CHANGE_THEME_BTN: 'change-theme-btn',
+  COUNTER_WRAPPER: 'counter-wrapper',
+  OPTIONS_WRAPPER: 'options-wrapper',
+  GAME_SIZE_OPTIONS_TEXT: 'game-size-options-text',
+  TABLE_BODY: 'table_body',
+  RESULTS_TABLE: 'results-table',
+  THEAD: 'thead',
+  TH: 'th',
+  TR: 'tr',
+  TD: 'td',
+  SIZE_WRAPPER: 'size-wrapper',
 }
 
 export const tiles = {
@@ -68,7 +89,7 @@ export const content = {
     THIRD_PART: ' moves',
   },
   RESET_BTN_MESSAGE: 'Start over',
-  TITLE: 'Minesweeper',
+  TITLE: 'minesweeper',
   TIMER: 'Time elapsed: ',
   TIMER_INITIAL: 'Time elapsed: 0s',
 }

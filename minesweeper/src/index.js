@@ -1,10 +1,7 @@
-//the design should be adaptive (or responsive) from (500px <= width).
-//It is acceptable to change the appearance for the mobile version (for example, hide the buttons in the burger menu)
-//the game should include sound effects for events such as revealing a cell, flagging a cell, and game over (win and lose).
-//the latest 10 results are saved in the high score table and can be viewed in any way (for example, by pressing a button)
-
 import './styles/index.css';
 import Board from './Board';
+import Theme from './Theme';
+import Results from './Results';
 import {
   selectors,
   elements,
@@ -12,7 +9,6 @@ import {
   content,
   sizeProperty
 } from './utils/constants';
-
 
 const createAndAppendElement = (tag, parent, className) => {
   const element = document.createElement(tag);
@@ -33,19 +29,37 @@ function boardCreate(board) {
 // header
 const header = createAndAppendElement(elements.HEADER, document.body, classes.HEADER);
 const title = createAndAppendElement(elements.H1, header, classes.TITLE);
-const resetButton = createAndAppendElement(elements.BUTTON, header, classes.NEW_GAME_BTN);
-
-resetButton.textContent = content.RESET_BTN_MESSAGE;
 title.textContent = content.TITLE;
 
 // main
 const main = createAndAppendElement(elements.MAIN, document.body, classes.MAIN);
 
-// counter - section
-const counterSection = createAndAppendElement(elements.DIV, main, classes.COUNTER_SECTION);
-const timer = createAndAppendElement(elements.P, counterSection, classes.TIMER);
-const clickCounter = createAndAppendElement(elements.P, counterSection, classes.CLICK_COUNTER);
-const optionsGameSize = createAndAppendElement(elements.SELECT, counterSection, classes.GAME_SIZE_OPTIONS);
+// score - section
+const scoreSection = createAndAppendElement(elements.DIV, main, classes.SCORE_SECTION);
+const resultsTable = createAndAppendElement(elements.TABLE, scoreSection, classes.RESULTS_TABLE);
+const tableHeader = createAndAppendElement(elements.THEAD, resultsTable, classes.THEAD);
+const tableRowHeader = createAndAppendElement(elements.TR, tableHeader, classes.TR);
+const headerCells = ['Result', 'Clicks', 'Time', 'Size', 'Mines'];
+headerCells.forEach(headerText => {
+  const headerCell = createAndAppendElement(elements.TH, tableRowHeader, classes.TH);
+  headerCell.textContent = headerText;
+});
+
+const tableBody = createAndAppendElement(elements.TBODY, resultsTable, classes.TABLE_BODY);
+
+// board - section
+const boardSection = createAndAppendElement(elements.DIV, main, classes.BOARD_SECTION);
+const mineCountSlider = createAndAppendElement(elements.INPUT, boardSection, classes.MINE_COUNT_SLIDER);
+mineCountSlider.type = 'range';
+mineCountSlider.min = '1';
+mineCountSlider.max = '99';
+const subtext = createAndAppendElement(elements.P, boardSection, classes.SUBTEXT);
+const boardTable = createAndAppendElement(elements.DIV, boardSection, classes.BOARD);
+const optionsWrapper = createAndAppendElement(elements.DIV, boardSection, classes.OPTIONS_WRAPPER);
+const sizeWrapper = createAndAppendElement(elements.DIV, optionsWrapper, classes.SIZE_WRAPPER);
+const optionsGameSizeText = createAndAppendElement(elements.P, sizeWrapper, classes.GAME_SIZE_OPTIONS_TEXT);
+optionsGameSizeText.textContent = 'size:'
+const optionsGameSize = createAndAppendElement(elements.SELECT, sizeWrapper, classes.GAME_SIZE_OPTIONS);
 const option10 = createAndAppendElement(elements.OPTION, optionsGameSize, classes.GAME_SIZE_OPTION);
 const option15 = createAndAppendElement(elements.OPTION, optionsGameSize, classes.GAME_SIZE_OPTION);
 const option25 = createAndAppendElement(elements.OPTION, optionsGameSize, classes.GAME_SIZE_OPTION);
@@ -55,20 +69,18 @@ option25.textContent = '25 x 25';
 option10.value = 10;
 option15.value = 15;
 option25.value = 25;
-const mineCountSlider = createAndAppendElement(elements.INPUT, counterSection, classes.MINE_COUNT_SLIDER);
-mineCountSlider.type = 'range';
-mineCountSlider.min = '1';
-mineCountSlider.max = '99';
-const themeBtn = createAndAppendElement(elements.BUTTON, counterSection, classes.CHANGE_THEME_BTN);
-themeBtn.textContent = 'Toggle theme';
+const themeBtn = createAndAppendElement(elements.BUTTON, optionsWrapper, classes.CHANGE_THEME_BTN);
+const resetButton = createAndAppendElement(elements.BUTTON, boardSection, classes.NEW_GAME_BTN);
+resetButton.textContent = content.RESET_BTN_MESSAGE;
+
+// counter - section
+const counterSection = createAndAppendElement(elements.DIV, main, classes.COUNTER_SECTION);
+const counterWrapper = createAndAppendElement(elements.DIV, counterSection, classes.COUNTER_WRAPPER);
+const timer = createAndAppendElement(elements.P, counterWrapper, classes.TIMER);
+const clickCounter = createAndAppendElement(elements.P, counterWrapper, classes.CLICK_COUNTER);
 
 timer.textContent = content.TIMER_INITIAL;
 clickCounter.textContent = content.CLICK_COUNTER_INITIAL;
-
-// board - section
-const boardSection = createAndAppendElement(elements.DIV, main, classes.BOARD_SECTION);
-const subtext = createAndAppendElement(elements.P, boardSection, classes.SUBTEXT);
-const boardTable = createAndAppendElement(elements.DIV, boardSection, classes.BOARD);
 
 const savedGameState = localStorage.getItem('gameState');
 let board;
@@ -84,21 +96,24 @@ if (!savedGameState) {
   subtext.textContent = content.MINES_LEFT_INITIAL;
 } else {
   const { size, numberOfMines } = JSON.parse(savedGameState);
-   board = new Board(size, numberOfMines);
-   boardTable.style.setProperty(sizeProperty, size);
-   mineCountSlider.value = numberOfMines
-   if (size == 10) {
+  board = new Board(size, numberOfMines);
+  boardTable.style.setProperty(sizeProperty, size);
+  mineCountSlider.value = numberOfMines
+  if (size == 10) {
     option10.selected = true;
-   } else if (size == 15) {
+  } else if (size == 15) {
     option15.selected = true;
-   } else if (size == 25) {
+  } else if (size == 25) {
     option25.selected = true;
-   }
-   subtext.textContent = content.MINES_LEFT + numberOfMines;
-   board.loadGame().forEach(row => {
+  }
+  subtext.textContent = content.MINES_LEFT + numberOfMines;
+  board.loadGame().forEach(row => {
     row.forEach(tile => {
       const boardElement = document.querySelector(selectors.BOARD)
       boardElement.append(tile.el)
+      if (tile.isUnknown && board.isGameOver) {
+        tile.el.classList.add(classes.DEFAULT_CURSOR)
+      }
     })
   })
 }
@@ -121,10 +136,20 @@ optionsGameSize.addEventListener('change', saveAndResetGame);
 
 mineCountSlider.addEventListener('input', saveAndResetGame);
 
+const theme = new Theme();
 themeBtn.addEventListener('click', () => {
-  board.toggleTheme();
+  theme.toggleTheme();
 })
 
 
-
+const results = new Results()
+results.getResults().forEach(game => {
+  const tableRow = createAndAppendElement(elements.TR, tableBody, classes.TR);
+  const { gameStatus, numOfClicks, elapsedTime, boardSize, numberOfMines } = game;
+  const gameData = [gameStatus, numOfClicks, elapsedTime, boardSize, numberOfMines];
+  gameData.forEach(data => {
+    const tableCell = createAndAppendElement(elements.TD, tableRow, classes.TD);
+    tableCell.textContent = data;
+  });
+})
 
