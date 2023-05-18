@@ -10,6 +10,7 @@ export const selectors = {
   TABLE_BODY: '.table_body',
   CHANGE_THEME_BTN: '.change-theme-btn',
   GAME_SIZE_OPTIONS_TEXT: '.game-size-options-text',
+  TITLE: '.title',
 }
 
 export const elements = {
@@ -45,7 +46,6 @@ export const classes = {
   TITLE: 'title',
   NEW_GAME_BTN: 'new-game-btn',
   MAIN: 'main',
-  COUNTER_SECTION: 'counter-section',
   TIMER: 'timer',
   CLICK_COUNTER: 'click-counter',
   BOARD_SECTION: 'board-section',
@@ -66,6 +66,8 @@ export const classes = {
   TR: 'tr',
   TD: 'td',
   SIZE_WRAPPER: 'size-wrapper',
+  BTN_WRAPPER: 'btn-wrapper',
+  CHECK_RESULTS_BTN: 'check-results-btn',
 }
 
 export const tiles = {
@@ -79,8 +81,8 @@ export const content = {
   EMPTY: '',
   QUESTION_MARK: '?',
   GAME_OVER_MESSAGE: 'Game over. Try again',
-  CLICK_COUNTER: 'Click counter: ',
-  CLICK_COUNTER_INITIAL: 'Click counter: 0',
+  CLICK_COUNTER: 'clicks: ',
+  CLICK_COUNTER_INITIAL: 'clicks: 0',
   MINES_LEFT: 'Mines left: ',
   MINES_LEFT_INITIAL: 'Mines left: 10',
   WIN_MESSAGE: {
@@ -90,8 +92,9 @@ export const content = {
   },
   RESET_BTN_MESSAGE: 'Start over',
   TITLE: 'minesweeper',
-  TIMER: 'Time elapsed: ',
-  TIMER_INITIAL: 'Time elapsed: 0s',
+  TIMER: 'time: ',
+  TIMER_INITIAL: 'time: 0s',
+  CHECK_RESULTS_BTN: 'results',
 }
 
 export const sizeProperty = '--size'

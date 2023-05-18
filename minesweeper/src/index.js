@@ -70,17 +70,19 @@ option10.value = 10;
 option15.value = 15;
 option25.value = 25;
 const themeBtn = createAndAppendElement(elements.BUTTON, optionsWrapper, classes.CHANGE_THEME_BTN);
-const resetButton = createAndAppendElement(elements.BUTTON, boardSection, classes.NEW_GAME_BTN);
+const btnWrapper = createAndAppendElement(elements.DIV, boardSection, classes.BTN_WRAPPER);
+const resetButton = createAndAppendElement(elements.BUTTON, btnWrapper, classes.NEW_GAME_BTN);
 resetButton.textContent = content.RESET_BTN_MESSAGE;
 
-// counter - section
-const counterSection = createAndAppendElement(elements.DIV, main, classes.COUNTER_SECTION);
-const counterWrapper = createAndAppendElement(elements.DIV, counterSection, classes.COUNTER_WRAPPER);
+const counterWrapper = createAndAppendElement(elements.DIV, btnWrapper, classes.COUNTER_WRAPPER);
 const timer = createAndAppendElement(elements.P, counterWrapper, classes.TIMER);
 const clickCounter = createAndAppendElement(elements.P, counterWrapper, classes.CLICK_COUNTER);
 
 timer.textContent = content.TIMER_INITIAL;
 clickCounter.textContent = content.CLICK_COUNTER_INITIAL;
+
+const checkResultsButton = createAndAppendElement(elements.BUTTON, boardSection, classes.CHECK_RESULTS_BTN);
+checkResultsButton.textContent = 'results'
 
 const savedGameState = localStorage.getItem('gameState');
 let board;
@@ -118,6 +120,7 @@ if (!savedGameState) {
   })
 }
 
+const results = new Results()
 const saveAndResetGame = () => {
   board.resetGame();
   const selectedSize = parseInt(optionsGameSize.value);
@@ -128,6 +131,8 @@ const saveAndResetGame = () => {
   boardCreate(board);
   subtext.textContent = content.MINES_LEFT + mineCountSlider.value;
   board.saveGame();
+  tableBody.innerHTML = '';
+  updateResults()
 };
 
 resetButton.addEventListener('click', saveAndResetGame);
@@ -141,15 +146,21 @@ themeBtn.addEventListener('click', () => {
   theme.toggleTheme();
 })
 
+function updateResults() {
+  results.getResults().forEach(game => {
+    const tableRow = createAndAppendElement(elements.TR, tableBody, classes.TR);
+    const { gameStatus, numOfClicks, elapsedTime, boardSize, numberOfMines } = game;
+    const gameData = [gameStatus, numOfClicks, elapsedTime, boardSize, numberOfMines];
+    gameData.forEach(data => {
+      const tableCell = createAndAppendElement(elements.TD, tableRow, classes.TD);
+      tableCell.textContent = data;
+    });
+  })
+}
 
-const results = new Results()
-results.getResults().forEach(game => {
-  const tableRow = createAndAppendElement(elements.TR, tableBody, classes.TR);
-  const { gameStatus, numOfClicks, elapsedTime, boardSize, numberOfMines } = game;
-  const gameData = [gameStatus, numOfClicks, elapsedTime, boardSize, numberOfMines];
-  gameData.forEach(data => {
-    const tableCell = createAndAppendElement(elements.TD, tableRow, classes.TD);
-    tableCell.textContent = data;
-  });
+updateResults()
+
+checkResultsButton.addEventListener('click', () => {
+  resultsTable.classList.toggle('table-visible')
 })
 

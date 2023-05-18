@@ -21,7 +21,6 @@ export default class Board {
     this.boardElement = document.querySelector(selectors.BOARD);
     this.clickCountElement = document.querySelector(selectors.CLICK_COUNTER);
     this.isDarkTheme = false;
-    this.isReload = false;
   }
 
   checkForOpenedMine() {
@@ -32,8 +31,20 @@ export default class Board {
         }
       }
     }
-
     return false;
+  }
+
+  checkforWinLoad() {
+    for (let row of this.board) {
+      for (let tile of row) {
+        if (tile.isUnknown && !tile.isMine) {
+          return;
+        }
+      }
+    }
+    this.handlGameOver()
+    this.subtext.textContent = content.WIN_MESSAGE.FISRT_PART + this.timer.elapsedTime
+      + content.WIN_MESSAGE.SECOND_PART + this.clickCount + content.WIN_MESSAGE.THIRD_PART;
   }
 
   loadGame() {
@@ -48,7 +59,6 @@ export default class Board {
         isGameOver,
         board: savedBoard,
       } = JSON.parse(savedGameState);
-      this.isReload = true
       this.size = size;
       this.numberOfMines = numberOfMines;
       this.timer.elapsedTime = timerElapsed;
@@ -80,9 +90,15 @@ export default class Board {
       });
 
       if (this.checkForOpenedMine()) {
-        this.handleLose();
+        this.handlGameOver()
+        this.subtext.textContent = content.GAME_OVER_MESSAGE;
+        const mines = this.board.flat().filter(tile => tile.isMine);
+        mines.forEach(mine => {
+          mine.el.dataset.type = tiles.MINE
+          mine.el.textContent = ''
+        })
       }
-      this.checkIfWin();
+      this.checkforWinLoad();
       this.timer.updateDisplay();
       if (timerElapsed !== 0 && !this.isGameOver) {
         this.timer.continue();
@@ -272,7 +288,6 @@ export default class Board {
 
   resetGame() {
     localStorage.removeItem('gameState');
-    this.isReload = false;
     this.isGameOver = false;
     this.clickCount = 0;
     this.firstMove = true;
@@ -285,9 +300,7 @@ export default class Board {
     this.handlGameOver()
     this.subtext.textContent = content.WIN_MESSAGE.FISRT_PART + this.timer.elapsedTime
       + content.WIN_MESSAGE.SECOND_PART + this.clickCount + content.WIN_MESSAGE.THIRD_PART;
-    if (!this.isReload) {
-      this.addScore('win', this.clickCount, this.timer.elapsedTime, this.size, this.numberOfMines)
-    }
+    this.addScore('win', this.clickCount, this.timer.elapsedTime, this.size, this.numberOfMines)
   }
 
   handleLose() {
@@ -298,9 +311,7 @@ export default class Board {
       mine.el.dataset.type = tiles.MINE
       mine.el.textContent = ''
     })
-    if (!this.isReload) {
       this.addScore('lose', this.clickCount, this.timer.elapsedTime, this.size, this.numberOfMines)
-    }
   }
 
   handlGameOver() {
@@ -319,7 +330,8 @@ export default class Board {
     }
     const gameStatistics = { gameStatus, numOfClicks, elapsedTime, boardSize, numberOfMines };
     scores.push(gameStatistics);
-    const lastTenResults = scores.slice(0, 10);
+    const lastTenResults = scores.slice(-10);
+    console.log(lastTenResults)
     localStorage.setItem("lastTenScores", JSON.stringify(lastTenResults))
   }
 }

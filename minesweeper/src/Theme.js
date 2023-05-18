@@ -10,6 +10,7 @@ export default class Theme {
     this.subtext = document.querySelector(selectors.SUBTEXT);
     this.gameSizeText = document.querySelector(selectors.GAME_SIZE_OPTIONS_TEXT);
     this.timer = document.querySelector(selectors.TIMER);
+    this.title = document.querySelector(selectors.TITLE);
     this.clickCounter = document.querySelector(selectors.CLICK_COUNTER);
     this.loadTheme();
   }
@@ -23,8 +24,9 @@ export default class Theme {
       this.gameSizeText.classList.remove('dark-theme');
       this.timer.classList.remove('dark-theme');
       this.clickCounter.classList.remove('dark-theme');
+      this.title.classList.remove('dark-theme');
       this.isDarkTheme = false;
-      this.themeBtn.style.backgroundImage = `url(${moonimg})`;
+      this.themeBtn.style.backgroundImage = `url(${sunimg})`;
     } else {
       this.page.classList.add('dark-theme');
       this.header.classList.add('dark-theme');
@@ -32,7 +34,8 @@ export default class Theme {
       this.gameSizeText.classList.add('dark-theme');
       this.timer.classList.add('dark-theme');
       this.clickCounter.classList.add('dark-theme');
-      this.themeBtn.style.backgroundImage = `url(${sunimg})`;
+      this.title.classList.add('dark-theme');
+      this.themeBtn.style.backgroundImage = `url(${moonimg})`;
       this.isDarkTheme = true;
     }
   }
@@ -48,7 +51,8 @@ export default class Theme {
       this.gameSizeText.classList.add('dark-theme');
       this.timer.classList.add('dark-theme');
       this.clickCounter.classList.add('dark-theme');
-      this.themeBtn.style.backgroundImage = `url(${sunimg})`;
+      this.title.classList.add('dark-theme');
+      this.themeBtn.style.backgroundImage = `url(${moonimg})`;
     } else {
       localStorage.setItem('theme', 'light');
       this.page.classList.remove('dark-theme');
@@ -57,7 +61,8 @@ export default class Theme {
       this.gameSizeText.classList.remove('dark-theme');
       this.timer.classList.remove('dark-theme');
       this.clickCounter.classList.remove('dark-theme');
-      this.themeBtn.style.backgroundImage = `url(${moonimg})`;
+      this.title.classList.remove('dark-theme');
+      this.themeBtn.style.backgroundImage = `url(${sunimg})`;
     }
   }
 }
