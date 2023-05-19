@@ -210,7 +210,6 @@ export default class Board {
     tile.toggleMark();
     this.updateMinesLeft();
     this.saveGame()
-    console.log(tile)
   }
 
   handleFirstMove(tile) {

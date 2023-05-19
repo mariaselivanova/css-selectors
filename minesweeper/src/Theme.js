@@ -1,4 +1,4 @@
-import { selectors } from "./utils/constants";
+import { selectors, DARK_THEME } from "./utils/constants";
 import sunimg from './assets/sun-regular.svg';
 import moonimg from './assets/moon-regular.svg';
 
@@ -12,31 +12,40 @@ export default class Theme {
     this.timer = document.querySelector(selectors.TIMER);
     this.title = document.querySelector(selectors.TITLE);
     this.clickCounter = document.querySelector(selectors.CLICK_COUNTER);
+    this.isDarkTheme = false;
     this.loadTheme();
   }
 
+  addDarkTheme() {
+    this.page.classList.add(DARK_THEME);
+    this.header.classList.add(DARK_THEME);
+    this.subtext.classList.add(DARK_THEME);
+    this.gameSizeText.classList.add(DARK_THEME);
+    this.timer.classList.add(DARK_THEME);
+    this.clickCounter.classList.add(DARK_THEME);
+    this.title.classList.add(DARK_THEME);
+    this.themeBtn.style.backgroundImage = `url(${moonimg})`;
+  }
+
+  removeDarkTheme() {
+    this.page.classList.remove(DARK_THEME);
+    this.header.classList.remove(DARK_THEME);
+    this.subtext.classList.remove(DARK_THEME);
+    this.gameSizeText.classList.remove(DARK_THEME);
+    this.timer.classList.remove(DARK_THEME);
+    this.clickCounter.classList.remove(DARK_THEME);
+    this.title.classList.remove(DARK_THEME);
+    this.themeBtn.style.backgroundImage = `url(${sunimg})`;
+  }
+
   loadTheme() {
-    const theme = localStorage.getItem('theme')
-    if (theme === "light" || !theme) {
-      this.page.classList.remove('dark-theme');
-      this.header.classList.remove('dark-theme');
-      this.subtext.classList.remove('dark-theme');
-      this.gameSizeText.classList.remove('dark-theme');
-      this.timer.classList.remove('dark-theme');
-      this.clickCounter.classList.remove('dark-theme');
-      this.title.classList.remove('dark-theme');
-      this.isDarkTheme = false;
-      this.themeBtn.style.backgroundImage = `url(${sunimg})`;
-    } else {
-      this.page.classList.add('dark-theme');
-      this.header.classList.add('dark-theme');
-      this.subtext.classList.add('dark-theme');
-      this.gameSizeText.classList.add('dark-theme');
-      this.timer.classList.add('dark-theme');
-      this.clickCounter.classList.add('dark-theme');
-      this.title.classList.add('dark-theme');
-      this.themeBtn.style.backgroundImage = `url(${moonimg})`;
+    const theme = localStorage.getItem('theme');
+    if (theme === "dark") {
+      this.addDarkTheme();
       this.isDarkTheme = true;
+    } else if (!theme || theme === 'light') {
+      this.removeDarkTheme();
+      this.isDarkTheme = false;
     }
   }
 
@@ -45,24 +54,11 @@ export default class Theme {
 
     if (this.isDarkTheme) {
       localStorage.setItem('theme', 'dark');
-      this.page.classList.add('dark-theme');
-      this.header.classList.add('dark-theme');
-      this.subtext.classList.add('dark-theme');
-      this.gameSizeText.classList.add('dark-theme');
-      this.timer.classList.add('dark-theme');
-      this.clickCounter.classList.add('dark-theme');
-      this.title.classList.add('dark-theme');
-      this.themeBtn.style.backgroundImage = `url(${moonimg})`;
+      this.addDarkTheme();
     } else {
       localStorage.setItem('theme', 'light');
-      this.page.classList.remove('dark-theme');
-      this.header.classList.remove('dark-theme');
-      this.subtext.classList.remove('dark-theme');
-      this.gameSizeText.classList.remove('dark-theme');
-      this.timer.classList.remove('dark-theme');
-      this.clickCounter.classList.remove('dark-theme');
-      this.title.classList.remove('dark-theme');
-      this.themeBtn.style.backgroundImage = `url(${sunimg})`;
+      this.removeDarkTheme();
     }
   }
 }
+

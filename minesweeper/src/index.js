@@ -50,7 +50,10 @@ const tableBody = createAndAppendElement(elements.TBODY, resultsTable, classes.T
 // board - section
 const boardSection = createAndAppendElement(elements.DIV, main, classes.BOARD_SECTION);
 const subtext = createAndAppendElement(elements.P, boardSection, classes.SUBTEXT);
-const mineCountSlider = createAndAppendElement(elements.INPUT, boardSection, classes.MINE_COUNT_SLIDER);
+const sliderWrapper = createAndAppendElement(elements.DIV, boardSection, classes.SLIDER_WRAPPER);
+const sliderText = createAndAppendElement(elements.P, sliderWrapper, classes.SLIDER_TEXT);
+
+const mineCountSlider = createAndAppendElement(elements.INPUT, sliderWrapper, classes.MINE_COUNT_SLIDER);
 mineCountSlider.type = 'range';
 mineCountSlider.min = '1';
 mineCountSlider.max = '99';
@@ -98,6 +101,7 @@ if (!savedGameState) {
   boardCreate(board);
   boardTable.style.setProperty(sizeProperty, optionsGameSize.value);
   subtext.textContent = content.MINES_LEFT_INITIAL;
+  sliderText.textContent = content.MINES_INITIAL;
 } else {
   const { size, numberOfMines } = JSON.parse(savedGameState);
   board = new Board(size, numberOfMines);
@@ -111,6 +115,7 @@ if (!savedGameState) {
     option25.selected = true;
   }
   subtext.textContent = content.MINES_LEFT + numberOfMines;
+  sliderText.textContent = content.MINES + numberOfMines;
   board.loadGame().forEach(row => {
     row.forEach(tile => {
       const boardElement = document.querySelector(selectors.BOARD)
@@ -132,6 +137,7 @@ const saveAndResetGame = () => {
   boardTable.style.setProperty(sizeProperty, selectedSize);
   boardCreate(board);
   subtext.textContent = content.MINES_LEFT + mineCountSlider.value;
+  sliderText.textContent = content.MINES + mineCountSlider.value;
   board.saveGame();
   tableBody.innerHTML = '';
   updateResults()

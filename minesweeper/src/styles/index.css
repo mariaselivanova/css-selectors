@@ -148,7 +148,7 @@
 
 .subtext {
   color: #1c1c21;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: bold;
   letter-spacing: 0.2em;
   margin: 0;
@@ -193,9 +193,9 @@
 .game-size-options-text {
   margin: 0;
   font-size: 15px;
-  font-weight: bold;
   letter-spacing: 0.2em;
   color: #1c1c21;
+  font-weight: bold;
 }
 
 .game-size-options {
@@ -260,7 +260,7 @@
   visibility: hidden;
   border-radius: 10px;
   color: #b9c1ca;
-  margin-top: 85px;
+  margin-top: 90px;
   font-weight: bold;
   font-size: 14px;
 }
@@ -323,7 +323,6 @@
   font-weight: bold;
   letter-spacing: 0.1em;
   background-color: #444663;
-  ;
   color: #CCC;
   border-radius: 20px;
   padding: 5px 10px;
@@ -343,7 +342,25 @@
   align-items: flex-start;
   justify-content: space-between;
   width: 260px;
+}
 
+.slider-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.mine-count-slider {
+  margin: 5px 0 0 0;
+}
+
+.slider-text {
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: .2em;
+  font-size: 15px;
 }
 
 @media screen and (max-width: 1350px) {
