@@ -165,7 +165,6 @@ export default class Board {
 
     const neighbourTiles = this.findNeighbourTiles(board, tile);
     const neighbourMines = neighbourTiles.filter(adjacentTile => adjacentTile.isMine);
-
     if (tile.isMine) {
       tile.reveal(neighbourMines.length);
     } else {
@@ -206,7 +205,6 @@ export default class Board {
   handleRightClick(tile) {
     if (this.isGameOver || !tile.isUnknown) return
     this.rightClickSound.play();
-    this.checkifTimer();
     tile.toggleMark();
     this.updateMinesLeft();
     this.saveGame()
@@ -275,7 +273,6 @@ export default class Board {
       const j = Math.floor(Math.random() * (i + 1));
       [positions[i], positions[j]] = [positions[j], positions[i]];
     }
-
     const mines = positions.slice(0, numMines);
 
     mines.forEach(mine => {
@@ -327,7 +324,6 @@ export default class Board {
       + (this.timer.elapsedTime === 1 ?content.WIN_MESSAGE.SECOND_PART_SINGULAR : content.WIN_MESSAGE.SECOND_PART) + this.clickCount + (this.clickCount === 1 ? content.WIN_MESSAGE.THIRD_PART_SINGULAR : content.WIN_MESSAGE.THIRD_PART);
     this.addScore('WIN 🏆', this.clickCount, this.timer.elapsedTime, this.size, this.numberOfMines)
     this.winSound.play();
-
   }
 
   handleLose() {
@@ -360,7 +356,6 @@ export default class Board {
     const gameStatistics = { gameStatus, numOfClicks, elapsedTime, boardSizeFormat, numberOfMines };
     scores.push(gameStatistics);
     const lastTenResults = scores.slice(-10);
-    console.log(lastTenResults)
     localStorage.setItem("lastTenScores", JSON.stringify(lastTenResults))
   }
 }

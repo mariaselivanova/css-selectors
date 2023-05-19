@@ -100,10 +100,18 @@ export const content = {
   TITLE: 'minesweeper',
   TIMER: 'time: ',
   TIMER_INITIAL: 'time: 0s',
-  MINES: 'mines: ',
+  MINES_RANGE: 'mines: ',
   MINES_INITIAL: 'mines: 10',
+  RESULT: 'result',
+  CLICKS: 'clicks',
+  TIME: 'time',
+  SIZE: 'size',
+  SIZE_OPTIONS: 'size:',
+  MINES: 'mines',
+  SHOW_RES: 'show results',
 }
 
 export const sizeProperty = '--size';
 export const DARK_THEME = 'dark-theme';
+export const RANGE = 'range';
 
