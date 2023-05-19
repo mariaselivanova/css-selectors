@@ -1,13 +1,13 @@
 const page = document.querySelector(".page");
 
-//контейнеры для карточек, стрелки
+// контейнеры для карточек, стрелки
 const currentCardContainer = document.querySelector(".current");
 const nextCardContainer = document.querySelector(".next");
 const pastCardContainer = document.querySelector(".previous");
 const arrowLeft = document.querySelector(".ourfriends__arrow");
 const arrowRight = document.querySelector(".ourfriends__arrow_right");
 
-//попап
+// попап
 const popup = document.getElementById("popup");
 const popupClose = document.getElementById("closeButton");
 const popupTitle = popup.querySelector(".popup__title");
