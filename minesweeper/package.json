@@ -2,7 +2,7 @@
   "name": "minesweeper",
   "version": "1.0.0",
   "repository": {
-    "url": "git+https://github.com/rolling-scopes-school/mariaselivanova-JSFE2023Q1/minesweeper"
+    "url": "git+https://github.com/rolling-scopes-school/mariaselivanova-JSFE2023Q1/"
   },
   "description": "",
   "main": "index.js",
