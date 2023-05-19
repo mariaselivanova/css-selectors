@@ -1,0 +1,30 @@
+.footer__icon {
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.footer__icon_type_email {
+  background-image: url('../../../../../assets/images/icon-email.svg');
+  width: 40px;
+  height: 36px;
+}
+
+.footer__icon_type_phone {
+  background-image: url('../../../../../assets/images/phone.svg');
+  width: 40px;
+  height: 32px;
+}
+
+.footer__icon_type_adress {
+  background-image: url('../../../../../assets/images/pin.svg');
+  width: 22px;
+  height: 32px;
+}
+
+.footer__icon_type_adress_double {
+  padding-left: 11px;
+}
+
+
+
+

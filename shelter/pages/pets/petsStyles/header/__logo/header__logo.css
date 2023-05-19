@@ -1,0 +1,17 @@
+.header__logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.header__logo:hover .header__title {
+  color: #292929;
+  text-shadow: 2px -2px 4px rgba(195, 195, 197, 0.73);
+}
+
+.header__logo:hover .header__subtitle {
+  text-shadow: 2px -2px 4px rgba(195, 195, 197, 0.73);
+}

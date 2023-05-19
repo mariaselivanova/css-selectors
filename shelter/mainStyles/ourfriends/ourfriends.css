@@ -1,0 +1,16 @@
+.ourfriends {
+  background: #F6F6F6;
+  padding-top: 80px;
+  padding-bottom: 100px;
+  font-family: 'Georgia';
+  font-style: normal;
+  width: 100%;
+  transition: all 0.5s ease;
+}
+
+@media screen and (width < 768px) {
+  .ourfriends {
+    padding-top: calc(42px + (80 - 42) * (100vw - 320px) / (768 - 320));
+    padding-bottom: calc(42px + (100 - 42) * (100vw - 320px) / (768 - 320));;
+  }
+}

@@ -1,0 +1,43 @@
+.ourfriends__btn {
+  border: 2px solid #F1CDB3;
+  border-radius: 50%;
+  background: transparent;
+  width: 52px;
+  height: 52px;
+  color: #292929;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+  transition: all 1s ease;
+  font-family: 'Georgia';
+}
+
+.ourfriends__btn:disabled{
+  color: #CDCDCD;
+  border: 2px solid #CDCDCD;
+  pointer-events: none;
+}
+
+.ourfriends__btn:hover {
+  cursor: pointer;
+  background: #FDDCC4;
+  border: 2px solid #FDDCC4;
+}
+
+.ourfriends__btn_num {
+  background:  #F1CDB3;
+}
+
+.ourfriends__btn_num:hover {
+  background: #FDDCC4;
+  border: 2px solid #FDDCC4;
+  cursor: pointer;
+}
+
+.ourfriends__btn_num:active {
+  background: #F1CDB3;
+  border: 2px solid #F1CDB3;
+}

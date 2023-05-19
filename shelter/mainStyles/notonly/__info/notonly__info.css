@@ -1,0 +1,34 @@
+.notonly__info {
+  display: flex;
+  flex-direction: column;
+  padding-top: 157px;
+  transition: all 0.5s ease;
+}
+
+@media screen and (width < 1280px) {
+  .notonly__info {
+    padding-top: 12.7%
+  }
+}
+
+@media screen and (width < 800px) {
+  .notonly__info {
+    width: 63.7%;
+    padding-top: 0;
+    margin-bottom: 100px;
+  }
+}
+
+@media screen and (width < 768px) {
+  .notonly__info {
+    align-items: center;
+    width: 80%;
+    max-width: 700px;
+    margin-bottom: 105px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .notonly__info {
+    width: 100%;
+  }
+}

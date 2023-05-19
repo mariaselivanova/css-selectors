@@ -1,0 +1,20 @@
+.popup__info {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+  width: 350px;
+}
+
+@media screen and (width < 1000px) {
+  .popup__info {
+    width: 260px;
+    margin-right: 10px;
+  }
+}
+
+@media screen and (width < 750px) {
+  .popup__info {
+    margin: 0 auto;
+    width: 240px;
+  }
+}

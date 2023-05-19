@@ -1,0 +1,28 @@
+.help__title {
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #545454;
+  max-width: 310px;
+  width: 100%;
+  text-align: center;
+  margin-top: 80px;
+  margin-bottom: 60px;
+  transition: all 0.5s ease;
+}
+
+@media screen and (width < 768px) {
+  .help__title {
+    font-size: calc(25px + (35 - 25) * (100vw - 320px) / (768 - 320));
+    margin-top: calc(42px + (80 - 42) * (100vw - 320px) / (768 - 320));
+    margin-bottom: calc(42px + (60 - 42) * (100vw - 320px) / (768 - 320));
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .help__title {
+    max-width: 230px;
+  }
+
+}

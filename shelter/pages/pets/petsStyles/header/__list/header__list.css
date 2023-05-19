@@ -1,0 +1,8 @@
+.header__list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 443px;
+  list-style-type: none;
+  padding: 0;
+}

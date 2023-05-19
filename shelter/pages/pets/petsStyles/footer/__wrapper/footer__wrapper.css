@@ -1,0 +1,26 @@
+.footer__wrapper {
+  margin: 0 auto;
+  width: 94.5%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 1048px) {
+  .footer__wrapper {
+    width: 83.3%;
+    align-items: center;
+    row-gap: 65px;
+  }
+}
+
+@media screen and (width < 768px) {
+  .footer__wrapper {
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+  }
+}
