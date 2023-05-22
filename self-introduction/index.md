@@ -1,6 +1,5 @@
 [Link to the video](https://youtu.be/fYhzLZLHS-Y)
 
-<br/><br/>
 
 [Link to the text](https://docs.google.com/document/d/1RLydlSrhd1BtcAjB0khPsktyr10aAC7ADSXbyXKJnxk/edit?usp=sharing)
 
