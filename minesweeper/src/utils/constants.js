@@ -3,6 +3,7 @@ export const selectors = {
   BOARD: '.board',
   CLICK_COUNTER: '.click-counter',
   UNKNOWN_TILES: '.tile[data-type="unknown"]',
+  NUMBER_TILES: '.tile[data-type="number"]',
   TIMER: '.timer',
   BODY: '.body',
   HEADER: '.header',
@@ -11,6 +12,7 @@ export const selectors = {
   CHANGE_THEME_BTN: '.change-theme-btn',
   GAME_SIZE_OPTIONS_TEXT: '.game-size-options-text',
   TITLE: '.title',
+  TILE: '.tile',
 }
 
 export const elements = {
@@ -72,6 +74,7 @@ export const classes = {
   CHANGE_SOUND_BTN: 'change-sound-btn',
   SLIDER_WRAPPER: 'slider-wrapper',
   SLIDER_TEXT: 'slider-text',
+  TILE_DARK: 'tile-dark',
 }
 
 export const tiles = {
@@ -83,7 +86,6 @@ export const tiles = {
 
 export const content = {
   EMPTY: '',
-  QUESTION_MARK: '?',
   GAME_OVER_MESSAGE: 'Game over. Try again',
   CLICK_COUNTER: 'clicks: ',
   CLICK_COUNTER_INITIAL: 'clicks: 0',
