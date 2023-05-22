@@ -82,6 +82,7 @@ export default class Board {
       this.firstMove = firstMove;
       this.isGameOver = isGameOver;
       this.updateClickCountDisplay();
+      let rightClickCount = 0;
       this.board = Array.from(savedBoard, row => {
         return row.map(element => {
           const el = document.createElement(elements.DIV);
@@ -91,6 +92,9 @@ export default class Board {
             el.dataset.type = tiles.MINE;
           } else {
             el.dataset.type = tiles.NUMBER;
+          }
+          if (element.isRightClicked) {
+            rightClickCount ++
           }
           el.classList.add(classes.TILE);
           const tile = new Tile(element.x, element.y, el, element.isMine, element.isUnknown, element.isRightClicked, element.number);
@@ -104,7 +108,9 @@ export default class Board {
           return tile;
         });
       });
-
+      if (!this.isGameOver) {
+        this.subtext.textContent = content.MINES_LEFT + (this.numberOfMines - rightClickCount);
+      }
       if (this.checkForOpenedMine()) {
         this.handlGameOver()
         this.subtext.textContent = content.GAME_OVER_MESSAGE;
@@ -252,7 +258,7 @@ export default class Board {
           adjacentY < this.size
         ) {
           const adjacentTile = board[adjacentX][adjacentY];
-            neighbourTiles.push(adjacentTile);
+          neighbourTiles.push(adjacentTile);
         }
       }
     }
@@ -321,7 +327,7 @@ export default class Board {
   handleWin() {
     this.handlGameOver()
     this.subtext.textContent = content.WIN_MESSAGE.FISRT_PART + this.timer.elapsedTime
-      + (this.timer.elapsedTime === 1 ?content.WIN_MESSAGE.SECOND_PART_SINGULAR : content.WIN_MESSAGE.SECOND_PART) + this.clickCount + (this.clickCount === 1 ? content.WIN_MESSAGE.THIRD_PART_SINGULAR : content.WIN_MESSAGE.THIRD_PART);
+      + (this.timer.elapsedTime === 1 ? content.WIN_MESSAGE.SECOND_PART_SINGULAR : content.WIN_MESSAGE.SECOND_PART) + this.clickCount + (this.clickCount === 1 ? content.WIN_MESSAGE.THIRD_PART_SINGULAR : content.WIN_MESSAGE.THIRD_PART);
     this.addScore('WIN 🏆', this.clickCount, this.timer.elapsedTime, this.size, this.numberOfMines)
     this.winSound.play();
   }
