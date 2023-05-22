@@ -59,7 +59,6 @@ export default class Tile {
   setRightClicked() {
     if (this.isRightClicked) {
       this.el.dataset.type = tiles.RIGHT_CLICKED
-      this.el.textContent = content.QUESTION_MARK
     }
   }
 
@@ -121,10 +120,8 @@ export default class Tile {
     this.isRightClicked = !this.isRightClicked;
     if (this.isRightClicked) {
       this.el.dataset.type = tiles.RIGHT_CLICKED
-      this.el.textContent = content.QUESTION_MARK
     } else {
       this.el.dataset.type = tiles.UNKNOWN
-      this.el.textContent = content.EMPTY
     }
   }
 }

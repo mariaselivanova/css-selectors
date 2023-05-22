@@ -12,6 +12,12 @@ export default class Theme {
     this.timer = document.querySelector(selectors.TIMER);
     this.title = document.querySelector(selectors.TITLE);
     this.clickCounter = document.querySelector(selectors.CLICK_COUNTER);
+    this.board = document.querySelector(selectors.BOARD);
+    this.resultsBtn = document.querySelector('.check-results-btn');
+    this.newGameBtn = document.querySelector('.new-game-btn');
+    this.resultTable = document.querySelector('.results-table');
+    this.changeThemeBtn = document.querySelector('.change-theme-btn');
+    this.changeSoundBtn = document.querySelector('.change-sound-btn');
     this.isDarkTheme = false;
     this.loadTheme();
   }
@@ -24,6 +30,12 @@ export default class Theme {
     this.timer.classList.add(DARK_THEME);
     this.clickCounter.classList.add(DARK_THEME);
     this.title.classList.add(DARK_THEME);
+    this.board.classList.add('board-dark');
+    this.resultsBtn.classList.add('check-results-btn-dark');
+    this.newGameBtn.classList.add('new-game-btn-dark');
+    this.resultTable.classList.add('results-table-dark');
+    this.changeThemeBtn.classList.add('change-theme-btn-dark');
+    this.changeSoundBtn.classList.add('change-sound-btn-dark');
     this.themeBtn.style.backgroundImage = `url(${moonimg})`;
   }
 
@@ -35,6 +47,12 @@ export default class Theme {
     this.timer.classList.remove(DARK_THEME);
     this.clickCounter.classList.remove(DARK_THEME);
     this.title.classList.remove(DARK_THEME);
+    this.board.classList.remove('board-dark');
+    this.resultsBtn.classList.remove('check-results-btn-dark');
+    this.newGameBtn.classList.remove('new-game-btn-dark');
+    this.resultTable.classList.remove('results-table-dark');
+    this.changeThemeBtn.classList.remove('change-theme-btn-dark');
+    this.changeSoundBtn.classList.remove('change-sound-btn-dark');
     this.themeBtn.style.backgroundImage = `url(${sunimg})`;
   }
 

@@ -53,8 +53,12 @@
   grid-template-columns: repeat(var(--size), 25px);
   grid-template-rows: repeat(var(--size), 25px);
   gap: 4px;
-  background-color: #323348;
   border-radius: 5px;
+  background-color:  #44455d;
+}
+
+.board-dark {
+  background-color: #323348;
 }
 
 .tile[data-type="unknown"] {
@@ -80,8 +84,8 @@
 }
 
 .tile[data-type="number"] {
-  background: #323348;
-  border: 1px solid #3d3e53;
+  background-color: #3d3e51;
+  border: 1px solid #3d3e51;
   text-align: center;
   border-radius: 3px;
   display: flex;
@@ -93,6 +97,10 @@
 
 .tile[data-type="right-clicked"] {
   background-color: rgb(214, 140, 21);
+  background-image: url(../assets/flag-regular.svg);
+  background-position: center;
+  background-size: 60%;
+  background-repeat: no-repeat;
   border-radius: 3px;
   display: flex;
   flex-direction: column;
@@ -159,14 +167,20 @@
   font-size: 20px;
   font-weight: bold;
   letter-spacing: 0.1em;
-  background-color: #e3892f;
-  color: #CCC;
+  background-color: #ff9d3b;
+  border: none;
+  color: #323348;
   border-radius: 20px;
   padding: 10px 5px;
-  border: none;
   cursor: pointer;
   transition: all 0.7s ease;
   width: 150px;
+}
+
+.new-game-btn-dark {
+  background-color: #e3892f;
+  color: #CCC;
+  border: none;
 }
 
 .new-game-btn:hover {
@@ -220,12 +234,12 @@
 
 .change-sound-btn,
 .change-theme-btn {
+  background-color: #ffffff;
   width: 30px;
   height: 30px;
   margin: 0;
   font-size: 16px;
   font-weight: bold;
-  background-color: #62647e;
   background-repeat: no-repeat;
   background-position: center;
   background-size: 50%;
@@ -235,6 +249,12 @@
   cursor: pointer;
   transition: all 0.3s ease;
 }
+
+.change-sound-btn-dark,
+.change-theme-btn-dark {
+  background-color: #62647e;
+}
+
 
 .change-theme-btn {
   background-image: url('../assets/moon-regular.svg');
@@ -257,10 +277,14 @@
   border-collapse: collapse;
   visibility: hidden;
   border-radius: 10px;
-  color: #b9c1ca;
+  color: #27292b;
   margin-top: 90px;
   font-weight: bold;
   font-size: 14px;
+}
+
+.results-table-dark {
+  color: #b9c1ca;
 }
 
 
@@ -271,13 +295,26 @@
 }
 
 .results-table th {
-  background-color: #1c1c21;
+  background-color: #ffffff;
+  border: 2px solid #e3e3ea;
   font-size: 16px;
   letter-spacing: 0.1em;
 }
 
+.results-table-dark th {
+  background-color: #1c1c21;
+  border: none;
+
+}
+
 .results-table tr {
+  background-color: #ffffff;
+  border: 2px solid #e3e3ea;
+}
+
+.results-table-dark tr {
   background-color: #323348;
+  border: none;
 }
 
 .results-table tr:hover {
@@ -320,14 +357,20 @@
   font-size: 20px;
   font-weight: bold;
   letter-spacing: 0.1em;
-  background-color: #444663;
-  color: #CCC;
+  background-color: #dadbe1;
+  border: none;
+  color: #323348;
   border-radius: 20px;
   padding: 5px 10px;
-  border: none;
   cursor: pointer;
   transition: all 0.7s ease;
   width: 150px;
+}
+
+.check-results-btn-dark {
+  background-color: #444663;
+  color: #CCC;
+  border: none;
 }
 
 .check-results-btn:hover {

@@ -123,8 +123,7 @@ if (!savedGameState) {
   } else if (size == 25) {
     option25.selected = true;
   }
-  subtext.textContent = content.MINES_LEFT + numberOfMines;
-  sliderText.textContent = content.MINES_RANGE + numberOfMines;
+  let rightClickCount = 0;
   board.loadGame().forEach(row => {
     row.forEach(tile => {
       const boardElement = document.querySelector(selectors.BOARD)
@@ -132,8 +131,13 @@ if (!savedGameState) {
       if (tile.isUnknown && board.isGameOver) {
         tile.el.classList.add(classes.DEFAULT_CURSOR)
       }
+      if (tile.isRightClicked) {
+        rightClickCount++
+      }
     })
   })
+  subtext.textContent = content.MINES_LEFT + (numberOfMines - rightClickCount);
+  sliderText.textContent = content.MINES_RANGE + numberOfMines;
 }
 
 const results = new Results();
