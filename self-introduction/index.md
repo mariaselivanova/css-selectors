@@ -1,4 +1,6 @@
 [Link to the video](https://youtu.be/fYhzLZLHS-Y)
+
+
 [Link to the text](https://docs.google.com/document/d/1RLydlSrhd1BtcAjB0khPsktyr10aAC7ADSXbyXKJnxk/edit?usp=sharing)
 
 Hello! My name is Maria, and today I'm greeting you from Buenos Aires. It's Saturday, and we're going to explore the city and i`ll try to tell you a little bit about myself.
