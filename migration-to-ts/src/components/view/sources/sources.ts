@@ -7,7 +7,8 @@ class Sources {
         const sourceItemTemp: HTMLTemplateElement | null = document.querySelector('#sourceItemTemp');
         if (sourceItemTemp) {
             data.forEach((item) => {
-                const sourceClone = sourceItemTemp.content.cloneNode(true) as DocumentFragment;
+                const sourceClone = sourceItemTemp.content.cloneNode(true);
+                if (sourceClone instanceof DocumentFragment) {
                 const itemName: HTMLElement | null = sourceClone.querySelector('.source__item-name');
                 if (itemName) {
                     itemName.textContent = item.name;
@@ -17,6 +18,7 @@ class Sources {
                     sourceItem.setAttribute('data-source-id', item.id);
                 }
                 fragment.appendChild(sourceClone);
+            }
             });
 
             const sourcesContainer = document.querySelector('.sources');

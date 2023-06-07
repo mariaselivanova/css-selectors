@@ -9,8 +9,8 @@ class News {
         const newsItemTemp: HTMLTemplateElement | null = document.querySelector('#newsItemTemp');
         if (newsItemTemp) {
             news.forEach((item, idx) => {
-                const newsClone = newsItemTemp.content.cloneNode(true) as DocumentFragment;
-                if (newsClone) {
+                const newsClone = newsItemTemp.content.cloneNode(true);
+                if (newsClone instanceof DocumentFragment) {
                     if (idx % 2) newsClone.querySelector('.news__item')?.classList.add('alt');
 
                     const metaPhoto: HTMLElement | null  = newsClone.querySelector('.news__meta-photo');
