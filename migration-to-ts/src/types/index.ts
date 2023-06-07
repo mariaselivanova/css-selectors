@@ -11,3 +11,14 @@ export interface NewsObject {
     url: string;
     urlToImage: string;
 }
+
+export interface NewsSource {
+    category: string;
+    country: string;
+    description: string;
+    id: string;
+    language: string;
+    name: string;
+    url: string;
+  }
+  
