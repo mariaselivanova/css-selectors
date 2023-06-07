@@ -22,3 +22,13 @@ export interface NewsSource {
     url: string;
   }
   
+  export interface NewsData {
+    articles: NewsObject[];
+    status: string;
+    totalResults: number;
+}
+
+export interface SourceData {
+    sources: NewsSource[];
+    status: string;
+}
