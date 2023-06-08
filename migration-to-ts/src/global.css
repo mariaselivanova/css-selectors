@@ -16,8 +16,11 @@ header h1 {
 footer {
     height: 100px;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+    gap: 20px;
 }
 
 footer .copyright {
@@ -26,14 +29,50 @@ footer .copyright {
     text-align: center;
 }
 
-footer .copyright a {
+footer a {
     color: #444;
 }
 
-footer .copyright a:hover {
+footer a:hover {
     color: #555;
 }
 
 footer .copyright:before {
     content: '©';
 }
+
+.link {
+    display: block;
+    width: 150px;
+    height: 56px;
+}
+
+.logo {
+    background-image: url('./assets/images/logo.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 56px;
+    transition: transform 0.3s;
+}
+
+@media screen and (max-width: 500px) {
+    .link {
+        width: 75px;
+        height: 28px;
+    }
+    .logo {
+        height: 28px;
+    }
+}
+
+.logo:hover {
+    transform: scale(1.07);
+  }
+  
+  
+  
+  
+  
+  
+  
