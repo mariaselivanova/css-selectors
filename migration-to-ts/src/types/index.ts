@@ -23,12 +23,8 @@ export interface NewsSource {
   }
   
   export interface NewsData {
-    articles: NewsObject[];
+    articles?: NewsObject[];
     status: string;
-    totalResults: number;
-}
-
-export interface SourceData {
-    sources: NewsSource[];
-    status: string;
+    totalResults?: number;
+    sources?: NewsSource[];
 }

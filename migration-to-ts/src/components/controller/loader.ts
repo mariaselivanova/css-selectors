@@ -1,4 +1,5 @@
-import { NewsData, SourceData } from "../../types";
+import { NewsData } from "../../types";
+import News from "../view/news/news";
 
 interface Options {
     apiKey?: string;
@@ -19,7 +20,7 @@ class Loader {
 
    public getResp(
         { endpoint, options = {} }: { endpoint: string, options?: Options },
-        callback: () => void = (): void => {
+        callback: (data: NewsData) => void = (): void => {
             console.error('No callback for GET response');
         }
     ):void {
@@ -47,7 +48,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-   private load(method: string, endpoint: string, callback: (data: NewsData | SourceData) => void, options = {}): void {
+   private load(method: string, endpoint: string, callback: (data: NewsData) => void, options = {}): void {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
