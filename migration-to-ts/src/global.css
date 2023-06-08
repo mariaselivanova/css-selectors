@@ -4,6 +4,13 @@ body {
     font-family: sans-serif;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 header {
     padding: 10px 30px;
 }
@@ -56,23 +63,27 @@ footer .copyright:before {
     transition: transform 0.3s;
 }
 
+.logo-github {
+    background-image: url('./assets/images/github-mark.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 56px;
+    transition: transform 0.3s;
+}
+
 @media screen and (max-width: 500px) {
     .link {
         width: 75px;
         height: 28px;
     }
+
     .logo {
         height: 28px;
     }
 }
 
+.logo-github:hover,
 .logo:hover {
     transform: scale(1.07);
-  }
-  
-  
-  
-  
-  
-  
-  
+}

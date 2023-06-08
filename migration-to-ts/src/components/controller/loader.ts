@@ -3,6 +3,7 @@ import { NewsData } from "../../types";
 
 interface Options {
     apiKey?: string;
+    apiUrl?: string;
     sources?: string; 
     [key: string]: string | undefined;
 }
