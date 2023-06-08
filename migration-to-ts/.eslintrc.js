@@ -23,6 +23,7 @@ module.exports = {
           default: 'array',
         },
       ],
+      "@typescript-eslint/no-var-requires": "off",
       '@typescript-eslint/explicit-member-accessibility': [
         'error',
         {
