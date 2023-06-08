@@ -1,5 +1,5 @@
+/* eslint-disable no-console */
 import { NewsData } from "../../types";
-import News from "../view/news/news";
 
 interface Options {
     apiKey?: string;
