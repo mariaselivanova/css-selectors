@@ -1,6 +1,6 @@
 import AppController from '../controller/controller';
 import { AppView } from '../view/appView';
-import { NewsData } from '../../types';
+import { NewsData, SourcesData } from '../../types';
 
 class App {
     private controller: AppController
@@ -15,11 +15,13 @@ class App {
   public start():void {
     const sources = document.querySelector('.sources');
     if (sources) {
-        sources.addEventListener('click', (e) => this.controller.getNews(e, (data: NewsData) => {
+        sources.addEventListener('click', (e) => this.controller.getNews(e, (data: Readonly<NewsData>) => {
             this.view.drawNews(data)
         }));
     }     
-        this.controller.getSources((data) => this.view.drawSources(data));
+        this.controller.getSources((data: Readonly<SourcesData>) => {
+            this.view.drawSources(data)
+        });
     }
 }
 

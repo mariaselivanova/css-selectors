@@ -4,7 +4,13 @@ module.exports = {
       es2021: true,
     },
     extends: ['airbnb-base', 'airbnb-typescript/base', 'plugin:@typescript-eslint/recommended', 'prettier'],
-    overrides: [],
+    overrides: [{
+      files: ['webpack.config.js'],
+      rules: {
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        'global-require': 'off',
+      },
+    },],
     parser: '@typescript-eslint/parser',
     parserOptions: {
       ecmaVersion: 'latest',
@@ -40,5 +46,6 @@ module.exports = {
       '@typescript-eslint/explicit-function-return-type': 'error',
       '@typescript-eslint/no-unnecessary-type-assertion': 'error',
       '@typescript-eslint/no-non-null-assertion': 'error',
+      'no-console': 'off',
     },
   };

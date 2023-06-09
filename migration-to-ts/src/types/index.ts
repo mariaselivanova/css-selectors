@@ -20,11 +20,34 @@ export interface NewsSource {
     language: string;
     name: string;
     url: string;
-  }
+}
   
-  export interface NewsData {
-    articles?: NewsObject[];
+
+export interface Options {
+    apiKey?: string;
+    apiUrl?: string;
+    sources?: string; 
+    [key: string]: string | undefined;
+}
+
+export interface SourcesData {
+    sources: NewsSource[];
     status: string;
-    totalResults?: number;
-    sources?: NewsSource[];
+}
+
+export interface NewsData {
+    articles: NewsObject[];
+    totalResults: number;
+}
+
+export type FetchedData = SourcesData & NewsData;
+
+export enum StatusCodes {
+    Unauthorized = 401,
+    NotFound = 404,
+}
+
+export enum Endpoints {
+    Sources = 'sources',
+    Everything = 'everything',
 }
