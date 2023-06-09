@@ -22,7 +22,6 @@ export interface NewsSource {
     url: string;
 }
 
-
 export interface Options {
     apiKey: string;
 }
@@ -54,4 +53,8 @@ export enum StatusCodes {
 export enum Endpoints {
     Sources = 'sources',
     Everything = 'everything',
+}
+
+export function mergeObject<T extends object, R extends object>(a: T, b: R): T & R {
+    return { ...a, ...b}
 }

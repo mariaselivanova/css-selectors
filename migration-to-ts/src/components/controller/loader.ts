@@ -1,4 +1,4 @@
-import { Options, StatusCodes, FetchedData, Endpoints, ResponseOptions  } from "../../types";
+import { Options, StatusCodes, FetchedData, Endpoints, ResponseOptions, mergeObject  } from "../../types";
 
 class Loader {
     private baseLink: string
@@ -20,6 +20,7 @@ class Loader {
     }
 
    private errorHandler = (res: Response): Response => {
+        console.log(res)
         if (!res.ok) {
             const code: StatusCodes  = res.status;
             if (code === StatusCodes.Unauthorized || code === StatusCodes.NotFound)
@@ -31,7 +32,7 @@ class Loader {
     }
 
    private makeUrl(options: Partial<ResponseOptions>, endpoint: Endpoints): string {
-        const urlOptions: Partial<ResponseOptions> & Options = { ...this.options, ...options };
+        const urlOptions = mergeObject(options, this.options)
         let url = `${this.baseLink}${endpoint}?`;
 
         Object.keys(urlOptions).forEach((key) => {
