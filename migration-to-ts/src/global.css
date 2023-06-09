@@ -27,7 +27,8 @@ footer {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
-    gap: 20px;
+    column-gap: 20px;
+    row-gap: 10px;
 }
 
 footer .copyright {
@@ -72,14 +73,18 @@ footer .copyright:before {
     transition: transform 0.3s;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 650px) {
     .link {
         width: 75px;
         height: 28px;
     }
-
+    .logo-github,
     .logo {
         height: 28px;
+    }
+
+    header h1 {
+        font-size: 28px;
     }
 }
 

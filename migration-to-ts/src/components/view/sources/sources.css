@@ -1,7 +1,7 @@
 .sources {
     display: flex;
     flex-wrap: wrap;
-    width: 600px;
+    width: 580px;
     height: 60vh;
     overflow: auto;
     align-items: center;
