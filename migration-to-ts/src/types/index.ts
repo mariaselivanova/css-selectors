@@ -21,28 +21,32 @@ export interface NewsSource {
     name: string;
     url: string;
 }
-  
+
 
 export interface Options {
-    apiKey?: string;
-    apiUrl?: string;
-    sources?: string; 
+    apiKey: string;
+}
+
+export interface ResponseOptions {
+    sources: string
     [key: string]: string | undefined;
 }
 
-export interface SourcesData {
-    sources: NewsSource[];
-    status: string;
-}
-
-export interface NewsData {
+export interface FetchedData {
     articles: NewsObject[];
     totalResults: number;
+    status: string;
+    sources: NewsSource[];
 }
 
-export type FetchedData = SourcesData & NewsData;
+export type NewsData = Pick<FetchedData, 'articles' | 'totalResults' | 'status'>
+export type SourcesData = Pick<FetchedData, 'sources' | 'status'>
 
 export enum StatusCodes {
+    OK = 200,
+    BadRequest = 400,
+    TooManyRequests = 429,
+    ServerError = 500,
     Unauthorized = 401,
     NotFound = 404,
 }

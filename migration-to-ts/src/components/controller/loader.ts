@@ -1,4 +1,4 @@
-import { Options, StatusCodes, FetchedData  } from "../../types";
+import { Options, StatusCodes, FetchedData, Endpoints, ResponseOptions  } from "../../types";
 
 class Loader {
     private baseLink: string
@@ -11,7 +11,7 @@ class Loader {
     }
 
    public getResp(
-        { endpoint, options = {} }: { endpoint: string, options?: Options },
+        { endpoint, options = {} }: { endpoint: Endpoints, options?: Partial<ResponseOptions> },
         callback: (data: FetchedData) => void = (): void => {
             console.error('No callback for GET response');
         }
@@ -21,7 +21,7 @@ class Loader {
 
    private errorHandler = (res: Response): Response => {
         if (!res.ok) {
-            const code: number  = res.status;
+            const code: StatusCodes  = res.status;
             if (code === StatusCodes.Unauthorized || code === StatusCodes.NotFound)
                 console.log(`Sorry, but there is ${code} error: ${res.statusText}`);
             throw Error(res.statusText);
@@ -30,8 +30,8 @@ class Loader {
         return res;
     }
 
-   private makeUrl(options: Options, endpoint: string): string {
-        const urlOptions = { ...this.options, ...options };
+   private makeUrl(options: Partial<ResponseOptions>, endpoint: Endpoints): string {
+        const urlOptions: Partial<ResponseOptions> & Options = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
         Object.keys(urlOptions).forEach((key) => {
@@ -41,12 +41,12 @@ class Loader {
         return url.slice(0, -1);
     }
 
-   private load(method: string, endpoint: string, callback: (data: FetchedData) => void, options = {}): void {
+   private load(method: string, endpoint: Endpoints, callback: (data: FetchedData) => void, options: Partial<ResponseOptions>): void {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
-            .then((data) => callback(data))
-            .catch((err) => console.error(err));
+            .then((data: FetchedData) => callback(data))
+            .catch((err: Error) => console.error(err));
     }
 }
 
