@@ -1,4 +1,4 @@
-import { Options, StatusCodes, FetchedData, Endpoints, ResponseOptions, mergeObject  } from "../../types";
+import { Options, StatusCodes, FetchedData, Endpoints, ResponseOptions, mergeObject, RequestType  } from "../../types";
 
 class Loader {
     private baseLink: string
@@ -12,7 +12,7 @@ class Loader {
 
    public getResp(
         { endpoint, options = {} }: { endpoint: Endpoints, options?: Partial<ResponseOptions> },
-        callback: (data: FetchedData) => void = (): void => {
+        callback: <T extends FetchedData>(data: T) => void = (): void => {
             console.error('No callback for GET response');
         }
     ):void {
@@ -20,7 +20,6 @@ class Loader {
     }
 
    private errorHandler = (res: Response): Response => {
-        console.log(res)
         if (!res.ok) {
             const code: StatusCodes  = res.status;
             if (code === StatusCodes.Unauthorized || code === StatusCodes.NotFound)
@@ -42,7 +41,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-   private load(method: string, endpoint: Endpoints, callback: (data: FetchedData) => void, options: Partial<ResponseOptions>): void {
+   private load(method: RequestType, endpoint: Endpoints, callback: <T extends FetchedData>(data: T) => void, options: Partial<ResponseOptions>): void {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())

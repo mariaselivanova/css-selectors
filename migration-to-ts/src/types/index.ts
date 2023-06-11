@@ -58,3 +58,5 @@ export enum Endpoints {
 export function mergeObject<T extends object, R extends object>(a: T, b: R): T & R {
     return { ...a, ...b}
 }
+
+export type RequestType = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';

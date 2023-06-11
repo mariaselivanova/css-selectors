@@ -4,7 +4,6 @@ import { NewsObject } from '../../../types';
 class News {
     public draw = (data: NewsObject[]): void => {
         const news = data.length >= 10 ? data.filter((_item: NewsObject, idx: number) => idx < 10) : data;
-
         const fragment: DocumentFragment = document.createDocumentFragment();
         const newsItemTemp: HTMLTemplateElement | null = document.querySelector('#newsItemTemp');
         if (newsItemTemp) {
