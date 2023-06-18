@@ -1,0 +1,18 @@
+.levels-table {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: black;
+  color: bisque;
+  width: 100px;
+}
+
+.level-link {
+  cursor: pointer;
+}
+
+.level-link:hover {
+  opacity: 0.8;
+}
