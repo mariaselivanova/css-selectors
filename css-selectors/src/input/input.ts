@@ -1,22 +1,17 @@
 import LevelsView from '../levels/levels-view';
 import { levelsArray } from '../utils/levelsArray';
+import View from '../utils/view';
 
-export default class Input {
-  private element: HTMLInputElement;
-
+export default class Input extends View {
   private levelsView: LevelsView;
 
   constructor(levelsView: LevelsView) {
-    this.element = document.createElement('input');
-    if (this.element) {
+    super('input', ['input']);
+    if (this.element instanceof HTMLInputElement) {
       this.element.type = 'text';
     }
     this.levelsView = levelsView;
     this.setListener();
-  }
-
-  public getElement(): HTMLElement {
-    return this.element;
   }
 
   private setListener(): void {
@@ -24,10 +19,12 @@ export default class Input {
       if (event.key === 'Enter') {
         const currentLevel = this.levelsView.getSelectedLevel();
         const obj = levelsArray.find((item) => item.number === currentLevel);
-        if (obj?.answer === this.element.value) {
-          console.log('hooray');
-        } else {
-          console.log('oooops');
+        if (this.element instanceof HTMLInputElement) {
+          if (obj?.answer === this.element.value) {
+            console.log('hooray');
+          } else {
+            console.log('oooops');
+          }
         }
       }
     });
