@@ -1,33 +1,21 @@
 import './board.css';
 import { Level } from '../utils/types';
+import View from '../utils/view';
 
-export default class BoardView {
-  private element: HTMLElement;
-
+export default class BoardView extends View {
   constructor() {
-    this.element = document.createElement('section');
-    this.addClasses(['game-board']);
+    super('section', ['game-board']);
   }
 
-  private addClasses(classes: string[]): void {
-    classes.forEach((className) => {
-      this.element.classList.add(className);
-    });
-  }
-
-  public setContent(level: number, arr: Level[]): void {
+  public setContent(level: number, levelsArr: Level[]): void {
     while (this.element.firstChild) {
       this.element.firstChild.remove();
     }
-    const obj = arr.find((item) => item.number === level);
+    const chosenLevel = levelsArr.find((item) => item.number === level);
     const el = document.createElement('p');
-    if (obj) {
-      el.textContent = obj.task;
+    if (chosenLevel) {
+      el.textContent = chosenLevel.task;
     }
     this.element.append(el);
-  }
-
-  public getElement(): HTMLElement {
-    return this.element;
   }
 }

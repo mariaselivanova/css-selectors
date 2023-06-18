@@ -16,24 +16,24 @@ export default class LevelsView extends View {
     this.boardView = boardView;
     this.levelLinks = [];
     this.selectedLevel = 1;
-    this.addChildElements(levelsArray);
+    this.setContent(levelsArray);
   }
 
   public getSelectedLevel():number {
     return this.selectedLevel;
   }
 
-  private addChildElements(array: Level[]):void {
-    array.forEach((level: Level, index: number) => {
-      const link = document.createElement('a');
-      link.classList.add('level-link');
-      link.textContent = `${level.number} level`;
-      this.levelLinks.push(link);
+  private setContent(array: Level[]):void {
+    array.forEach((level: Level) => {
+      const link = new View('a', ['level-link']);
+      link.setTextContent(`${level.number} level`);
+      const linkElement = link.getElement();
+      this.levelLinks.push(linkElement);
       if (level.number === this.selectedLevel) {
-        this.setSelectedLevel(link);
+        this.setSelectedLevel(linkElement);
       }
-      link.addEventListener('click', this.setSelectedLevel.bind(this, link));
-      this.element.append(link);
+      linkElement.addEventListener('click', this.setSelectedLevel.bind(this, linkElement));
+      this.element.append(linkElement);
     });
   }
 

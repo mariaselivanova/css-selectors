@@ -7,14 +7,17 @@ export default class View {
   }
 
   private static createElement(tag: string): HTMLElement {
-    const el = document.createElement(tag);
-    return el;
+    return document.createElement(tag);
   }
 
   private addClasses(classes: string[]): void {
     classes.forEach((className) => {
       this.element.classList.add(className);
     });
+  }
+
+  public setTextContent(text: string):void {
+    this.element.textContent = text;
   }
 
   public getElement(): HTMLElement {
