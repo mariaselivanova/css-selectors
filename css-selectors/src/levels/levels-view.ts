@@ -27,6 +27,10 @@ export default class LevelsView {
     });
   }
 
+  public getSelectedLevel():number {
+    return this.selectedLevel;
+  }
+
   private addInnerHtml(array: Level[]):void {
     array.forEach((obj: Level, index: number) => {
       const link = document.createElement('a');
