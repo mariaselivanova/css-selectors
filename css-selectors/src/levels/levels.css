@@ -6,11 +6,16 @@
   gap: 20px;
   background-color: black;
   color: bisque;
-  width: 100px;
+  width: 300px;
+  height: 400px;
 }
 
 .level-link {
   cursor: pointer;
+}
+
+.level-link_active {
+  color: brown;
 }
 
 .level-link:hover {
