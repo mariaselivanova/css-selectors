@@ -8,7 +8,7 @@ export default class BoardView extends View {
   }
 
   public setContent(level: number, levelsArr: Level[]): void {
-    while (this.element.firstChild) {
+    while (this.element?.firstChild) {
       this.element.firstChild.remove();
     }
     const chosenLevel = levelsArr.find((item) => item.number === level);
@@ -16,6 +16,6 @@ export default class BoardView extends View {
     if (chosenLevel) {
       el.textContent = chosenLevel.task;
     }
-    this.element.append(el);
+    this.element?.append(el);
   }
 }

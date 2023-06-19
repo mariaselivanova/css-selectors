@@ -15,7 +15,7 @@ export default class HelpBtn extends ButtonView {
     this.setButtonType('button');
     this.levels = levels;
     this.input = input;
-    this.element.addEventListener('click', () => this.handleHelpBtn());
+    this.element?.addEventListener('click', () => this.handleHelpBtn());
   }
 
   private handleHelpBtn(): void {

@@ -1,22 +1,20 @@
 import Levels from '../levels/levels';
+import InputView from '../utils/input-view';
 import { levelsArray } from '../utils/levelsArray';
-import View from '../utils/view';
 import './input.css';
 
-export default class Input extends View {
+export default class Input extends InputView {
   private levels: Levels;
 
   constructor(levels: Levels) {
-    super('input', ['input']);
-    if (this.element instanceof HTMLInputElement) {
-      this.element.type = 'text';
-    }
+    super(['input']);
+    this.setInputType('text');
     this.levels = levels;
-    this.element.addEventListener('keydown', (e) => this.handleKeyDown(e));
+    this.element?.addEventListener('keydown', (e) => this.handleKeyDown(e));
   }
 
   public clearInput(): void {
-    if (this.element instanceof HTMLInputElement) {
+    if (this.element) {
       this.element.value = '';
     }
   }
@@ -26,20 +24,18 @@ export default class Input extends View {
       const currentLevel = this.levels.getSelectedLevel();
       const currentLevelElement = this.levels.getSelectedLevelElement();
       const obj = levelsArray.find((item) => item.number === currentLevel);
-      if (this.element instanceof HTMLInputElement) {
-        if (obj?.answer === this.element.value) {
-          this.levels.changeLevelStatus();
-          this.levels.goToNextLevel();
-          if (currentLevelElement) {
-            const helpAttributeValue = currentLevelElement.getAttribute('data-help');
-            if (helpAttributeValue === 'true') {
-              currentLevelElement.classList.add('solved-with-help');
-            }
+      if (obj?.answer === this.element?.value) {
+        this.levels.changeLevelStatus();
+        this.levels.goToNextLevel();
+        if (currentLevelElement) {
+          const helpAttributeValue = currentLevelElement.getAttribute('data-help');
+          if (helpAttributeValue === 'true') {
+            currentLevelElement.classList.add('solved-with-help');
           }
-        } else {
-          console.log('oooops');
-          this.clearInput();
         }
+      } else {
+        console.log('oooops');
+        this.clearInput();
       }
     }
   }

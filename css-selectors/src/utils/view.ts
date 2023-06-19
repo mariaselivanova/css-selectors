@@ -1,9 +1,12 @@
 export default class View {
-  public element: HTMLElement;
+  public element: HTMLElement | undefined;
+
+  private tag: string;
 
   constructor(tag: string, classes: string[]) {
     this.element = View.createElement(tag);
     this.addClasses(classes);
+    this.tag = tag;
   }
 
   private static createElement(tag: string): HTMLElement {
@@ -12,15 +15,19 @@ export default class View {
 
   private addClasses(classes: string[]): void {
     classes.forEach((className) => {
-      this.element.classList.add(className);
+      if (this.element) {
+        this.element.classList.add(className);
+      }
     });
   }
 
   public setTextContent(text: string):void {
-    this.element.textContent = text;
+    if (this.element) {
+      this.element.textContent = text;
+    }
   }
 
   public getElement(): HTMLElement {
-    return this.element;
+    return this.element || document.createElement(this.tag);
   }
 }

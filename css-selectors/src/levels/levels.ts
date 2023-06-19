@@ -40,12 +40,14 @@ export default class Levels extends View {
       const link = new View('a', ['link']);
       link.setTextContent(`${level.number} level`);
       const linkElement = link.getElement();
-      this.levelLinks.push(linkElement);
-      if (level.number === this.selectedLevel) {
-        this.setSelectedLevel(linkElement);
+      if (linkElement) {
+        this.levelLinks.push(linkElement);
+        if (level.number === this.selectedLevel) {
+          this.setSelectedLevel(linkElement);
+        }
+        linkElement?.addEventListener('click', this.setSelectedLevel.bind(this, linkElement));
+        this.element?.append(linkElement);
       }
-      linkElement.addEventListener('click', this.setSelectedLevel.bind(this, linkElement));
-      this.element.append(linkElement);
     });
   }
 
