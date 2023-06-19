@@ -30,3 +30,9 @@
   content: '✔';
   color: aquamarine;
 }
+
+.solved-with-help::after {
+  content: ' solved with help';
+  color: azure;
+  font-size: 13px;
+}

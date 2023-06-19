@@ -24,12 +24,18 @@ export default class Input extends View {
   private handleKeyDown(event: KeyboardEvent): void {
     if (event.key === 'Enter') {
       const currentLevel = this.levels.getSelectedLevel();
+      const currentLevelElement = this.levels.getSelectedLevelElement();
       const obj = levelsArray.find((item) => item.number === currentLevel);
       if (this.element instanceof HTMLInputElement) {
         if (obj?.answer === this.element.value) {
           this.levels.changeLevelStatus();
           this.levels.goToNextLevel();
-          this.clearInput();
+          if (currentLevelElement) {
+            const helpAttributeValue = currentLevelElement.getAttribute('data-help');
+            if (helpAttributeValue === 'true') {
+              currentLevelElement.classList.add('solved-with-help');
+            }
+          }
         } else {
           console.log('oooops');
           this.clearInput();

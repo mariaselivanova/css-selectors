@@ -13,6 +13,8 @@ export default class Levels extends View {
 
   private selectedLevelElement: HTMLElement | undefined;
 
+  private levelChangeCallback: (() => void) | undefined;
+
   constructor(board: Board) {
     super('section', ['levels-table']);
     this.board = board;
@@ -24,6 +26,13 @@ export default class Levels extends View {
 
   public getSelectedLevel(): number {
     return this.selectedLevel;
+  }
+
+  public getSelectedLevelElement(): HTMLElement | undefined {
+    if (this.selectedLevelElement) {
+      return this.selectedLevelElement;
+    }
+    return undefined;
   }
 
   private setContent(array: Level[]): void {
@@ -48,6 +57,9 @@ export default class Levels extends View {
       this.selectedLevel = parseInt(element.textContent ? element.textContent : '1', 10);
       this.board.setContent(this.selectedLevel, levelsArray);
     }
+    if (this.levelChangeCallback) {
+      this.levelChangeCallback();
+    }
   }
 
   private static setNotSelectedLevel(element: HTMLElement): void {
@@ -64,5 +76,18 @@ export default class Levels extends View {
       (link) => parseInt(link.textContent ? link.textContent : '1', 10) === this.selectedLevel,
     );
     this.setSelectedLevel(nextLevel);
+  }
+
+  public onLevelChange(callback: () => void): void {
+    this.levelChangeCallback = callback;
+  }
+
+  public resetProgress():void {
+    this.levelLinks.forEach((link) => {
+      link.classList.remove('level-link_solved');
+      link.classList.remove('solved-with-help');
+      link.removeAttribute('data-help');
+    });
+    this.setSelectedLevel(this.levelLinks[0]);
   }
 }

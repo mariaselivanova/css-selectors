@@ -18,6 +18,10 @@ export default class HelpBtn extends View {
   }
 
   private handleHelpBtn(): void {
+    const currentLevelElement = this.levels.getSelectedLevelElement();
+    if (currentLevelElement) {
+      currentLevelElement.setAttribute('data-help', 'true');
+    }
     const levelObject = levelsArray.find((item) => item.number === this.levels.getSelectedLevel());
     if (levelObject) {
       const { answer } = levelObject;
