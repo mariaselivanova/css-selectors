@@ -1,21 +1,21 @@
 import './levels.css';
 import { levelsArray } from '../utils/levelsArray';
 import { Level } from '../utils/types';
-import BoardView from '../game-board/board-view';
+import Board from '../game-board/board';
 import View from '../utils/view';
 
-export default class LevelsView extends View {
+export default class Levels extends View {
   private levelLinks: HTMLElement[];
 
   public selectedLevel: number;
 
-  private boardView: BoardView;
+  private board: Board;
 
   private selectedLevelElement: HTMLElement | undefined;
 
-  constructor(boardView: BoardView) {
+  constructor(board: Board) {
     super('section', ['levels-table']);
-    this.boardView = boardView;
+    this.board = board;
     this.levelLinks = [];
     this.selectedLevel = 1;
     this.selectedLevelElement = undefined;
@@ -42,11 +42,11 @@ export default class LevelsView extends View {
 
   private setSelectedLevel(element: HTMLElement | undefined): void {
     this.selectedLevelElement = element;
-    this.levelLinks.forEach((level: HTMLElement) => LevelsView.setNotSelectedLevel(level));
+    this.levelLinks.forEach((level: HTMLElement) => Levels.setNotSelectedLevel(level));
     if (element) {
       element.classList.add('level-link_active');
       this.selectedLevel = parseInt(element.textContent ? element.textContent : '1', 10);
-      this.boardView.setContent(this.selectedLevel, levelsArray);
+      this.board.setContent(this.selectedLevel, levelsArray);
     }
   }
 

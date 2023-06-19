@@ -1,13 +1,20 @@
-import LevelsView from './levels/levels-view';
-import BoardView from './game-board/board-view';
+import Levels from './levels/levels';
+import Board from './game-board/board';
 import './styles/index.css';
 import Input from './input/input';
+import HelpBtn from './help-btn/help-btn';
 
 export default class App {
   public static start = (): void => {
-    const boardView = new BoardView();
-    const levelsView = new LevelsView(boardView);
-    const input = new Input(levelsView);
-    document.body.append(levelsView.getElement(), boardView.getElement(), input.getElement());
+    const board = new Board();
+    const levels = new Levels(board);
+    const input = new Input(levels);
+    const helpBtn = new HelpBtn(levels, input);
+    document.body.append(
+      levels.getElement(),
+      board.getElement(),
+      input.getElement(),
+      helpBtn.getElement(),
+    );
   };
 }
