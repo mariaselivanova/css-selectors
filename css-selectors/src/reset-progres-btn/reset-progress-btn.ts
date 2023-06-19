@@ -1,12 +1,13 @@
-import View from '../utils/view';
 import Levels from '../levels/levels';
 import './reset-progress-btn.css';
+import ButtonView from '../utils/button-view';
 
-export default class ResetBtn extends View {
+export default class ResetBtn extends ButtonView {
   private levels: Levels;
 
   constructor(levels: Levels) {
-    super('button', ['reset-btn']);
+    super(['reset-btn']);
+    this.setButtonType('reset');
     this.levels = levels;
     this.element.addEventListener('click', () => this.handleResetBtn());
     this.setTextContent('Reset progress');

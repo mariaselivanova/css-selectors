@@ -37,7 +37,7 @@ export default class Levels extends View {
 
   private setContent(array: Level[]): void {
     array.forEach((level: Level) => {
-      const link = new View('a', ['level-link']);
+      const link = new View('a', ['link']);
       link.setTextContent(`${level.number} level`);
       const linkElement = link.getElement();
       this.levelLinks.push(linkElement);
@@ -53,7 +53,7 @@ export default class Levels extends View {
     this.selectedLevelElement = element;
     this.levelLinks.forEach((level: HTMLElement) => Levels.setNotSelectedLevel(level));
     if (element) {
-      element.classList.add('level-link_active');
+      element.classList.add('link_active');
       this.selectedLevel = parseInt(element.textContent ? element.textContent : '1', 10);
       this.board.setContent(this.selectedLevel, levelsArray);
     }
@@ -63,11 +63,11 @@ export default class Levels extends View {
   }
 
   private static setNotSelectedLevel(element: HTMLElement): void {
-    element.classList.remove('level-link_active');
+    element.classList.remove('link_active');
   }
 
   public changeLevelStatus(): void {
-    this.selectedLevelElement?.classList.add('level-link_solved');
+    this.selectedLevelElement?.classList.add('link_solved');
   }
 
   public goToNextLevel(): void {
@@ -84,7 +84,7 @@ export default class Levels extends View {
 
   public resetProgress():void {
     this.levelLinks.forEach((link) => {
-      link.classList.remove('level-link_solved');
+      link.classList.remove('link_solved');
       link.classList.remove('solved-with-help');
       link.removeAttribute('data-help');
     });

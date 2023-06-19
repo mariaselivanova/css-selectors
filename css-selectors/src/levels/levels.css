@@ -10,23 +10,23 @@
   height: 400px;
 }
 
-.level-link {
+.link {
   cursor: pointer;
 }
 
-.level-link_active {
+.link_active {
   color: brown;
 }
 
-.level-link:hover {
+.link:hover {
   opacity: 0.8;
 }
 
-.level-link_solved {
+.link_solved {
   color: rgb(42, 165, 50);
 }
 
-.level-link_solved::before {
+.link_solved::before {
   content: '✔';
   color: aquamarine;
 }

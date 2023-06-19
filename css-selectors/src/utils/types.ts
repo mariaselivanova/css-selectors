@@ -4,3 +4,5 @@ export interface Level {
   task: string;
   answer: string;
 }
+
+export type ButtonTypes = 'submit' | 'reset' | 'button';
