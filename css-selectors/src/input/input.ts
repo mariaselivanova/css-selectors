@@ -21,9 +21,12 @@ export default class Input extends View {
         const obj = levelsArray.find((item) => item.number === currentLevel);
         if (this.element instanceof HTMLInputElement) {
           if (obj?.answer === this.element.value) {
-            console.log('hooray');
+            this.levelsView.changeLevelStatus();
+            this.levelsView.goToNextLevel();
+            this.element.value = '';
           } else {
             console.log('oooops');
+            this.element.value = '';
           }
         }
       }

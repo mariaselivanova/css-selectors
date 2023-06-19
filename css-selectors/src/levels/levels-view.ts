@@ -11,19 +11,22 @@ export default class LevelsView extends View {
 
   private boardView: BoardView;
 
+  private selectedLevelElement: HTMLElement | undefined;
+
   constructor(boardView: BoardView) {
     super('section', ['levels-table']);
     this.boardView = boardView;
     this.levelLinks = [];
     this.selectedLevel = 1;
+    this.selectedLevelElement = undefined;
     this.setContent(levelsArray);
   }
 
-  public getSelectedLevel():number {
+  public getSelectedLevel(): number {
     return this.selectedLevel;
   }
 
-  private setContent(array: Level[]):void {
+  private setContent(array: Level[]): void {
     array.forEach((level: Level) => {
       const link = new View('a', ['level-link']);
       link.setTextContent(`${level.number} level`);
@@ -37,14 +40,29 @@ export default class LevelsView extends View {
     });
   }
 
-  private setSelectedLevel(element: HTMLElement):void {
+  private setSelectedLevel(element: HTMLElement | undefined): void {
+    this.selectedLevelElement = element;
     this.levelLinks.forEach((level: HTMLElement) => LevelsView.setNotSelectedLevel(level));
-    element.classList.add('level-link_active');
-    this.selectedLevel = parseInt(element.textContent ? element.textContent : '1', 10);
-    this.boardView.setContent(this.selectedLevel, levelsArray);
+    if (element) {
+      element.classList.add('level-link_active');
+      this.selectedLevel = parseInt(element.textContent ? element.textContent : '1', 10);
+      this.boardView.setContent(this.selectedLevel, levelsArray);
+    }
   }
 
-  private static setNotSelectedLevel(element: HTMLElement):void {
+  private static setNotSelectedLevel(element: HTMLElement): void {
     element.classList.remove('level-link_active');
+  }
+
+  public changeLevelStatus(): void {
+    this.selectedLevelElement?.classList.add('level-link_solved');
+  }
+
+  public goToNextLevel(): void {
+    this.selectedLevel += 1;
+    const nextLevel = this.levelLinks.find(
+      (link) => parseInt(link.textContent ? link.textContent : '1', 10) === this.selectedLevel,
+    );
+    this.setSelectedLevel(nextLevel);
   }
 }

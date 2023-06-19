@@ -21,3 +21,12 @@
 .level-link:hover {
   opacity: 0.8;
 }
+
+.level-link_solved {
+  color: rgb(42, 165, 50);
+}
+
+.level-link_solved::before {
+  content: '✔';
+  color: aquamarine;
+}
