@@ -19,24 +19,28 @@ export default class Input extends InputView {
     }
   }
 
+  public handleInput(): void {
+    const currentLevel = this.levels.getSelectedLevel();
+    const currentLevelElement = this.levels.getSelectedLevelElement();
+    const obj = levelsArray.find((item) => item.number === currentLevel);
+    if (obj?.answer === this.element?.value) {
+      this.levels.changeLevelStatus();
+      this.levels.goToNextLevel();
+      if (currentLevelElement) {
+        const helpAttributeValue = currentLevelElement.getAttribute('data-help');
+        if (helpAttributeValue === 'true') {
+          currentLevelElement.classList.add('solved-with-help');
+        }
+      }
+    } else {
+      console.log('oooops');
+      this.clearInput();
+    }
+  }
+
   private handleKeyDown(event: KeyboardEvent): void {
     if (event.key === 'Enter') {
-      const currentLevel = this.levels.getSelectedLevel();
-      const currentLevelElement = this.levels.getSelectedLevelElement();
-      const obj = levelsArray.find((item) => item.number === currentLevel);
-      if (obj?.answer === this.element?.value) {
-        this.levels.changeLevelStatus();
-        this.levels.goToNextLevel();
-        if (currentLevelElement) {
-          const helpAttributeValue = currentLevelElement.getAttribute('data-help');
-          if (helpAttributeValue === 'true') {
-            currentLevelElement.classList.add('solved-with-help');
-          }
-        }
-      } else {
-        console.log('oooops');
-        this.clearInput();
-      }
+      this.handleInput();
     }
   }
 }
