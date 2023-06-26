@@ -32,7 +32,6 @@ export default class App {
       htmlView.getElement(),
     );
     cssElement.append(input.getElement(), enterBtn.getElement());
-    levelsElement.append(resetBtn.getElement());
-    boardElement.append(helpBtn.getElement());
+    levelsElement.append(resetBtn.getElement(), helpBtn.getElement());
   };
 }

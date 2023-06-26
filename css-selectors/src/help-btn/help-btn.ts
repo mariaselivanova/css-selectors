@@ -28,7 +28,14 @@ export default class HelpBtn extends ButtonView {
       const { answer } = levelObject;
       const input = this.input.getElement();
       if (input instanceof HTMLInputElement) {
-        input.value = answer;
+        let i = 0;
+        const interval = setInterval(() => {
+          input.value += answer[i];
+          i += 1;
+          if (i === answer.length) {
+            clearInterval(interval);
+          }
+        }, 150);
       }
     }
   }
