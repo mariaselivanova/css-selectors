@@ -17,9 +17,9 @@ export default class HtmlView extends View {
     const chosenLevel = levelsArr.find((item) => item.number === level);
     if (chosenLevel) {
       chosenLevel.tagsArray.forEach((tag) => {
-        const newTag = document.createElement('div');
-        newTag.textContent = `<${tag} />`;
-        tagElements.push(newTag);
+        const newTag = new View('div', ['inner-div']);
+        newTag.setTextContent(`<${tag} />`);
+        tagElements.push(newTag.getElement());
       });
     }
     this.addElements([openingDiv.getElement(), ...tagElements, closingDiv.getElement()]);

@@ -15,8 +15,16 @@ export default class BoardView extends View {
     if (chosenLevel) {
       task.textContent = chosenLevel.task;
       chosenLevel.tagsArray.forEach((tag) => {
-        const image = new View(tag, [tag]);
-        imagesContainer.getElement().append(image.getElement());
+        const image = new View(tag, [tag, 'image']);
+        const imageElement = image.getElement();
+        imageElement.addEventListener('mouseover', () => {
+          const className = image.getElement().classList[0];
+          image.getElement().setAttribute('data-tag', `<${className}/>`);
+        });
+        imageElement.addEventListener('mouseout', () => {
+          image.getElement().removeAttribute('data-tag');
+        });
+        imagesContainer.getElement().append(imageElement);
       });
     }
     this.element?.append(task, imagesContainer.getElement());

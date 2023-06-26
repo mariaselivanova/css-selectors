@@ -18,23 +18,26 @@
   flex-direction: row;
 }
 
-.bird {
+.image {
   display: block;
-  background-image: url(../assets/images/black-bird.svg);
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+  transition: transform 1s ease;
+}
+
+.bird {
+  background-image: url(../assets/images/black-bird.svg);
   height: 198px;
   width: 280px;
 }
 
 .balloon {
-  display: block;
   background-image: url(../assets/images/white-balloon.svg);
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
   height: 150px;
   width: 82px;
 }
 
+[data-tag]::before {
+  content: attr(data-tag);
+}

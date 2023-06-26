@@ -3,3 +3,7 @@
   background-color: grey;
   grid-area: html;
 }
+
+.inner-div {
+  margin-left: 20px;
+}
