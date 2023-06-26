@@ -1,6 +1,6 @@
 import Levels from './levels/levels';
 import Board from './game-board/board';
-import './styles/index.css';
+import HtmlView from './html-view/html-view';
 import Input from './input/input';
 import HelpBtn from './help-btn/help-btn';
 import LevelInputManager from './utils/levels-input-manager';
@@ -10,7 +10,8 @@ import EnterBtn from './enter-btn/enter-btn';
 export default class App {
   public static start = (): void => {
     const board = new Board();
-    const levels = new Levels(board);
+    const htmlView = new HtmlView();
+    const levels = new Levels(board, htmlView);
     const resetBtn = new ResetBtn(levels);
     const input = new Input(levels);
     const enterBtn = new EnterBtn(input);
@@ -20,6 +21,7 @@ export default class App {
       levelInputManager.handleInput();
     });
     document.body.append(
+      htmlView.getElement(),
       levels.getElement(),
       resetBtn.getElement(),
       board.getElement(),

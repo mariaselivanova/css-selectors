@@ -1,10 +1,10 @@
-import './board.css';
 import { Level } from '../utils/types';
 import View from '../utils/view';
+import './html-view.css';
 
-export default class BoardView extends View {
+export default class HtmlView extends View {
   constructor() {
-    super('section', ['game-board']);
+    super('section', ['html-view']);
   }
 
   public updateContent(level: number, levelsArr: Level[]):void {
@@ -12,7 +12,7 @@ export default class BoardView extends View {
     const chosenLevel = levelsArr.find((item) => item.number === level);
     const el = document.createElement('p');
     if (chosenLevel) {
-      el.textContent = chosenLevel.task;
+      el.textContent = chosenLevel.html;
     }
     this.element?.append(el);
   }

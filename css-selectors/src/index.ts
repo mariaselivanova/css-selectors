@@ -1,4 +1,4 @@
 import App from './app';
-import './styles/index.css';
+import './index.css';
 
 App.start();

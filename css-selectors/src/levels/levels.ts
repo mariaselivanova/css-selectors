@@ -3,6 +3,7 @@ import { levelsArray } from '../utils/levelsArray';
 import { Level } from '../utils/types';
 import Board from '../game-board/board';
 import View from '../utils/view';
+import HtmlView from '../html-view/html-view';
 
 export default class Levels extends View {
   private levelLinks: HTMLElement[];
@@ -11,13 +12,16 @@ export default class Levels extends View {
 
   private board: Board;
 
+  private htmlView: HtmlView;
+
   private selectedLevelElement: HTMLElement | undefined;
 
   private levelChangeCallback: (() => void) | undefined;
 
-  constructor(board: Board) {
+  constructor(board: Board, htmlView: HtmlView) {
     super('section', ['levels-table']);
     this.board = board;
+    this.htmlView = htmlView;
     this.levelLinks = [];
     this.selectedLevel = 1;
     this.selectedLevelElement = undefined;
@@ -57,7 +61,8 @@ export default class Levels extends View {
     if (element) {
       element.classList.add('link_active');
       this.selectedLevel = parseInt(element.textContent ? element.textContent : '1', 10);
-      this.board.setContent(this.selectedLevel, levelsArray);
+      this.board.updateContent(this.selectedLevel, levelsArray);
+      this.htmlView.updateContent(this.selectedLevel, levelsArray);
     }
     if (this.levelChangeCallback) {
       this.levelChangeCallback();

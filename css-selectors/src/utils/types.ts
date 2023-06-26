@@ -3,6 +3,7 @@ export interface Level {
   number: number;
   task: string;
   answer: string;
+  html: string;
 }
 
 export type ButtonTypes = 'submit' | 'reset' | 'button';

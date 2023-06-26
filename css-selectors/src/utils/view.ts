@@ -1,3 +1,5 @@
+import { Level } from './types';
+
 export default class View {
   public element: HTMLElement | undefined;
 
@@ -29,5 +31,11 @@ export default class View {
 
   public getElement(): HTMLElement {
     return this.element || document.createElement(this.tag);
+  }
+
+  public removeContent(): void {
+    while (this.element?.firstChild) {
+      this.element.firstChild.remove();
+    }
   }
 }
