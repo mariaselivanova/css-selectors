@@ -4,10 +4,22 @@ export const levelsArray: Level[] = [
   {
     number: 1,
     name: 'easy-peasy',
-    task: 'Select all',
-    answer: 'blablabla',
+    task: 'Choose birds',
+    answer: 'blabla',
     html: '<plate />',
-    tagsArray: ['bird', 'balloon', 'bird'],
+    tagsArray: [
+      {
+        name: 'bird',
+        id: 1,
+      },
+      {
+        name: 'balloon',
+        id: 2,
+      },
+      {
+        name: 'bird',
+        id: 3,
+      }],
   },
   {
     number: 2,
@@ -15,7 +27,16 @@ export const levelsArray: Level[] = [
     task: 'Select all cucumbers',
     answer: 'lalala',
     html: '<cucumber />',
-    tagsArray: ['balloon', 'bird'],
+    tagsArray: [
+      {
+        name: 'bird',
+        id: 1,
+      },
+      {
+        name: 'balloon',
+        id: 2,
+      },
+    ],
   },
   {
     number: 3,
@@ -23,6 +44,15 @@ export const levelsArray: Level[] = [
     task: 'Select some tomatoes',
     answer: 'tomatotomato',
     html: '<tomato />',
-    tagsArray: ['bird', 'balloon'],
+    tagsArray: [
+      {
+        name: 'balloon',
+        id: 1,
+      },
+      {
+        name: 'bird',
+        id: 2,
+      },
+    ],
   },
 ];

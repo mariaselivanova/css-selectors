@@ -10,8 +10,8 @@ import CssView from './css-view/css-view';
 
 export default class App {
   public static start = (): void => {
-    const board = new Board();
     const htmlView = new HtmlView();
+    const board = new Board();
     const cssVIew = new CssView();
     const levels = new Levels(board, htmlView);
     const resetBtn = new ResetBtn(levels);

@@ -2,8 +2,15 @@
   width: 500px;
   background-color: grey;
   grid-area: html;
+  cursor: default;
 }
 
 .inner-div {
   margin-left: 20px;
+  width: 100px;
+}
+
+.inner-div:hover,
+.highlighted {
+  color: blueviolet;
 }

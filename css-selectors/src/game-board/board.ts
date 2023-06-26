@@ -1,6 +1,7 @@
 import './board.css';
 import { Level } from '../utils/types';
 import View from '../utils/view';
+import { highlightMarkupElement, deleteMarkupHighlight } from '../utils/highlightUtils';
 
 export default class BoardView extends View {
   constructor() {
@@ -15,14 +16,16 @@ export default class BoardView extends View {
     if (chosenLevel) {
       task.textContent = chosenLevel.task;
       chosenLevel.tagsArray.forEach((tag) => {
-        const image = new View(tag, [tag, 'image']);
+        const image = new View('div', [tag.name, 'image']);
         const imageElement = image.getElement();
+        imageElement.setAttribute('data-id', `${tag.id}`);
         imageElement.addEventListener('mouseover', () => {
-          const className = image.getElement().classList[0];
-          image.getElement().setAttribute('data-tag', `<${className}/>`);
+          imageElement.setAttribute('data-tag', `<${tag.name}></${tag.name}>`);
+          highlightMarkupElement(tag.id);
         });
         imageElement.addEventListener('mouseout', () => {
-          image.getElement().removeAttribute('data-tag');
+          imageElement.removeAttribute('data-tag');
+          deleteMarkupHighlight(tag.id);
         });
         imagesContainer.getElement().append(imageElement);
       });

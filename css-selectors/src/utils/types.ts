@@ -4,7 +4,12 @@ export interface Level {
   task: string;
   answer: string;
   html: string;
-  tagsArray: string[];
+  tagsArray: TagObj[];
+}
+
+interface TagObj {
+  name: string,
+  id: number,
 }
 
 export type ButtonTypes = 'submit' | 'reset' | 'button';
