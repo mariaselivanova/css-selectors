@@ -1,5 +1,5 @@
 .html-view {
-  width: 300px;
-  height: 300px;
+  width: 500px;
   background-color: grey;
+  grid-area: html;
 }

@@ -6,8 +6,8 @@
   gap: 20px;
   background-color: black;
   color: bisque;
-  width: 300px;
-  height: 400px;
+  width: 200px;
+  grid-area: levels;
 }
 
 .link {

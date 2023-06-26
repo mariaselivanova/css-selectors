@@ -6,11 +6,13 @@ import HelpBtn from './help-btn/help-btn';
 import LevelInputManager from './utils/levels-input-manager';
 import ResetBtn from './reset-progres-btn/reset-progress-btn';
 import EnterBtn from './enter-btn/enter-btn';
+import CssView from './css-view/css-view';
 
 export default class App {
   public static start = (): void => {
     const board = new Board();
     const htmlView = new HtmlView();
+    const cssVIew = new CssView();
     const levels = new Levels(board, htmlView);
     const resetBtn = new ResetBtn(levels);
     const input = new Input(levels);
@@ -20,14 +22,17 @@ export default class App {
     levels.onLevelChange(() => {
       levelInputManager.handleInput();
     });
+    const boardElement = board.getElement();
+    const levelsElement = levels.getElement();
+    const cssElement = cssVIew.getElement();
     document.body.append(
+      boardElement,
+      levelsElement,
+      cssElement,
       htmlView.getElement(),
-      levels.getElement(),
-      resetBtn.getElement(),
-      board.getElement(),
-      input.getElement(),
-      helpBtn.getElement(),
-      enterBtn.getElement(),
     );
+    cssElement.append(input.getElement(), enterBtn.getElement());
+    levelsElement.append(resetBtn.getElement());
+    boardElement.append(helpBtn.getElement());
   };
 }

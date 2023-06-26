@@ -1,4 +1,10 @@
 body {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  justify-content: center;
+  margin: 0;
+  grid-template-columns: 500px 500px 300px;
+  grid-template-rows: 400px 300px;
+  grid-template-areas: 'board board levels'
+                       'css html levels';
+
 }

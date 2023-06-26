@@ -1,0 +1,7 @@
+.css-view {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 500px;
+  background-color: rgb(82, 152, 202);
+}

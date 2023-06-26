@@ -1,5 +1,6 @@
 .game-board {
   display: flex;
   background-color: blueviolet;
-  width: 500px;
+  width: 1000px;
+  grid-area: board;
 }
