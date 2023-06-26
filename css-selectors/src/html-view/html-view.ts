@@ -9,11 +9,19 @@ export default class HtmlView extends View {
 
   public updateContent(level: number, levelsArr: Level[]):void {
     this.removeContent();
+    const openingDiv = new View('div', ['opening-div']);
+    const closingDiv = new View('div', ['closing-div']);
+    closingDiv.setTextContent('</div>');
+    openingDiv.setTextContent('<div class = "sky">');
+    const tagElements: HTMLElement[] = [];
     const chosenLevel = levelsArr.find((item) => item.number === level);
-    const el = document.createElement('p');
     if (chosenLevel) {
-      el.textContent = chosenLevel.html;
+      chosenLevel.tagsArray.forEach((tag) => {
+        const newTag = document.createElement('div');
+        newTag.textContent = `<${tag} />`;
+        tagElements.push(newTag);
+      });
     }
-    this.element?.append(el);
+    this.addElements([openingDiv.getElement(), ...tagElements, closingDiv.getElement()]);
   }
 }

@@ -1,6 +1,40 @@
 .game-board {
   display: flex;
-  background-color: blueviolet;
+  flex-direction: column;
+  align-items: center;
+  font-size: 25px;
+  font-weight: bold;
+  color: rgb(86, 84, 84);
+  background-image: url('../assets/images/background.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   width: 1000px;
   grid-area: board;
 }
+
+.images-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.bird {
+  display: block;
+  background-image: url(../assets/images/black-bird.svg);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 198px;
+  width: 280px;
+}
+
+.balloon {
+  display: block;
+  background-image: url(../assets/images/white-balloon.svg);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 150px;
+  width: 82px;
+}
+

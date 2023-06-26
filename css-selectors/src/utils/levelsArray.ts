@@ -7,6 +7,7 @@ export const levelsArray: Level[] = [
     task: 'Select all',
     answer: 'blablabla',
     html: '<plate />',
+    tagsArray: ['bird', 'balloon'],
   },
   {
     number: 2,
@@ -14,6 +15,7 @@ export const levelsArray: Level[] = [
     task: 'Select all cucumbers',
     answer: 'lalala',
     html: '<cucumber />',
+    tagsArray: ['balloon', 'bird'],
   },
   {
     number: 3,
@@ -21,5 +23,6 @@ export const levelsArray: Level[] = [
     task: 'Select some tomatoes',
     answer: 'tomatotomato',
     html: '<tomato />',
+    tagsArray: ['bird', 'balloon'],
   },
 ];

@@ -10,10 +10,15 @@ export default class BoardView extends View {
   public updateContent(level: number, levelsArr: Level[]):void {
     this.removeContent();
     const chosenLevel = levelsArr.find((item) => item.number === level);
-    const el = document.createElement('p');
+    const task = document.createElement('p');
+    const imagesContainer = new View('div', ['images-container']);
     if (chosenLevel) {
-      el.textContent = chosenLevel.task;
+      task.textContent = chosenLevel.task;
+      chosenLevel.tagsArray.forEach((tag) => {
+        const image = new View(tag, [tag]);
+        imagesContainer.getElement().append(image.getElement());
+      });
     }
-    this.element?.append(el);
+    this.element?.append(task, imagesContainer.getElement());
   }
 }

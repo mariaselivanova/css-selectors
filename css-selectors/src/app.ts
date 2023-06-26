@@ -22,14 +22,13 @@ export default class App {
     levels.onLevelChange(() => {
       levelInputManager.handleInput();
     });
-    const boardElement = board.getElement();
     const levelsElement = levels.getElement();
     const cssElement = cssVIew.getElement();
     document.body.append(
-      boardElement,
       levelsElement,
       cssElement,
       htmlView.getElement(),
+      board.getElement(),
     );
     cssElement.append(input.getElement(), enterBtn.getElement());
     levelsElement.append(resetBtn.getElement(), helpBtn.getElement());
