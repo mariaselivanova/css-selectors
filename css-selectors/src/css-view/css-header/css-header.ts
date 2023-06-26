@@ -1,13 +1,7 @@
-import './css-header.css';
-import View from '../../utils/view';
+import HeaderView from '../../utils/code-editor-view/header-view/header-view';
 
-export default class CssHeader extends View {
+export default class CssHeader extends HeaderView {
   constructor() {
-    super('div', ['css-header']);
-    const cssEditor = new View('p', ['css-editor']);
-    const cssPath = new View('p', ['css-path']);
-    cssEditor.setTextContent('CSS Editor');
-    cssPath.setTextContent('style.css');
-    this.addElements([cssEditor.getElement(), cssPath.getElement()]);
+    super('css-editor', 'CSS Editor', 'style.css');
   }
 }

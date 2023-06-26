@@ -2,6 +2,8 @@ import { Level } from '../utils/types';
 import View from '../utils/view';
 import './html-view.css';
 import { highlightImage, deleteImageHighlight } from '../utils/highlightUtils';
+import HtmlHeader from './html-header/html-header';
+import HtmlLineCounter from './html-line-counter/html-line-counter';
 
 export default class HtmlView extends View {
   constructor() {
@@ -10,6 +12,9 @@ export default class HtmlView extends View {
 
   public updateContent(level: number, levelsArr: Level[]):void {
     this.removeContent();
+    const header = new HtmlHeader();
+    const htmlLineCounter = new HtmlLineCounter();
+    const code = new View('div', ['code']);
     const openingDiv = new View('div', ['opening-div']);
     const closingDiv = new View('div', ['closing-div']);
     closingDiv.setTextContent('</div>');
@@ -33,6 +38,9 @@ export default class HtmlView extends View {
         tagElements.push(newTag.getElement());
       });
     }
-    this.addElements([openingDiv.getElement(), ...tagElements, closingDiv.getElement()]);
+    code.addElements(
+      [openingDiv.getElement(), ...tagElements, closingDiv.getElement()],
+    );
+    this.addElements([header.getElement(), htmlLineCounter.getElement(), code.getElement()]);
   }
 }

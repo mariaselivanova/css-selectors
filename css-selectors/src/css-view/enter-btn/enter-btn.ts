@@ -1,5 +1,5 @@
-import Input from '../css-view/input/input';
-import ButtonView from '../utils/button-view';
+import Input from '../input/input';
+import ButtonView from '../../utils/button-view';
 import './enter-btn.css';
 
 export default class EnterBtn extends ButtonView {

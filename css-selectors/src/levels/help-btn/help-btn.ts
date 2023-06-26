@@ -1,8 +1,8 @@
-import Input from '../css-view/input/input';
-import Levels from '../levels/levels';
-import { levelsArray } from '../utils/levelsArray';
+import Input from '../../css-view/input/input';
+import Levels from '../levels';
+import { levelsArray } from '../../utils/levelsArray';
 import './help-btn.css';
-import ButtonView from '../utils/button-view';
+import ButtonView from '../../utils/button-view';
 
 export default class HelpBtn extends ButtonView {
   private input: Input;

@@ -1,12 +1,16 @@
-.css-header {
+.header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background: #535252;
+  background: #323030;
   color: #AAA;
   font-size: 15px;
   font-weight: bold;
-  padding: 0 5px 0 5px;
+  padding: 0 15px 0 15px;
   box-sizing: border-box;
   grid-area: header;
+}
+
+.path {
+  opacity: 0.3;
 }
