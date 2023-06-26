@@ -1,4 +1,4 @@
-import Input from '../input/input';
+import Input from '../css-view/input/input';
 import ButtonView from '../utils/button-view';
 import './enter-btn.css';
 

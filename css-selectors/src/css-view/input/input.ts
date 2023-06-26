@@ -1,16 +1,24 @@
-import Levels from '../levels/levels';
-import InputView from '../utils/input-view';
-import { levelsArray } from '../utils/levelsArray';
+import Levels from '../../levels/levels';
+import InputView from '../../utils/input-view';
+import { levelsArray } from '../../utils/levelsArray';
 import './input.css';
 
 export default class Input extends InputView {
   private levels: Levels;
 
   constructor(levels: Levels) {
-    super(['input']);
+    super(['input', 'blink']);
     this.setInputType('text');
+    this.setPlaceholder('Type in css selector');
     this.levels = levels;
-    this.element?.addEventListener('keydown', (e) => this.handleKeyDown(e));
+    this.element?.setAttribute('maxlength', '40');
+    this.element?.addEventListener('keyup', (e) => this.handleKeyDown(e));
+    this.element?.addEventListener('input', () => {
+      this.element?.classList.remove('blink');
+      if (!this.element?.value) {
+        this.element?.classList.add('blink');
+      }
+    });
   }
 
   public clearInput(): void {

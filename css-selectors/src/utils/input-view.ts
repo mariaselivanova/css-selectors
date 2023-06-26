@@ -14,6 +14,12 @@ export default class InputView extends View {
     }
   }
 
+  public setPlaceholder(text: string): void {
+    if (this.element) {
+      this.element.placeholder = text;
+    }
+  }
+
   public clearInput(): void {
     if (this.element) {
       this.element.value = '';

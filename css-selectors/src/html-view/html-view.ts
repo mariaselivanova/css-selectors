@@ -21,7 +21,7 @@ export default class HtmlView extends View {
         const newTag = new View('div', ['inner-div']);
         newTag.setTextContent(`<${tag.name} />`);
         const newTagElement = newTag.getElement();
-        newTagElement.setAttribute('data-markupID', `${tag.id}`);
+        newTagElement.setAttribute('data-markupid', `${tag.id}`);
 
         newTagElement.addEventListener('mouseover', () => {
           highlightImage(tag.id, tag.name);
@@ -34,19 +34,5 @@ export default class HtmlView extends View {
       });
     }
     this.addElements([openingDiv.getElement(), ...tagElements, closingDiv.getElement()]);
-  }
-
-  public static highlightElement(id: number):void {
-    const element = document.querySelector(`[data-markupID="${id}"]`);
-    if (element) {
-      element.classList.add('highlighted');
-    }
-  }
-
-  public static deleteHighlight(id: number):void {
-    const element = document.querySelector(`[data-markupID="${id}"]`);
-    if (element) {
-      element.classList.remove('highlighted');
-    }
   }
 }

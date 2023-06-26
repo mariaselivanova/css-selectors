@@ -1,4 +1,4 @@
-import Input from '../input/input';
+import Input from '../css-view/input/input';
 import Levels from '../levels/levels';
 
 export default class LevelInputManager {

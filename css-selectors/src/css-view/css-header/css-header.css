@@ -1,0 +1,12 @@
+.css-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: #535252;
+  color: #AAA;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 0 5px 0 5px;
+  box-sizing: border-box;
+  grid-area: header;
+}

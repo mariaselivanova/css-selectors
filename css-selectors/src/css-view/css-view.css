@@ -1,7 +1,17 @@
 .css-view {
-  display: flex;
+  display: grid;
   position: relative;
-  flex-direction: column;
-  width: 500px;
-  background-color: rgb(82, 152, 202);
+  grid-template-areas: 'header header'
+                      'counter input'
+                      'counter comment' ;
+  grid-template-columns: 29px 471px;
+  grid-template-rows: 50px 105px 100px;
+  background: #efefef;
+  color: #AAA;
+}
+
+.css-comment {
+  margin-left: 5px;
+  grid-area: comment;
+  font-size: 17px;
 }
