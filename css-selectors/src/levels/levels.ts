@@ -80,12 +80,24 @@ export default class Levels extends View {
     this.selectedLevelElement?.classList.add('link_solved');
   }
 
+  private findUnsolvedLevel(): HTMLElement | undefined {
+    return this.levelLinks.find((item) => !item.classList.contains('link_solved'));
+  }
+
+  private handleWin():void {
+    this.board.removeContent();
+    const winCaption = document.createElement('p');
+    winCaption.textContent = 'YOU WON!';
+    this.board.getElement().append(winCaption);
+  }
+
   public goToNextLevel(): void {
-    this.selectedLevel += 1;
-    const nextLevel = this.levelLinks.find(
-      (link) => parseInt(link.textContent?.substring(5) ? link.textContent.substring(5) : '1', 10) === this.selectedLevel,
-    );
-    this.setSelectedLevel(nextLevel);
+    const nextUnsolved = this.findUnsolvedLevel();
+    if (!nextUnsolved) {
+      this.handleWin();
+    } else {
+      this.setSelectedLevel(nextUnsolved);
+    }
   }
 
   public onLevelChange(callback: () => void): void {
