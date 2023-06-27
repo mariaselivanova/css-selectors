@@ -32,19 +32,11 @@ export default class HtmlView extends View {
     if (chosenLevel) {
       chosenLevel.tagsArray.forEach((tag) => {
         const newTag = new View('div', ['inner-div']);
-        newTag.getElement().setAttribute('data-tagname', tag.name);
-        if (tag.idAttribute) {
-          newTag.getElement().setAttribute('data-tagidattribute', tag.idAttribute);
-        }
 
         if (!tag.child) {
           newTag.setTextContent(`<${tag.name} ${tag.idAttribute ? `id='${tag.idAttribute}'` : ''} />`);
         } else {
           const newChildTag = new View('div', ['inner-child-div']);
-          newChildTag.getElement().setAttribute('data-tagname', tag.child.name);
-          if (tag.child.idAttribute) {
-            newChildTag.getElement().setAttribute('data-tagidattribute', tag.child.idAttribute);
-          }
 
           newChildTag.setTextContent(`<${tag.child.name} ${tag.child.idAttribute ? `id='${tag.child.idAttribute}'` : ''} />`);
           newChildTag.getElement().setAttribute('data-markupid', `${tag.child.id}`);
@@ -69,10 +61,8 @@ export default class HtmlView extends View {
     const { target } = event;
     if (target instanceof HTMLElement) {
       const tagId = target.getAttribute('data-markupid');
-      const tagName = target.getAttribute('data-tagname');
-      const tagIdAttribute = target.getAttribute('data-tagidattribute');
-      if (tagId && tagName) {
-        highlightImage(+tagId, tagName, tagIdAttribute);
+      if (tagId) {
+        highlightImage(+tagId);
         target.classList.add('highlighted');
       }
     }

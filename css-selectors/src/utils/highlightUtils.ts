@@ -12,7 +12,7 @@ export function deleteMarkupHighlight(id: number):void {
   }
 }
 
-export function highlightImage(id: number, name: string, idAttr: string | null):void {
+export function highlightImage(id: number):void {
   const element = document.querySelector(`[data-id="${id}"]`);
   if (element) {
     element.classList.add('hovered');
