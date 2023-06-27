@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   font-size: 30px;
   font-weight: bold;
   color: #aaa;
@@ -13,11 +14,19 @@
   background-repeat: no-repeat;
   width: 1000px;
   grid-area: board;
+  gap: 50px;
+}
+
+.game-board p {
+  margin-top: 30px;
+  margin-bottom: 0;
 }
 
 .images-container {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
   gap: 40px;
 }
 
@@ -60,7 +69,7 @@ span {
   background-color: #ffffff;
   padding: 5px 10px;
   z-index: 3;
-  top: 70px;
+  top: 120px;
 }
 
 .hovered + span {
@@ -73,7 +82,7 @@ span {
 
 .parent {
   position: absolute;
-  top: 130px;
+  top: 170px;
   z-index: 1;
 }
 

@@ -1,6 +1,5 @@
 import Input from '../../css-view/input/input';
 import Levels from '../levels';
-import { levelsArray } from '../../utils/levelsArray';
 import './help-btn.css';
 import ButtonView from '../../utils/button-view';
 
@@ -19,10 +18,7 @@ export default class HelpBtn extends ButtonView {
   }
 
   private handleHelpBtn(): void {
-    const currentLevelElement = this.levels.getSelectedLevelElement();
-    if (currentLevelElement) {
-      currentLevelElement.setAttribute('data-help', 'true');
-    }
+    this.levels.setHelpedStatus();
     const answers = this.levels.getCorrectAnswers();
     const input = this.input.getElement();
     if (input instanceof HTMLInputElement) {

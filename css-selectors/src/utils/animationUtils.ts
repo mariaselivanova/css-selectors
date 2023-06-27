@@ -1,4 +1,4 @@
-export function correctAnswerAnimation():void {
+export function setCorrectAnswerAnimation():void {
   const images = document.querySelectorAll('.image');
   if (images) {
     images.forEach((image) => {
@@ -11,7 +11,7 @@ export function correctAnswerAnimation():void {
   }
 }
 
-export function wrongAnswerAnimation():void {
+export function setWrongAnswerAnimation():void {
   const images = document.querySelectorAll('.image');
   if (images) {
     images.forEach((image) => {

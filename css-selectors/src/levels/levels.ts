@@ -28,13 +28,6 @@ export default class Levels extends View {
     this.setContent(levelsArray);
   }
 
-  public getSelectedLevelElement(): HTMLElement | undefined {
-    if (this.selectedLevelElement) {
-      return this.selectedLevelElement;
-    }
-    return undefined;
-  }
-
   private setContent(array: Level[]): void {
     const note = new View('p', ['note']);
     note.setTextContent('* - solved with help');
@@ -135,5 +128,9 @@ export default class Levels extends View {
     if (helpAttributeValue === 'true') {
       this.selectedLevelElement?.classList.add('solved-with-help');
     }
+  }
+
+  public setHelpedStatus():void {
+    this.selectedLevelElement?.setAttribute('data-help', 'true');
   }
 }

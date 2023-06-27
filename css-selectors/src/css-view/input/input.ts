@@ -1,7 +1,7 @@
 import Levels from '../../levels/levels';
 import InputView from '../../utils/input-view';
 import './input.css';
-import { correctAnswerAnimation, wrongAnswerAnimation } from '../../utils/animationUtils';
+import { setCorrectAnswerAnimation, setWrongAnswerAnimation } from '../../utils/animationUtils';
 
 export default class Input extends InputView {
   private levels: Levels;
@@ -31,14 +31,14 @@ export default class Input extends InputView {
   public handleInput(): void {
     const answers = this.levels.getCorrectAnswers();
     if (answers.some((answer) => answer === this.element?.value)) {
-      correctAnswerAnimation();
+      setCorrectAnswerAnimation();
       setTimeout(() => {
+        this.levels.checkHelp();
         this.levels.changeLevelStatus();
         this.levels.goToNextLevel();
-        this.levels.checkHelp();
       }, 1000);
     } else {
-      wrongAnswerAnimation();
+      setWrongAnswerAnimation();
       this.clearInput();
     }
   }

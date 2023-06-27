@@ -5,7 +5,7 @@ export interface Level {
   tagsArray: TagObj[];
 }
 
-interface TagObj {
+export interface TagObj {
   name: string;
   id: number;
   idAttribute: string | null;
