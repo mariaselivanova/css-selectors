@@ -40,9 +40,11 @@ export default class Levels extends View {
   }
 
   private setContent(array: Level[]): void {
+    const note = new View('p', ['note']);
+    note.setTextContent('* - solved with help');
     array.forEach((level: Level) => {
       const link = new View('a', ['link']);
-      link.setTextContent(`${level.number} level`);
+      link.setTextContent(`level ${level.number}`);
       const linkElement = link.getElement();
       if (linkElement) {
         this.levelLinks.push(linkElement);
@@ -53,6 +55,7 @@ export default class Levels extends View {
         this.element?.append(linkElement);
       }
     });
+    this.element?.append(note.getElement());
   }
 
   private setSelectedLevel(element: HTMLElement | undefined): void {
@@ -60,7 +63,7 @@ export default class Levels extends View {
     this.levelLinks.forEach((level: HTMLElement) => Levels.setNotSelectedLevel(level));
     if (element) {
       element.classList.add('link_active');
-      this.selectedLevel = parseInt(element.textContent ? element.textContent : '1', 10);
+      this.selectedLevel = parseInt(element.textContent?.substring(5) ? element.textContent.substring(5) : '1', 10);
       this.board.updateContent(this.selectedLevel, levelsArray);
       this.htmlView.updateContent(this.selectedLevel, levelsArray);
     }
@@ -80,7 +83,7 @@ export default class Levels extends View {
   public goToNextLevel(): void {
     this.selectedLevel += 1;
     const nextLevel = this.levelLinks.find(
-      (link) => parseInt(link.textContent ? link.textContent : '1', 10) === this.selectedLevel,
+      (link) => parseInt(link.textContent?.substring(5) ? link.textContent.substring(5) : '1', 10) === this.selectedLevel,
     );
     this.setSelectedLevel(nextLevel);
   }

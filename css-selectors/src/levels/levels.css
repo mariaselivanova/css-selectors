@@ -1,11 +1,14 @@
 .levels-table {
+  padding-top: 20px;
+  font-size: 20px;
   display: flex;
+  position: relative;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 20px;
-  background-color: black;
-  color: bisque;
+  background-color: #131317;
+  border-right: 1px solid #757474;
+  color: #AAA;
   width: 200px;
   grid-area: levels;
 }
@@ -14,25 +17,32 @@
   cursor: pointer;
 }
 
+.link::before {
+  content: '✔ ';
+  color: #AAA;
+}
+
 .link_active {
-  color: brown;
+  color: #AAA;
+  border-bottom: 2px solid #AAA;
 }
 
 .link:hover {
   opacity: 0.8;
 }
 
-.link_solved {
-  color: rgb(42, 165, 50);
-}
-
 .link_solved::before {
-  content: '✔';
-  color: aquamarine;
+  content: '✔ ';
+  color: #3a6454;
 }
 
 .solved-with-help::after {
-  content: ' solved with help';
+  content: ' *';
   color: azure;
   font-size: 13px;
+}
+
+.note {
+  font-size: 12px;
+  font-weight: bold;
 }

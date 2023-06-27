@@ -12,11 +12,11 @@ export function deleteMarkupHighlight(id: number):void {
   }
 }
 
-export function highlightImage(id: number, name: string):void {
+export function highlightImage(id: number, name: string, idAttr: string | null):void {
   const element = document.querySelector(`[data-id="${id}"]`);
   if (element) {
     element.classList.add('highlighted-img');
-    element.setAttribute('data-tag', `<${name}></${name}>`);
+    element.setAttribute('data-tag', `<${name} ${idAttr ? `id='${idAttr}'` : ''}></${name}>`);
   }
 }
 

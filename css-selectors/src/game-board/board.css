@@ -16,6 +16,7 @@
 .images-container {
   display: flex;
   flex-direction: row;
+  gap: 40px;
 }
 
 .image {
@@ -27,22 +28,22 @@
 }
 
 .bird {
-  background-image: url(../assets/images/black-bird.svg);
-  height: 198px;
-  width: 280px;
+  background-image: url(../assets/images/red-bird.svg);
+  height: 220px;
+  width: 140px;
 }
 
 .balloon {
-  background-image: url(../assets/images/white-balloon.svg);
-  height: 140px;
-  width: 280px;
+  background-image: url(../assets/images/orange-balloon.svg);
+  height: 350px;
+  width: 50px;
 }
 
 [data-tag]::before {
   content: attr(data-tag);
-  font-size: 20px;
-  background-color: aliceblue;
+  font-size: 15px;
   padding: 5px;
+  background-color: #aaa;
 }
 
 .highlighted-img,

@@ -3,55 +3,61 @@ import { Level } from './types';
 export const levelsArray: Level[] = [
   {
     number: 1,
-    name: 'easy-peasy',
-    task: 'Choose birds',
-    answer: 'blabla',
-    html: '<plate />',
+    task: 'Select the birds',
+    answer: 'bird',
     tagsArray: [
       {
         name: 'bird',
         id: 1,
-      },
-      {
-        name: 'balloon',
-        id: 2,
+        idAttribute: null,
       },
       {
         name: 'bird',
-        id: 3,
+        id: 2,
+        idAttribute: null,
       }],
   },
   {
     number: 2,
-    name: 'easy',
-    task: 'Select all cucumbers',
-    answer: 'lalala',
-    html: '<cucumber />',
+    task: 'Select the balloons',
+    answer: 'balloon',
     tagsArray: [
       {
-        name: 'bird',
+        name: 'balloon',
         id: 1,
+        idAttribute: null,
+      },
+      {
+        name: 'bird',
+        id: 2,
+        idAttribute: null,
       },
       {
         name: 'balloon',
-        id: 2,
+        id: 3,
+        idAttribute: null,
       },
     ],
   },
   {
     number: 3,
-    name: 'not-so-easy',
-    task: 'Select some tomatoes',
-    answer: 'tomatotomato',
-    html: '<tomato />',
+    task: 'Select the blue bird',
+    answer: '#blue',
     tagsArray: [
       {
-        name: 'balloon',
+        name: 'bird',
         id: 1,
+        idAttribute: 'blue',
+      },
+      {
+        name: 'balloon',
+        id: 2,
+        idAttribute: null,
       },
       {
         name: 'bird',
-        id: 2,
+        id: 3,
+        idAttribute: null,
       },
     ],
   },

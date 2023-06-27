@@ -10,7 +10,7 @@ export default class ResetBtn extends ButtonView {
     this.setButtonType('reset');
     this.levels = levels;
     this.element?.addEventListener('click', () => this.handleResetBtn());
-    this.setTextContent('Reset progress');
+    this.setTextContent('reset progress');
   }
 
   private handleResetBtn():void {

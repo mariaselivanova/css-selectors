@@ -24,12 +24,12 @@ export default class HtmlView extends View {
     if (chosenLevel) {
       chosenLevel.tagsArray.forEach((tag) => {
         const newTag = new View('div', ['inner-div']);
-        newTag.setTextContent(`<${tag.name} />`);
+        newTag.setTextContent(`<${tag.name} ${tag.idAttribute ? `id='${tag.idAttribute}'` : ''} />`);
         const newTagElement = newTag.getElement();
         newTagElement.setAttribute('data-markupid', `${tag.id}`);
 
         newTagElement.addEventListener('mouseover', () => {
-          highlightImage(tag.id, tag.name);
+          highlightImage(tag.id, tag.name, tag.idAttribute);
         });
         newTagElement.addEventListener('mouseout', () => {
           deleteImageHighlight(tag.id);

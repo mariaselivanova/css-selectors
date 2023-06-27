@@ -11,7 +11,7 @@ export default class HelpBtn extends ButtonView {
 
   constructor(levels: Levels, input: Input) {
     super(['help-btn']);
-    this.setTextContent('HELP');
+    this.setTextContent('help');
     this.setButtonType('button');
     this.levels = levels;
     this.input = input;
@@ -29,11 +29,13 @@ export default class HelpBtn extends ButtonView {
       const input = this.input.getElement();
       if (input instanceof HTMLInputElement) {
         let i = 0;
+        input.value = '';
         const interval = setInterval(() => {
           input.value += answer[i];
           i += 1;
           if (i === answer.length) {
             clearInterval(interval);
+            input.classList.remove('blink');
           }
         }, 150);
       }
