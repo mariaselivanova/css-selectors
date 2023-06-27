@@ -8,5 +8,4 @@ body {
   grid-template-rows: 400px 355px;
   grid-template-areas: 'board board levels'
                        'css html levels';
-
 }

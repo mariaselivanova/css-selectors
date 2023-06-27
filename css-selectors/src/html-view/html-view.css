@@ -27,7 +27,7 @@
 }
 
 .highlighted {
-  color: #acabab;
+  color: #aaa;
 }
 
 .parent-tag {
@@ -37,5 +37,4 @@
 .inner-child-div {
   z-index: 10;
   margin-left: 20px;
-  opacity: 99%;
 }
