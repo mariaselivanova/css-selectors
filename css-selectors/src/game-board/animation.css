@@ -1,0 +1,49 @@
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-10px); }
+  40% { transform: translateX(10px); }
+  60% { transform: translateX(-10px); }
+  80% { transform: translateX(10px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes strobe {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.98) rotate(2deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.strobe {
+  animation-name: strobe;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(1);
+  animation-iteration-count: infinite;
+}
+
+.fade-out {
+  animation-name: fadeOut;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.shake {
+  animation-name: shake;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}

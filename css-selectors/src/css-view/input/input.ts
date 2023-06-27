@@ -2,6 +2,7 @@ import Levels from '../../levels/levels';
 import InputView from '../../utils/input-view';
 import { levelsArray } from '../../utils/levelsArray';
 import './input.css';
+import { correctAnswerAnimation, wrongAnswerAnimation } from '../../utils/animationUtils';
 
 export default class Input extends InputView {
   private levels: Levels;
@@ -24,6 +25,7 @@ export default class Input extends InputView {
   public clearInput(): void {
     if (this.element) {
       this.element.value = '';
+      this.element.classList.add('blink');
     }
   }
 
@@ -31,17 +33,20 @@ export default class Input extends InputView {
     const currentLevel = this.levels.getSelectedLevel();
     const currentLevelElement = this.levels.getSelectedLevelElement();
     const obj = levelsArray.find((item) => item.number === currentLevel);
-    if (obj?.answer === this.element?.value) {
-      this.levels.changeLevelStatus();
-      this.levels.goToNextLevel();
-      if (currentLevelElement) {
-        const helpAttributeValue = currentLevelElement.getAttribute('data-help');
-        if (helpAttributeValue === 'true') {
-          currentLevelElement.classList.add('solved-with-help');
+    if (obj?.answers.some((item) => item === this.element?.value)) {
+      correctAnswerAnimation();
+      setTimeout(() => {
+        this.levels.changeLevelStatus();
+        this.levels.goToNextLevel();
+        if (currentLevelElement) {
+          const helpAttributeValue = currentLevelElement.getAttribute('data-help');
+          if (helpAttributeValue === 'true') {
+            currentLevelElement.classList.add('solved-with-help');
+          }
         }
-      }
+      }, 1000);
     } else {
-      console.log('oooops');
+      wrongAnswerAnimation();
       this.clearInput();
     }
   }

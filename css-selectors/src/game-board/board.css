@@ -1,3 +1,5 @@
+@import url(./animation.css);
+
 .game-board {
   display: flex;
   flex-direction: column;
@@ -39,14 +41,24 @@
   width: 50px;
 }
 
-[data-tag]::before {
-  content: attr(data-tag);
-  font-size: 15px;
-  padding: 5px;
-  background-color: #aaa;
+.blue {
+  background-image: url(../assets/images/blue-bird.svg);
+  height: 220px;
+  width: 140px;
+}
+
+span {
+  display: none;
+
+}
+
+.hovered + span {
+  display: block;
+  position: absolute;
 }
 
 .highlighted-img,
-[data-tag]:hover {
-  transform: scale(107%);
+.hovered{
+  position: relative;
+  background-size: 85%;
 }

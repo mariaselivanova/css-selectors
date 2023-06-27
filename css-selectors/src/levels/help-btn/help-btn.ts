@@ -25,15 +25,15 @@ export default class HelpBtn extends ButtonView {
     }
     const levelObject = levelsArray.find((item) => item.number === this.levels.getSelectedLevel());
     if (levelObject) {
-      const { answer } = levelObject;
+      const { answers } = levelObject;
       const input = this.input.getElement();
       if (input instanceof HTMLInputElement) {
         let i = 0;
         input.value = '';
         const interval = setInterval(() => {
-          input.value += answer[i];
+          input.value += answers[0][i];
           i += 1;
-          if (i === answer.length) {
+          if (i === answers[0].length) {
             clearInterval(interval);
             input.classList.remove('blink');
           }
