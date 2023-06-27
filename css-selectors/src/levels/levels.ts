@@ -28,10 +28,6 @@ export default class Levels extends View {
     this.setContent(levelsArray);
   }
 
-  public getSelectedLevel(): number {
-    return this.selectedLevel;
-  }
-
   public getSelectedLevelElement(): HTMLElement | undefined {
     if (this.selectedLevelElement) {
       return this.selectedLevelElement;
@@ -44,7 +40,7 @@ export default class Levels extends View {
     note.setTextContent('* - solved with help');
     array.forEach((level: Level) => {
       const link = new View('a', ['link']);
-      link.setTextContent(`level ${level.number}`);
+      link.setTextContent(`Level ${level.number}`);
       const linkElement = link.getElement();
       if (linkElement) {
         this.levelLinks.push(linkElement);
@@ -92,12 +88,25 @@ export default class Levels extends View {
   }
 
   public goToNextLevel(): void {
-    const nextUnsolved = this.findUnsolvedLevel();
-    if (!nextUnsolved) {
+    this.selectedLevel += 1;
+    if (this.selectedLevel > 4) {
+      const firstUnsolved = this.findUnsolvedLevel();
+      if (firstUnsolved) {
+        this.setSelectedLevel(firstUnsolved);
+        return;
+      }
       this.handleWin();
-    } else {
-      this.setSelectedLevel(nextUnsolved);
+      return;
     }
+    const findUnsolved = this.findUnsolvedLevel();
+    if (!findUnsolved) {
+      this.handleWin();
+      return;
+    }
+    const nextLevel = this.levelLinks.find(
+      (link) => parseInt(link.textContent?.substring(5) ? link.textContent.substring(5) : '1', 10) === this.selectedLevel,
+    );
+    this.setSelectedLevel(nextLevel);
   }
 
   public onLevelChange(callback: () => void): void {
@@ -111,5 +120,20 @@ export default class Levels extends View {
       link.removeAttribute('data-help');
     });
     this.setSelectedLevel(this.levelLinks[0]);
+  }
+
+  public getCorrectAnswers(): string[] {
+    const currentLevelObject = levelsArray.find((level) => level.number === this.selectedLevel);
+    if (currentLevelObject) {
+      return currentLevelObject.answers;
+    }
+    return [];
+  }
+
+  public checkHelp():void {
+    const helpAttributeValue = this.selectedLevelElement?.getAttribute('data-help');
+    if (helpAttributeValue === 'true') {
+      this.selectedLevelElement?.classList.add('solved-with-help');
+    }
   }
 }

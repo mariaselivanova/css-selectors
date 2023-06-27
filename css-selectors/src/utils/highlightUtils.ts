@@ -15,15 +15,13 @@ export function deleteMarkupHighlight(id: number):void {
 export function highlightImage(id: number, name: string, idAttr: string | null):void {
   const element = document.querySelector(`[data-id="${id}"]`);
   if (element) {
-    element.classList.add('highlighted-img');
-    element.setAttribute('data-tag', `<${name} ${idAttr ? `id='${idAttr}'` : ''}></${name}>`);
+    element.classList.add('hovered');
   }
 }
 
 export function deleteImageHighlight(id: number):void {
   const element = document.querySelector(`[data-id="${id}"]`);
   if (element) {
-    element.removeAttribute('data-tag');
-    element.classList.remove('highlighted-img');
+    element.classList.remove('hovered');
   }
 }

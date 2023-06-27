@@ -7,7 +7,7 @@
   align-items: center;
   gap: 20px;
   background-color: #131317;
-  border-right: 1px solid #757474;
+  border-right: 1px solid #323030;
   color: #AAA;
   width: 200px;
   grid-area: levels;
@@ -20,6 +20,7 @@
 .link::before {
   content: '✔ ';
   color: #AAA;
+  font-size: 15px;
 }
 
 .link_active {

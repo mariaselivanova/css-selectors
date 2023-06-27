@@ -4,9 +4,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 25px;
+  font-size: 30px;
   font-weight: bold;
-  color: rgb(86, 84, 84);
+  color: #aaa;
   background-image: url('../assets/images/background.jpg');
   background-position: center;
   background-size: cover;
@@ -25,19 +25,19 @@
   display: block;
   position: relative;
   background-position: center;
-  background-size: contain;
+  background-size: 80%;
   background-repeat: no-repeat;
 }
 
 .bird {
   background-image: url(../assets/images/red-bird.svg);
-  height: 220px;
+  height: 170px;
   width: 140px;
 }
 
 .balloon {
   background-image: url(../assets/images/orange-balloon.svg);
-  height: 350px;
+  height: 270px;
   width: 50px;
 }
 
@@ -47,18 +47,36 @@
   width: 140px;
 }
 
+.cloud {
+  background-image: url(../assets/images/cloud.svg);
+  height: 240px;
+  width: 140px;
+}
+
 span {
   display: none;
-
+  position: absolute;
+  font-size: 12px;
+  background-color: #ffffff;
+  padding: 5px 10px;
+  z-index: 3;
+  top: 70px;
 }
 
 .hovered + span {
   display: block;
-  position: absolute;
 }
 
-.highlighted-img,
 .hovered{
-  position: relative;
-  background-size: 85%;
+  background-size: 100%;
+}
+
+.parent {
+  position: absolute;
+  top: 130px;
+  z-index: 1;
+}
+
+.child {
+  z-index: 2;
 }

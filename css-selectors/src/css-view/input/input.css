@@ -1,33 +1,30 @@
 @keyframes blink {
   0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
+    background-color: #efefef;
   }
   100% {
-    opacity: 1;
+    background-color: #9f9b9f;
   }
 }
 
 .input {
-  width: 466px;
   height: 30px;
+  width: 471px;
   grid-area: css;
   margin: 0;
   padding: 0;
   background: #efefef;
   border: none;
   outline: none;
-  margin-left: 5px;
+  padding-left: 5px;
   color: #333;
   box-sizing: border-box;
   grid-area: input;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .input.blink {
-  animation: blink 2s infinite alternate;
+  animation: blink 1s infinite alternate;
 }
 
 

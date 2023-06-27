@@ -1,6 +1,5 @@
 import Levels from '../../levels/levels';
 import InputView from '../../utils/input-view';
-import { levelsArray } from '../../utils/levelsArray';
 import './input.css';
 import { correctAnswerAnimation, wrongAnswerAnimation } from '../../utils/animationUtils';
 
@@ -13,7 +12,7 @@ export default class Input extends InputView {
     this.setPlaceholder('Type in css selector');
     this.levels = levels;
     this.element?.setAttribute('maxlength', '40');
-    this.element?.addEventListener('keyup', (e) => this.handleKeyDown(e));
+    this.element?.addEventListener('keyup', (e) => this.handleKeyUp(e));
     this.element?.addEventListener('input', () => {
       this.element?.classList.remove('blink');
       if (!this.element?.value) {
@@ -30,20 +29,13 @@ export default class Input extends InputView {
   }
 
   public handleInput(): void {
-    const currentLevel = this.levels.getSelectedLevel();
-    const currentLevelElement = this.levels.getSelectedLevelElement();
-    const obj = levelsArray.find((item) => item.number === currentLevel);
-    if (obj?.answers.some((item) => item === this.element?.value)) {
+    const answers = this.levels.getCorrectAnswers();
+    if (answers.some((answer) => answer === this.element?.value)) {
       correctAnswerAnimation();
       setTimeout(() => {
         this.levels.changeLevelStatus();
         this.levels.goToNextLevel();
-        if (currentLevelElement) {
-          const helpAttributeValue = currentLevelElement.getAttribute('data-help');
-          if (helpAttributeValue === 'true') {
-            currentLevelElement.classList.add('solved-with-help');
-          }
-        }
+        this.levels.checkHelp();
       }, 1000);
     } else {
       wrongAnswerAnimation();
@@ -51,7 +43,7 @@ export default class Input extends InputView {
     }
   }
 
-  private handleKeyDown(event: KeyboardEvent): void {
+  private handleKeyUp(event: KeyboardEvent): void {
     if (event.key === 'Enter') {
       this.handleInput();
     }

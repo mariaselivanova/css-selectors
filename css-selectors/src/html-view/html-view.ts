@@ -10,37 +10,82 @@ export default class HtmlView extends View {
     super('section', ['html-view']);
   }
 
-  public updateContent(level: number, levelsArr: Level[]):void {
-    this.removeContent();
+  private addStaticContent(): { code: View, openingDiv: View, closingDiv: View } {
     const header = new HtmlHeader();
     const htmlLineCounter = new HtmlLineCounter();
     const code = new View('div', ['code']);
     const openingDiv = new View('div', ['opening-div']);
     const closingDiv = new View('div', ['closing-div']);
-    closingDiv.setTextContent('</div>');
     openingDiv.setTextContent('<div class = "sky">');
+    closingDiv.setTextContent('</div>');
+    this.addElements([header.getElement(), htmlLineCounter.getElement(), code.getElement()]);
+    return { code, openingDiv, closingDiv };
+  }
+
+  public updateContent(level: number, levelsArr: Level[]): void {
+    this.removeContent();
+    const { code, openingDiv, closingDiv } = this.addStaticContent();
+    code.getElement().addEventListener('mouseover', HtmlView.handleTagMouseOver);
+    code.getElement().addEventListener('mouseout', HtmlView.handleTagMouseOut);
     const tagElements: HTMLElement[] = [];
     const chosenLevel = levelsArr.find((item) => item.number === level);
     if (chosenLevel) {
       chosenLevel.tagsArray.forEach((tag) => {
         const newTag = new View('div', ['inner-div']);
-        newTag.setTextContent(`<${tag.name} ${tag.idAttribute ? `id='${tag.idAttribute}'` : ''} />`);
+        newTag.getElement().setAttribute('data-tagname', tag.name);
+        if (tag.idAttribute) {
+          newTag.getElement().setAttribute('data-tagidattribute', tag.idAttribute);
+        }
+
+        if (!tag.child) {
+          newTag.setTextContent(`<${tag.name} ${tag.idAttribute ? `id='${tag.idAttribute}'` : ''} />`);
+        } else {
+          const newChildTag = new View('div', ['inner-child-div']);
+          newChildTag.getElement().setAttribute('data-tagname', tag.child.name);
+          if (tag.child.idAttribute) {
+            newChildTag.getElement().setAttribute('data-tagidattribute', tag.child.idAttribute);
+          }
+
+          newChildTag.setTextContent(`<${tag.child.name} ${tag.child.idAttribute ? `id='${tag.child.idAttribute}'` : ''} />`);
+          newChildTag.getElement().setAttribute('data-markupid', `${tag.child.id}`);
+          newTag.getElement().classList.add('parent-tag');
+          newTag.getElement().innerHTML = `
+          &lt;${tag.name} ${tag.idAttribute ? `id='${tag.idAttribute}'` : ''}&gt;
+          ${newChildTag.getElement().outerHTML}
+          &lt;/${tag.name}&gt;
+        `;
+        }
         const newTagElement = newTag.getElement();
         newTagElement.setAttribute('data-markupid', `${tag.id}`);
-
-        newTagElement.addEventListener('mouseover', () => {
-          highlightImage(tag.id, tag.name, tag.idAttribute);
-        });
-        newTagElement.addEventListener('mouseout', () => {
-          deleteImageHighlight(tag.id);
-        });
-
         tagElements.push(newTag.getElement());
       });
     }
     code.addElements(
       [openingDiv.getElement(), ...tagElements, closingDiv.getElement()],
     );
-    this.addElements([header.getElement(), htmlLineCounter.getElement(), code.getElement()]);
   }
+
+  private static handleTagMouseOver = (event: MouseEvent): void => {
+    const { target } = event;
+    if (target instanceof HTMLElement) {
+      const tagId = target.getAttribute('data-markupid');
+      const tagName = target.getAttribute('data-tagname');
+      const tagIdAttribute = target.getAttribute('data-tagidattribute');
+      if (tagId && tagName) {
+        highlightImage(+tagId, tagName, tagIdAttribute);
+        target.classList.add('highlighted');
+      }
+    }
+  };
+
+  private static handleTagMouseOut = (event: MouseEvent): void => {
+    const { target } = event;
+    if (target instanceof HTMLElement) {
+      const tagId = target.getAttribute('data-markupid');
+      if (tagId) {
+        deleteImageHighlight(+tagId);
+        target.classList.remove('highlighted');
+      }
+    }
+  };
 }

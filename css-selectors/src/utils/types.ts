@@ -6,10 +6,11 @@ export interface Level {
 }
 
 interface TagObj {
-  name: string,
-  id: number,
-  idAttribute: string | null,
+  name: string;
+  id: number;
+  idAttribute: string | null;
   strobe: boolean;
+  child: TagObj | null;
 }
 
 export type ButtonTypes = 'submit' | 'reset' | 'button';

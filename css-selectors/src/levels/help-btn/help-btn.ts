@@ -23,22 +23,19 @@ export default class HelpBtn extends ButtonView {
     if (currentLevelElement) {
       currentLevelElement.setAttribute('data-help', 'true');
     }
-    const levelObject = levelsArray.find((item) => item.number === this.levels.getSelectedLevel());
-    if (levelObject) {
-      const { answers } = levelObject;
-      const input = this.input.getElement();
-      if (input instanceof HTMLInputElement) {
-        let i = 0;
-        input.value = '';
-        const interval = setInterval(() => {
-          input.value += answers[0][i];
-          i += 1;
-          if (i === answers[0].length) {
-            clearInterval(interval);
-            input.classList.remove('blink');
-          }
-        }, 150);
-      }
+    const answers = this.levels.getCorrectAnswers();
+    const input = this.input.getElement();
+    if (input instanceof HTMLInputElement) {
+      let i = 0;
+      input.value = '';
+      const interval = setInterval(() => {
+        input.value += answers[0][i];
+        i += 1;
+        if (i === answers[0].length) {
+          clearInterval(interval);
+          input.classList.remove('blink');
+        }
+      }, 150);
     }
   }
 }
