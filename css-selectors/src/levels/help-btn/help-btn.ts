@@ -22,6 +22,7 @@ export default class HelpBtn extends ButtonView {
     const answers = this.levels.getCorrectAnswers();
     const input = this.input.getElement();
     if (input instanceof HTMLInputElement) {
+      input.classList.remove('blink');
       let i = 0;
       input.value = '';
       const interval = setInterval(() => {
@@ -29,7 +30,6 @@ export default class HelpBtn extends ButtonView {
         i += 1;
         if (i === answers[0].length) {
           clearInterval(interval);
-          input.classList.remove('blink');
         }
       }, 150);
     }

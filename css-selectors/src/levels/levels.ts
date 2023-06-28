@@ -81,25 +81,26 @@ export default class Levels extends View {
   }
 
   public goToNextLevel(): void {
-    this.selectedLevel += 1;
-    if (this.selectedLevel > 4) {
-      const firstUnsolved = this.findUnsolvedLevel();
-      if (firstUnsolved) {
-        this.setSelectedLevel(firstUnsolved);
+    if (this.selectedLevel === 4) {
+      const unsolvedLevel = this.findUnsolvedLevel();
+      if (unsolvedLevel) {
+        this.setSelectedLevel(unsolvedLevel);
         return;
       }
       this.handleWin();
       return;
     }
-    const findUnsolved = this.findUnsolvedLevel();
-    if (!findUnsolved) {
-      this.handleWin();
-      return;
+    const nextLevel = this.levelLinks.slice(this.selectedLevel).find((item) => !item.classList.contains('link_solved'));
+    if (nextLevel) {
+      this.setSelectedLevel(nextLevel);
+    } else {
+      const previousLevel = this.levelLinks.slice(0, this.selectedLevel).find((item) => !item.classList.contains('link_solved'));
+      if (previousLevel) {
+        this.setSelectedLevel(previousLevel);
+      } else {
+        this.handleWin();
+      }
     }
-    const nextLevel = this.levelLinks.find(
-      (link) => parseInt(link.textContent?.substring(5) ? link.textContent.substring(5) : '1', 10) === this.selectedLevel,
-    );
-    this.setSelectedLevel(nextLevel);
   }
 
   public onLevelChange(callback: () => void): void {

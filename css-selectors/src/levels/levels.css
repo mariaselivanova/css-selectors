@@ -8,7 +8,7 @@
   gap: 20px;
   background-color: #131317;
   border-right: 1px solid #323030;
-  color: #AAA;
+  color: #aaa;
   width: 200px;
   grid-area: levels;
 }
@@ -19,13 +19,13 @@
 
 .link::before {
   content: '✔ ';
-  color: #AAA;
+  color: #aaa;
   font-size: 15px;
 }
 
 .link_active {
-  color: #AAA;
-  border-bottom: 2px solid #AAA;
+  color: #aaa;
+  border-bottom: 2px solid #aaa;
 }
 
 .link:hover {
@@ -39,11 +39,11 @@
 
 .solved-with-help::after {
   content: ' *';
-  color: azure;
+  color: #aaa;
   font-size: 13px;
 }
 
 .note {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: bold;
 }
