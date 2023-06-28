@@ -1,3 +1,5 @@
+@import 'highlight.js/styles/hybrid.css';
+
 body {
   display: grid;
   min-height: 100vh;
@@ -6,14 +8,8 @@ body {
   justify-content: center;
   margin: 0 auto;
   grid-template-columns: minmax(175px, 500px) minmax(175px, 500px) minmax(100px, 200px);
-  grid-template-rows: 400px 300px auto;
+  grid-template-rows: 400px auto auto;
   grid-template-areas: 'board board levels'
                        'css html levels'
                        'footer footer footer';
-}
-
-@media screen and (max-width: 800px) {
-  body {
-    grid-template-rows: 400px 270px auto;
-  }
 }

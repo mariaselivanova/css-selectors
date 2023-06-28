@@ -3,10 +3,14 @@ import { highlightImage, deleteImageHighlight } from '../utils/highlightUtils';
 export function handleTagMouseOver(event: MouseEvent): void {
   const { target } = event;
   if (target instanceof HTMLElement) {
-    const tagId = target.getAttribute('data-markupid');
+    const innerDiv = target.closest('.inner-div');
+    const tagId = innerDiv?.getAttribute('data-markupid');
     if (tagId) {
       highlightImage(+tagId);
-      target.classList.add('highlighted');
+      const elements = document.querySelectorAll(`[data-markupid="${tagId}"]`);
+      elements.forEach((element) => {
+        element.classList.add('highlighted');
+      });
     }
   }
 }
@@ -14,10 +18,14 @@ export function handleTagMouseOver(event: MouseEvent): void {
 export function handleTagMouseOut(event: MouseEvent): void {
   const { target } = event;
   if (target instanceof HTMLElement) {
-    const tagId = target.getAttribute('data-markupid');
+    const innerDiv = target.closest('.inner-div');
+    const tagId = innerDiv?.getAttribute('data-markupid');
     if (tagId) {
       deleteImageHighlight(+tagId);
-      target.classList.remove('highlighted');
+      const elements = document.querySelectorAll(`[data-markupid="${tagId}"]`);
+      elements.forEach((element) => {
+        element.classList.remove('highlighted');
+      });
     }
   }
 }

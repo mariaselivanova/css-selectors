@@ -28,6 +28,12 @@ export default class Levels extends View {
     this.setContent(levelsArray);
   }
 
+  private getFromLocalStorage() {
+    if (localStorage.getItem('')) {
+
+    }
+  }
+
   private setContent(array: Level[]): void {
     const note = new View('p', ['note']);
     note.setTextContent('* - solved with help');

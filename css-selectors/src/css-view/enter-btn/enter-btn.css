@@ -5,17 +5,18 @@
   right: 5px;
   top: 55px;
   border: none;
-  background: #ddd;
+  background: #aaa;
   color: #535252;
   font-size: 10px;
   font-weight: bold;
   cursor: pointer;
   box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
   transition: box-shadow 0.2s, background 0.2s;
+  z-index: 3;
 }
 
 .enter-btn:hover {
-  background: #b5b4b4;
+  opacity: 0.8;
   box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.75);
 }
 

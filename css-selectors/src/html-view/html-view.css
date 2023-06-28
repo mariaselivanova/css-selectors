@@ -1,13 +1,13 @@
 .html-view {
   color: #666;
-  background: rgba(0,0,0,.7);
+  background: #1d1f21;
   grid-area: html;
   cursor: default;
   display: grid;
   grid-template-areas: 'htmlheader htmlheader'
                       'counter code';
   grid-template-columns: 30px minmax(100px, 471px);
-  grid-template-rows: 50px 105px;
+  grid-template-rows: 50px 145px;
 }
 
 .code {
@@ -22,20 +22,17 @@
 
 .inner-div {
   margin-left: 20px;
-  width: 200px;
-}
-
-.highlighted {
-  color: #aaa;
+  width: 160px;
 }
 
 .parent-tag {
   z-index: 1;
+  white-space: pre;
 }
 
 .inner-child-div {
   z-index: 10;
-  margin-left: 20px;
+  margin-left: 40px;
 }
 
 @media screen and (max-width: 800px) {
@@ -48,4 +45,8 @@
   .inner-child-div {
     margin-left: 10px;
   }
+}
+
+.html-view .inner-div.highlighted * {
+  color: #aaa;
 }

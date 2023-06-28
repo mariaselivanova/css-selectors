@@ -61,7 +61,7 @@
   width: 140px;
 }
 
-span {
+.span {
   display: none;
   position: absolute;
   font-size: 12px;

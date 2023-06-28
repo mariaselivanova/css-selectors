@@ -18,15 +18,17 @@ export default class HelpBtn extends ButtonView {
   }
 
   private handleHelpBtn(): void {
+    const highlighter = document.querySelector('.css-code');
     this.levels.setHelpedStatus();
     const answers = this.levels.getCorrectAnswers();
     const input = this.input.getElement();
-    if (input instanceof HTMLInputElement) {
-      input.classList.remove('blink');
+    if (input instanceof HTMLInputElement && highlighter instanceof HTMLElement) {
       let i = 0;
       input.value = '';
+      highlighter.textContent = '';
       const interval = setInterval(() => {
         input.value += answers[0][i];
+        highlighter.textContent += answers[0][i];
         i += 1;
         if (i === answers[0].length) {
           clearInterval(interval);
