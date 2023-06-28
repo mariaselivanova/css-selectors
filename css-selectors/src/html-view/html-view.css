@@ -1,13 +1,12 @@
 .html-view {
-  width: 500px;
   color: #666;
   background: rgba(0,0,0,.7);
   grid-area: html;
   cursor: default;
   display: grid;
-  grid-template-areas: 'header header'
+  grid-template-areas: 'htmlheader htmlheader'
                       'counter code';
-  grid-template-columns: 30px 471px;
+  grid-template-columns: 30px minmax(100px, 471px);
   grid-template-rows: 50px 105px;
 }
 
@@ -37,4 +36,16 @@
 .inner-child-div {
   z-index: 10;
   margin-left: 20px;
+}
+
+@media screen and (max-width: 800px) {
+  .code  {
+    font-size: 14px;
+  }
+  .inner-div {
+    margin-left: 10px;
+  }
+  .inner-child-div {
+    margin-left: 10px;
+  }
 }

@@ -8,7 +8,6 @@
   gap: 20px;
   background-color: #131317;
   color: #aaa;
-  width: 200px;
   grid-area: levels;
 }
 
@@ -45,4 +44,13 @@
 .note {
   font-size: 13px;
   font-weight: bold;
+}
+
+@media screen and (max-width: 800px) {
+  .levels-table {
+    font-size: 15px;
+  }
+  .note {
+    font-size: 10px;
+  }
 }

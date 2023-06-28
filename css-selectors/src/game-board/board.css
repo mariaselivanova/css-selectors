@@ -12,7 +12,6 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  width: 1000px;
   grid-area: board;
   gap: 50px;
 }
@@ -88,4 +87,14 @@ span {
 
 .child {
   z-index: 2;
+}
+
+
+@media screen and (max-width: 800px) {
+  .game-board {
+    font-size: 20px;
+  }
+  .images-container {
+    gap: 25px;
+  }
 }

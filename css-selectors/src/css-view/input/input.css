@@ -9,8 +9,6 @@
 
 .input {
   height: 30px;
-  width: 471px;
-  grid-area: css;
   margin: 0;
   padding: 0;
   background: #efefef;
@@ -25,6 +23,12 @@
 
 .input.blink {
   animation: blink 1s infinite alternate;
+}
+
+@media screen and (max-width: 800px) {
+  .input  {
+    font-size: 14px;
+  }
 }
 
 

@@ -5,4 +5,13 @@
   border-right: solid 1px #333;
   background: rgba(0,0,0,.7);
   padding: 5px 7px 0 7px;
+  height: 245px;
 }
+
+@media screen and (max-width: 800px) {
+  .html-line-counter  {
+    font-size: 15px;
+    height: 215px;
+  }
+}
+

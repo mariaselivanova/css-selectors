@@ -18,3 +18,13 @@
   opacity: 0.8;
   box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.75);
 }
+
+@media screen and (max-width: 800px) {
+  .help-btn {
+    width: 45px;
+    height: 25px;
+    left: -50px;
+    font-size: 10px;
+    top: 5px;
+  }
+}
