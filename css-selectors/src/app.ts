@@ -9,6 +9,7 @@ import EnterBtn from './css-view/enter-btn/enter-btn';
 import CssView from './css-view/css-view';
 import CssHeader from './css-view/css-header/css-header';
 import CssLineCounter from './css-view/css-line-counter/css-line-counter';
+import Footer from './footer/footer';
 
 export default class App {
   public static start = (): void => {
@@ -23,6 +24,7 @@ export default class App {
     const enterBtn = new EnterBtn(input);
     const helpBtn = new HelpBtn(levels, input);
     const levelInputManager = new LevelInputManager(levels, input);
+    const footer = new Footer();
     levels.onLevelChange(() => {
       levelInputManager.handleInput();
     });
@@ -33,6 +35,7 @@ export default class App {
       cssElement,
       htmlView.getElement(),
       board.getElement(),
+      footer.getElement(),
     );
     cssElement.prepend(
       cssHeader.getElement(),
