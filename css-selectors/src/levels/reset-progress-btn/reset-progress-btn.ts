@@ -9,11 +9,7 @@ export default class ResetBtn extends ButtonView {
     super(['reset-btn']);
     this.setButtonType('reset');
     this.levels = levels;
-    this.element?.addEventListener('click', () => this.handleResetBtn());
+    this.element?.addEventListener('click', () => this.levels.resetProgress());
     this.setTextContent('reset progress');
-  }
-
-  private handleResetBtn():void {
-    this.levels.resetProgress();
   }
 }

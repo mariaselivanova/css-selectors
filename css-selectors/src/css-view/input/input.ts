@@ -7,6 +7,7 @@ import { setCorrectAnswerAnimation, setWrongAnswerAnimation } from '../../utils/
 import CodeHighlighter from '../code-highlighter/code-highlighter';
 
 hljs.registerLanguage('css', css);
+const MAX_INPUT_LENGTH = '25';
 
 export default class Input extends InputView {
   private levels: Levels;
@@ -18,7 +19,7 @@ export default class Input extends InputView {
     this.setInputType('text');
     this.setPlaceholder('Type in CSS selector');
     this.levels = levels;
-    this.element?.setAttribute('maxlength', '40');
+    this.element?.setAttribute('maxlength', MAX_INPUT_LENGTH);
     this.element?.addEventListener('keyup', (e) => this.handleKeyUp(e));
     this.element?.addEventListener('input', () => {
       this.highlightCssCode();

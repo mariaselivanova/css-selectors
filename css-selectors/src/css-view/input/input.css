@@ -1,18 +1,17 @@
 .input {
   font-family: monospace;
+  font-size: 16px;
   height: 28px;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 5px;
   border: none;
   outline: none;
   box-sizing: border-box;
   grid-area: input;
-  font-size: 16px;
   z-index: 1;
   color: transparent;
   background: transparent;
   caret-color: white;
-  padding-left: 5px;
 }
 
 @media screen and (max-width: 800px) {

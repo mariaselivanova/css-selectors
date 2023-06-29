@@ -6,8 +6,9 @@ export default class HeaderView extends View {
     editorClass: string,
     editorContent: string,
     pathContent: string,
+    className: string,
   ) {
-    super('div', ['header']);
+    super('div', ['header', className]);
     const editor = new View('p', [editorClass]);
     const path = new View('p', ['path']);
     editor.setTextContent(editorContent);

@@ -5,7 +5,7 @@ import View from '../utils/view';
 import './html-view.css';
 import HtmlHeader from './html-header/html-header';
 import HtmlLineCounter from './html-line-counter/html-line-counter';
-import { handleTagMouseOver, handleTagMouseOut } from './html-view-utils';
+import { handleTagMouseOver, handleTagMouseOut, createTag } from './html-view-utils';
 
 hljs.registerLanguage('html', html);
 
@@ -38,25 +38,33 @@ export default class HtmlView extends View {
     if (chosenLevel) {
       chosenLevel.tagsArray.forEach((tag) => {
         if (!tag.child) {
-          const newTag = new View('div', ['inner-div']);
-          newTag.setTextContent(`<${tag.name} ${tag.idAttribute ? `id='${tag.idAttribute}'` : ''} />`);
-          newTag.getElement().setAttribute('data-markupid', `${tag.id}`);
+          const newTag = createTag(
+            `<${tag.name} ${tag.idAttribute ? `id='${tag.idAttribute}'` : ''} />`,
+            ['inner-div'],
+            tag.id,
+          );
           tagElements.push(newTag.getElement());
         } else {
-          const newOpenTag = new View('div', ['inner-div']);
-          newOpenTag.setTextContent(`<${tag.name} ${tag.idAttribute ? `id='${tag.idAttribute}'` : ''}>`);
-          newOpenTag.getElement().setAttribute('data-markupid', `${tag.id}`);
-          tagElements.push(newOpenTag.getElement());
-
-          const newChildTag = new View('div', ['inner-div', 'inner-child-div']);
-          newChildTag.setTextContent(`<${tag.child.name} ${tag.child.idAttribute ? `id = '${tag.child.idAttribute}'` : ''} />`);
-          newChildTag.getElement().setAttribute('data-markupid', `${tag.child.id}`);
-          tagElements.push(newChildTag.getElement());
-
-          const newClosingTag = new View('div', ['inner-div']);
-          newClosingTag.setTextContent(`</${tag.name}>`);
-          newClosingTag.getElement().setAttribute('data-markupid', `${tag.id}`);
-          tagElements.push(newClosingTag.getElement());
+          const newOpenTag = createTag(
+            `<${tag.name} ${tag.idAttribute ? `id='${tag.idAttribute}'` : ''}>`,
+            ['inner-div'],
+            tag.id,
+          );
+          const newChildTag = createTag(
+            `<${tag.child.name} ${tag.child.idAttribute ? `id = '${tag.child.idAttribute}'` : ''} />`,
+            ['inner-div', 'inner-child-div'],
+            tag.child.id,
+          );
+          const newClosingTag = createTag(
+            `</${tag.name}>`,
+            ['inner-div'],
+            tag.id,
+          );
+          tagElements.push(
+            newOpenTag.getElement(),
+            newChildTag.getElement(),
+            newClosingTag.getElement(),
+          );
         }
       });
     }

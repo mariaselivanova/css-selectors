@@ -1,20 +1,21 @@
 .css-view {
   display: grid;
-  position: relative;
   grid-template-areas: 'cssheader cssheader'
-                      'counter input'
-                      'counter comment' ;
+                       'counter input'
+                       'counter comment';
   grid-template-columns: 29px minmax(100px, 471px);
   grid-template-rows: 50px 105px 145px;
+  position: relative;
   background: #1d1f21;
-  color: #AAA;
+  color: #aaa;
 }
 
 .css-comment {
-  margin-left: 5px;
   grid-area: comment;
+  margin-left: 5px;
   font-size: 17px;
   font-family: monospace;
+  opacity: 0.5;
 }
 
 @media screen and (max-width: 800px) {

@@ -10,10 +10,6 @@ export default class EnterBtn extends ButtonView {
     this.setTextContent('enter');
     this.setButtonType('button');
     this.input = input;
-    this.element?.addEventListener('click', () => this.handleEnterBtn());
-  }
-
-  private handleEnterBtn():void {
-    this.input.handleInput();
+    this.element?.addEventListener('click', () => this.input.handleInput());
   }
 }

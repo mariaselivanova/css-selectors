@@ -9,8 +9,8 @@ export default class Footer extends View {
     const githubLogo = new View('div', ['github-logo']);
     const githubLink = new View('a', ['github-link']);
     githubLink.getElement().setAttribute('target', '_blank');
-    courseLink.getElement().setAttribute('target', '_blank');
     githubLink.getElement().setAttribute('href', 'https://github.com/mariaselivanova');
+    courseLink.getElement().setAttribute('target', '_blank');
     courseLink.getElement().setAttribute('href', 'https://rs.school/js/');
     courseLink.getElement().append(courseLogo.getElement());
     githubLink.getElement().append(githubLogo.getElement());

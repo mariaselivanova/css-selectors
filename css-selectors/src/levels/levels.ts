@@ -5,8 +5,14 @@ import Board from '../game-board/board';
 import View from '../utils/view';
 import HtmlView from '../html-view/html-view';
 import {
-  addToHelp, addToProgress, getHelpArray, getProgressArray, getSelectedLevel,
+  addToHelp,
+  addToProgress,
+  getHelpArray,
+  getProgressArray,
+  getSelectedLevel,
 } from './localStorage';
+
+const TOTAL_LEVELS_NUM = 10;
 
 export default class Levels extends View {
   private levelLinks: HTMLElement[];
@@ -31,12 +37,12 @@ export default class Levels extends View {
     this.setContent(levelsArray);
   }
 
-  private setContent(array: Level[]): void {
+  private setContent(levels: Level[]): void {
     const note = new View('p', ['note']);
     note.setTextContent('* - solved with help');
     const helpArray = getHelpArray();
     const progressArray = getProgressArray();
-    array.forEach((level: Level) => {
+    levels.forEach((level: Level) => {
       const link = new View('a', ['link']);
       link.setTextContent(`Level ${level.number}`);
       const linkElement = link.getElement();
@@ -79,10 +85,7 @@ export default class Levels extends View {
 
   public changeLevelStatus(): void {
     this.selectedLevelElement?.classList.add('link_solved');
-    const levelNumber = this.selectedLevelElement?.textContent?.substring(5);
-    if (levelNumber) {
-      addToProgress(+levelNumber);
-    }
+    addToProgress(this.selectedLevel);
   }
 
   private findUnsolvedLevel(): HTMLElement | undefined {
@@ -90,7 +93,7 @@ export default class Levels extends View {
   }
 
   public goToNextLevel(): void {
-    if (this.selectedLevel === 4) {
+    if (this.selectedLevel === TOTAL_LEVELS_NUM) {
       const unsolvedLevel = this.findUnsolvedLevel();
       if (unsolvedLevel) {
         this.setSelectedLevel(unsolvedLevel);
@@ -138,10 +141,7 @@ export default class Levels extends View {
     const helpAttributeValue = this.selectedLevelElement?.getAttribute('data-help');
     if (helpAttributeValue === 'true') {
       this.selectedLevelElement?.classList.add('solved-with-help');
-      const levelNumber = this.selectedLevelElement?.textContent?.substring(5);
-      if (levelNumber) {
-        addToHelp(+levelNumber);
-      }
+      addToHelp(this.selectedLevel);
     }
   }
 

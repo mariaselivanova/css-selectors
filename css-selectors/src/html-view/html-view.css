@@ -5,7 +5,7 @@
   cursor: default;
   display: grid;
   grid-template-areas: 'htmlheader htmlheader'
-                      'counter code';
+                       'counter code';
   grid-template-columns: 30px minmax(100px, 471px);
   grid-template-rows: 50px 145px;
 }
@@ -25,23 +25,19 @@
   width: 160px;
 }
 
-.parent-tag {
-  z-index: 1;
-  white-space: pre;
-}
-
 .inner-child-div {
-  z-index: 10;
   margin-left: 40px;
 }
 
 @media screen and (max-width: 800px) {
-  .code  {
+  .code {
     font-size: 14px;
   }
+
   .inner-div {
     margin-left: 10px;
   }
+
   .inner-child-div {
     margin-left: 20px;
   }

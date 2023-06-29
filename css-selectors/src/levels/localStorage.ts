@@ -18,24 +18,20 @@ export function getProgressArray(): number[] {
   return progressArray;
 }
 
-export function addToProgress(levelNumber: number | null | undefined): void {
-  if (levelNumber) {
-    const progressArray = getProgressArray();
-    if (progressArray.includes(levelNumber)) {
-      return;
-    }
-    progressArray.push(levelNumber);
-    localStorage.setItem('progress', JSON.stringify(progressArray));
+export function addToProgress(levelNumber: number): void {
+  const progressArray = getProgressArray();
+  if (progressArray.includes(levelNumber)) {
+    return;
   }
+  progressArray.push(levelNumber);
+  localStorage.setItem('progress', JSON.stringify(progressArray));
 }
 
-export function addToHelp(levelNumber: number | null | undefined): void {
-  if (levelNumber) {
-    const helpArray = getHelpArray();
-    if (helpArray.includes(levelNumber)) {
-      return;
-    }
-    helpArray.push(levelNumber);
-    localStorage.setItem('help', JSON.stringify(helpArray));
+export function addToHelp(levelNumber: number): void {
+  const helpArray = getHelpArray();
+  if (helpArray.includes(levelNumber)) {
+    return;
   }
+  helpArray.push(levelNumber);
+  localStorage.setItem('help', JSON.stringify(helpArray));
 }
