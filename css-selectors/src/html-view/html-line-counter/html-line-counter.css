@@ -1,6 +1,7 @@
 .html-line-counter {
   grid-area: counter;
   font-size: 17px;
+  font-family: monospace;
   color: #aaa;
   border-right: solid 1px #333;
   background: #1d1f21;

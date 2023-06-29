@@ -1,0 +1,19 @@
+.css-code-highlighter {
+  position: absolute;
+  top: 55px;
+  left: 34px;
+  height: 30px;
+  width: 300;
+  margin: 0;
+  padding: 0 !important;
+  background: transparent;
+  box-sizing: border-box;
+  font-size: 16px;
+  z-index: 0;
+}
+
+@media screen and (max-width: 800px) {
+  .css-code-highlighter  {
+    font-size: 14px;
+  }
+}

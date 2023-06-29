@@ -30,8 +30,8 @@ export default class HtmlView extends View {
     const openingDiv = new View('div', ['opening-div']);
     const closingDiv = new View('div', ['closing-div']);
     openingDiv.setTextContent('<div class = "sky">');
-    hljs.highlightElement(openingDiv.getElement());
     closingDiv.setTextContent('</div>');
+    hljs.highlightElement(openingDiv.getElement());
     hljs.highlightElement(closingDiv.getElement());
     const tagElements: HTMLElement[] = [];
     const chosenLevel = levelsArr.find((lev) => lev.number === level);

@@ -4,13 +4,16 @@ import Levels from '../../levels/levels';
 import InputView from '../../utils/input-view';
 import './input.css';
 import { setCorrectAnswerAnimation, setWrongAnswerAnimation } from '../../utils/animationUtils';
+import CodeHighlighter from '../code-highlighter/code-highlighter';
 
 hljs.registerLanguage('css', css);
 
 export default class Input extends InputView {
   private levels: Levels;
 
-  constructor(levels: Levels) {
+  private codeHighlighter: CodeHighlighter;
+
+  constructor(levels: Levels, codeHighlighter: CodeHighlighter) {
     super(['input', 'blink']);
     this.setInputType('text');
     this.setPlaceholder('Type in CSS selector');
@@ -20,22 +23,21 @@ export default class Input extends InputView {
     this.element?.addEventListener('input', () => {
       this.highlightCssCode();
     });
+    this.codeHighlighter = codeHighlighter;
   }
 
   private highlightCssCode(): void {
     const cssCode = this.element?.value;
-    const highlighter = document.querySelector('.css-code');
-    if (highlighter instanceof HTMLElement && typeof cssCode === 'string') {
-      highlighter.innerText = cssCode;
-      highlighter.classList.add('hljs', 'css');
-      hljs.highlightElement(highlighter);
+    if (typeof cssCode === 'string') {
+      this.codeHighlighter.getElement().innerText = cssCode;
+      this.codeHighlighter.getElement().classList.add('hljs', 'css');
+      hljs.highlightElement(this.codeHighlighter.getElement());
     }
   }
 
   public clearInput(): void {
-    const highlighter = document.querySelector('.css-code');
-    if (this.element && highlighter instanceof HTMLElement) {
-      highlighter.innerText = '';
+    if (this.element) {
+      this.codeHighlighter.setTextContent('');
       this.element.value = '';
     }
   }

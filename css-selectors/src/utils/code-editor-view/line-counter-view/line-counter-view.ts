@@ -5,23 +5,23 @@ export default class LineCounterView extends View {
     super('div', [className]);
     if (this.element) {
       this.element.innerHTML = `
-      &nbsp;&nbsp;1
+      &nbsp;1
       <br>
-      &nbsp;&nbsp;2
+      &nbsp;2
       <br>
-      &nbsp;&nbsp;3
+      &nbsp;3
       <br>
-      &nbsp;&nbsp;4
+      &nbsp;4
       <br>
-      &nbsp;&nbsp;5
+      &nbsp;5
       <br>
-      &nbsp;&nbsp;6
+      &nbsp;6
       <br>
-      &nbsp;&nbsp;7
+      &nbsp;7
       <br>
-      &nbsp;&nbsp;8
+      &nbsp;8
       <br>
-      &nbsp;&nbsp;9
+      &nbsp;9
       <br>
       10
       <br>

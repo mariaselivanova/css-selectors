@@ -43,6 +43,12 @@
   width: 140px;
 }
 
+.pig {
+  background-image: url(../assets/images/pig.png);
+  height: 200px;
+  width: 200px;
+}
+
 .balloon {
   background-image: url(../assets/images/orange-balloon.svg);
   height: 270px;

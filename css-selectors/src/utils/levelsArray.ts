@@ -3,18 +3,18 @@ import { Level } from './types';
 export const levelsArray: Level[] = [
   {
     number: 1,
-    task: 'Select the birds',
+    task: 'Select the piglets',
     answers: ['bird'],
     tagsArray: [
       {
-        name: 'bird',
+        name: 'pig',
         id: 1,
         idAttribute: null,
         strobe: true,
         child: null,
       },
       {
-        name: 'bird',
+        name: 'pig',
         id: 2,
         idAttribute: null,
         strobe: true,
