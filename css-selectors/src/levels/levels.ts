@@ -4,6 +4,9 @@ import { Level } from '../utils/types';
 import Board from '../game-board/board';
 import View from '../utils/view';
 import HtmlView from '../html-view/html-view';
+import {
+  addToHelp, addToProgress, getHelpArray, getProgressArray, getSelectedLevel,
+} from './localStorage';
 
 export default class Levels extends View {
   private levelLinks: HTMLElement[];
@@ -23,24 +26,26 @@ export default class Levels extends View {
     this.board = board;
     this.htmlView = htmlView;
     this.levelLinks = [];
-    this.selectedLevel = 1;
+    this.selectedLevel = getSelectedLevel();
     this.selectedLevelElement = undefined;
     this.setContent(levelsArray);
-  }
-
-  private getFromLocalStorage() {
-    if (localStorage.getItem('')) {
-
-    }
   }
 
   private setContent(array: Level[]): void {
     const note = new View('p', ['note']);
     note.setTextContent('* - solved with help');
+    const helpArray = getHelpArray();
+    const progressArray = getProgressArray();
     array.forEach((level: Level) => {
       const link = new View('a', ['link']);
       link.setTextContent(`Level ${level.number}`);
       const linkElement = link.getElement();
+      if (helpArray.includes(level.number)) {
+        linkElement.classList.add('solved-with-help');
+      }
+      if (progressArray.includes(level.number)) {
+        linkElement.classList.add('link_solved');
+      }
       if (linkElement) {
         this.levelLinks.push(linkElement);
         if (level.number === this.selectedLevel) {
@@ -59,6 +64,7 @@ export default class Levels extends View {
     if (element) {
       element.classList.add('link_active');
       this.selectedLevel = parseInt(element.textContent?.substring(5) ? element.textContent.substring(5) : '1', 10);
+      localStorage.setItem('currentLevel', this.selectedLevel.toString());
       this.board.updateContent(this.selectedLevel, levelsArray);
       this.htmlView.updateContent(this.selectedLevel, levelsArray);
     }
@@ -73,17 +79,14 @@ export default class Levels extends View {
 
   public changeLevelStatus(): void {
     this.selectedLevelElement?.classList.add('link_solved');
+    const levelNumber = this.selectedLevelElement?.textContent?.substring(5);
+    if (levelNumber) {
+      addToProgress(+levelNumber);
+    }
   }
 
   private findUnsolvedLevel(): HTMLElement | undefined {
     return this.levelLinks.find((item) => !item.classList.contains('link_solved'));
-  }
-
-  private handleWin():void {
-    this.board.removeContent();
-    const winCaption = document.createElement('p');
-    winCaption.textContent = 'YOU WON!';
-    this.board.getElement().append(winCaption);
   }
 
   public goToNextLevel(): void {
@@ -93,7 +96,7 @@ export default class Levels extends View {
         this.setSelectedLevel(unsolvedLevel);
         return;
       }
-      this.handleWin();
+      this.board.handleWin();
       return;
     }
     const nextLevel = this.levelLinks.slice(this.selectedLevel).find((item) => !item.classList.contains('link_solved'));
@@ -104,7 +107,7 @@ export default class Levels extends View {
       if (previousLevel) {
         this.setSelectedLevel(previousLevel);
       } else {
-        this.handleWin();
+        this.board.handleWin();
       }
     }
   }
@@ -113,12 +116,13 @@ export default class Levels extends View {
     this.levelChangeCallback = callback;
   }
 
-  public resetProgress():void {
+  public resetProgress(): void {
     this.levelLinks.forEach((link) => {
       link.classList.remove('link_solved');
       link.classList.remove('solved-with-help');
       link.removeAttribute('data-help');
     });
+    localStorage.clear();
     this.setSelectedLevel(this.levelLinks[0]);
   }
 
@@ -130,14 +134,18 @@ export default class Levels extends View {
     return [];
   }
 
-  public checkHelp():void {
+  public checkHelp(): void {
     const helpAttributeValue = this.selectedLevelElement?.getAttribute('data-help');
     if (helpAttributeValue === 'true') {
       this.selectedLevelElement?.classList.add('solved-with-help');
+      const levelNumber = this.selectedLevelElement?.textContent?.substring(5);
+      if (levelNumber) {
+        addToHelp(+levelNumber);
+      }
     }
   }
 
-  public setHelpedStatus():void {
+  public setHelpedStatus(): void {
     this.selectedLevelElement?.setAttribute('data-help', 'true');
   }
 }

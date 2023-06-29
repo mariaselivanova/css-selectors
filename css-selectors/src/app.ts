@@ -4,7 +4,7 @@ import HtmlView from './html-view/html-view';
 import Input from './css-view/input/input';
 import HelpBtn from './levels/help-btn/help-btn';
 import LevelInputManager from './utils/levels-input-manager';
-import ResetBtn from './levels/reset-progres-btn/reset-progress-btn';
+import ResetBtn from './levels/reset-progress-btn/reset-progress-btn';
 import EnterBtn from './css-view/enter-btn/enter-btn';
 import CssView from './css-view/css-view';
 import CssHeader from './css-view/css-header/css-header';

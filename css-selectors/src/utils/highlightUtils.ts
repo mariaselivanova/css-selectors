@@ -33,6 +33,6 @@ export function highlightCssCode(cssCode: string | null): void {
   hljs.registerLanguage('css', css);
   const highlighter = document.querySelector('.css-code-highlighter');
   if (highlighter instanceof HTMLElement && cssCode) {
-    highlighter.innerHTML = hljs.highlight('css', cssCode).value;
+    highlighter.innerHTML = hljs.highlight(cssCode, { language: 'css' }).value;
   }
 }

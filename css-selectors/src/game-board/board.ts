@@ -4,9 +4,9 @@ import View from '../utils/view';
 import { handleImageMouseOver, handleImageMouseOut, createImageDiv } from './board-utils';
 
 export default class BoardView extends View {
-  private task: HTMLElement;
+  public task: HTMLElement;
 
-  private imagesContainer: View;
+  public imagesContainer: View;
 
   constructor() {
     super('section', ['game-board']);
@@ -38,5 +38,10 @@ export default class BoardView extends View {
         this.imagesContainer.getElement().append(wrapper);
       });
     }
+  }
+
+  public handleWin(): void {
+    this.imagesContainer.removeContent();
+    this.task.textContent = 'YOU WON!';
   }
 }
