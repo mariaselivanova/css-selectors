@@ -29,6 +29,12 @@ export default class LineCounterView extends View {
       <br>
       12
       <br>
+      13
+      <br>
+      14
+      <br>
+      15
+      <br>
       `;
     }
   }

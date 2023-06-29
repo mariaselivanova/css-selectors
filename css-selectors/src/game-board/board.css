@@ -2,6 +2,7 @@
 
 .game-board {
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -14,6 +15,7 @@
   background-repeat: no-repeat;
   grid-area: board;
   gap: 50px;
+  overflow: hidden;
 }
 
 .game-board p {
@@ -29,42 +31,53 @@
   gap: 40px;
 }
 
+.image-wrapper {
+  position: relative;
+}
+
 .image {
   display: block;
-  position: relative;
   background-position: center;
-  background-size: 80%;
+  background-size: 70%;
   background-repeat: no-repeat;
 }
 
-.bird {
-  background-image: url(../assets/images/red-bird.svg);
-  height: 170px;
-  width: 140px;
+.crab {
+  background-image: url(../assets/images/crab.png);
+  height: 258px;
+  width: 284px;
 }
 
-.pig {
-  background-image: url(../assets/images/pig.png);
+.octopus {
+  background-image: url(../assets/images/octopus.png);
+  height: 267px;
+  width: 200px;
+}
+
+ .jellyfish {
+  background-image: url(../assets/images/blue-jellyfish.png);
   height: 200px;
   width: 200px;
 }
 
-.balloon {
-  background-image: url(../assets/images/orange-balloon.svg);
-  height: 270px;
-  width: 50px;
+.seal {
+  background-image: url(../assets/images/seal.png);
+  height: 300px;
+  width: 300px;
 }
 
-.blue {
-  background-image: url(../assets/images/blue-bird.svg);
-  height: 220px;
-  width: 140px;
+.seahorse {
+  background-image: url(../assets/images/seahorse.png);
+  height: 180px;
+  width: 180px;
 }
 
-.cloud {
-  background-image: url(../assets/images/cloud.svg);
-  height: 240px;
-  width: 140px;
+.seaweed {
+  background-image: url(../assets/images/weed.png);
+  height: 100px;
+  width: 100px;
+  bottom: 30px;
+  left: 90px;
 }
 
 .span {
@@ -76,7 +89,7 @@
   background-color: #ffffff;
   padding: 6px 11px;
   z-index: 3;
-  top: 120px;
+  top: -50px;
 }
 
 .hovered + span {
@@ -84,17 +97,16 @@
 }
 
 .hovered{
-  background-size: 100%;
+  background-size: 80%;
 }
 
 .parent {
   position: absolute;
-  top: 170px;
-  z-index: 1;
+  z-index: 2;
 }
 
 .child {
-  z-index: 2;
+  z-index: 1;
 }
 
 
@@ -102,7 +114,62 @@
   .game-board {
     font-size: 20px;
   }
+
   .images-container {
     gap: 25px;
   }
+
+  .span {
+    font-size: 14px;
+    top: -50px;
+  }
+
+  .frog {
+    height: 125px;
+    width: 118px;
+  }
+
+  .octopus {
+    height: 143px;
+    width: 100px;
+  }
+}
+
+.shell {
+  background-image: url(../assets/images/shell.png);
+  height: 100px;
+  width: 100px;
+  bottom: -50px;
+  left: 40px;
+  z-index: 0;
+}
+
+/* white jellyfish */
+.jellyfish-white {
+  background-image: url(../assets/images/white-jellyfish.png);
+  height: 200px;
+  width: 200px;
+}
+
+/* blue shell */
+.shell-blue {
+  background-image: url(../assets/images/blue-shell.png);
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  bottom: -100px;
+  z-index: 0;
+}
+
+/* small octopus */
+.octopus-small {
+  background-image: url(../assets/images/octopus.png);
+  height: 100px;
+  width: 100px;
+}
+
+.crab-small {
+  background-image: url(../assets/images/crab.png);
+  height: 100px;
+  width: 100px;
 }

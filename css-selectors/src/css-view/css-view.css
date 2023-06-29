@@ -4,7 +4,7 @@
                        'counter input'
                        'counter comment';
   grid-template-columns: 29px minmax(100px, 471px);
-  grid-template-rows: 50px 105px 145px;
+  grid-template-rows: 50px 105px 200px;
   position: relative;
   background: #1d1f21;
   color: #aaa;

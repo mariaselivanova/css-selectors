@@ -10,6 +10,7 @@ export interface TagObj {
   id: number;
   idAttribute: string | null;
   strobe: boolean;
+  imageClassname: string;
   child: TagObj | null;
 }
 

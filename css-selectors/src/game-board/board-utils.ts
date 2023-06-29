@@ -26,11 +26,11 @@ export function handleImageMouseOut(event: MouseEvent): void {
 
 export function createImageDiv(tag: TagObj): { wrapper: HTMLElement, imageElement: HTMLElement } {
   const wrapper = document.createElement('div');
+  wrapper.classList.add('image-wrapper');
   const span = document.createElement('span');
   span.classList.add('span');
   span.textContent = `<${tag.name}${tag.idAttribute ? ` id='${tag.idAttribute}'` : ''}></${tag.name}>`;
-  const className = tag.idAttribute ? tag.idAttribute : tag.name;
-  const image = new View('div', [className, 'image']);
+  const image = new View('div', [tag.imageClassname, 'image']);
   const imageElement = image.getElement();
   imageElement.setAttribute('data-id', `${tag.id}`);
   if (tag.strobe) {
