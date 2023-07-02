@@ -11,6 +11,7 @@ import {
   getProgressArray,
   getSelectedLevel,
 } from './localStorage';
+import Markup from '../html-view/markup';
 
 const TOTAL_LEVELS_NUM = 10;
 
@@ -23,13 +24,16 @@ export default class Levels extends View {
 
   private htmlView: HtmlView;
 
+  private markup: Markup;
+
   private selectedLevelElement: HTMLElement | undefined;
 
   private levelChangeCallback: (() => void) | undefined;
 
-  constructor(board: Board, htmlView: HtmlView) {
+  constructor(board: Board, htmlView: HtmlView, markup: Markup) {
     super('section', ['levels-table']);
     this.board = board;
+    this.markup = markup;
     this.htmlView = htmlView;
     this.levelLinks = [];
     this.selectedLevel = getSelectedLevel();
@@ -73,6 +77,7 @@ export default class Levels extends View {
       localStorage.setItem('currentLevel', this.selectedLevel.toString());
       this.board.updateContent(this.selectedLevel, levelsArray);
       this.htmlView.updateContent(this.selectedLevel, levelsArray);
+      this.markup.updateContent(this.selectedLevel, levelsArray);
     }
     if (this.levelChangeCallback) {
       this.levelChangeCallback();
@@ -129,12 +134,12 @@ export default class Levels extends View {
     this.setSelectedLevel(this.levelLinks[0]);
   }
 
-  public getCorrectAnswers(): string[] {
+  public getCorrectAnswer(): string {
     const currentLevelObject = levelsArray.find((level) => level.number === this.selectedLevel);
     if (currentLevelObject) {
-      return currentLevelObject.answers;
+      return currentLevelObject.selector;
     }
-    return [];
+    return '';
   }
 
   public checkHelp(): void {

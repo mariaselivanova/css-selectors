@@ -29,7 +29,7 @@ export default class HtmlView extends View {
     this.code.removeContent();
     const openingDiv = new View('div', ['opening-div']);
     const closingDiv = new View('div', ['closing-div']);
-    openingDiv.setTextContent('<div class = "sky">');
+    openingDiv.setTextContent('<div class="sea">');
     closingDiv.setTextContent('</div>');
     hljs.highlightElement(openingDiv.getElement());
     hljs.highlightElement(closingDiv.getElement());
@@ -39,19 +39,19 @@ export default class HtmlView extends View {
       chosenLevel.tagsArray.forEach((tag) => {
         if (!tag.child) {
           const newTag = createTag(
-            `<${tag.name} ${tag.idAttribute ? `id='${tag.idAttribute}'` : ''} />`,
+            `<${tag.name} ${tag.idAttribute ? `id='${tag.idAttribute}'` : ''} ${tag.classAttribute ? `class='${tag.classAttribute}'` : ''}/>`,
             ['inner-div'],
             tag.id,
           );
           tagElements.push(newTag.getElement());
         } else {
           const newOpenTag = createTag(
-            `<${tag.name} ${tag.idAttribute ? `id='${tag.idAttribute}'` : ''}>`,
+            `<${tag.name} ${tag.idAttribute ? `id='${tag.idAttribute}'` : ''}${tag.classAttribute ? `class='${tag.classAttribute}'` : ''}>`,
             ['inner-div'],
             tag.id,
           );
           const newChildTag = createTag(
-            `<${tag.child.name} ${tag.child.idAttribute ? `id = '${tag.child.idAttribute}'` : ''} />`,
+            `<${tag.child.name} ${tag.child.idAttribute ? `id='${tag.child.idAttribute}'` : ''}${tag.child.classAttribute ? `class='${tag.child.classAttribute}'` : ''}/>`,
             ['inner-div', 'inner-child-div'],
             tag.child.id,
           );

@@ -11,18 +11,20 @@ import CssHeader from './css-view/css-header/css-header';
 import CssLineCounter from './css-view/css-line-counter/css-line-counter';
 import Footer from './footer/footer';
 import CodeHighlighter from './css-view/code-highlighter/code-highlighter';
+import Markup from './html-view/markup';
 
 export default class App {
   public static start = (): void => {
     const htmlView = new HtmlView();
+    const markup = new Markup();
     const board = new Board();
     const cssVIew = new CssView();
     const cssHeader = new CssHeader();
     const codeHighlighter = new CodeHighlighter();
     const cssLineCounter = new CssLineCounter();
-    const levels = new Levels(board, htmlView);
+    const levels = new Levels(board, htmlView, markup);
     const resetBtn = new ResetBtn(levels);
-    const input = new Input(levels, codeHighlighter);
+    const input = new Input(levels, codeHighlighter, markup);
     const enterBtn = new EnterBtn(input);
     const helpBtn = new HelpBtn(levels, input, codeHighlighter);
     const levelInputManager = new LevelInputManager(levels, input);
@@ -38,6 +40,7 @@ export default class App {
       htmlView.getElement(),
       board.getElement(),
       footer.getElement(),
+      markup.getElement(),
     );
     cssElement.append(
       codeHighlighter.getElement(),

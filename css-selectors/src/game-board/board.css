@@ -2,7 +2,6 @@
 
 .game-board {
   display: flex;
-  position: relative;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -26,13 +25,18 @@
 .images-container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  width: 100%;
   align-items: center;
-  gap: 40px;
+  justify-content: center;
 }
 
 .image-wrapper {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 250px;
 }
 
 .image {
@@ -42,134 +46,148 @@
   background-repeat: no-repeat;
 }
 
-.crab {
-  background-image: url(../assets/images/crab.png);
-  height: 258px;
-  width: 284px;
-}
-
-.octopus {
-  background-image: url(../assets/images/octopus.png);
-  height: 267px;
-  width: 200px;
-}
-
- .jellyfish {
-  background-image: url(../assets/images/blue-jellyfish.png);
-  height: 200px;
-  width: 200px;
-}
-
-.seal {
-  background-image: url(../assets/images/seal.png);
-  height: 300px;
-  width: 300px;
-}
-
-.seahorse {
-  background-image: url(../assets/images/seahorse.png);
-  height: 180px;
-  width: 180px;
-}
-
-.seaweed {
-  background-image: url(../assets/images/weed.png);
-  height: 100px;
-  width: 100px;
-  bottom: 30px;
-  left: 90px;
-}
-
 .span {
   display: none;
   position: absolute;
-  font-size: 18px;
+  top: -30px;
+  font-size: 12px;
   font-family: monospace;
   font-weight: normal;
   background-color: #ffffff;
-  padding: 6px 11px;
+  padding: 2px 5px;
   z-index: 3;
-  top: -50px;
+  text-align: center;
 }
 
-.hovered + span {
+.hovered+span {
   display: block;
 }
 
-.hovered{
-  background-size: 80%;
+.hovered {
+  background-size: 90%;
 }
 
 .parent {
-  position: absolute;
   z-index: 2;
+  position: absolute;
+  bottom: 0;
 }
 
 .child {
   z-index: 1;
 }
 
+/* animals */
 
-@media screen and (max-width: 800px) {
+.crab {
+  background-image: url(../assets/images/crab.png);
+  height: 174px;
+  width: 200px;
+}
+
+.seal {
+  background-image: url(../assets/images/seal.png);
+  height: 153px;
+  width: 200px;
+}
+
+.jellyfish-blue {
+  background-image: url(../assets/images/blue-jellyfish.png);
+  height: 234px;
+  width: 200px;
+}
+
+.jellyfish-white {
+  background-image: url(../assets/images/white-jellyfish.png);
+  height: 210px;
+  width: 200px;
+}
+
+.seaweed {
+  background-image: url(../assets/images/weed.png);
+  height: 150px;
+  width: 100px;
+}
+
+.coral-blue {
+  background-image: url(../assets/images/corall-blue.svg);
+  height: 150px;
+  bottom: 0;
+  width: 150px;
+}
+
+.coral-red {
+  background-image: url(../assets/images/corall-red.svg);
+  height: 160px;
+  bottom: 0;
+  width: 110px;
+}
+
+.seal-small {
+  background-image: url(../assets/images/seal.png);
+  height: 100px;
+  width: 120px;
+}
+
+.crab-small {
+  background-image: url(../assets/images/crab.png);
+  height: 87px;
+  width: 100px;
+}
+
+@media screen and (max-width: 950px) {
   .game-board {
     font-size: 20px;
   }
 
   .images-container {
-    gap: 25px;
+    gap: 0;
+  }
+
+  .image-wrapper {
+    width: 100px;
+    height: 100px;
   }
 
   .span {
-    font-size: 14px;
-    top: -50px;
+    top: -40px;
+    font-size: 13px;
   }
 
-  .frog {
-    height: 125px;
-    width: 118px;
-  }
-
-  .octopus {
-    height: 143px;
+  .crab {
+    height: 100px;
     width: 100px;
   }
-}
 
-.shell {
-  background-image: url(../assets/images/shell.png);
-  height: 100px;
-  width: 100px;
-  bottom: -50px;
-  left: 40px;
-  z-index: 0;
-}
+  .seal {
+    height: 80px;
+    width: 76px;
+  }
 
-/* white jellyfish */
-.jellyfish-white {
-  background-image: url(../assets/images/white-jellyfish.png);
-  height: 200px;
-  width: 200px;
-}
+  .jellyfish-blue,
+  .jellyfish-white {
+    height: 120px;
+    width: 76px;
+  }
 
-/* blue shell */
-.shell-blue {
-  background-image: url(../assets/images/blue-shell.png);
-  height: 200px;
-  width: 200px;
-  position: absolute;
-  bottom: -100px;
-  z-index: 0;
-}
+  .seaweed {
+    height: 70px;
+    width: 40px;
+  }
 
-/* small octopus */
-.octopus-small {
-  background-image: url(../assets/images/octopus.png);
-  height: 100px;
-  width: 100px;
-}
+  .seal-small {
+    height: 130px;
+    width: 40px;
+  }
 
-.crab-small {
-  background-image: url(../assets/images/crab.png);
-  height: 100px;
-  width: 100px;
+  .crab-small {
+    height: 60px;
+    width: 60px;
+  }
+
+  .coral-red,
+  .coral-blue {
+    height: 65px;
+    width: 50px;
+  }
 }

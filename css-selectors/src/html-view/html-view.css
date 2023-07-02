@@ -18,11 +18,12 @@
   line-height: 125%;
   padding-left: 5px;
   padding-top: 5px;
+  width: 100%;
 }
 
 .inner-div {
   margin-left: 20px;
-  width: 100%;
+  width: 90%;
 }
 
 .inner-child-div {

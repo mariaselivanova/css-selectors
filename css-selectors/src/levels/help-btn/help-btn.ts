@@ -28,18 +28,18 @@ export default class HelpBtn extends ButtonView {
 
   private handleHelpBtn(): void {
     this.levels.setHelpedStatus();
-    const answers = this.levels.getCorrectAnswers();
+    const answer = this.levels.getCorrectAnswer();
     const input = this.input.getElement();
     if (input instanceof HTMLInputElement) {
       let i = 0;
       input.value = '';
       this.codeHighlighter.setTextContent('');
       const interval = setInterval(() => {
-        input.value += answers[0][i];
-        this.codeHighlighter.getElement().textContent += answers[0][i];
+        input.value += answer[i];
+        this.codeHighlighter.getElement().textContent += answer[i];
         highlightCssCode(this.codeHighlighter.getElement().textContent);
         i += 1;
-        if (i === answers[0].length) {
+        if (i === answer.length) {
           clearInterval(interval);
         }
       }, 150);

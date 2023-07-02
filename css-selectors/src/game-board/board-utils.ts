@@ -29,7 +29,7 @@ export function createImageDiv(tag: TagObj): { wrapper: HTMLElement, imageElemen
   wrapper.classList.add('image-wrapper');
   const span = document.createElement('span');
   span.classList.add('span');
-  span.textContent = `<${tag.name}${tag.idAttribute ? ` id='${tag.idAttribute}'` : ''}></${tag.name}>`;
+  span.textContent = `<${tag.name}${tag.idAttribute ? ` id='${tag.idAttribute}'` : ''}${tag.classAttribute ? ` class='${tag.classAttribute}'` : ''}></${tag.name}>`;
   const image = new View('div', [tag.imageClassname, 'image']);
   const imageElement = image.getElement();
   imageElement.setAttribute('data-id', `${tag.id}`);
