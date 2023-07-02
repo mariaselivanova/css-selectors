@@ -1,41 +1,57 @@
 import './board.css';
 import { Level } from '../utils/types';
 import View from '../utils/view';
-import { handleImageMouseOver, handleImageMouseOut, createImageDiv } from './board-utils';
+import { createImageDiv } from './board-utils';
 
 export default class BoardView extends View {
   public task: HTMLElement;
 
+  private images: { [key: string]: HTMLElement };
+
   public imagesContainer: View;
+
+  private highlightMarkup: ((id: number) => void) | undefined;
+
+  private deleteMarkupHighlight: ((id: number) => void) | undefined;
 
   constructor() {
     super('section', ['game-board']);
+    this.images = {};
     this.task = document.createElement('p');
     this.imagesContainer = new View('div', ['images-container']);
-    this.imagesContainer.getElement().addEventListener('mouseover', handleImageMouseOver);
-    this.imagesContainer.getElement().addEventListener('mouseout', handleImageMouseOut);
+    this.imagesContainer.getElement().addEventListener('mouseover', (e) => this.handleImageMouseOver(e));
+    this.imagesContainer.getElement().addEventListener('mouseout', (e) => this.handleImageMouseOut(e));
     this.element?.append(this.task, this.imagesContainer.getElement());
+  }
+
+  public onMouseOver(callback: (id: number) => void): void {
+    this.highlightMarkup = callback;
+  }
+
+  public onMouseOut(callback: (id: number) => void): void {
+    this.deleteMarkupHighlight = callback;
   }
 
   public updateContent(level: number, levelsArr: Level[]):void {
     this.imagesContainer.removeContent();
+    this.images = {};
     const selectedLevel = levelsArr.find((lev) => lev.number === level);
     if (selectedLevel) {
       this.task.textContent = selectedLevel.task;
       selectedLevel.tagsArray.forEach((tag) => {
-        const { wrapper, imageElement } = createImageDiv(tag);
-
+        const { wrapperElement, imageElement } = createImageDiv(tag);
+        this.images[tag.id] = imageElement;
         if (tag.child) {
           const {
-            wrapper: innerWrapper,
+            wrapperElement: innerWrapper,
             imageElement: innerImageElement,
           } = createImageDiv(tag.child);
-
+          this.images[tag.child.id] = innerImageElement;
           innerImageElement.classList.add('child');
           imageElement.classList.add('parent');
-          wrapper.append(innerWrapper);
+          wrapperElement.append(innerWrapper);
         }
-        this.imagesContainer.getElement().append(wrapper);
+        this.imagesContainer.getElement().append(wrapperElement);
       });
     }
   }
@@ -43,5 +59,64 @@ export default class BoardView extends View {
   public handleWin(): void {
     this.imagesContainer.removeContent();
     this.task.textContent = 'YOU WON!';
+  }
+
+  private handleImageMouseOver(event: MouseEvent): void {
+    const { target } = event;
+    if (target instanceof HTMLElement) {
+      const tagId = Object.keys(this.images).find((key) => this.images[key] === target);
+      if (tagId) {
+        target.classList.add('hovered');
+        if (this.highlightMarkup) {
+          this.highlightMarkup(+tagId);
+        }
+      }
+    }
+  }
+
+  private handleImageMouseOut(event: MouseEvent): void {
+    const { target } = event;
+    if (target instanceof HTMLElement) {
+      const tagId = Object.keys(this.images).find((key) => this.images[key] === target);
+      if (tagId) {
+        target.classList.remove('hovered');
+        if (this.deleteMarkupHighlight) {
+          this.deleteMarkupHighlight(+tagId);
+        }
+      }
+    }
+  }
+
+  public setCorrectAnswerAnimation():void {
+    Object.values(this.images).forEach((image) => {
+      image.classList.remove('strobe');
+      image.classList.add('fade-out');
+      setTimeout(() => {
+        image.classList.remove('fade-out');
+      }, 1000);
+    });
+  }
+
+  public setWrongAnswerAnimation():void {
+    Object.values(this.images).forEach((image) => {
+      image.classList.add('shake');
+      setTimeout(() => {
+        image.classList.remove('shake');
+      }, 1000);
+    });
+  }
+
+  public highlightImage(id: number): void {
+    const targetElement = this.images[id];
+    if (targetElement) {
+      targetElement.classList.add('hovered');
+    }
+  }
+
+  public deleteImageHighlight(id: number): void {
+    const targetElement = this.images[id];
+    if (targetElement) {
+      targetElement.classList.remove('hovered');
+    }
   }
 }

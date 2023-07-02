@@ -4,7 +4,6 @@ import Input from '../../css-view/input/input';
 import Levels from '../levels';
 import './help-btn.css';
 import ButtonView from '../../utils/button-view';
-import { highlightCssCode } from '../../utils/highlightUtils';
 import CodeHighlighter from '../../css-view/code-highlighter/code-highlighter';
 
 hljs.registerLanguage('css', css);
@@ -37,7 +36,7 @@ export default class HelpBtn extends ButtonView {
       const interval = setInterval(() => {
         input.value += answer[i];
         this.codeHighlighter.getElement().textContent += answer[i];
-        highlightCssCode(this.codeHighlighter.getElement().textContent);
+        this.codeHighlighter.highlightCssCode(this.codeHighlighter.getElement().textContent);
         i += 1;
         if (i === answer.length) {
           clearInterval(interval);

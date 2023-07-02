@@ -30,6 +30,8 @@ export default class Levels extends View {
 
   private levelChangeCallback: (() => void) | undefined;
 
+  private isHelped: HTMLElement | undefined;
+
   constructor(board: Board, htmlView: HtmlView, markup: Markup) {
     super('section', ['levels-table']);
     this.board = board;
@@ -39,6 +41,7 @@ export default class Levels extends View {
     this.selectedLevel = getSelectedLevel();
     this.selectedLevelElement = undefined;
     this.setContent(levelsArray);
+    this.isHelped = undefined;
   }
 
   private setContent(levels: Level[]): void {
@@ -128,7 +131,6 @@ export default class Levels extends View {
     this.levelLinks.forEach((link) => {
       link.classList.remove('link_solved');
       link.classList.remove('solved-with-help');
-      link.removeAttribute('data-help');
     });
     localStorage.clear();
     this.setSelectedLevel(this.levelLinks[0]);
@@ -143,14 +145,13 @@ export default class Levels extends View {
   }
 
   public checkHelp(): void {
-    const helpAttributeValue = this.selectedLevelElement?.getAttribute('data-help');
-    if (helpAttributeValue === 'true') {
+    if (this.isHelped === this.selectedLevelElement) {
       this.selectedLevelElement?.classList.add('solved-with-help');
       addToHelp(this.selectedLevel);
     }
   }
 
   public setHelpedStatus(): void {
-    this.selectedLevelElement?.setAttribute('data-help', 'true');
+    this.isHelped = this.selectedLevelElement;
   }
 }

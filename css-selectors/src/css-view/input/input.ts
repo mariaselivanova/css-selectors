@@ -3,9 +3,9 @@ import css from 'highlight.js/lib/languages/css';
 import Levels from '../../levels/levels';
 import InputView from '../../utils/input-view';
 import './input.css';
-import { setCorrectAnswerAnimation, setWrongAnswerAnimation } from '../../utils/animationUtils';
 import CodeHighlighter from '../code-highlighter/code-highlighter';
 import Markup from '../../html-view/markup';
+import BoardView from '../../game-board/board';
 
 hljs.registerLanguage('css', css);
 const MAX_INPUT_LENGTH = '25';
@@ -15,9 +15,11 @@ export default class Input extends InputView {
 
   private markup: Markup;
 
+  private board: BoardView;
+
   private codeHighlighter: CodeHighlighter;
 
-  constructor(levels: Levels, codeHighlighter: CodeHighlighter, markup: Markup) {
+  constructor(levels: Levels, codeHighlighter: CodeHighlighter, markup: Markup, board: BoardView) {
     super(['input', 'blink']);
     this.setInputType('text');
     this.setPlaceholder('Type in CSS selector');
@@ -29,6 +31,7 @@ export default class Input extends InputView {
       this.highlightCssCode();
     });
     this.codeHighlighter = codeHighlighter;
+    this.board = board;
   }
 
   private highlightCssCode(): void {
@@ -71,7 +74,7 @@ export default class Input extends InputView {
       const selectedArr = Array.from(selectedItems).map((item) => item.outerHTML);
 
       if (correctArr.join('') === selectedArr.join('')) {
-        setCorrectAnswerAnimation();
+        this.board.setCorrectAnswerAnimation();
         setTimeout(() => {
           this.levels.checkHelp();
           this.levels.changeLevelStatus();
@@ -84,7 +87,7 @@ export default class Input extends InputView {
   }
 
   private handleWrongAnswer():void {
-    setWrongAnswerAnimation();
+    this.board.setWrongAnswerAnimation();
     this.clearInput();
   }
 
