@@ -1,15 +1,11 @@
-import Input from '../input/input';
 import ButtonView from '../../utils/button-view';
 import './enter-btn.css';
 
 export default class EnterBtn extends ButtonView {
-  private input: Input;
-
-  constructor(input: Input) {
+  constructor(callback: () => void) {
     super(['enter-btn']);
     this.setTextContent('enter');
     this.setButtonType('button');
-    this.input = input;
-    this.element?.addEventListener('click', () => this.input.handleInput());
+    this.element?.addEventListener('click', callback);
   }
 }

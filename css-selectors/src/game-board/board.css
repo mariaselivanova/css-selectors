@@ -111,16 +111,16 @@
 
 .coral-blue {
   background-image: url(../assets/images/corall-blue.svg);
-  height: 150px;
+  height: 140px;
   bottom: 0;
-  width: 150px;
+  width: 120px;
 }
 
 .coral-red {
   background-image: url(../assets/images/corall-red.svg);
-  height: 160px;
+  height: 120px;
   bottom: 0;
-  width: 110px;
+  width: 90px;
 }
 
 .seal-small {

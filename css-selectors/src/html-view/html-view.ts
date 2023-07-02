@@ -1,23 +1,24 @@
 import hljs from 'highlight.js/lib/core';
 import html from 'highlight.js/lib/languages/xml';
-import { Level } from '../utils/types';
+import { Level, TagObj } from '../utils/types';
 import View from '../utils/view';
 import './html-view.css';
 import HtmlHeader from './html-header/html-header';
 import HtmlLineCounter from './html-line-counter/html-line-counter';
 import { createTag } from './html-view-utils';
-import BoardView from '../game-board/board';
 
 hljs.registerLanguage('html', html);
 
 export default class HtmlView extends View {
   private code: View;
 
-  private board: BoardView;
-
   private tags: { [key: string]: HTMLElement[] };
 
-  constructor(board: BoardView) {
+  private highlightImage: ((id: number) => void) | undefined;
+
+  private deleteImageHighlight: ((id: number) => void) | undefined;
+
+  constructor() {
     super('section', ['html-view']);
     this.tags = {};
     this.code = new View('code', ['code']);
@@ -25,58 +26,59 @@ export default class HtmlView extends View {
     this.code.getElement().addEventListener('mouseout', (e) => this.handleTagMouseOut(e));
     const header = new HtmlHeader();
     const htmlLineCounter = new HtmlLineCounter();
-    this.board = board;
     this.addElements([
       header.getElement(),
       htmlLineCounter.getElement(),
       this.code.getElement()]);
   }
 
-  public updateContent(level: number, levelsArr: Level[]): void {
+  public updateContent(chosenLevelObj: Level): void {
     this.code.removeContent();
     this.tags = {};
-    const openingDiv = new View('div', ['opening-div']);
-    this.code.addElements([openingDiv.getElement()]);
-    const closingDiv = new View('div', ['closing-div']);
-    openingDiv.setTextContent('<div class="sea">');
-    closingDiv.setTextContent('</div>');
-    hljs.highlightElement(openingDiv.getElement());
-    hljs.highlightElement(closingDiv.getElement());
-    const chosenLevel = levelsArr.find((lev) => lev.number === level);
-    if (chosenLevel) {
-      chosenLevel.tagsArray.forEach((tag) => {
-        if (!tag.child) {
-          const newTag = createTag(
-            `<${tag.name} ${tag.idAttribute ? `id='${tag.idAttribute}'` : ''} ${tag.classAttribute ? `class='${tag.classAttribute}'` : ''}/>`,
-            ['inner-div'],
-          );
-          this.pushTagElement(tag.id, newTag.getElement());
-          this.code.addElements([newTag.getElement()]);
-        } else {
-          const newOpenTag = createTag(
-            `<${tag.name} ${tag.idAttribute ? `id='${tag.idAttribute}'` : ''}${tag.classAttribute ? `class='${tag.classAttribute}'` : ''}>`,
-            ['inner-div'],
-          );
-          this.code.getElement().append(newOpenTag.getElement());
-          this.pushTagElement(tag.id, newOpenTag.getElement());
-          const newChildTag = createTag(
-            `<${tag.child.name} ${tag.child.idAttribute ? `id='${tag.child.idAttribute}'` : ''}${tag.child.classAttribute ? `class='${tag.child.classAttribute}'` : ''}/>`,
-            ['inner-div', 'inner-child-div'],
-          );
-          this.code.getElement().append(newChildTag.getElement());
-          this.pushTagElement(tag.child.id, newChildTag.getElement());
-          const newClosingTag = createTag(
-            `</${tag.name}>`,
-            ['inner-div'],
-          );
-          this.code.getElement().append(newClosingTag.getElement());
-          this.pushTagElement(tag.id, newClosingTag.getElement());
-        }
-      });
+    const openingDiv = HtmlView.createDiv(['opening-div'], '<div class="sea">');
+    const closingDiv = HtmlView.createDiv(['closing-div'], '</div>');
+    this.code.addElements([openingDiv]);
+    hljs.highlightElement(openingDiv);
+    hljs.highlightElement(closingDiv);
+    chosenLevelObj.tagsArray.forEach((tag) => {
+      this.processTag(tag, []);
+    });
+    Object.values(this.tags).flat().forEach((element) => hljs.highlightElement(element));
+    this.code.addElements([closingDiv]);
+  }
+
+  private static createDiv(classes: string[], text: string):HTMLElement {
+    const div = new View('div', classes);
+    div.setTextContent(text);
+    return div.getElement();
+  }
+
+  private processTag(tag: TagObj, classes: string[]):void {
+    if (!tag.child) {
+      const newTag = createTag(
+        `<${tag.name}${tag.idAttribute ? ` id='${tag.idAttribute}'` : ''}${tag.classAttribute ? ` class='${tag.classAttribute}'` : ''}/>`,
+        [...classes],
+      );
+      this.pushTagElement(tag.id, newTag.getElement());
+      this.code.addElements([newTag.getElement()]);
+    } else {
+      const newOpenTag = createTag(
+        `<${tag.name}${tag.idAttribute ? ` id='${tag.idAttribute}'` : ''}${tag.classAttribute ? ` class='${tag.classAttribute}'` : ''}>`,
+        [],
+      );
+      this.pushTagElement(tag.id, newOpenTag.getElement());
+      this.code.addElements([newOpenTag.getElement()]);
+      if (Array.isArray(tag.child)) {
+        tag.child.forEach((childTag) => {
+          this.processTag(childTag, ['inner-child-div']);
+        });
+      } else {
+        this.processTag(tag.child, ['inner-child-div']);
+      }
+      const newClosingTag = createTag(`</${tag.name}>`, []);
+      this.code.addElements([newClosingTag.getElement()]);
+      this.pushTagElement(tag.id, newClosingTag.getElement());
     }
-    const tagElements = Object.values(this.tags).flat();
-    tagElements.forEach((element) => hljs.highlightElement(element));
-    this.code.addElements([closingDiv.getElement()]);
   }
 
   private pushTagElement(tagId: number, element: HTMLElement): void {
@@ -90,16 +92,16 @@ export default class HtmlView extends View {
     const { target } = event;
     if (target instanceof HTMLElement) {
       const innerDiv = target.closest('.inner-div');
-      const tagId = Object.keys(this.tags)
-        .find((key) => this.tags[key].find((item) => item === innerDiv));
-      if (tagId) {
-        this.board.highlightImage(+tagId);
-        const currElements = Object.values(this.tags).find(
-          (item) => item.find((element) => element === innerDiv),
-        );
-        currElements?.forEach((element) => {
-          element.classList.add('highlighted');
-        });
+      if (innerDiv instanceof HTMLElement) {
+        const tagId = Object.keys(this.tags).find((key) => this.tags[key].includes(innerDiv));
+        if (tagId) {
+          if (this.highlightImage) {
+            this.highlightImage(+tagId);
+          }
+          this.tags[tagId]?.forEach((element) => {
+            element.classList.add('highlighted');
+          });
+        }
       }
     }
   }
@@ -108,31 +110,37 @@ export default class HtmlView extends View {
     const { target } = event;
     if (target instanceof HTMLElement) {
       const innerDiv = target.closest('.inner-div');
-      const tagId = Object.keys(this.tags)
-        .find((key) => this.tags[key].find((item) => item === innerDiv));
-      if (tagId) {
-        this.board.deleteImageHighlight(+tagId);
-        const currElements = Object.values(this.tags).find(
-          (item) => item.find((element) => element === innerDiv),
-        );
-        currElements?.forEach((element) => {
-          element.classList.remove('highlighted');
-        });
+      if (innerDiv instanceof HTMLElement) {
+        const tagId = Object.keys(this.tags).find((key) => this.tags[key].includes(innerDiv));
+        if (tagId) {
+          if (this.deleteImageHighlight) {
+            this.deleteImageHighlight(+tagId);
+          }
+          this.tags[tagId]?.forEach((element) => {
+            element.classList.remove('highlighted');
+          });
+        }
       }
     }
   }
 
   public highlightMarkupElement(id: number): void {
-    const elements = this.tags[id];
-    elements.forEach((element) => {
+    this.tags[id].forEach((element) => {
       element.classList.add('highlighted');
     });
   }
 
   public deleteMarkupHighlight(id: number): void {
-    const elements = this.tags[id];
-    elements.forEach((element) => {
+    this.tags[id].forEach((element) => {
       element.classList.remove('highlighted');
     });
+  }
+
+  public onMouseOver(callback: (id: number) => void): void {
+    this.highlightImage = callback;
+  }
+
+  public onMouseOut(callback: (id: number) => void): void {
+    this.deleteImageHighlight = callback;
   }
 }

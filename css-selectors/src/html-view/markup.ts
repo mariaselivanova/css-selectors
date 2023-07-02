@@ -6,10 +6,9 @@ export default class Markup extends View {
     super('div', ['sea']);
   }
 
-  public updateContent(currentLevel: number, levels: Level[]): void {
-    const currentLevelObj = levels.find((level) => level.number === currentLevel);
-    if (currentLevelObj && this.element) {
-      this.element.innerHTML = currentLevelObj.markup;
+  public updateContent(chosenLevelObj: Level): void {
+    if (this.element) {
+      this.element.innerHTML = chosenLevelObj.markup;
     }
   }
 }

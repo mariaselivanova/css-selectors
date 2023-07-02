@@ -32,28 +32,25 @@ export default class BoardView extends View {
     this.deleteMarkupHighlight = callback;
   }
 
-  public updateContent(level: number, levelsArr: Level[]):void {
+  public updateContent(chosenLevelObj: Level):void {
     this.imagesContainer.removeContent();
     this.images = {};
-    const selectedLevel = levelsArr.find((lev) => lev.number === level);
-    if (selectedLevel) {
-      this.task.textContent = selectedLevel.task;
-      selectedLevel.tagsArray.forEach((tag) => {
-        const { wrapperElement, imageElement } = createImageDiv(tag);
-        this.images[tag.id] = imageElement;
-        if (tag.child) {
-          const {
-            wrapperElement: innerWrapper,
-            imageElement: innerImageElement,
-          } = createImageDiv(tag.child);
-          this.images[tag.child.id] = innerImageElement;
-          innerImageElement.classList.add('child');
-          imageElement.classList.add('parent');
-          wrapperElement.append(innerWrapper);
-        }
-        this.imagesContainer.getElement().append(wrapperElement);
-      });
-    }
+    this.task.textContent = chosenLevelObj.task;
+    chosenLevelObj.tagsArray.forEach((tag) => {
+      const { wrapperElement, imageElement } = createImageDiv(tag);
+      this.images[tag.id] = imageElement;
+      if (tag.child) {
+        const {
+          wrapperElement: innerWrapper,
+          imageElement: innerImageElement,
+        } = createImageDiv(tag.child);
+        this.images[tag.child.id] = innerImageElement;
+        innerImageElement.classList.add('child');
+        imageElement.classList.add('parent');
+        wrapperElement.append(innerWrapper);
+      }
+      this.imagesContainer.getElement().append(wrapperElement);
+    });
   }
 
   public handleWin(): void {

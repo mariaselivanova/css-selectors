@@ -4,34 +4,26 @@ import Levels from '../../levels/levels';
 import InputView from '../../utils/input-view';
 import './input.css';
 import CodeHighlighter from '../code-highlighter/code-highlighter';
-import Markup from '../../html-view/markup';
-import BoardView from '../../game-board/board';
 
 hljs.registerLanguage('css', css);
-const MAX_INPUT_LENGTH = '25';
+const MAX_INPUT_LENGTH = '30';
 
 export default class Input extends InputView {
-  private levels: Levels;
+  public levels: Levels;
 
-  private markup: Markup;
+  public codeHighlighter: CodeHighlighter;
 
-  private board: BoardView;
-
-  private codeHighlighter: CodeHighlighter;
-
-  constructor(levels: Levels, codeHighlighter: CodeHighlighter, markup: Markup, board: BoardView) {
+  constructor(levels: Levels, codeHighlighter: CodeHighlighter) {
     super(['input', 'blink']);
     this.setInputType('text');
     this.setPlaceholder('Type in CSS selector');
     this.levels = levels;
-    this.markup = markup;
     this.element?.setAttribute('maxlength', MAX_INPUT_LENGTH);
     this.element?.addEventListener('keyup', (e) => this.handleKeyUp(e));
     this.element?.addEventListener('input', () => {
       this.highlightCssCode();
     });
     this.codeHighlighter = codeHighlighter;
-    this.board = board;
   }
 
   private highlightCssCode(): void {
@@ -60,35 +52,25 @@ export default class Input extends InputView {
   }
 
   public handleInput(): void {
-    const correctItems = this.markup.getElement().querySelectorAll(this.levels.getCorrectAnswer());
+    const correctItems = this.levels.getSelectedElements(this.levels.getCorrectAnswer());
     const inputValue = this.element?.value;
 
     if (inputValue) {
       if (!Input.isValidSelector(inputValue)) {
-        this.handleWrongAnswer();
+        this.levels.handleWrongAnswer();
         return;
       }
 
-      const selectedItems = this.markup.getElement().querySelectorAll(inputValue);
+      const selectedItems = this.levels.getSelectedElements(inputValue);
       const correctArr = Array.from(correctItems).map((item) => item.outerHTML);
       const selectedArr = Array.from(selectedItems).map((item) => item.outerHTML);
 
       if (correctArr.join('') === selectedArr.join('')) {
-        this.board.setCorrectAnswerAnimation();
-        setTimeout(() => {
-          this.levels.checkHelp();
-          this.levels.changeLevelStatus();
-          this.levels.goToNextLevel();
-        }, 1000);
+        this.levels.handleCorrectAnswer();
       } else {
-        this.handleWrongAnswer();
+        this.levels.handleWrongAnswer();
       }
     }
-  }
-
-  private handleWrongAnswer():void {
-    this.board.setWrongAnswerAnimation();
-    this.clearInput();
   }
 
   private handleKeyUp(event: KeyboardEvent): void {

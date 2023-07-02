@@ -71,6 +71,10 @@ export default class Levels extends View {
     this.element?.append(note.getElement());
   }
 
+  public onLevelChange(callback: () => void): void {
+    this.levelChangeCallback = callback;
+  }
+
   private setSelectedLevel(element: HTMLElement | undefined): void {
     this.selectedLevelElement = element;
     this.levelLinks.forEach((level: HTMLElement) => Levels.setNotSelectedLevel(level));
@@ -78,9 +82,12 @@ export default class Levels extends View {
       element.classList.add('link_active');
       this.selectedLevel = parseInt(element.textContent?.substring(5) ? element.textContent.substring(5) : '1', 10);
       localStorage.setItem('currentLevel', this.selectedLevel.toString());
-      this.board.updateContent(this.selectedLevel, levelsArray);
-      this.htmlView.updateContent(this.selectedLevel, levelsArray);
-      this.markup.updateContent(this.selectedLevel, levelsArray);
+      const chosenLevelObj = levelsArray.find((level) => level.number === this.selectedLevel);
+      if (chosenLevelObj) {
+        this.board.updateContent(chosenLevelObj);
+        this.htmlView.updateContent(chosenLevelObj);
+        this.markup.updateContent(chosenLevelObj);
+      }
     }
     if (this.levelChangeCallback) {
       this.levelChangeCallback();
@@ -123,10 +130,6 @@ export default class Levels extends View {
     }
   }
 
-  public onLevelChange(callback: () => void): void {
-    this.levelChangeCallback = callback;
-  }
-
   public resetProgress(): void {
     this.levelLinks.forEach((link) => {
       link.classList.remove('link_solved');
@@ -144,6 +147,10 @@ export default class Levels extends View {
     return '';
   }
 
+  public getSelectedElements(selector: string): NodeListOf<HTMLElement> {
+    return this.markup.getElement().querySelectorAll(selector);
+  }
+
   public checkHelp(): void {
     if (this.isHelped === this.selectedLevelElement) {
       this.selectedLevelElement?.classList.add('solved-with-help');
@@ -153,5 +160,18 @@ export default class Levels extends View {
 
   public setHelpedStatus(): void {
     this.isHelped = this.selectedLevelElement;
+  }
+
+  public handleCorrectAnswer():void {
+    this.board.setCorrectAnswerAnimation();
+    setTimeout(() => {
+      this.checkHelp();
+      this.changeLevelStatus();
+      this.goToNextLevel();
+    }, 1000);
+  }
+
+  public handleWrongAnswer():void {
+    this.board.setWrongAnswerAnimation();
   }
 }

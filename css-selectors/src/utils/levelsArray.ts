@@ -236,7 +236,7 @@ export const levelsArray: Level[] = [
     `<seal></seal>
      <seal class = 'small'></seal>
      <coral>
-     <seal class = 'small'></seal>
+       <seal class = 'small'></seal>
      </coral>
      <coral></coral>
     `,
@@ -295,7 +295,7 @@ export const levelsArray: Level[] = [
     `<seal></seal>
      <seal class="small"></seal>
      <seaweed>
-     <crab class='small'></crab>
+       <crab class='small'></crab>
      </seaweed>
      <seaweed>
        <crab></crab>
@@ -363,14 +363,14 @@ export const levelsArray: Level[] = [
     markup:
     `<seaweed>
       <crab></crab>
-    </seaweed>
-    <crab class="small"></crab>
-    <seaweed>
-      <crab class='small'></crab>
-    </seaweed>
-    <seaweed>
+     </seaweed>
+     <crab class="small"></crab>
+     <seaweed>
+       <crab class='small'></crab>
+     </seaweed>
+     <seaweed>
       <seal class='small'></seal>
-    </seaweed>
+     </seaweed>
     `,
     tagsArray: [
       {
@@ -442,16 +442,16 @@ export const levelsArray: Level[] = [
     markup:
     `<seaweed>
       <crab></crab>
-    </seaweed>
-    <seaweed>
+     </seaweed>
+     <seaweed>
       <seal></seal>
-    </seaweed>
-    <coral class='blue'>
+     </seaweed>
+     <coral class='blue'>
       <seal></seal>
-    </coral>
-    <coral>
+     </coral>
+     <coral>
       <crab></crab>
-    </coral>
+     </coral>
     `,
     tagsArray: [
       {
