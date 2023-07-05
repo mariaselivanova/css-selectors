@@ -1,51 +1,53 @@
 module.exports = {
-    env: {
-      browser: true,
-      es2021: true,
-    },
-    extends: ['airbnb-base', 'airbnb-typescript/base', 'plugin:@typescript-eslint/recommended', 'prettier'],
-    overrides: [{
+  env: {
+    browser: true,
+    es2021: true,
+  },
+  extends: ['airbnb-base', 'airbnb-typescript/base', 'plugin:@typescript-eslint/recommended', 'prettier'],
+  overrides: [
+    {
       files: ['webpack.config.js'],
       rules: {
         '@typescript-eslint/explicit-function-return-type': 'off',
         'global-require': 'off',
       },
-    },],
-    parser: '@typescript-eslint/parser',
-    parserOptions: {
-      ecmaVersion: 'latest',
-      sourceType: 'module',
-      project:  '**/tsconfig.json'
     },
-    plugins: ['@typescript-eslint'],
-    root: true,
-    rules: {
-      'import/extensions': 'off',
-      'import/prefer-default-export': 'off',
-      '@typescript-eslint/no-explicit-any': 'error',
-      '@typescript-eslint/array-type': [
-        'error',
-        {
-          default: 'array',
+  ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: '**/tsconfig.json',
+  },
+  plugins: ['@typescript-eslint'],
+  root: true,
+  rules: {
+    'import/extensions': 'off',
+    'import/prefer-default-export': 'off',
+    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/array-type': [
+      'error',
+      {
+        default: 'array',
+      },
+    ],
+    '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/explicit-member-accessibility': [
+      'error',
+      {
+        accessibility: 'explicit',
+        overrides: {
+          accessors: 'explicit',
+          constructors: 'off',
+          methods: 'explicit',
+          properties: 'explicit',
+          parameterProperties: 'explicit',
         },
-      ],
-      "@typescript-eslint/no-var-requires": "off",
-      '@typescript-eslint/explicit-member-accessibility': [
-        'error',
-        {
-          accessibility: 'explicit',
-          overrides: {
-            accessors: 'explicit',
-            constructors: 'off',
-            methods: 'explicit',
-            properties: 'explicit',
-            parameterProperties: 'explicit',
-          },
-        },
-      ],
-      '@typescript-eslint/explicit-function-return-type': 'error',
-      '@typescript-eslint/no-unnecessary-type-assertion': 'error',
-      '@typescript-eslint/no-non-null-assertion': 'error',
-      'no-console': 'off',
-    },
-  };
+      },
+    ],
+    '@typescript-eslint/explicit-function-return-type': 'error',
+    '@typescript-eslint/no-unnecessary-type-assertion': 'error',
+    '@typescript-eslint/no-non-null-assertion': 'error',
+    'no-console': 'off',
+  },
+};

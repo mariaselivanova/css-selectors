@@ -1,7 +1,7 @@
 body {
-    color: #fff;
-    background: #17181c;
-    font-family: sans-serif;
+  color: #fff;
+  background: #17181c;
+  font-family: sans-serif;
 }
 
 main {
@@ -12,83 +12,83 @@ main {
 }
 
 header {
-    padding: 10px 30px;
+  padding: 10px 30px;
 }
 
 header h1 {
-    font-size: 40px;
-    font-weight: 800;
+  font-size: 40px;
+  font-weight: 800;
 }
 
 footer {
-    height: 100px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-around;
-    column-gap: 20px;
-    row-gap: 10px;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  column-gap: 20px;
+  row-gap: 10px;
 }
 
 footer .copyright {
-    font-size: 14px;
-    color: #333;
-    text-align: center;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
 }
 
 footer a {
-    color: #444;
+  color: #444;
 }
 
 footer a:hover {
-    color: #555;
+  color: #555;
 }
 
 footer .copyright:before {
-    content: '©';
+  content: '©';
 }
 
 .link {
-    display: block;
-    width: 150px;
-    height: 56px;
+  display: block;
+  width: 150px;
+  height: 56px;
 }
 
 .logo {
-    background-image: url('./assets/images/logo.svg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    height: 56px;
-    transition: transform 0.3s;
+  background-image: url('./assets/images/logo.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 56px;
+  transition: transform 0.3s;
 }
 
 .logo-github {
-    background-image: url('./assets/images/github-mark.svg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    height: 56px;
-    transition: transform 0.3s;
+  background-image: url('./assets/images/github-mark.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 56px;
+  transition: transform 0.3s;
 }
 
 @media screen and (max-width: 650px) {
-    .link {
-        width: 75px;
-        height: 28px;
-    }
-    .logo-github,
-    .logo {
-        height: 28px;
-    }
+  .link {
+    width: 75px;
+    height: 28px;
+  }
+  .logo-github,
+  .logo {
+    height: 28px;
+  }
 
-    header h1 {
-        font-size: 28px;
-    }
+  header h1 {
+    font-size: 28px;
+  }
 }
 
 .logo-github:hover,
 .logo:hover {
-    transform: scale(1.07);
+  transform: scale(1.07);
 }

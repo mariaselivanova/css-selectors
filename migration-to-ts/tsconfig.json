@@ -3,14 +3,10 @@
     "target": "es2016",
     "module": "commonjs",
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true, 
+    "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
     "noImplicitAny": true
   },
-  "include": [
-    "**/*.ts",
-    "**/*.js",
-    ".eslintrc.js"
-  ]
+  "include": ["**/*.ts", "**/*.js", ".eslintrc.js"]
 }
