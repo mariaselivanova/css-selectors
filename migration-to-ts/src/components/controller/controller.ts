@@ -19,7 +19,7 @@ class AppController extends AppLoader {
       const sourceItem = target.classList.contains('source__item');
       const sourceId = target.getAttribute('data-source-id');
       while (target !== newsContainer) {
-        if (target && sourceItem) {
+        if (sourceItem) {
           if (typeof sourceId === 'string') {
             if (newsContainer.getAttribute('data-source') !== sourceId) {
               newsContainer.setAttribute('data-source', sourceId);

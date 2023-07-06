@@ -55,7 +55,7 @@ export enum Endpoints {
   Everything = 'everything',
 }
 
-export function mergeObject<T extends object, R extends object>(a: T, b: R): T & R {
+export function mergeObject<T extends Partial<ResponseOptions>, R extends Options>(a: T, b: R): T & R {
   return { ...a, ...b };
 }
 
