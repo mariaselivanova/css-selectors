@@ -38,16 +38,16 @@ footer {
 
 footer .copyright {
   font-size: 14px;
-  color: #333;
+  color: #aaa;
   text-align: center;
 }
 
 footer a {
-  color: #444;
+  color: #aaa;
 }
 
 footer a:hover {
-  color: #555;
+  opacity: 0.7;
 }
 
 footer .copyright:before {
@@ -61,21 +61,19 @@ footer .copyright:before {
 }
 
 .logo {
-  background-image: url('./assets/images/logo.svg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  height: 56px;
-  transition: transform 0.3s;
+  height: 35px;
+  filter: invert(100%)
 }
 
-.logo-github {
+.logo_github {
   background-image: url('./assets/images/github-mark.svg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  height: 56px;
-  transition: transform 0.3s;
+}
+
+.logo_rs {
+  background-image: url('./assets/images/logo.svg');
 }
 
 @media screen and (max-width: 650px) {
@@ -85,15 +83,10 @@ footer .copyright:before {
   }
   .logo-github,
   .logo {
-    height: 28px;
+    height: 25px;
   }
 
   header h1 {
     font-size: 28px;
   }
-}
-
-.logo-github:hover,
-.logo:hover {
-  transform: scale(1.07);
 }
