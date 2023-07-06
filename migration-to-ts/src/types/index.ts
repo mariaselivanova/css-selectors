@@ -60,3 +60,5 @@ export function mergeObject<T extends object, R extends object>(a: T, b: R): T &
 }
 
 export type RequestType = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
+
+export type Callback<T> = (data: T) => void;

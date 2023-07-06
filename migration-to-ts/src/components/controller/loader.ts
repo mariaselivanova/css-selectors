@@ -1,4 +1,13 @@
-import { Options, StatusCodes, FetchedData, Endpoints, ResponseOptions, mergeObject, RequestType } from '../../types';
+import {
+  Options,
+  StatusCodes,
+  FetchedData,
+  Endpoints,
+  ResponseOptions,
+  mergeObject,
+  RequestType,
+  Callback,
+} from '../../types';
 
 class Loader {
   private baseLink: string;
@@ -12,7 +21,7 @@ class Loader {
 
   public getResp(
     { endpoint, options = {} }: { endpoint: Endpoints; options?: Partial<ResponseOptions> },
-    callback: <T extends FetchedData>(data: T) => void = (): void => {
+    callback: Callback<FetchedData> = (): void => {
       console.error('No callback for GET response');
     }
   ): void {
@@ -44,7 +53,7 @@ class Loader {
   private load(
     method: RequestType,
     endpoint: Endpoints,
-    callback: <T extends FetchedData>(data: T) => void,
+    callback: Callback<FetchedData>,
     options: Partial<ResponseOptions>
   ): void {
     fetch(this.makeUrl(options, endpoint), { method })

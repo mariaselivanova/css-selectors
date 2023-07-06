@@ -1,8 +1,8 @@
 import AppLoader from './appLoader';
-import { NewsData, SourcesData, Endpoints } from '../../types';
+import { NewsData, SourcesData, Endpoints, Callback } from '../../types';
 
 class AppController extends AppLoader {
-  public getSources(callback: <T extends SourcesData>(data: T) => void): void {
+  public getSources(callback: Callback<SourcesData>): void {
     super.getResp(
       {
         endpoint: Endpoints.Sources,
@@ -11,7 +11,7 @@ class AppController extends AppLoader {
     );
   }
 
-  public getNews(e: Event, callback: <T extends NewsData>(data: T) => void): void {
+  public getNews(e: Event, callback: Callback<NewsData>): void {
     let { target } = e;
     const newsContainer = e.currentTarget;
 

@@ -24,7 +24,7 @@ header h1 {
 }
 
 footer {
-  height: 100px;
+  height: 50px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -56,8 +56,8 @@ footer .copyright:before {
 
 .link {
   display: block;
-  width: 150px;
-  height: 56px;
+  width: 166px;
+  height: 35px;
 }
 
 .logo {
@@ -65,7 +65,7 @@ footer .copyright:before {
   background-repeat: no-repeat;
   background-size: contain;
   height: 35px;
-  filter: invert(100%)
+  filter: invert(100%);
 }
 
 .logo_github {
@@ -79,8 +79,9 @@ footer .copyright:before {
 @media screen and (max-width: 650px) {
   .link {
     width: 75px;
-    height: 28px;
+    height: 25px;
   }
+
   .logo-github,
   .logo {
     height: 25px;
