@@ -2,6 +2,9 @@ body {
   color: #fff;
   background: #17181c;
   font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 main {
@@ -29,6 +32,8 @@ footer {
   justify-content: space-around;
   column-gap: 20px;
   row-gap: 10px;
+  margin-top: auto;
+  flex-shrink: 0;
 }
 
 footer .copyright {
