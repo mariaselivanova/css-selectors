@@ -3,17 +3,17 @@ import { NewsSource } from '../../../types';
 
 class Sources {
   public draw = (data: NewsSource[]): void => {
-    const fragment: DocumentFragment = document.createDocumentFragment();
+    const fragment = document.createDocumentFragment();
     const sourceItemTemp: HTMLTemplateElement | null = document.querySelector('#sourceItemTemp');
     if (sourceItemTemp) {
       data.forEach((item) => {
         const sourceClone = sourceItemTemp.content.cloneNode(true);
         if (sourceClone instanceof DocumentFragment) {
-          const itemName: HTMLElement | null = sourceClone.querySelector('.source__item-name');
+          const itemName = sourceClone.querySelector('.source__item-name');
           if (itemName) {
             itemName.textContent = item.name;
           }
-          const sourceItem: HTMLElement | null = sourceClone.querySelector('.source__item');
+          const sourceItem = sourceClone.querySelector('.source__item');
           if (sourceItem) {
             sourceItem.setAttribute('data-source-id', item.id);
           }

@@ -36,7 +36,7 @@ class AppController extends AppLoader {
           }
           return;
         }
-        if (target && target instanceof HTMLElement) {
+        if (target instanceof HTMLElement) {
           target = target.parentNode;
         }
       }
