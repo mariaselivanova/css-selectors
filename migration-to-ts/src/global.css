@@ -5,6 +5,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  margin: 0;
 }
 
 main {
@@ -24,7 +25,6 @@ header h1 {
 }
 
 footer {
-  height: 50px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -32,7 +32,7 @@ footer {
   justify-content: space-around;
   column-gap: 20px;
   row-gap: 10px;
-  margin-top: auto;
+  margin: auto 0 10px;
   flex-shrink: 0;
 }
 
@@ -40,6 +40,7 @@ footer .copyright {
   font-size: 14px;
   color: #aaa;
   text-align: center;
+  margin: 4px 0;
 }
 
 footer a {
@@ -57,7 +58,6 @@ footer .copyright:before {
 .link {
   display: block;
   width: 166px;
-  height: 35px;
 }
 
 .logo {
@@ -79,7 +79,6 @@ footer .copyright:before {
 @media screen and (max-width: 650px) {
   .link {
     width: 75px;
-    height: 25px;
   }
 
   .logo-github,
