@@ -8,6 +8,14 @@
     "airbnb-typescript/base",
     "plugin:@typescript-eslint/recommended"
   ],
+  "overrides": [
+    {
+      "files": ["webpack.config.js", "postcss.config.js"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    }
+  ],
   "root": true,
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
