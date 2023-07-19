@@ -50,6 +50,15 @@ class Api {
       headers: this.headers,
     });
   }
+
+  public createCar(name: string, color: string): Promise<CarResponse> {
+    const carData = { name, color };
+    return this.request<CarResponse>('garage', {
+      method: 'POST',
+      headers: this.headers,
+      body: JSON.stringify(carData),
+    });
+  }
 }
 
 const api: Api = new Api({

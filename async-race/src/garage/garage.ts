@@ -28,7 +28,7 @@ export default class Garage extends View {
         this.totalCarCount = +api.headers['X-Total-Count'];
         this.title.setTextContent(`Garage (${this.totalCarCount})`);
         carData.forEach((car) => {
-          const carView = new CarView(car.id, car.name, car.color, this.updateCarCount.bind(this));
+          const carView = new CarView(car.id, car.name, car.color);
           this.addElements([carView.getElement()]);
         });
       })
