@@ -9,3 +9,5 @@ export interface CarResponse {
   color: string,
   id: number,
 }
+
+export type ButtonTypes = 'reset' | 'submit' | 'button';

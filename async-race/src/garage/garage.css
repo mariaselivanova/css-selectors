@@ -1,4 +1,6 @@
 .garage {
   display: flex;
   flex-direction: column;
+  color: bisque;
+  font-size: 20px;
 }

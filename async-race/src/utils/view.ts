@@ -1,5 +1,5 @@
 export default class View {
-  public element: HTMLElement;
+  public element: HTMLElement | undefined;
 
   constructor(tag: string, classes: string[]) {
     this.element = View.createElement(tag);
@@ -25,7 +25,7 @@ export default class View {
   }
 
   public getElement(): HTMLElement {
-    return this.element;
+    return this.element || document.createElement('div');
   }
 
   public addElements(children: HTMLElement[]):void {
