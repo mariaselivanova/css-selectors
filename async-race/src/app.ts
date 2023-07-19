@@ -1,4 +1,4 @@
-import CarView from './garage/car-view';
+import CarView from './garage/car-view/car-view';
 import Garage from './garage/garage';
 
 export default class App {

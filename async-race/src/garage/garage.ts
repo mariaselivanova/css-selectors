@@ -1,7 +1,7 @@
 import View from '../utils/view';
 import api from '../utils/api';
 import { CarResponse } from '../utils/types';
-import CarView from './car-view';
+import CarView from './car-view/car-view';
 
 export default class Garage extends View {
   constructor() {

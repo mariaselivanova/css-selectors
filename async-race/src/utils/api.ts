@@ -10,15 +10,17 @@ class Api {
     this.headers = config.headers;
   }
 
-  private request(endpoint: string, options: RequestInit): Promise<CarResponse[]> {
-    return fetch(`${API_URL}${endpoint}`, options).then(this.checkRes);
+  private async request<T>(endpoint: string, options: RequestInit): Promise<T> {
+    const res = await fetch(`${API_URL}${endpoint}`, options);
+    return this.checkRes(res);
   }
 
-  private checkRes(res: Response): Promise<CarResponse[]> {
+  private async checkRes<T>(res: Response): Promise<T> {
     if (res.ok) {
       return res.json();
     }
-    return res.json().then((err) => Promise.reject(new Error(err.message || 'Unknown Error')));
+    const err = await res.json();
+    throw new Error(err.message || 'Unknown Error');
   }
 
   public getAllCars(): Promise<CarResponse[]> {
@@ -27,13 +29,6 @@ class Api {
       headers: this.headers,
     });
   }
-
-/*   public getCar(id: number): Promise<Response> {
-    return this.request(`garage/${id}`, {
-      method: 'GET',
-      headers: this.headers,
-    });
-  } */
 }
 
 const api: Api = new Api({
