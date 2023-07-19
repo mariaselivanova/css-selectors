@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import { ApiConfig, CarResponse } from './types';
 
-const API_URL = 'http://127.0.0.1:3000';
+const API_URL = 'http://127.0.0.1:3000/';
 
 class Api {
   private headers: { [key: string]: string };
@@ -10,11 +10,11 @@ class Api {
     this.headers = config.headers;
   }
 
-  private request(endpoint: string, options: RequestInit): Promise<Response> {
-    return fetch(`${API_URL}${endpoint}`, options).then(this.checkRes.bind(this));
+  private request(endpoint: string, options: RequestInit): Promise<CarResponse[]> {
+    return fetch(`${API_URL}${endpoint}`, options).then(this.checkRes);
   }
 
-  private checkRes(res: Response): Promise<Response> {
+  private checkRes(res: Response): Promise<CarResponse[]> {
     if (res.ok) {
       return res.json();
     }
@@ -25,15 +25,15 @@ class Api {
     return this.request('garage', {
       method: 'GET',
       headers: this.headers,
-    }).then((response: Response) => response.json());
+    });
   }
 
-  public getCar(id: number): Promise<CarResponse> {
+/*   public getCar(id: number): Promise<Response> {
     return this.request(`garage/${id}`, {
       method: 'GET',
       headers: this.headers,
-    }).then((response: Response) => response.json());
-  }
+    });
+  } */
 }
 
 const api: Api = new Api({

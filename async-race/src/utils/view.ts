@@ -1,12 +1,9 @@
 export default class View {
   public element: HTMLElement;
 
-  private tag: string;
-
   constructor(tag: string, classes: string[]) {
     this.element = View.createElement(tag);
     this.addClasses(classes);
-    this.tag = tag;
   }
 
   private static createElement(tag: string): HTMLElement {
