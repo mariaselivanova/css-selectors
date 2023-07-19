@@ -1,10 +1,10 @@
-import CreateCar from './garage/create-car/create-car';
-import Garage from './garage/garage';
+import Header from './header/header';
+import Main from './main';
 
 export default class App {
   public static start():void {
-    const garage = new Garage();
-    const createCar = new CreateCar(garage);
-    document.body.append(createCar.getElement(), garage.getElement());
+    const main = new Main();
+    const header = new Header(main);
+    document.body.append(header.getElement(), main.getElement());
   }
 }
