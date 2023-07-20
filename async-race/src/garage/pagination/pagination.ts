@@ -34,9 +34,7 @@ export default class Pagination extends View {
     this.addElements([prev.getElement(), next.getElement(), this.current.getElement()]);
     next.getElement().addEventListener('click', () => this.loadNextPage());
     prev.getElement().addEventListener('click', () => this.loadPrevPage());
-    document.addEventListener('carDeleted', () => this.reloadPage());
-    document.addEventListener('carAdded', () => this.reloadPage());
-    document.addEventListener('carUpdated', () => this.reloadPage());
+    document.addEventListener('carsUpdated', () => this.reloadPage());
     this.displayCurrentCars();
   }
 
@@ -51,7 +49,6 @@ export default class Pagination extends View {
         this.totalPages = Math.ceil(parseInt(api.headers['X-Total-Count'], 10) / ITEMS_PER_PAGE);
         this.counter.getCarCount(parseInt(api.headers['X-Total-Count'], 10));
         carData.forEach((car) => {
-          console.log(carData);
           const carView = new CarView(car.id, car.name, car.color);
           this.garage.addElements([carView.getElement()]);
         });

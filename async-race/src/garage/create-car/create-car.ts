@@ -32,7 +32,7 @@ export default class CreateCar extends View {
   private createCar(): void {
     api.createCar(this.nameInput.getValue(), this.colorInput.getValue())
       .then(() => {
-        document.dispatchEvent(new Event('carAdded'));
+        document.dispatchEvent(new Event('carsUpdated'));
       })
       .catch((err) => console.log(err))
       .finally(() => {

@@ -12,7 +12,7 @@ export default class RemoveBtn extends ButtonView {
     api.removeCar(id)
       .then(() => {
         console.log(`the car №${id} was removed`);
-        document.dispatchEvent(new Event('carDeleted'));
+        document.dispatchEvent(new Event('carsUpdated'));
       })
       .catch((err) => {
         console.log(err);

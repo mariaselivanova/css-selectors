@@ -1,3 +1,20 @@
+@keyframes carAnimation {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(90vw);
+  }
+}
+
+.animated {
+  animation: carAnimation var(--animation-duration) linear forwards;
+}
+
+.stopped {
+  animation-play-state: paused;
+}
+
 svg {
   width: 50px;
   height: 35px;
@@ -5,9 +22,52 @@ svg {
 
 .car-wrapper {
   border-bottom: 4px solid rgb(126, 125, 125);
-  margin: 10px 0;
+  padding: 40px 0 0;
+  position: relative;
 }
 
 .car-name {
   color: rgb(126, 125, 125);
+}
+
+.flag {
+  position: absolute;
+  left: 87vw;
+  top: 40px;
+  background-image: url('../../images/finish.svg');
+  width: 32px;
+  height: 37px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.car-name {
+  margin: 0;
+  position: absolute;
+  top: 5px;
+  left: 200px;
+}
+
+.select-btn {
+  position: absolute;
+  top: 5px;
+  left: 50px;
+}
+
+.remove-btn {
+  position: absolute;
+  top: 5px;
+  left: 100px;
+}
+
+.engine-start {
+  position: absolute;
+  top: 5px;
+  left: 0;
+}
+
+.reset-btn {
+  position: absolute;
+  top: 5px;
+  left: 25px;
 }

@@ -1,5 +1,7 @@
 import View from '../../utils/view';
 import './car-view.css';
+import EngineResetBtn from './engine-handle/engine-reset-btn';
+import EngineStartBtn from './engine-handle/engine-start-btn';
 import RemoveBtn from './remove-btn/remove-btn';
 import SelectBtn from './select-btn/select-btn';
 
@@ -15,7 +17,16 @@ export default class CarView extends View {
       carName.setTextContent(name);
       const removeBtn = new RemoveBtn(id);
       const selectBtn = new SelectBtn(id);
-      this.addElements([carName.getElement(), selectBtn.getElement(), removeBtn.getElement()]);
+      const engineStartBtn = new EngineStartBtn(id, this.element);
+      const engineResetBtn = new EngineResetBtn(this.element);
+      const flag = new View('div', ['flag']);
+      this.addElements([
+        carName.getElement(),
+        selectBtn.getElement(),
+        removeBtn.getElement(),
+        engineStartBtn.getElement(),
+        engineResetBtn.getElement(),
+        flag.getElement()]);
     }
   }
 }

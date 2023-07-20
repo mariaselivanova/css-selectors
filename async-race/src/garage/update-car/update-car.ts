@@ -46,7 +46,7 @@ export default class UpdateCar extends View {
     if (id) {
       api.updateCar(id, this.nameInput.getValue(), this.colorInput.getValue())
         .then(() => {
-          document.dispatchEvent(new Event('carUpdated'));
+          document.dispatchEvent(new Event('carsUpdated'));
           console.log(`Car with ID ${id} updated`);
         })
         .catch((err) => console.log(err))

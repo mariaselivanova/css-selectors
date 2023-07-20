@@ -1,5 +1,7 @@
 /* eslint-disable class-methods-use-this */
-import { ApiConfig, CarResponse } from './types';
+import {
+  ApiConfig, CarResponse, DriveStatus, EngineParams,
+} from './types';
 
 const API_URL = 'http://127.0.0.1:3000/';
 
@@ -74,6 +76,22 @@ class Api {
   public getCar(id: number): Promise<CarResponse> {
     return this.request(`garage/${id}`, {
       method: 'GET',
+    });
+  }
+
+  public handleEngine(id: number, status: DriveStatus): Promise<EngineParams> {
+    const queryParams = new URLSearchParams();
+    if (id !== undefined) {
+      queryParams.append('id', id.toString());
+    }
+    if (status !== undefined) {
+      queryParams.append('status', status.toString());
+    }
+
+    const queryString = queryParams.toString();
+    const endpoint = `engine${queryString ? `?${queryString}` : ''}`;
+    return this.request(endpoint, {
+      method: 'PATCH',
     });
   }
 }

@@ -22,4 +22,11 @@ export interface GeneratedCar {
   color: string;
 }
 
+export interface EngineParams {
+  velocity: number,
+  distance: number
+}
+
 export type ButtonTypes = 'reset' | 'submit' | 'button';
+
+export type DriveStatus = 'started' | 'drive' | 'stopped';
