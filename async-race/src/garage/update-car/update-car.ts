@@ -13,13 +13,10 @@ export default class UpdateCar extends View {
 
   private updateButton: ButtonView;
 
-  private selectedCar: HTMLElement | undefined;
-
   private selectedId: number | null;
 
   constructor() {
     super('div', ['update-car']);
-    this.selectedCar = undefined;
     this.selectedId = null;
     this.nameInput = new NameInput();
     this.colorInput = new ColorInput();
@@ -35,41 +32,27 @@ export default class UpdateCar extends View {
   }
 
   private handleSelect(data: SelectedCar): void {
-    const {
-      element, id, name, color,
-    } = data;
-    this.selectedCar = element;
+    const { id, name, color } = data;
     this.selectedId = id;
     this.nameInput.setValue(name);
     this.colorInput.setValue(color);
   }
 
   private updateCar(id: number | null): void {
-    if (!this.selectedCar) {
+    if (!this.selectedId) {
       console.log('Select the car!');
       return;
     }
     if (id) {
       api.updateCar(id, this.nameInput.getValue(), this.colorInput.getValue())
-        .then((data) => {
-          const { name, color } = data;
-          if (this.selectedCar) {
-            const carNameElement = this.selectedCar.querySelector('.car-name');
-            if (carNameElement) {
-              carNameElement.textContent = name;
-            }
-            const carSvgElement = this.selectedCar.querySelector('path');
-            if (carSvgElement) {
-              carSvgElement.setAttribute('fill', color);
-            }
-          }
-          console.log(`Car with ID ${id} updated: name = ${name}, color = ${color}`);
+        .then(() => {
+          document.dispatchEvent(new Event('carUpdated'));
+          console.log(`Car with ID ${id} updated`);
         })
         .catch((err) => console.log(err))
         .finally(() => {
           this.nameInput.clearInput();
           this.colorInput.clearInput();
-          this.selectedCar = undefined;
           this.selectedId = null;
         });
     }

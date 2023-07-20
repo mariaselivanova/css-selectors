@@ -36,6 +36,7 @@ export default class Pagination extends View {
     prev.getElement().addEventListener('click', () => this.loadPrevPage());
     document.addEventListener('carDeleted', () => this.reloadPage());
     document.addEventListener('carAdded', () => this.reloadPage());
+    document.addEventListener('carUpdated', () => this.reloadPage());
     this.displayCurrentCars();
   }
 

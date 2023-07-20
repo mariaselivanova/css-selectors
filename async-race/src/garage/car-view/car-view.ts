@@ -14,7 +14,7 @@ export default class CarView extends View {
       const carName = new View('p', ['car-name']);
       carName.setTextContent(name);
       const removeBtn = new RemoveBtn(id);
-      const selectBtn = new SelectBtn(id, this.element);
+      const selectBtn = new SelectBtn(id);
       this.addElements([carName.getElement(), selectBtn.getElement(), removeBtn.getElement()]);
     }
   }
