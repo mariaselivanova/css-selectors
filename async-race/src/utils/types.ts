@@ -17,4 +17,9 @@ export interface SelectedCar {
   element: HTMLElement,
 }
 
+export interface GeneratedCar {
+  name: string;
+  color: string;
+}
+
 export type ButtonTypes = 'reset' | 'submit' | 'button';
