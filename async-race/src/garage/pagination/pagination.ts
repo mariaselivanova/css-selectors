@@ -51,7 +51,7 @@ export default class Pagination extends View {
         this.counter.getCarCount(parseInt(api.headers['X-Total-Count'], 10));
         carData.forEach((car) => {
           console.log(carData);
-          const carView = new CarView(car.id, car.name, car.color, this.counter);
+          const carView = new CarView(car.id, car.name, car.color);
           this.garage.addElements([carView.getElement()]);
         });
         return carData.length;
@@ -80,12 +80,9 @@ export default class Pagination extends View {
     }
   }
 
-  public addGeneratedCars(cars: GeneratedCar[]): void {
+  public static addGeneratedCars(cars: GeneratedCar[]): void {
     cars.forEach((car) => {
       api.createCar(car.name, car.color)
-        .then(() => {
-          this.counter.updateCarCount(1);
-        })
         .catch((err) => console.log(err));
     });
     document.dispatchEvent(new Event('carAdded'));

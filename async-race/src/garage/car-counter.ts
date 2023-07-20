@@ -9,11 +9,6 @@ export default class CarCounter extends View {
     this.setTextContent(`Garage ${this.count}`);
   }
 
-  public updateCarCount(num: number): void {
-    this.count += num;
-    this.setTextContent(`Garage (${this.count})`);
-  }
-
   public getCarCount(num: number): void {
     this.count = num;
     this.setTextContent(`Garage (${this.count})`);

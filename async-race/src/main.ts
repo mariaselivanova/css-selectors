@@ -30,7 +30,7 @@ export default class Main extends View {
     this.updateCar = new UpdateCar();
     this.winners = new Winners();
     this.pagination = new Pagination(this.garage, this.carCounter);
-    this.generateCars = new GenerateCarsBtn(this.pagination);
+    this.generateCars = new GenerateCarsBtn();
     this.addElements([
       this.createCar.getElement(),
       this.updateCar.getElement(),
