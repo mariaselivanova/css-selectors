@@ -1,4 +1,3 @@
-import { CarResponse } from '../../utils/types';
 import View from '../../utils/view';
 import CarCounter from '../car-counter';
 import './car-view.css';

@@ -18,6 +18,7 @@ export default class RemoveBtn extends ButtonView {
         element.remove();
         console.log(`the car №${id} was removed`);
         this.counter.updateCarCount(-1);
+        document.dispatchEvent(new Event('carDeleted'));
       })
       .catch((err) => {
         console.log(err);

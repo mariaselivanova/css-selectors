@@ -1,16 +1,16 @@
 import ButtonView from '../../utils/button-view';
-import Garage from '../garage';
+import Pagination from '../pagination/pagination';
 import { carBrands, carModels } from './cars';
 import './generate-cars.css';
 
 export default class GenerateCarsBtn extends ButtonView {
-  private garage: Garage;
+  private pagination: Pagination;
 
-  constructor(garage: Garage) {
+  constructor(pagination: Pagination) {
     super(['generate-cars'], 'button');
     this.setTextContent('generate cars');
-    this.garage = garage;
-    this.element?.addEventListener('click', () => this.garage.addGeneratedCars(GenerateCarsBtn.createCars(carBrands, carModels)));
+    this.pagination = pagination;
+    this.element?.addEventListener('click', () => this.pagination.addGeneratedCars(GenerateCarsBtn.createCars(carBrands, carModels)));
   }
 
   private static createCars(brands: string[], models: string[]): { name: string; color: string }[] {
