@@ -27,27 +27,25 @@ class Api {
     throw new Error(err.message || 'Unknown Error');
   }
 
-  public getAllCars(_page: number | undefined, _limit: number | undefined): Promise<CarResponse[]> {
+  public getAllCars(page: number | undefined, limit: number | undefined): Promise<CarResponse[]> {
     const queryParams = new URLSearchParams();
-    if (_page !== undefined) {
-      queryParams.append('_page', _page.toString());
+    if (page !== undefined) {
+      queryParams.append('_page', page.toString());
     }
-    if (_limit !== undefined) {
-      queryParams.append('_limit', _limit.toString());
+    if (limit !== undefined) {
+      queryParams.append('_limit', limit.toString());
     }
 
     const queryString = queryParams.toString();
     const endpoint = `garage${queryString ? `?${queryString}` : ''}`;
     return this.request(endpoint, {
       method: 'GET',
-      headers: this.headers,
     });
   }
 
   public removeCar(id: number): Promise<void> {
     return this.request(`garage/${id}`, {
       method: 'DELETE',
-      headers: this.headers,
     });
   }
 
@@ -70,6 +68,12 @@ class Api {
       method: 'PUT',
       headers: this.headers,
       body: JSON.stringify(carData),
+    });
+  }
+
+  public getCar(id: number): Promise<CarResponse> {
+    return this.request(`garage/${id}`, {
+      method: 'GET',
     });
   }
 }

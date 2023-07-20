@@ -40,6 +40,7 @@ export default class CreateCar extends View {
       .catch((err) => console.log(err))
       .finally(() => {
         this.nameInput.clearInput();
+        this.colorInput.clearInput();
       });
   }
 }
