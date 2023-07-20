@@ -59,6 +59,19 @@ class Api {
       body: JSON.stringify(carData),
     });
   }
+
+  public updateCar(id: number, name: string, color: string): Promise<CarResponse> {
+    const carData = {
+      name,
+      color,
+    };
+
+    return this.request<CarResponse>(`garage/${id}`, {
+      method: 'PUT',
+      headers: this.headers,
+      body: JSON.stringify(carData),
+    });
+  }
 }
 
 const api: Api = new Api({

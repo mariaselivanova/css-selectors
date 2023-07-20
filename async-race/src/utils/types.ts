@@ -10,4 +10,11 @@ export interface CarResponse {
   id: number,
 }
 
+export interface SelectedCar {
+  name: string,
+  color: string,
+  id: number,
+  element: HTMLElement,
+}
+
 export type ButtonTypes = 'reset' | 'submit' | 'button';

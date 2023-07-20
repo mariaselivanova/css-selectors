@@ -1,6 +1,7 @@
 import View from '../../utils/view';
 import './car-view.css';
 import RemoveBtn from './remove-btn/remove-btn';
+import SelectBtn from './select-btn/select-btn';
 
 export default class CarView extends View {
   constructor(id: number, name: string, color: string) {
@@ -13,7 +14,8 @@ export default class CarView extends View {
       const carName = new View('p', ['car-name']);
       carName.setTextContent(name);
       const removeBtn = new RemoveBtn(id, this.element);
-      this.addElements([carName.getElement(), removeBtn.getElement()]);
+      const selectBtn = new SelectBtn(id, color, name, this.element);
+      this.addElements([carName.getElement(), selectBtn.getElement(), removeBtn.getElement()]);
     }
   }
 }
