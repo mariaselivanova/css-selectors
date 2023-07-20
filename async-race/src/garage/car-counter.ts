@@ -6,5 +6,11 @@ export default class CarCounter extends View {
   constructor() {
     super('p', ['car-counter']);
     this.count = 0;
+    this.setTextContent(`Garage ${this.count}`);
+  }
+
+  public updateCarCount(num: number): void {
+    this.count += num;
+    this.setTextContent(`Garage (${this.count})`);
   }
 }

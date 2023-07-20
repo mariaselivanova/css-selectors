@@ -1,6 +1,7 @@
 import api from '../../utils/api';
 import ButtonView from '../../utils/button-view';
 import View from '../../utils/view';
+import CarCounter from '../car-counter';
 import CarView from '../car-view/car-view';
 import Garage from '../garage';
 import ColorInput from '../inputs/color-input';
@@ -16,7 +17,9 @@ export default class CreateCar extends View {
 
   private garage: Garage;
 
-  constructor(garage: Garage) {
+  private counter: CarCounter;
+
+  constructor(garage: Garage, counter: CarCounter) {
     super('div', ['create-car']);
     this.nameInput = new NameInput();
     this.colorInput = new ColorInput();
@@ -24,6 +27,7 @@ export default class CreateCar extends View {
     this.createButton.setTextContent('create');
     this.createButton.getElement().addEventListener('click', () => this.createCar());
     this.garage = garage;
+    this.counter = counter;
     this.addElements([
       this.nameInput.getElement(),
       this.colorInput.getElement(),
@@ -34,8 +38,9 @@ export default class CreateCar extends View {
     api.createCar(this.nameInput.getValue(), this.colorInput.getValue())
       .then((carData) => {
         const { name, color, id } = carData;
-        const newCar = new CarView(id, name, color);
+        const newCar = new CarView(id, name, color, this.counter);
         this.garage.addElements([newCar.getElement()]);
+        this.counter.updateCarCount(1);
       })
       .catch((err) => console.log(err))
       .finally(() => {

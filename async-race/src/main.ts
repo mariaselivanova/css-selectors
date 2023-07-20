@@ -1,3 +1,4 @@
+import CarCounter from './garage/car-counter';
 import CreateCar from './garage/create-car/create-car';
 import Garage from './garage/garage';
 import UpdateCar from './garage/update-car/update-car';
@@ -13,15 +14,19 @@ export default class Main extends View {
 
   private updateCar: UpdateCar;
 
+  private carCounter: CarCounter;
+
   constructor() {
     super('main', ['main']);
-    this.garage = new Garage();
-    this.createCar = new CreateCar(this.garage);
+    this.carCounter = new CarCounter();
+    this.garage = new Garage(this.carCounter);
+    this.createCar = new CreateCar(this.garage, this.carCounter);
     this.updateCar = new UpdateCar();
     this.winners = new Winners();
     this.addElements([
       this.createCar.getElement(),
       this.updateCar.getElement(),
+      this.carCounter.getElement(),
       this.garage.getElement()]);
   }
 
@@ -30,6 +35,7 @@ export default class Main extends View {
     this.addElements([
       this.createCar.getElement(),
       this.updateCar.getElement(),
+      this.carCounter.getElement(),
       this.garage.getElement()]);
   }
 
