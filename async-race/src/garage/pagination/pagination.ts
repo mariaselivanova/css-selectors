@@ -20,12 +20,15 @@ export default class Pagination extends View {
 
   private current: View;
 
+  public currentIds: number[];
+
   constructor(garage: Garage, counter: CarCounter) {
     super('nav', ['pagination']);
     this.currentPage = 1;
     this.totalPages = 1;
     this.garage = garage;
     this.counter = counter;
+    this.currentIds = [];
     const prev = new ButtonView(['prev'], 'button');
     const next = new ButtonView(['next'], 'button');
     this.current = new View('p', ['current-page']);
@@ -44,6 +47,7 @@ export default class Pagination extends View {
   }
 
   private getCars(page: number): Promise<number> {
+    this.currentIds = [];
     return api
       .getAllCars(page, ITEMS_PER_PAGE)
       .then((carData: CarResponse[]) => {
@@ -51,6 +55,7 @@ export default class Pagination extends View {
         this.counter.getCarCount(parseInt(api.headers['X-Total-Count'], 10));
         carData.forEach((car) => {
           const carView = new CarView(car.id, car.name, car.color);
+          this.currentIds.push(car.id);
           this.garage.addElements([carView.getElement()]);
         });
         return carData.length;
@@ -87,7 +92,7 @@ export default class Pagination extends View {
     document.dispatchEvent(new Event('carsUpdated'));
   }
 
-  private reloadPage(): void {
+  public reloadPage(): void {
     this.garage.removeContent();
     this.getCars(this.currentPage).then((carsOnCurrentPage) => {
       if (carsOnCurrentPage === 0 && this.currentPage > 1) {

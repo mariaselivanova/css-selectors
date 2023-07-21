@@ -18,7 +18,7 @@ export default class CarView extends View {
       const removeBtn = new RemoveBtn(id);
       const selectBtn = new SelectBtn(id);
       const engineStartBtn = new EngineStartBtn(id, this.element);
-      const engineResetBtn = new EngineResetBtn(this.element);
+      const engineResetBtn = new EngineResetBtn(id, this.element);
       const flag = new View('div', ['flag']);
       this.addElements([
         carName.getElement(),

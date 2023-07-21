@@ -1,3 +1,4 @@
+import api from '../../../utils/api';
 import ButtonView from '../../../utils/button-view';
 
 export default class EngineResetBtn extends ButtonView {
@@ -5,20 +6,24 @@ export default class EngineResetBtn extends ButtonView {
 
   private svg: SVGElement | null;
 
-  constructor(carElement: HTMLElement) {
+  constructor(id: number, carElement: HTMLElement) {
     super(['reset-btn', 'disabled'], 'button');
     this.setTextContent('B');
     this.carElement = carElement;
     this.svg = this.carElement.querySelector('svg');
-    this.element?.addEventListener('click', () => this.resetDrive());
+    this.element?.addEventListener('click', () => this.resetDrive(id));
   }
 
-  private resetDrive(): void {
+  private resetDrive(id: number): void {
     if (this.svg) {
       this.svg.style.animation = '';
     }
-    this.element?.classList.add('disabled');
-    const startBtn = this.carElement.querySelector('.engine-start');
-    startBtn?.classList.remove('disabled');
+    api.handleEngine(id, 'stopped')
+      .then(() => {
+        this.element?.classList.add('disabled');
+        const startBtn = this.carElement.querySelector('.engine-start');
+        startBtn?.classList.remove('disabled');
+      })
+      .catch((err) => console.log(err));
   }
 }

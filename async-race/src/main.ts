@@ -3,51 +3,34 @@ import CreateCar from './garage/create-car/create-car';
 import Garage from './garage/garage';
 import GenerateCarsBtn from './garage/generate-cars/generate-cars-btn';
 import Pagination from './garage/pagination/pagination';
+import RaceBtn from './garage/race/race';
+import ResetAllBtn from './garage/reset-all/reset-all';
 import UpdateCar from './garage/update-car/update-car';
 import View from './utils/view';
 
 export default class Main extends View {
-  private garage: Garage;
-
-  private createCar: CreateCar;
-
-  private updateCar: UpdateCar;
-
-  private carCounter: CarCounter;
-
-  private generateCars: GenerateCarsBtn;
-
-  private pagination: Pagination;
-
   constructor() {
     super('main', ['main']);
-    this.carCounter = new CarCounter();
-    this.garage = new Garage();
-    this.createCar = new CreateCar(this.carCounter);
-    this.updateCar = new UpdateCar();
-    this.pagination = new Pagination(this.garage, this.carCounter);
-    this.generateCars = new GenerateCarsBtn();
+    const carCounter = new CarCounter();
+    const garage = new Garage();
+    const createCar = new CreateCar(carCounter);
+    const updateCar = new UpdateCar();
+    const pagination = new Pagination(garage, carCounter);
+    const generateCars = new GenerateCarsBtn();
+    const resetAllBtn = new ResetAllBtn(pagination);
+    const raceBtn = new RaceBtn();
+    const btnWrapper = new View('div', ['btn-wrapper']);
+    btnWrapper.getElement().append(
+      generateCars.getElement(),
+      resetAllBtn.getElement(),
+      raceBtn.getElement(),
+    );
     this.addElements([
-      this.createCar.getElement(),
-      this.updateCar.getElement(),
-      this.generateCars.getElement(),
-      this.carCounter.getElement(),
-      this.pagination.getElement(),
-      this.garage.getElement()]);
+      createCar.getElement(),
+      updateCar.getElement(),
+      btnWrapper.getElement(),
+      carCounter.getElement(),
+      pagination.getElement(),
+      garage.getElement()]);
   }
-
-/*   public toGarage(): void {
-    this.removeContent();
-    this.addElements([
-      this.createCar.getElement(),
-      this.updateCar.getElement(),
-      this.generateCars.getElement(),
-      this.carCounter.getElement(),
-      this.pagination.getElement(),
-      this.garage.getElement()]);
-  }
-
-  public toWinners(): void {
-    this.addElements([this.winners.getElement()]);
-  } */
 }

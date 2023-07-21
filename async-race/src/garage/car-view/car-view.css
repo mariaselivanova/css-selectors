@@ -103,6 +103,10 @@ svg {
     }
   }
 
+  .car-name {
+    font-size: 13px;
+  }
+
   .engine-start {
     font-size: 10px;
     left: 25px;
