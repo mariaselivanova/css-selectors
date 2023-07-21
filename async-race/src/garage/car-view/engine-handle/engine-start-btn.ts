@@ -20,6 +20,7 @@ export default class EngineStartBtn extends ButtonView {
       const engineData = await api.handleEngine(id, 'started');
       const animationDuration = engineData.distance / engineData.velocity / 1000;
       resetBtn?.classList.remove('disabled');
+      this.element?.classList.add('disabled');
       if (this.svg) {
         this.svg.style.animation = `carAnimation ${animationDuration}s linear forwards`;
       }

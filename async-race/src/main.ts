@@ -5,14 +5,11 @@ import GenerateCarsBtn from './garage/generate-cars/generate-cars-btn';
 import Pagination from './garage/pagination/pagination';
 import UpdateCar from './garage/update-car/update-car';
 import View from './utils/view';
-import Winners from './winners/winners';
 
 export default class Main extends View {
   private garage: Garage;
 
   private createCar: CreateCar;
-
-  private winners: Winners;
 
   private updateCar: UpdateCar;
 
@@ -28,7 +25,6 @@ export default class Main extends View {
     this.garage = new Garage();
     this.createCar = new CreateCar(this.carCounter);
     this.updateCar = new UpdateCar();
-    this.winners = new Winners();
     this.pagination = new Pagination(this.garage, this.carCounter);
     this.generateCars = new GenerateCarsBtn();
     this.addElements([
@@ -40,7 +36,7 @@ export default class Main extends View {
       this.garage.getElement()]);
   }
 
-  public toGarage(): void {
+/*   public toGarage(): void {
     this.removeContent();
     this.addElements([
       this.createCar.getElement(),
@@ -52,7 +48,6 @@ export default class Main extends View {
   }
 
   public toWinners(): void {
-    this.removeContent();
     this.addElements([this.winners.getElement()]);
-  }
+  } */
 }

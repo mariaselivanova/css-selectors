@@ -18,5 +18,7 @@ export default class EngineResetBtn extends ButtonView {
       this.svg.style.animation = '';
     }
     this.element?.classList.add('disabled');
+    const startBtn = this.carElement.querySelector('.engine-start');
+    startBtn?.classList.remove('disabled');
   }
 }

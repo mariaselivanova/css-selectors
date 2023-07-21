@@ -12,3 +12,7 @@ body {
   flex-direction: column;
   gap: 20px;
 }
+
+.hidden {
+  opacity: 0;
+}
