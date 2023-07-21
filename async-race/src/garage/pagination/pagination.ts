@@ -5,6 +5,7 @@ import View from '../../utils/view';
 import CarCounter from '../car-counter';
 import CarView from '../car-view/car-view';
 import Garage from '../garage';
+import './pagination.css';
 
 const ITEMS_PER_PAGE = 7;
 
@@ -83,7 +84,7 @@ export default class Pagination extends View {
       api.createCar(car.name, car.color)
         .catch((err) => console.log(err));
     });
-    document.dispatchEvent(new Event('carAdded'));
+    document.dispatchEvent(new Event('carsUpdated'));
   }
 
   private reloadPage(): void {

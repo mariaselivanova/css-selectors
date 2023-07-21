@@ -1,5 +1,23 @@
 .header {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
   gap: 40px;
+  padding-top: 30px;
+}
+
+.to-garage-btn,
+.to-winners-btn {
+  background-color: transparent;
+  font-size: 20px;
+  border: 2px solid #fff;
+  color: #fff;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.to-garage-btn:hover,
+.to-winners-btn:hover {
+  opacity: 0.5;
 }

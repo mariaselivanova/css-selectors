@@ -1,0 +1,29 @@
+.pagination {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  gap: 30px;
+  align-self: center;
+  flex-wrap: wrap;
+}
+
+.prev,
+.next {
+  background-color: transparent;
+  font-size: 15px;
+  border: 1px solid #fff;
+  color: #fff;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.prev:hover,
+.next:hover {
+  opacity: 0.5;
+}
+
+.current-page {
+  color: #fff;
+}

@@ -3,16 +3,8 @@
     transform: translateX(0);
   }
   to {
-    transform: translateX(90vw);
+    transform: translateX(calc(90vw - 20px));
   }
-}
-
-.animated {
-  animation: carAnimation var(--animation-duration) linear forwards;
-}
-
-.stopped {
-  animation-play-state: paused;
 }
 
 svg {
@@ -21,53 +13,122 @@ svg {
 }
 
 .car-wrapper {
-  border-bottom: 4px solid rgb(126, 125, 125);
+  border-bottom: 4px dotted rgb(186, 186, 186);
   padding: 40px 0 0;
   position: relative;
-}
-
-.car-name {
-  color: rgb(126, 125, 125);
+  padding-left: 70px;
 }
 
 .flag {
   position: absolute;
-  left: 87vw;
-  top: 40px;
+  left: 90vw;
+  top: 50px;
   background-image: url('../../images/finish.svg');
-  width: 32px;
-  height: 37px;
+  width: 26px;
+  height: 28px;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .car-name {
+  color: rgb(199, 199, 199);
   margin: 0;
   position: absolute;
   top: 5px;
-  left: 200px;
+  left: 170px;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .select-btn {
   position: absolute;
   top: 5px;
-  left: 50px;
+  left: 15px;
+  cursor: pointer;
+  background-color: rgb(28, 28, 28);
+  border: none;
+  color: #fff;
+  border-radius: 10%;
 }
 
 .remove-btn {
   position: absolute;
   top: 5px;
-  left: 100px;
+  left: 70px;
+  cursor: pointer;
+  background-color: rgb(28, 28, 28);
+  border: none;
+  color: #fff;
+  border-radius: 10%;
 }
 
 .engine-start {
   position: absolute;
-  top: 5px;
-  left: 0;
+  top: 45px;
+  left: 15px;
+  background-color: rgb(6, 68, 3);
+  border-radius: 40%;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 17px;
 }
 
 .reset-btn {
   position: absolute;
-  top: 5px;
-  left: 25px;
+  top: 45px;
+  left: 45px;
+  background-color: rgb(152, 0, 96);
+  border-radius: 40%;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.select-btn:hover,
+.remove-btn:hover,
+.reset-btn:hover,
+.engine-start:hover {
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 1000px) {
+  @keyframes carAnimation {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(80vw - 50px));
+    }
+  }
+
+  .engine-start {
+    font-size: 10px;
+    left: 25px;
+  }
+  .reset-btn {
+    font-size: 10px;
+    left: 45px;
+  }
+
+  .select-btn {
+    left: 25px;
+  }
+
+  .remove-btn {
+    left: 80px;
+  }
+
+  svg {
+    width: 25px;
+    height: 17px;
+  }
+
+  .flag {
+    width: 16px;
+    height: 18px;
+    top: 40px;
+    left: 80vw;
+  }
 }

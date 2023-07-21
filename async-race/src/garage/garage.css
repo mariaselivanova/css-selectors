@@ -1,11 +1,10 @@
 .garage {
   display: flex;
   flex-direction: column;
-  color: bisque;
-  font-size: 20px;
 }
 
 .car-counter {
   font-size: 25px;
   color: #fff;
+  align-self: center;
 }

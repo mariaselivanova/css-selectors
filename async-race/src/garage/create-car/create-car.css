@@ -1,5 +1,42 @@
 .create-car {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   gap: 30px;
 }
+
+.name-input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #606060;
+  color: #fff;
+}
+
+.name-input:focus {
+  outline: none;
+  border-bottom: 2px solid #fff;
+}
+
+.color-input {
+  border: none;
+  padding: 0;
+  outline: none;
+  width: 50px;
+  height: 30px;
+  background-color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+.create-btn {
+  background-color: transparent;
+  font-size: 15px;
+  border: 1px solid #fff;
+  color: #fff;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.create-btn:hover {
+  opacity: 0.5;
+}
+

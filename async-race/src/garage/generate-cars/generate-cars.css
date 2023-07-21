@@ -1,3 +1,14 @@
 .generate-cars {
   width: 200px;
+  background-color: transparent;
+  font-size: 15px;
+  border: 1px solid #fff;
+  color: #fff;
+  cursor: pointer;
+  padding: 5px;
+  align-self: center;
+}
+
+.generate-cars:hover {
+  opacity: 0.5;
 }

@@ -19,7 +19,6 @@ export default class GenerateCarsBtn extends ButtonView {
       const color = GenerateCarsBtn.getRandomColor();
       res.push({ name, color });
     }
-    console.log(res);
     return res;
   }
 
