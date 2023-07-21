@@ -15,13 +15,18 @@ export default class EngineStartBtn extends ButtonView {
   }
 
   private async startDrive(id: number): Promise<void> {
+    const resetBtn = this.carElement.querySelector('.reset-btn');
     try {
       const engineData = await api.handleEngine(id, 'started');
       const animationDuration = engineData.distance / engineData.velocity / 1000;
+      resetBtn?.classList.remove('disabled');
       if (this.svg) {
         this.svg.style.animation = `carAnimation ${animationDuration}s linear forwards`;
       }
-      await api.handleEngine(id, 'drive');
+      const res = await api.handleEngine(id, 'drive');
+      if (res.success && this.svg) {
+        this.svg.style.animationPlayState = 'paused';
+      }
     } catch (error) {
       if (this.svg) {
         this.svg.style.animationPlayState = 'paused';

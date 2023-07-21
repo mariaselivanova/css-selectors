@@ -24,7 +24,8 @@ export interface GeneratedCar {
 
 export interface EngineParams {
   velocity: number,
-  distance: number
+  distance: number,
+  success: true,
 }
 
 export type ButtonTypes = 'reset' | 'submit' | 'button';

@@ -6,7 +6,7 @@ export default class EngineResetBtn extends ButtonView {
   private svg: SVGElement | null;
 
   constructor(carElement: HTMLElement) {
-    super(['reset-btn'], 'button');
+    super(['reset-btn', 'disabled'], 'button');
     this.setTextContent('B');
     this.carElement = carElement;
     this.svg = this.carElement.querySelector('svg');
@@ -17,5 +17,6 @@ export default class EngineResetBtn extends ButtonView {
     if (this.svg) {
       this.svg.style.animation = '';
     }
+    this.element?.classList.add('disabled');
   }
 }
