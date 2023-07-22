@@ -20,7 +20,7 @@ export default class Pagination extends View {
 
   private current: View;
 
-  public currentIds: number[];
+  public currentCarElements: { [id: number]: HTMLElement };
 
   constructor(garage: Garage, counter: CarCounter) {
     super('nav', ['pagination']);
@@ -28,7 +28,7 @@ export default class Pagination extends View {
     this.totalPages = 1;
     this.garage = garage;
     this.counter = counter;
-    this.currentIds = [];
+    this.currentCarElements = {};
     const prev = new ButtonView(['prev'], 'button');
     const next = new ButtonView(['next'], 'button');
     this.current = new View('p', ['current-page']);
@@ -47,7 +47,9 @@ export default class Pagination extends View {
   }
 
   private getCars(page: number): Promise<number> {
-    this.currentIds = [];
+    this.currentCarElements = {};
+    const raceBtn = document.querySelector('.race');
+    raceBtn?.classList.remove('disabled');
     return api
       .getAllCars(page, ITEMS_PER_PAGE)
       .then((carData: CarResponse[]) => {
@@ -55,7 +57,7 @@ export default class Pagination extends View {
         this.counter.getCarCount(parseInt(api.headers['X-Total-Count'], 10));
         carData.forEach((car) => {
           const carView = new CarView(car.id, car.name, car.color);
-          this.currentIds.push(car.id);
+          this.currentCarElements[car.id] = carView.getElement();
           this.garage.addElements([carView.getElement()]);
         });
         return carData.length;

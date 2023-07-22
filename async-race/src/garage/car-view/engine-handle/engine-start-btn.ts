@@ -24,10 +24,7 @@ export default class EngineStartBtn extends ButtonView {
       if (this.svg) {
         this.svg.style.animation = `carAnimation ${animationDuration}s linear forwards`;
       }
-      const res = await api.handleEngine(id, 'drive');
-      if (res.success && this.svg) {
-        this.svg.style.animationPlayState = 'paused';
-      }
+      await api.handleEngine(id, 'drive');
     } catch (error) {
       if (this.svg) {
         this.svg.style.animationPlayState = 'paused';

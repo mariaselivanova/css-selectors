@@ -18,7 +18,7 @@ export default class Main extends View {
     const pagination = new Pagination(garage, carCounter);
     const generateCars = new GenerateCarsBtn();
     const resetAllBtn = new ResetAllBtn(pagination);
-    const raceBtn = new RaceBtn();
+    const raceBtn = new RaceBtn(pagination);
     const btnWrapper = new View('div', ['btn-wrapper']);
     btnWrapper.getElement().append(
       generateCars.getElement(),

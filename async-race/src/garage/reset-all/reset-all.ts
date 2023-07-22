@@ -14,9 +14,11 @@ export default class ResetAllBtn extends ButtonView {
   }
 
   private resetAll(): void {
+    const raceBtn = document.querySelector('.race');
+    raceBtn?.classList.remove('disabled');
     const promises: Promise<EngineParams>[] = [];
-    this.pagination.currentIds.forEach((id) => {
-      promises.push(api.handleEngine(id, 'stopped'));
+    Object.keys(this.pagination.currentCarElements).forEach((id) => {
+      promises.push(api.handleEngine(+id, 'stopped'));
     });
     Promise.all(promises)
       .then(() => {

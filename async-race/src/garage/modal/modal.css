@@ -1,0 +1,32 @@
+.modal {
+  position: fixed;
+  top: 40%;
+  bottom: 40%;
+  left: 40%;
+  right: 40%;
+  background: #fff;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border-radius: 20px;
+}
+
+.modal-text {
+  color: rgb(0, 0, 0);
+  font-size: 22px;
+}
+
+.modal-button {
+  position: absolute;
+  right: -15px;
+  top: -25px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.modal-button:hover {
+  opacity: 0.5;
+}
