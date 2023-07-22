@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import {
-  ApiConfig, CarResponse, DriveStatus, EngineParams,
+  ApiConfig, CarResponse, DriveStatus, EngineParams, WinnerResponse,
 } from './types';
 
 const API_URL = 'http://127.0.0.1:3000/';
@@ -92,6 +92,30 @@ class Api {
     const endpoint = `engine${queryString ? `?${queryString}` : ''}`;
     return this.request(endpoint, {
       method: 'PATCH',
+    });
+  }
+
+  public createWinner(id: number, wins: number, time: number): Promise<WinnerResponse> {
+    const winnerData = { id, wins, time };
+    return this.request('winners', {
+      method: 'POST',
+      headers: this.headers,
+      body: JSON.stringify(winnerData),
+    });
+  }
+
+  public getWinner(id: number): Promise<WinnerResponse> {
+    return this.request(`winners/${id}`, {
+      method: 'GET',
+    });
+  }
+
+  public updateWinner(id: number, wins: number, time: number): Promise<WinnerResponse> {
+    const newWinnerData = { wins, time };
+    return this.request(`winners/${id}`, {
+      method: 'PUT',
+      headers: this.headers,
+      body: JSON.stringify(newWinnerData),
     });
   }
 }

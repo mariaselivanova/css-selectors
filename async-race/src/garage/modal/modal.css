@@ -8,12 +8,15 @@
   justify-content: center;
   align-items: center;
   display: flex;
+  flex-direction: column;
   border-radius: 20px;
 }
 
 .modal-text {
   color: rgb(0, 0, 0);
-  font-size: 22px;
+  font-size: 21px;
+  text-align: center;
+  margin: 5px 0;
 }
 
 .modal-button {

@@ -43,10 +43,26 @@ export default class RaceBtn extends ButtonView {
     const drivePromises = carEntries.map(
       ([carId, carElement]) => RaceBtn.raceOneCar(+carId, carElement),
     );
-    const successfulCar = await Promise.any(drivePromises);
-    if (successfulCar?.carName) {
-      const modal = new Modal(successfulCar?.carName, successfulCar?.animationDuration);
+    const winner = await Promise.any(drivePromises);
+    if (winner) {
+      const modal = new Modal(winner?.carName, winner?.animationDuration);
       document.body.append(modal.getElement());
+      const winnerTime = +winner.animationDuration.toFixed(2);
+      try {
+        const findWinner = await api.getWinner(winner.carId);
+        const currentTime = findWinner.time;
+        const currentWins = findWinner.wins;
+        let newTime;
+        if (currentTime > winnerTime) {
+          newTime = winnerTime;
+        } else {
+          newTime = currentTime;
+        }
+        const newWins = currentWins + 1;
+        await api.updateWinner(winner.carId, newWins, newTime);
+      } catch {
+        api.createWinner(winner.carId, 1, winnerTime);
+      }
     }
   }
 }

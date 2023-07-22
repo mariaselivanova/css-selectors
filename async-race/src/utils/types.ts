@@ -28,6 +28,12 @@ export interface EngineParams {
   success: true,
 }
 
+export interface WinnerResponse {
+  id: number,
+  wins: number,
+  time: number,
+}
+
 export type ButtonTypes = 'reset' | 'submit' | 'button';
 
 export type DriveStatus = 'started' | 'drive' | 'stopped';
