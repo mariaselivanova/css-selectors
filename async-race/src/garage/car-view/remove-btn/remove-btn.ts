@@ -8,14 +8,14 @@ export default class RemoveBtn extends ButtonView {
     this.element?.addEventListener('click', () => RemoveBtn.deleteCar(id));
   }
 
-  private static deleteCar(id: number):void {
-    api.removeCar(id)
-      .then(() => {
-        console.log(`the car №${id} was removed`);
-        document.dispatchEvent(new Event('carsUpdated'));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  private static async deleteCar(id: number): Promise<void> {
+    try {
+      await api.removeCar(id);
+      await api.deleteWinner(id);
+      console.log(`the car №${id} was removed`);
+      document.dispatchEvent(new Event('carsUpdated'));
+    } catch (err) {
+      console.log(err);
+    }
   }
 }

@@ -118,6 +118,12 @@ class Api {
       body: JSON.stringify(newWinnerData),
     });
   }
+
+  public deleteWinner(id: number): Promise<void> {
+    return this.request(`winners/${id}`, {
+      method: 'DELETE',
+    });
+  }
 }
 
 const api: Api = new Api({
