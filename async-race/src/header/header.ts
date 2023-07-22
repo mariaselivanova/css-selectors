@@ -1,4 +1,5 @@
 import Main from '../main';
+import api from '../utils/api';
 import ButtonView from '../utils/button-view';
 import View from '../utils/view';
 import Winners from '../winners/winners';
@@ -26,11 +27,17 @@ export default class Header extends View {
     this.addElements([this.toGarageBtn.getElement(), this.toWinnerBtn.getElement()]);
   }
 
-  private showWinners(): void {
+  private async showWinners(): Promise<void> {
     this.main.getElement().classList.add('hidden');
     this.winners.getElement().classList.add('winners-visible');
     this.toWinnerBtn.getElement().classList.add('inactive');
     this.toGarageBtn.getElement().classList.remove('inactive');
+    try {
+      const winners = await api.getWinners();
+      this.winners.displayWinners(winners);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   private showGarage(): void {

@@ -110,6 +110,12 @@ class Api {
     });
   }
 
+  public getWinners(): Promise<WinnerResponse[]> {
+    return this.request('winners', {
+      method: 'GET',
+    });
+  }
+
   public updateWinner(id: number, wins: number, time: number): Promise<WinnerResponse> {
     const newWinnerData = { wins, time };
     return this.request(`winners/${id}`, {
