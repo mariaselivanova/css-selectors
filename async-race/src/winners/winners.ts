@@ -1,5 +1,5 @@
+import Pagination from '../pagination/pagination';
 import api from '../utils/api';
-import ButtonView from '../utils/button-view';
 import { CarResponse, SortOptions, SortOrder } from '../utils/types';
 import View from '../utils/view';
 import WinnerCounter from './winner-counter';
@@ -12,8 +12,6 @@ export default class Winners extends View {
 
   public totalPages: number;
 
-  private current: View;
-
   private winnerCounter: WinnerCounter;
 
   private table: HTMLTableElement;
@@ -22,26 +20,23 @@ export default class Winners extends View {
 
   private isTimeSorted: string | null;
 
+  private pagination: Pagination;
+
   constructor() {
     super('div', ['winners']);
     this.currentPage = 1;
     this.totalPages = 1;
     this.winnerCounter = new WinnerCounter();
-    const prev = new ButtonView(['prev'], 'button');
-    const next = new ButtonView(['next'], 'button');
-    this.current = new View('p', ['current-page']);
-    this.current.setTextContent(`page #${this.currentPage}`);
-    const buttonWrapper = new View('div', ['winners-btn-wrapper']);
-    buttonWrapper.addElements([prev.getElement(), this.current.getElement(), next.getElement()]);
-    prev.setTextContent('PREV');
-    next.setTextContent('NEXT');
+    this.pagination = new Pagination();
+    this.pagination.current.setTextContent(`page #${this.currentPage}`);
+    this.pagination.createPagination();
     this.addElements([
       this.winnerCounter.getElement(),
-      buttonWrapper.getElement(),
+      this.pagination.getElement(),
     ]);
     this.table = document.createElement('table');
-    next.getElement().addEventListener('click', () => this.loadNextPage());
-    prev.getElement().addEventListener('click', () => this.loadPrevPage());
+    this.pagination.next.getElement().addEventListener('click', () => this.loadNextPage());
+    this.pagination.prev.getElement().addEventListener('click', () => this.loadPrevPage());
     this.areWinsSorted = null;
     this.isTimeSorted = null;
   }
@@ -149,7 +144,7 @@ export default class Winners extends View {
     if (this.currentPage < this.totalPages) {
       this.currentPage += 1;
       await this.createTable();
-      this.current.setTextContent(`page #${this.currentPage}`);
+      this.pagination.current.setTextContent(`page #${this.currentPage}`);
     }
   }
 
@@ -157,7 +152,7 @@ export default class Winners extends View {
     if (this.currentPage > 1) {
       this.currentPage -= 1;
       await this.createTable();
-      this.current.setTextContent(`page #${this.currentPage}`);
+      this.pagination.current.setTextContent(`page #${this.currentPage}`);
     }
   }
 }

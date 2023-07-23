@@ -1,16 +1,16 @@
 import api from '../../utils/api';
 import ButtonView from '../../utils/button-view';
+import Garage from '../garage';
 import Modal from '../modal/modal';
-import Pagination from '../pagination/pagination';
 
 export default class RaceBtn extends ButtonView {
-  private pagination: Pagination;
+  private garage: Garage;
 
-  constructor(pagination: Pagination) {
+  constructor(garage: Garage) {
     super(['race'], 'button');
     this.setTextContent('race');
     this.element?.addEventListener('click', () => this.race());
-    this.pagination = pagination;
+    this.garage = garage;
   }
 
   private static async raceOneCar(carId: number, carElement: HTMLElement):
@@ -39,7 +39,7 @@ export default class RaceBtn extends ButtonView {
 
   private async race(): Promise<void> {
     this.element?.classList.add('disabled');
-    const carEntries = Object.entries(this.pagination.currentCarElements);
+    const carEntries = Object.entries(this.garage.currentCarElements);
     const drivePromises = carEntries.map(
       ([carId, carElement]) => RaceBtn.raceOneCar(+carId, carElement),
     );

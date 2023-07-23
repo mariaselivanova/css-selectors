@@ -3,7 +3,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 200px;
+  width: 250px;
   gap: 30px;
   align-self: center;
   flex-wrap: wrap;
@@ -17,8 +17,8 @@
   color: #fff;
   cursor: pointer;
   padding: 5px;
-  width: 80px;
-  height: 40px;
+  width: 60px;
+  height: 30px;
 }
 
 .prev:hover,
