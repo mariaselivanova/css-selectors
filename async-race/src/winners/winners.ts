@@ -67,7 +67,7 @@ export default class Winners extends View {
   ): Promise<void> {
     const winners = await api.getWinners(this.currentPage, ITEMS_PER_PAGE, sortOptions, sortOrder);
     this.totalPages = Math.ceil(parseInt(api.headers['X-Total-Count'], 10) / ITEMS_PER_PAGE);
-    this.winnerCounter.getWinnerCount(Math.ceil(parseInt(api.headers['X-Total-Count'], 10)));
+    this.winnerCounter.getCount(Math.ceil(parseInt(api.headers['X-Total-Count'], 10)));
     this.table.innerHTML = '';
     this.createTableHeader(winsHeader, timeHeader);
     winners.forEach(async (winner, index) => {

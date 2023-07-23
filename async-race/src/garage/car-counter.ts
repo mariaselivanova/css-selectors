@@ -1,15 +1,7 @@
-import View from '../utils/view';
+import Counter from '../counter/counter';
 
-export default class CarCounter extends View {
-  public count: number;
-
+export default class CarCounter extends Counter {
   constructor() {
-    super('p', ['car-counter']);
-    this.count = 0;
-  }
-
-  public getCarCount(num: number): void {
-    this.count = num;
-    this.setTextContent(`garage: ${this.count} ${this.count === 1 ? 'car' : 'cars'}`);
+    super('car-counter', 'garage');
   }
 }
