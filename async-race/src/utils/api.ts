@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import {
-  ApiConfig, CarResponse, DriveStatus, EngineParams, WinnerResponse,
+  ApiConfig, CarResponse, DriveStatus, EngineParams, SortOptions, SortOrder, WinnerResponse,
 } from './types';
 
 const API_URL = 'http://127.0.0.1:3000/';
@@ -110,8 +110,29 @@ class Api {
     });
   }
 
-  public getWinners(): Promise<WinnerResponse[]> {
-    return this.request('winners', {
+  public getWinners(
+    page: number | undefined,
+    limit: number | undefined,
+    sort: SortOptions | undefined,
+    order: SortOrder | undefined,
+  )
+    : Promise<WinnerResponse[]> {
+    const queryParams = new URLSearchParams();
+    if (page !== undefined) {
+      queryParams.append('_page', page.toString());
+    }
+    if (limit !== undefined) {
+      queryParams.append('_limit', limit.toString());
+    }
+    if (sort !== undefined) {
+      queryParams.append('_sort', sort.toString());
+    }
+    if (order !== undefined) {
+      queryParams.append('_order', order.toString());
+    }
+    const queryString = queryParams.toString();
+    const endpoint = `winners${queryString ? `?${queryString}` : ''}`;
+    return this.request(endpoint, {
       method: 'GET',
     });
   }

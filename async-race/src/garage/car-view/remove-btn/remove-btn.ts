@@ -11,11 +11,11 @@ export default class RemoveBtn extends ButtonView {
   private static async deleteCar(id: number): Promise<void> {
     try {
       await api.removeCar(id);
-      await api.deleteWinner(id);
-      console.log(`the car №${id} was removed`);
+      console.log(`The car №${id} was removed`);
       document.dispatchEvent(new Event('carsUpdated'));
-    } catch (err) {
-      console.log(err);
+      await api.deleteWinner(id);
+    } catch {
+      console.log('no such car');
     }
   }
 }

@@ -1,5 +1,4 @@
 import Main from '../main';
-import api from '../utils/api';
 import ButtonView from '../utils/button-view';
 import View from '../utils/view';
 import Winners from '../winners/winners';
@@ -32,12 +31,7 @@ export default class Header extends View {
     this.winners.getElement().classList.add('winners-visible');
     this.toWinnerBtn.getElement().classList.add('inactive');
     this.toGarageBtn.getElement().classList.remove('inactive');
-    try {
-      const winners = await api.getWinners();
-      this.winners.displayWinners(winners);
-    } catch (err) {
-      console.log(err);
-    }
+    this.winners.createTable();
   }
 
   private showGarage(): void {

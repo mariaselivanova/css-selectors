@@ -4,19 +4,45 @@
   opacity: 0;
   border: 1px solid #fff;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: left;
-  width: 500px;
+  width: 450px;
 }
 
 .winners-visible {
   opacity: 1;
-  top: 40%;
-  left: calc(50% - 250px);
+  top: 150px;
+  left: calc(50% - 225px);
 }
 
 table {
   color: #fff;
   border-spacing: 10px;
+}
+
+.winners-btn-wrapper {
+  position: relative;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.winner-counter {
+  color: #fff;
+  position: relative;
+  top: -40px;
+  margin: 0;
+}
+
+.th-time,
+.th-wins {
+  cursor: pointer;
+}
+
+.th-time:hover,
+.th-wins:hover {
+  opacity: 0.5;
 }

@@ -34,6 +34,16 @@ export interface WinnerResponse {
   time: number,
 }
 
+export enum SortOptions {
+  time = 'time',
+  wins = 'wins',
+}
+
+export enum SortOrder {
+  asc = 'ASC',
+  desc = 'DESC',
+}
+
 export type ButtonTypes = 'reset' | 'submit' | 'button';
 
 export type DriveStatus = 'started' | 'drive' | 'stopped';
