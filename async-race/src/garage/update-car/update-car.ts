@@ -21,6 +21,10 @@ export default class UpdateCar extends View {
     this.nameInput = new NameInput();
     this.colorInput = new ColorInput();
     this.updateButton = new ButtonView(['create-btn'], 'button');
+    this.init();
+  }
+
+  private init(): void {
     this.updateButton.setTextContent('update');
     this.addElements([
       this.nameInput.getElement(),
