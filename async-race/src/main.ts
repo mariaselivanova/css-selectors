@@ -14,7 +14,7 @@ export default class Main extends View {
     const carCounter = new Counter('car-counter', 'garage');
     const pagination = new Pagination();
     const garage = new Garage(carCounter, pagination);
-    const createCar = new CreateCar(carCounter);
+    const createCar = new CreateCar();
     const updateCar = new UpdateCar();
     const generateCars = new GenerateCarsBtn();
     const resetAllBtn = new ResetAllBtn(garage);

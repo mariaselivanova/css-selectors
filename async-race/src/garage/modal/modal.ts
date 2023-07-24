@@ -5,13 +5,17 @@ import './modal.css';
 export default class Modal extends View {
   constructor(carName: string, time: number) {
     super('div', ['modal']);
+    this.init(carName, time);
+  }
+
+  private init(carName: string, time: number): void {
     const nameText = new View('p', ['modal-text']);
-    nameText.setTextContent(`${carName} won!`);
     const timeText = new View('p', ['modal-text']);
-    timeText.setTextContent(`Result: ${time.toFixed(2)}s`);
     const modalBtn = new ButtonView(['modal-button'], 'button');
-    modalBtn.getElement().addEventListener('click', () => this.getElement().remove());
+    nameText.setTextContent(`${carName} won!`);
+    timeText.setTextContent(`Result: ${time.toFixed(2)}s`);
     modalBtn.setTextContent('x');
+    modalBtn.getElement().addEventListener('click', () => this.getElement().remove());
     this.addElements([nameText.getElement(), timeText.getElement(), modalBtn.getElement()]);
   }
 }

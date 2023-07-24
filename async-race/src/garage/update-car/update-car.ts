@@ -1,15 +1,14 @@
 import api from '../../utils/api';
 import ButtonView from '../../utils/button-view';
+import InputView from '../../utils/input-view';
 import { SelectedCar } from '../../utils/types';
 import View from '../../utils/view';
-import ColorInput from '../inputs/color-input';
-import NameInput from '../inputs/name-input';
 import './update-car.css';
 
 export default class UpdateCar extends View {
-  private nameInput: NameInput;
+  private nameInput: InputView;
 
-  private colorInput: ColorInput;
+  private colorInput: InputView;
 
   private updateButton: ButtonView;
 
@@ -18,9 +17,9 @@ export default class UpdateCar extends View {
   constructor() {
     super('div', ['update-car']);
     this.selectedId = null;
-    this.nameInput = new NameInput();
-    this.colorInput = new ColorInput();
-    this.updateButton = new ButtonView(['create-btn'], 'button');
+    this.nameInput = new InputView(['name-input'], 'text');
+    this.colorInput = new InputView(['color-input'], 'color');
+    this.updateButton = new ButtonView(['update-btn'], 'button');
     this.init();
   }
 

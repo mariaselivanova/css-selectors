@@ -1,28 +1,27 @@
 import api from '../../utils/api';
 import ButtonView from '../../utils/button-view';
+import InputView from '../../utils/input-view';
 import View from '../../utils/view';
-import CarCounter from '../car-counter';
-import ColorInput from '../inputs/color-input';
-import NameInput from '../inputs/name-input';
 import './create-car.css';
 
 export default class CreateCar extends View {
-  private nameInput: NameInput;
+  private nameInput: InputView;
 
-  private colorInput: ColorInput;
+  private colorInput: InputView;
 
   private createButton: ButtonView;
 
-  private counter: CarCounter;
-
-  constructor(counter: CarCounter) {
+  constructor() {
     super('div', ['create-car']);
-    this.nameInput = new NameInput();
-    this.colorInput = new ColorInput();
+    this.nameInput = new InputView(['name-input'], 'text');
+    this.colorInput = new InputView(['color-input'], 'color');
     this.createButton = new ButtonView(['create-btn'], 'button');
+    this.init();
+  }
+
+  private init(): void {
     this.createButton.setTextContent('create');
     this.createButton.getElement().addEventListener('click', () => this.createCar());
-    this.counter = counter;
     this.addElements([
       this.nameInput.getElement(),
       this.colorInput.getElement(),

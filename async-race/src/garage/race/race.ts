@@ -9,16 +9,17 @@ export default class RaceBtn extends ButtonView {
   constructor(garage: Garage) {
     super(['race'], 'button');
     this.setTextContent('race');
-    this.element?.addEventListener('click', () => this.race());
+    this.element?.addEventListener('click', () => this.raceAllCars());
     this.garage = garage;
   }
 
   private static async raceOneCar(carId: number, carElement: HTMLElement):
-  Promise<{ carId: number, animationDuration: number, carName: string } | null> {
+  Promise<{ carId: number, animationDuration: number, carName: string }> {
     const startBtn = carElement.querySelector('.engine-start');
     const stopBtn = carElement.querySelector('.reset-btn');
     const svg = carElement?.querySelector('svg');
     const carName = carElement.querySelector('.car-name')?.textContent;
+
     try {
       const engineData = await api.handleEngine(carId, 'started');
       const animationDuration = engineData.distance / engineData.velocity / 1000;
@@ -37,7 +38,7 @@ export default class RaceBtn extends ButtonView {
     }
   }
 
-  private async race(): Promise<void> {
+  private async raceAllCars(): Promise<void> {
     const carEntries = Object.entries(this.garage.currentCarElements);
     const drivePromises = carEntries.map(
       ([carId, carElement]) => RaceBtn.raceOneCar(+carId, carElement),

@@ -4,3 +4,18 @@
   justify-content: center;
   gap: 30px;
 }
+
+.update-btn {
+  background-color: transparent;
+  width: 60px;
+  font-size: 15px;
+  border: 1px solid #fff;
+  color: #fff;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.update-btn:hover {
+  opacity: 0.5;
+}
+
