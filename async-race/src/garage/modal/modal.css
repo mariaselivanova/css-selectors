@@ -33,3 +33,9 @@
 .modal-button:hover {
   opacity: 0.5;
 }
+
+@media screen and (max-width: 1000px) {
+  .modal-text {
+    font-size: 10px;
+  }
+}

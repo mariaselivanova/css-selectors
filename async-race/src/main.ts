@@ -18,7 +18,7 @@ export default class Main extends View {
     const updateCar = new UpdateCar();
     const generateCars = new GenerateCarsBtn();
     const resetAllBtn = new ResetAllBtn(garage);
-    const raceBtn = new RaceBtn(garage);
+    const raceBtn = new RaceBtn(garage, resetAllBtn);
     const btnWrapper = new View('div', ['btn-wrapper']);
     btnWrapper.getElement().append(
       generateCars.getElement(),

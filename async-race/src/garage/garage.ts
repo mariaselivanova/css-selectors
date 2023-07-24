@@ -52,7 +52,6 @@ export default class Garage extends View {
         this.currentCarElements[car.id] = carView.getElement();
         return carView.getElement();
       });
-
       this.addElements(carElements);
       this.pagination.checkPage(this.currentPage, this.totalPages);
     } catch (error) {

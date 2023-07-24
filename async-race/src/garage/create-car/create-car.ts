@@ -30,8 +30,9 @@ export default class CreateCar extends View {
 
   private createCar(): void {
     api.createCar(this.nameInput.getValue(), this.colorInput.getValue())
-      .then(() => {
+      .then((carData) => {
         document.dispatchEvent(new Event('carsUpdated'));
+        console.log(`The car #${carData.id} was created`);
       })
       .catch((err) => console.log(err))
       .finally(() => {

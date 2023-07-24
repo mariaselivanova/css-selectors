@@ -34,5 +34,8 @@ export default class Pagination extends View {
     } else {
       this.next.getElement().classList.remove('disabled');
     }
+    if (currentPage === totalPages) {
+      this.next.getElement().classList.add('disabled');
+    }
   }
 }

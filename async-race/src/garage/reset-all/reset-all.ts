@@ -13,17 +13,16 @@ export default class ResetAllBtn extends ButtonView {
     this.element?.addEventListener('click', () => this.resetAll());
   }
 
-  private resetAll(): void {
+  public async resetAll(): Promise<void> {
     const promises: Promise<EngineParams>[] = [];
     Object.keys(this.garage.currentCarElements).forEach((id) => {
       promises.push(api.handleEngine(+id, 'stopped'));
     });
-    Promise.all(promises)
-      .then(() => {
-        this.garage.reloadPage();
-      })
-      .catch((error) => {
-        console.error('Failed to stop engines:', error);
-      });
+    try {
+      await Promise.all(promises);
+      await this.garage.reloadPage();
+    } catch (error) {
+      console.error('Failed to stop engines:', error);
+    }
   }
 }

@@ -11,7 +11,6 @@ export default class SelectBtn extends ButtonView {
   private static async setSelectedCar(id: number): Promise<void> {
     try {
       const carData = await api.getCar(id);
-      console.log(`The car №${id} was updated`);
       document.dispatchEvent(new CustomEvent('carSelected', {
         detail: {
           id,

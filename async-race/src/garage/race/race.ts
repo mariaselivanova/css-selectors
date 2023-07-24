@@ -2,15 +2,19 @@ import api from '../../utils/api';
 import ButtonView from '../../utils/button-view';
 import Garage from '../garage';
 import Modal from '../modal/modal';
+import ResetAllBtn from '../reset-all/reset-all';
 
 export default class RaceBtn extends ButtonView {
   private garage: Garage;
 
-  constructor(garage: Garage) {
+  private resetAllBtn: ResetAllBtn;
+
+  constructor(garage: Garage, resetAllBtn: ResetAllBtn) {
     super(['race'], 'button');
     this.setTextContent('race');
     this.element?.addEventListener('click', () => this.raceAllCars());
     this.garage = garage;
+    this.resetAllBtn = resetAllBtn;
   }
 
   private static async raceOneCar(carId: number, carElement: HTMLElement):
@@ -39,6 +43,7 @@ export default class RaceBtn extends ButtonView {
   }
 
   private async raceAllCars(): Promise<void> {
+    await this.resetAllBtn.resetAll();
     const carEntries = Object.entries(this.garage.currentCarElements);
     const drivePromises = carEntries.map(
       ([carId, carElement]) => RaceBtn.raceOneCar(+carId, carElement),
