@@ -35,6 +35,7 @@ export default class Garage extends View {
     this.pagination.next.getElement().addEventListener('click', () => this.loadNextPage());
     this.pagination.prev.getElement().addEventListener('click', () => this.loadPrevPage());
     document.addEventListener('carsUpdated', () => this.reloadPage());
+    this.pagination.checkPage(this.currentPage, this.totalPages);
     await this.getCars(this.currentPage);
   }
 
@@ -53,6 +54,7 @@ export default class Garage extends View {
       });
 
       this.addElements(carElements);
+      this.pagination.checkPage(this.currentPage, this.totalPages);
     } catch (error) {
       console.error('Error fetching cars:', error);
     }

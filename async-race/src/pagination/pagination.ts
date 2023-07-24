@@ -24,4 +24,15 @@ export default class Pagination extends View {
       this.current.getElement(),
       this.next.getElement()]);
   }
+
+  public checkPage(currentPage: number, totalPages: number): void {
+    if (currentPage === 1) {
+      this.prev.getElement().classList.add('disabled');
+    }
+    if (totalPages < 2) {
+      this.next.getElement().classList.add('disabled');
+    } else {
+      this.next.getElement().classList.remove('disabled');
+    }
+  }
 }

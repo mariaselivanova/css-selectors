@@ -28,10 +28,10 @@ export default class Header extends View {
 
   private async showWinners(): Promise<void> {
     this.main.getElement().classList.add('hidden');
+    await this.winners.createTable();
     document.body.append(this.winners.getElement());
     this.toWinnerBtn.getElement().classList.add('inactive');
     this.toGarageBtn.getElement().classList.remove('inactive');
-    await this.winners.createTable();
   }
 
   private showGarage(): void {

@@ -21,7 +21,7 @@ export default class Winners extends View {
 
   private isTimeSorted: SortOrder | undefined;
 
-  private pagination: Pagination;
+  public pagination: Pagination;
 
   constructor() {
     super('div', ['winners']);
@@ -38,18 +38,12 @@ export default class Winners extends View {
     this.pagination.createPagination();
     this.pagination.next.getElement().addEventListener('click', () => this.loadNextPage());
     this.pagination.prev.getElement().addEventListener('click', () => this.loadPrevPage());
-    this.checkPage();
+    this.pagination.checkPage(this.currentPage, this.totalPages);
     this.addElements([
       this.winnerCounter.getElement(),
       this.pagination.getElement(),
       this.table,
     ]);
-  }
-
-  private checkPage(): void {
-    if (this.currentPage === 1) {
-      this.pagination.prev.getElement().classList.add('disabled');
-    }
   }
 
   private createTableHeader(winsHeader = 'Wins', timeHeader = 'Best time(s)'): void {
@@ -106,6 +100,7 @@ export default class Winners extends View {
       timeCell.textContent = time.toString();
     });
     this.addElements([this.table]);
+    this.pagination.checkPage(this.currentPage, this.totalPages);
   }
 
   private static async getCarData(id: number): Promise<CarResponse> {
