@@ -1,4 +1,4 @@
-import CarCounter from './garage/car-counter';
+import Counter from './counter/counter';
 import CreateCar from './garage/create-car/create-car';
 import Garage from './garage/garage';
 import GenerateCarsBtn from './garage/generate-cars/generate-cars-btn';
@@ -10,7 +10,7 @@ import View from './utils/view';
 export default class Main extends View {
   constructor() {
     super('main', ['main']);
-    const carCounter = new CarCounter();
+    const carCounter = new Counter('car-counter', 'garage');
     const garage = new Garage(carCounter);
     const createCar = new CreateCar(carCounter);
     const updateCar = new UpdateCar();

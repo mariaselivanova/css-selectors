@@ -18,7 +18,7 @@ export default class View {
     });
   }
 
-  public setTextContent(text: string):void {
+  public setTextContent(text: string): void {
     if (this.element) {
       this.element.textContent = text;
     }
@@ -28,7 +28,7 @@ export default class View {
     return this.element || document.createElement('div');
   }
 
-  public addElements(children: HTMLElement[]):void {
+  public addElements(children: HTMLElement[]): void {
     children.forEach((child) => this.element?.append(child));
   }
 

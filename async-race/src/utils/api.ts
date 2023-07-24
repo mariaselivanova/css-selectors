@@ -1,6 +1,12 @@
 /* eslint-disable class-methods-use-this */
 import {
-  ApiConfig, CarResponse, DriveStatus, EngineParams, SortOptions, SortOrder, WinnerResponse,
+  ApiConfig,
+  CarResponse,
+  DriveStatus,
+  EngineParams,
+  SortOptions,
+  SortOrder,
+  WinnerResponse,
 } from './types';
 
 const API_URL = 'http://127.0.0.1:3000/';
@@ -26,18 +32,17 @@ class Api {
       return res.json();
     }
     const err = await res.json();
-    throw new Error(err.message || 'Unknown Error');
+    throw new Error(err.message);
   }
 
   public getAllCars(page: number | undefined, limit: number | undefined): Promise<CarResponse[]> {
     const queryParams = new URLSearchParams();
-    if (page !== undefined) {
+    if (page) {
       queryParams.append('_page', page.toString());
     }
-    if (limit !== undefined) {
+    if (limit) {
       queryParams.append('_limit', limit.toString());
     }
-
     const queryString = queryParams.toString();
     const endpoint = `garage${queryString ? `?${queryString}` : ''}`;
     return this.request(endpoint, {
@@ -53,7 +58,7 @@ class Api {
 
   public createCar(name: string, color: string): Promise<CarResponse> {
     const carData = { name, color };
-    return this.request<CarResponse>('garage', {
+    return this.request('garage', {
       method: 'POST',
       headers: this.headers,
       body: JSON.stringify(carData),
@@ -61,11 +66,7 @@ class Api {
   }
 
   public updateCar(id: number, name: string, color: string): Promise<CarResponse> {
-    const carData = {
-      name,
-      color,
-    };
-
+    const carData = { name, color };
     return this.request<CarResponse>(`garage/${id}`, {
       method: 'PUT',
       headers: this.headers,
@@ -87,7 +88,6 @@ class Api {
     if (status !== undefined) {
       queryParams.append('status', status.toString());
     }
-
     const queryString = queryParams.toString();
     const endpoint = `engine${queryString ? `?${queryString}` : ''}`;
     return this.request(endpoint, {
@@ -118,16 +118,16 @@ class Api {
   )
     : Promise<WinnerResponse[]> {
     const queryParams = new URLSearchParams();
-    if (page !== undefined) {
+    if (page) {
       queryParams.append('_page', page.toString());
     }
-    if (limit !== undefined) {
+    if (limit) {
       queryParams.append('_limit', limit.toString());
     }
-    if (sort !== undefined) {
+    if (sort) {
       queryParams.append('_sort', sort.toString());
     }
-    if (order !== undefined) {
+    if (order) {
       queryParams.append('_order', order.toString());
     }
     const queryString = queryParams.toString();

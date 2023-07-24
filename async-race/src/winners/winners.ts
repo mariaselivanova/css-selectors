@@ -1,8 +1,9 @@
+import Counter from '../counter/counter';
 import Pagination from '../pagination/pagination';
 import api from '../utils/api';
+import createSvg from '../utils/create-svg';
 import { CarResponse, SortOptions, SortOrder } from '../utils/types';
 import View from '../utils/view';
-import WinnerCounter from './winner-counter';
 import './winners.css';
 
 const ITEMS_PER_PAGE = 10;
@@ -12,13 +13,13 @@ export default class Winners extends View {
 
   public totalPages: number;
 
-  private winnerCounter: WinnerCounter;
+  private winnerCounter: Counter;
 
   private table: HTMLTableElement;
 
-  private areWinsSorted: string | null;
+  private areWinsSorted: SortOrder | undefined;
 
-  private isTimeSorted: string | null;
+  private isTimeSorted: SortOrder | undefined;
 
   private pagination: Pagination;
 
@@ -26,19 +27,29 @@ export default class Winners extends View {
     super('div', ['winners']);
     this.currentPage = 1;
     this.totalPages = 1;
-    this.winnerCounter = new WinnerCounter();
+    this.winnerCounter = new Counter('winner-counter', 'winners');
     this.pagination = new Pagination();
+    this.table = document.createElement('table');
+    this.init();
+  }
+
+  private init(): void {
     this.pagination.current.setTextContent(`page #${this.currentPage}`);
     this.pagination.createPagination();
+    this.pagination.next.getElement().addEventListener('click', () => this.loadNextPage());
+    this.pagination.prev.getElement().addEventListener('click', () => this.loadPrevPage());
+    this.checkPage();
     this.addElements([
       this.winnerCounter.getElement(),
       this.pagination.getElement(),
+      this.table,
     ]);
-    this.table = document.createElement('table');
-    this.pagination.next.getElement().addEventListener('click', () => this.loadNextPage());
-    this.pagination.prev.getElement().addEventListener('click', () => this.loadPrevPage());
-    this.areWinsSorted = null;
-    this.isTimeSorted = null;
+  }
+
+  private checkPage(): void {
+    if (this.currentPage === 1) {
+      this.pagination.prev.getElement().classList.add('disabled');
+    }
   }
 
   private createTableHeader(winsHeader = 'Wins', timeHeader = 'Best time(s)'): void {
@@ -60,14 +71,15 @@ export default class Winners extends View {
   }
 
   public async createTable(
-    sortOptions: SortOptions | undefined = undefined,
-    sortOrder: SortOrder | undefined = undefined,
-    winsHeader: string | undefined = undefined,
-    timeHeader: string | undefined = undefined,
+    sortOptions?: SortOptions,
+    sortOrder?: SortOrder,
+    winsHeader = 'Wins',
+    timeHeader = 'Best time(s)',
   ): Promise<void> {
     const winners = await api.getWinners(this.currentPage, ITEMS_PER_PAGE, sortOptions, sortOrder);
-    this.totalPages = Math.ceil(parseInt(api.headers['X-Total-Count'], 10) / ITEMS_PER_PAGE);
-    this.winnerCounter.getCount(Math.ceil(parseInt(api.headers['X-Total-Count'], 10)));
+    const totalWinnerCount = parseInt(api.headers['X-Total-Count'], 10);
+    this.totalPages = Math.ceil(totalWinnerCount / ITEMS_PER_PAGE);
+    this.winnerCounter.getCount(totalWinnerCount);
     this.table.innerHTML = '';
     this.createTableHeader(winsHeader, timeHeader);
     winners.forEach(async (winner, index) => {
@@ -81,14 +93,7 @@ export default class Winners extends View {
       number.textContent = rowNumber.toString();
 
       const picCell = row.insertCell();
-      const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
-      <path d="M171.3 96H224v96H111.3l30.4-75.9C146.5 104 158.2 96 171.3 96zM272 192V96h81.2c9.7
-      0 18.9 4.4 25 12l67.2 84H272zm256.2 1L428.2 68c-18.2-22.8-45.8-36-75-36H171.3c-39.3 0-74.6
-      23.9-89.1 60.3L40.6 196.4C16.8 205.8 0 228.9 0 256V368c0 17.7 14.3 32 32 32H65.3c7.6 45.4
-      47.1 80 94.7 80s87.1-34.6 94.7-80H385.3c7.6 45.4 47.1 80 94.7 80s87.1-34.6 94.7-80H608c17.7
-      0 32-14.3 32-32V320c0-65.2-48.8-119-111.8-127zM434.7 368a48 48 0 1 1 90.5 32 48 48 0 1 1
-      -90.5-32zM160 336a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" fill=${carData.color} />
-      </svg>`;
+      const svg = createSvg(carData.color);
       picCell.innerHTML = svg;
 
       const nameCell = row.insertCell();
@@ -98,46 +103,34 @@ export default class Winners extends View {
       winsCell.textContent = wins.toString();
 
       const timeCell = row.insertCell();
-      timeCell.textContent = time.toFixed(2).toString();
+      timeCell.textContent = time.toString();
     });
     this.addElements([this.table]);
   }
 
   private static async getCarData(id: number): Promise<CarResponse> {
-    const car = await api.getCar(id);
-    return car;
+    const carData = await api.getCar(id);
+    return carData;
   }
 
   private async sortTime(): Promise<void> {
-    let order: SortOrder | undefined;
-    let header;
-    this.areWinsSorted = null;
-    if (!this.isTimeSorted || this.isTimeSorted === 'ASC') {
-      order = SortOrder.desc;
-      header = 'Best time(s) ↓';
-      this.isTimeSorted = 'DESC';
-    } else {
-      order = SortOrder.asc;
-      header = 'Best time(s) ↑';
-      this.isTimeSorted = 'ASC';
-    }
-    this.createTable(SortOptions.time, order, undefined, header);
+    this.isTimeSorted = this.isTimeSorted === SortOrder.asc ? SortOrder.desc : SortOrder.asc;
+    this.createTable(
+      SortOptions.time,
+      this.isTimeSorted,
+      undefined,
+      `Best time(s) ${this.isTimeSorted === SortOrder.asc ? '↑' : '↓'}`,
+    );
   }
 
   private async sortWins(): Promise<void> {
-    let order: SortOrder | undefined;
-    let header;
-    this.isTimeSorted = null;
-    if (!this.areWinsSorted || this.areWinsSorted === 'ASC') {
-      order = SortOrder.desc;
-      header = 'Wins ↓';
-      this.areWinsSorted = 'DESC';
-    } else {
-      order = SortOrder.asc;
-      header = 'Wins ↑';
-      this.areWinsSorted = 'ASC';
-    }
-    this.createTable(SortOptions.wins, order, header, undefined);
+    this.areWinsSorted = this.areWinsSorted === SortOrder.asc ? SortOrder.desc : SortOrder.asc;
+    this.createTable(
+      SortOptions.wins,
+      this.areWinsSorted,
+      `Wins ${this.areWinsSorted === SortOrder.asc ? '↑' : '↓'}`,
+      undefined,
+    );
   }
 
   private async loadNextPage(): Promise<void> {
@@ -145,6 +138,10 @@ export default class Winners extends View {
       this.currentPage += 1;
       await this.createTable();
       this.pagination.current.setTextContent(`page #${this.currentPage}`);
+      this.pagination.prev.getElement().classList.remove('disabled');
+      if (this.currentPage === this.totalPages) {
+        this.pagination.next.getElement().classList.add('disabled');
+      }
     }
   }
 
@@ -153,6 +150,10 @@ export default class Winners extends View {
       this.currentPage -= 1;
       await this.createTable();
       this.pagination.current.setTextContent(`page #${this.currentPage}`);
+      this.pagination.next.getElement().classList.remove('disabled');
+      if (this.currentPage === 1) {
+        this.pagination.prev.getElement().classList.add('disabled');
+      }
     }
   }
 }
