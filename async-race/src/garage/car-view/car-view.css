@@ -2,6 +2,7 @@
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(calc(90vw - 20px));
   }
@@ -13,7 +14,7 @@ svg {
 }
 
 .car-wrapper {
-  border-bottom: 4px dotted rgb(186, 186, 186);
+  border-bottom: 4px dotted #fff;
   padding: 40px 0 0;
   position: relative;
   padding-left: 70px;
@@ -31,7 +32,7 @@ svg {
 }
 
 .car-name {
-  color: rgb(199, 199, 199);
+  color: #fff;
   margin: 0;
   position: absolute;
   top: 5px;
@@ -48,7 +49,6 @@ svg {
   background-color: rgb(28, 28, 28);
   border: none;
   color: #fff;
-  border-radius: 10%;
 }
 
 .remove-btn {
@@ -59,7 +59,6 @@ svg {
   background-color: rgb(28, 28, 28);
   border: none;
   color: #fff;
-  border-radius: 10%;
 }
 
 .engine-start {
@@ -94,10 +93,12 @@ svg {
 }
 
 @media screen and (max-width: 1000px) {
+
   @keyframes carAnimation {
     from {
       transform: translateX(0);
     }
+
     to {
       transform: translateX(calc(80vw - 50px));
     }
@@ -111,6 +112,7 @@ svg {
     font-size: 10px;
     left: 25px;
   }
+
   .reset-btn {
     font-size: 10px;
     left: 45px;

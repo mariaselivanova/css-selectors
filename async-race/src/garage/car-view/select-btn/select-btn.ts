@@ -8,15 +8,19 @@ export default class SelectBtn extends ButtonView {
     this.element?.addEventListener('click', () => SelectBtn.setSelectedCar(id));
   }
 
-  private static setSelectedCar(id: number):void {
-    api.getCar(id)
-      .then((carData) => {
-        document.dispatchEvent(new CustomEvent('setSelectedElement', {
-          detail: {
-            id, color: carData.color, name: carData.name,
-          },
-        }));
-      })
-      .catch((err) => console.log(err));
+  private static async setSelectedCar(id: number): Promise<void> {
+    try {
+      const carData = await api.getCar(id);
+      console.log(`The car №${id} was updated`);
+      document.dispatchEvent(new CustomEvent('carSelected', {
+        detail: {
+          id,
+          color: carData.color,
+          name: carData.name,
+        },
+      }));
+    } catch (err) {
+      console.error('Error selecting car:', err);
+    }
   }
 }

@@ -4,31 +4,26 @@ import ButtonView from '../../../utils/button-view';
 export default class EngineStartBtn extends ButtonView {
   private carElement: HTMLElement;
 
-  private svg: SVGElement | null;
-
   constructor(id: number, carElement: HTMLElement) {
     super(['engine-start'], 'button');
     this.setTextContent('A');
     this.element?.addEventListener('click', () => this.startDrive(id));
     this.carElement = carElement;
-    this.svg = this.carElement.querySelector('svg');
   }
 
   private async startDrive(id: number): Promise<void> {
+    const svg = this.carElement.querySelector('svg');
     const resetBtn = this.carElement.querySelector('.reset-btn');
+    if (!svg || !resetBtn) return;
     try {
       const engineData = await api.handleEngine(id, 'started');
       const animationDuration = engineData.distance / engineData.velocity / 1000;
-      resetBtn?.classList.remove('disabled');
-      this.element?.classList.add('disabled');
-      if (this.svg) {
-        this.svg.style.animation = `carAnimation ${animationDuration}s linear forwards`;
-      }
+      this.element?.classList.toggle('disabled', true);
+      resetBtn?.classList.toggle('disabled', false);
+      svg.style.animation = `carAnimation ${animationDuration}s linear forwards`;
       await api.handleEngine(id, 'drive');
     } catch (error) {
-      if (this.svg) {
-        this.svg.style.animationPlayState = 'paused';
-      }
+      svg.style.animationPlayState = 'paused';
     }
   }
 }

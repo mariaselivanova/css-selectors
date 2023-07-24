@@ -30,7 +30,7 @@ export default class UpdateCar extends View {
       this.colorInput.getElement(),
       this.updateButton.getElement(),
     ]);
-    document.addEventListener('setSelectedElement', (event) => this.handleSelect((event as CustomEvent).detail));
+    document.addEventListener('carSelected', (event) => this.handleSelect((event as CustomEvent).detail));
     this.updateButton.getElement().addEventListener('click', () => this.updateCar(this.selectedId));
   }
 
