@@ -7,7 +7,7 @@ export default class GenerateCarsBtn extends ButtonView {
   constructor() {
     super(['generate-cars'], 'button');
     this.setTextContent('generate cars');
-    this.element?.addEventListener('click', () => Garage.addGeneratedCars(GenerateCarsBtn.createCars(carBrands, carModels)));
+    this.element?.addEventListener('click', () => Garage.createGeneratedCars(GenerateCarsBtn.createCars(carBrands, carModels)));
   }
 
   private static createCars(brands: string[], models: string[]): { name: string; color: string }[] {

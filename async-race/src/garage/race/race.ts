@@ -38,7 +38,6 @@ export default class RaceBtn extends ButtonView {
   }
 
   private async race(): Promise<void> {
-    this.element?.classList.add('disabled');
     const carEntries = Object.entries(this.garage.currentCarElements);
     const drivePromises = carEntries.map(
       ([carId, carElement]) => RaceBtn.raceOneCar(+carId, carElement),

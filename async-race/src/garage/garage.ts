@@ -1,8 +1,8 @@
+import Counter from '../counter/counter';
 import Pagination from '../pagination/pagination';
 import api from '../utils/api';
 import { CarResponse, GeneratedCar } from '../utils/types';
 import View from '../utils/view';
-import CarCounter from './car-counter';
 import CarView from './car-view/car-view';
 import './garage.css';
 
@@ -13,88 +13,89 @@ export default class Garage extends View {
 
   public totalPages: number;
 
-  private counter: CarCounter;
+  private counter: Counter;
 
   public currentCarElements: { [id: number]: HTMLElement };
 
   private pagination: Pagination;
 
-  constructor(counter: CarCounter) {
+  constructor(counter: Counter, pagination: Pagination) {
     super('div', ['garage']);
     this.currentPage = 1;
     this.totalPages = 1;
     this.counter = counter;
     this.currentCarElements = {};
-    this.pagination = new Pagination();
+    this.pagination = pagination;
+    this.init();
+  }
+
+  private async init(): Promise<void> {
     this.pagination.current.setTextContent(`page #${this.currentPage}`);
     this.pagination.createPagination();
     this.pagination.next.getElement().addEventListener('click', () => this.loadNextPage());
     this.pagination.prev.getElement().addEventListener('click', () => this.loadPrevPage());
     document.addEventListener('carsUpdated', () => this.reloadPage());
-    this.displayCurrentCars();
+    await this.getCars(this.currentPage);
   }
 
-  private displayCurrentCars(): void {
-    this.getCars(this.currentPage);
-  }
-
-  private getCars(page: number): Promise<number> {
+  private async getCars(page: number): Promise<void> {
     this.currentCarElements = {};
-    const raceBtn = document.querySelector('.race');
-    raceBtn?.classList.remove('disabled');
-    return api
-      .getAllCars(page, ITEMS_PER_PAGE)
-      .then((carData: CarResponse[]) => {
-        this.totalPages = Math.ceil(parseInt(api.headers['X-Total-Count'], 10) / ITEMS_PER_PAGE);
-        this.counter.getCount(parseInt(api.headers['X-Total-Count'], 10));
-        this.addElements([this.pagination.getElement()]);
-        carData.forEach((car) => {
-          const carView = new CarView(car.id, car.name, car.color);
-          this.currentCarElements[car.id] = carView.getElement();
-          this.addElements([carView.getElement()]);
-        });
-        return carData.length;
-      })
-      .catch((error) => {
-        console.error('Error fetching cars:', error);
-        return 0;
+    try {
+      const carData: CarResponse[] = await api.getAllCars(page, ITEMS_PER_PAGE);
+      const totalCarAmount = parseInt(api.headers['X-Total-Count'], 10);
+      this.totalPages = Math.ceil(totalCarAmount / ITEMS_PER_PAGE);
+      this.counter.getCount(totalCarAmount);
+
+      const carElements: HTMLElement[] = carData.map((car) => {
+        const carView = new CarView(car.id, car.name, car.color);
+        this.currentCarElements[car.id] = carView.getElement();
+        return carView.getElement();
       });
+
+      this.addElements(carElements);
+    } catch (error) {
+      console.error('Error fetching cars:', error);
+    }
   }
 
-  private loadNextPage(): void {
+  private async loadNextPage(): Promise<void> {
     if (this.currentPage < this.totalPages) {
       this.removeContent();
       this.currentPage += 1;
-      this.getCars(this.currentPage);
+      await this.getCars(this.currentPage);
       this.pagination.current.setTextContent(`page #${this.currentPage}`);
+      this.pagination.prev.getElement().classList.remove('disabled');
+      this.pagination.next.getElement().classList.toggle('disabled', this.currentPage === this.totalPages);
     }
   }
 
-  private loadPrevPage(): void {
+  private async loadPrevPage(): Promise<void> {
     if (this.currentPage > 1) {
       this.removeContent();
       this.currentPage -= 1;
-      this.getCars(this.currentPage);
+      await this.getCars(this.currentPage);
       this.pagination.current.setTextContent(`page #${this.currentPage}`);
+      this.pagination.next.getElement().classList.remove('disabled');
+      this.pagination.prev.getElement().classList.toggle('disabled', this.currentPage === 1);
     }
   }
 
-  public static addGeneratedCars(cars: GeneratedCar[]): void {
-    cars.forEach((car) => {
-      api.createCar(car.name, car.color)
-        .catch((err) => console.log(err));
-    });
-    document.dispatchEvent(new Event('carsUpdated'));
+  public static async createGeneratedCars(cars: GeneratedCar[]): Promise<void> {
+    try {
+      await Promise.all(cars.map((car) => api.createCar(car.name, car.color)));
+      document.dispatchEvent(new Event('carsUpdated'));
+    } catch (err) {
+      console.error('Error creating cars:', err);
+    }
   }
 
-  public reloadPage(): void {
+  public async reloadPage(): Promise<void> {
     this.removeContent();
-    this.getCars(this.currentPage).then((carsOnCurrentPage) => {
-      if (carsOnCurrentPage === 0 && this.currentPage > 1) {
-        this.currentPage -= 1;
-        this.pagination.current.setTextContent(`page #${this.currentPage}`);
-        this.getCars(this.currentPage);
-      }
-    });
+    await this.getCars(this.currentPage);
+    if (Object.keys(this.currentCarElements).length === 0 && this.currentPage > 1) {
+      this.currentPage -= 1;
+      this.pagination.current.setTextContent(`page #${this.currentPage}`);
+      await this.getCars(this.currentPage);
+    }
   }
 }

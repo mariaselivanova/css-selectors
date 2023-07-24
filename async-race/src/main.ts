@@ -5,13 +5,15 @@ import GenerateCarsBtn from './garage/generate-cars/generate-cars-btn';
 import RaceBtn from './garage/race/race';
 import ResetAllBtn from './garage/reset-all/reset-all';
 import UpdateCar from './garage/update-car/update-car';
+import Pagination from './pagination/pagination';
 import View from './utils/view';
 
 export default class Main extends View {
   constructor() {
     super('main', ['main']);
     const carCounter = new Counter('car-counter', 'garage');
-    const garage = new Garage(carCounter);
+    const pagination = new Pagination();
+    const garage = new Garage(carCounter, pagination);
     const createCar = new CreateCar(carCounter);
     const updateCar = new UpdateCar();
     const generateCars = new GenerateCarsBtn();
@@ -28,6 +30,7 @@ export default class Main extends View {
       updateCar.getElement(),
       btnWrapper.getElement(),
       carCounter.getElement(),
+      pagination.getElement(),
       garage.getElement()]);
   }
 }
