@@ -2,6 +2,7 @@ import api from '../../utils/api';
 import ButtonView from '../../utils/button-view';
 import InputView from '../../utils/input-view';
 import View from '../../utils/view';
+import Modal from '../modal/modal';
 import './create-car.css';
 
 export default class CreateCar extends View {
@@ -29,6 +30,14 @@ export default class CreateCar extends View {
   }
 
   private createCar(): void {
+    if (!this.nameInput.getValue()) {
+      const modal = new Modal('Please name your car!');
+      document.body.append(modal.getElement());
+      setTimeout(() => {
+        modal.getElement().remove();
+      }, 1500);
+      return;
+    }
     api.createCar(this.nameInput.getValue(), this.colorInput.getValue())
       .then((carData) => {
         document.dispatchEvent(new Event('carsUpdated'));

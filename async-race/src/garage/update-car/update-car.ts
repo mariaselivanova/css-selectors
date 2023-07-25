@@ -3,6 +3,7 @@ import ButtonView from '../../utils/button-view';
 import InputView from '../../utils/input-view';
 import { SelectedCar } from '../../utils/types';
 import View from '../../utils/view';
+import Modal from '../modal/modal';
 import './update-car.css';
 
 export default class UpdateCar extends View {
@@ -44,6 +45,14 @@ export default class UpdateCar extends View {
   private updateCar(id: number | null): void {
     if (!this.selectedId) {
       console.log('Select the car!');
+      return;
+    }
+    if (!this.nameInput.getValue()) {
+      const modal = new Modal('Please name your car!');
+      document.body.append(modal.getElement());
+      setTimeout(() => {
+        modal.getElement().remove();
+      }, 1500);
       return;
     }
     if (id) {
