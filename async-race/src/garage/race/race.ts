@@ -54,11 +54,11 @@ export default class RaceBtn extends ButtonView {
     );
     const winner = await Promise.any(drivePromises);
     if (winner) {
-      const modal = new Modal(`${winner?.carName} won! (${winner?.animationDuration.toFixed(2)}s)`)
+      const modal = new Modal(`${winner?.carName} won! (${winner?.animationDuration.toFixed(2)}s)`);
       document.body.append(modal.getElement());
       setTimeout(() => {
         modal.getElement().remove();
-      }, 2000)
+      }, 2000);
       const winnerTime = +winner.animationDuration.toFixed(2);
       try {
         const findWinner = await api.getWinner(winner.carId);
