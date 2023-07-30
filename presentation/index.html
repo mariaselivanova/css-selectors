@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>reveal.js</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h4>What is Material UI?</h4>
+				<p class="fragment fade-up">It's a React UI Component Library</p>
+			  </section>
+			  
+			  <section>
+				<h4>Key Benefits of Material UI</h4>
+				<ul>
+				  <li class="fragment fade-up">Time-saving</li>
+				  <li class="fragment fade-up">Highly customizable</li>
+				  <li class="fragment fade-up">Consistent design</li>
+				</ul>
+			  </section>
+			  
+			  <section>
+				<h3>Basic Example</h3>
+				<pre><code>
+			  import { Button } from '@material-ui/core';
+			  
+			  &lt;Button color="secondary"&gt;Secondary&lt;/Button&gt;
+			  </code></pre>
+			  </section>
+			  
+			  <section>
+				<h3>Typography Example</h3>
+				<pre><code>
+import React from 'react';
+import Typography from '@mui/material/Typography';
+			  
+function MyComponent() {
+  return (
+    &lt;div&gt;
+      &lt;Typography variant="h1" component="h2"&gt;Welcome&lt;/Typography&gt;
+	    &lt;Typography variant="body1"&gt;Some text&lt;/Typography&gt;
+    &lt;/div&gt;
+	);
+}
+			  </code></pre>
+			  </section>
+			  
+			  <section>
+				<h3>Icons</h3>
+				<img src="./icons.png" alt="Icons" />
+			  </section>
+			  
+			  <section>
+				<h3>Customizing Your Component</h3>
+				<pre><code>
+import { makeStyles } from '@material-ui/core';
+				
+const useStyles = makeStyles({
+  title: {
+    marginBottom: 20,
+  }
+});
+				
+export default function Custom() {
+  const classes = useStyles();
+				
+  return (
+    &lt;Typography
+        className={classes.title}
+	    variant="h6" 
+	&gt;
+	  Your Customized Title
+	&lt;/Typography&gt;
+  );
+}
+			  </code></pre>
+			  </section>
+			  
+			  <section>
+				<h3>Customizing Your Theme</h3>
+				<pre><code>
+import {
+  createMuiTheme,
+  ThemeProvider } from '@material-ui/core';
+			  
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#fefefe'
+    },
+  },
+  typography: {
+    fontFamily: 'Quicksand',
+  }
+});
+			  
+function App() {
+  return (
+    &lt;ThemeProvider theme={theme}&gt;
+      &lt;Router&gt;
+        <!-- all the other code -->
+      &lt;/Router&gt;
+    &lt;/ThemeProvider&gt;
+  );
+}
+			  </code></pre>
+			  </section>
+			  
+
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+</body>
+
+</html>
