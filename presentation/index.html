@@ -21,82 +21,92 @@
 			<section>
 				<h4>What is Material UI?</h4>
 				<p class="fragment fade-up">It's a React UI Component Library</p>
-			  </section>
-			  
-			  <section>
+			</section>
+
+			<section>
 				<h4>Key Benefits of Material UI</h4>
 				<ul>
-				  <li class="fragment fade-up">Time-saving</li>
-				  <li class="fragment fade-up">Highly customizable</li>
-				  <li class="fragment fade-up">Consistent design</li>
+					<li class="fragment fade-up">Time-saving</li>
+					<li class="fragment fade-up">Highly customizable</li>
+					<li class="fragment fade-up">Consistent design</li>
 				</ul>
-			  </section>
-			  
-			  <section>
+			</section>
+
+			<section>
 				<h3>Basic Example</h3>
 				<pre><code>
-			  import { Button } from '@material-ui/core';
-			  
-			  &lt;Button color="secondary"&gt;Secondary&lt;/Button&gt;
+import * as React from 'react';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+					
+export default function BasicButtons() {
+	return (
+		<Stack spacing={2} direction="row">
+			<Button variant="text">Text</Button>
+			<Button variant="contained">Contained</Button>
+			<Button variant="outlined">Outlined</Button>
+		</Stack>
+	);
+}
 			  </code></pre>
-			  </section>
-			  
-			  <section>
+			</section>
+
+			<section>
 				<h3>Typography Example</h3>
-				<pre><code>
+				<pre>
+					<code>
 import React from 'react';
 import Typography from '@mui/material/Typography';
 			  
 function MyComponent() {
-  return (
-    &lt;div&gt;
-      &lt;Typography variant="h1" component="h2"&gt;Welcome&lt;/Typography&gt;
-	    &lt;Typography variant="body1"&gt;Some text&lt;/Typography&gt;
-    &lt;/div&gt;
+	return (
+		<Typography variant="h1" component="h2">
+        	h1. Heading
+    	</Typography>
 	);
 }
-			  </code></pre>
-			  </section>
-			  
-			  <section>
+			  	</code>
+			</pre>
+			</section>
+
+			<section>
 				<h3>Icons</h3>
 				<img src="./icons.png" alt="Icons" />
-			  </section>
-			  
-			  <section>
-				<h3>Customizing Your Component</h3>
+			</section>
+
+			<section>
+				<h3>Responsiveness</h3>
 				<pre><code>
-import { makeStyles } from '@material-ui/core';
+import { Box } from '@mui/material';
 				
-const useStyles = makeStyles({
-  title: {
-    marginBottom: 20,
-  }
-});
-				
-export default function Custom() {
-  const classes = useStyles();
-				
+export default function Custom() {			
   return (
-    &lt;Typography
-      className={classes.title}
+    &lt;Box 
+		sx= {{
+			width: {
+				xs: 100,
+				sm: 200,
+				md: 300,
+				lg: 400,
+				xl: 500,
+			}
+		}}
 	    variant="h6" 
 	  &gt;
-	  Your Customized Title
-	  &lt;/Typography&gt;
+	  &lt;/Box&gt;
   );
 }
 			  </code></pre>
-			  </section>
-			  
-			  <section>
+			</section>
+
+			<section>
 				<h3>Customizing Your Theme</h3>
 				<pre><code>
 import {
-  createMuiTheme,
-  ThemeProvider } from '@material-ui/core';
+  createTheme,
+  ThemeProvider } from '@mui/material';
 			  
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: '#fefefe'
@@ -108,17 +118,17 @@ const theme = createMuiTheme({
 });
 			  
 function App() {
-  return (
-    &lt;ThemeProvider theme={theme}&gt;
-      &lt;Router&gt;
-        <!-- all the other code -->
-      &lt;/Router&gt;
-    &lt;/ThemeProvider&gt;
-  );
+	return (
+		<ThemeProvider theme={theme}>
+			<Router>
+				<!-- all the other code -->
+			</Router>
+		</ThemeProvider>
+	);
 }
 			  </code></pre>
-			  </section>
-			  
+			</section>
+
 
 		</div>
 	</div>
