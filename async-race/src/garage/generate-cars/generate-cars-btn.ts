@@ -15,10 +15,10 @@ export default class GenerateCarsBtn extends ButtonView {
   ): { name: string; color: string }[] {
     const res = [];
     for (let i = 0; i < 100; i += 1) {
-      const randomBrand = brands[Math.floor(Math.random() * brands.length)];
-      const randomModel = models[Math.floor(Math.random() * models.length)];
+      const randomBrand = brands[this.getRandomIndex(brands.length)];
+      const randomModel = models[this.getRandomIndex(models.length)];
       const name = `${randomBrand} ${randomModel}`;
-      const color = GenerateCarsBtn.getRandomColor();
+      const color = this.getRandomColor();
       res.push({ name, color });
     }
     return res;
@@ -28,8 +28,12 @@ export default class GenerateCarsBtn extends ButtonView {
     const letters = '0123456789ABCDEF';
     let color = '#';
     for (let i = 0; i < 6; i += 1) {
-      color += letters[Math.floor(Math.random() * 16)];
+      color += letters[this.getRandomIndex(16)];
     }
     return color;
+  }
+
+  private static getRandomIndex(length: number): number {
+    return Math.floor(Math.random() * length);
   }
 }
