@@ -21,7 +21,7 @@ export default class RaceBtn extends ButtonView {
   Promise<{ carId: number, animationDuration: number, carName: string }> {
     const startBtn = carElement.querySelector('.engine-start');
     const stopBtn = carElement.querySelector('.reset-btn');
-    const svg = carElement?.querySelector('svg');
+    const svg = carElement.querySelector('svg');
     const carName = carElement.querySelector('.car-name')?.textContent;
 
     try {
