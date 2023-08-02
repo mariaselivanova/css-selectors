@@ -53,6 +53,6 @@ export type PossibleQueryParams = {
   status?: DriveStatus;
   page?: number;
   limit?: number;
-  sort?:SortOptions;
+  sort?: SortOptions;
   order?: SortOrder;
 };
