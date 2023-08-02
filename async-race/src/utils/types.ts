@@ -47,3 +47,12 @@ export enum SortOrder {
 export type ButtonTypes = 'reset' | 'submit' | 'button';
 
 export type DriveStatus = 'started' | 'drive' | 'stopped';
+
+export type PossibleQueryParams = {
+  id?: number;
+  status?: DriveStatus;
+  page?: number;
+  limit?: number;
+  sort?:SortOptions;
+  order?: SortOrder;
+};

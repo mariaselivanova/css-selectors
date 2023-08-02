@@ -4,6 +4,7 @@ import {
   CarResponse,
   DriveStatus,
   EngineParams,
+  PossibleQueryParams,
   SortOptions,
   SortOrder,
   WinnerResponse,
@@ -36,15 +37,7 @@ class Api {
   }
 
   public getAllCars(page: number | undefined, limit: number | undefined): Promise<CarResponse[]> {
-    const queryParams = new URLSearchParams();
-    if (page) {
-      queryParams.append('_page', page.toString());
-    }
-    if (limit) {
-      queryParams.append('_limit', limit.toString());
-    }
-    const queryString = queryParams.toString();
-    const endpoint = `garage${queryString ? `?${queryString}` : ''}`;
+    const endpoint = `garage${this.getQueryString({ page, limit })}`;
     return this.request(endpoint, {
       method: 'GET',
     });
@@ -81,15 +74,7 @@ class Api {
   }
 
   public handleEngine(id: number, status: DriveStatus): Promise<EngineParams> {
-    const queryParams = new URLSearchParams();
-    if (id !== undefined) {
-      queryParams.append('id', id.toString());
-    }
-    if (status !== undefined) {
-      queryParams.append('status', status.toString());
-    }
-    const queryString = queryParams.toString();
-    const endpoint = `engine${queryString ? `?${queryString}` : ''}`;
+    const endpoint = `engine${this.getQueryString({ id, status })}`;
     return this.request(endpoint, {
       method: 'PATCH',
     });
@@ -117,21 +102,9 @@ class Api {
     order: SortOrder | undefined,
   )
     : Promise<WinnerResponse[]> {
-    const queryParams = new URLSearchParams();
-    if (page) {
-      queryParams.append('_page', page.toString());
-    }
-    if (limit) {
-      queryParams.append('_limit', limit.toString());
-    }
-    if (sort) {
-      queryParams.append('_sort', sort.toString());
-    }
-    if (order) {
-      queryParams.append('_order', order.toString());
-    }
-    const queryString = queryParams.toString();
-    const endpoint = `winners${queryString ? `?${queryString}` : ''}`;
+    const endpoint = `winners${this.getQueryString({
+      page, limit, sort, order,
+    })}`;
     return this.request(endpoint, {
       method: 'GET',
     });
@@ -150,6 +123,34 @@ class Api {
     return this.request(`winners/${id}`, {
       method: 'DELETE',
     });
+  }
+
+  private getQueryString({
+    id, status, page, limit, sort, order,
+  }: PossibleQueryParams): string {
+    const queryParams = new URLSearchParams();
+    if (id !== undefined) {
+      queryParams.append('id', id.toString());
+    }
+    if (status !== undefined) {
+      queryParams.append('status', status.toString());
+    }
+    if (page) {
+      queryParams.append('_page', page.toString());
+    }
+    if (limit) {
+      queryParams.append('_limit', limit.toString());
+    }
+    if (sort) {
+      queryParams.append('_sort', sort.toString());
+    }
+    if (order) {
+      queryParams.append('_order', order.toString());
+    }
+
+    const queryString = queryParams.toString();
+
+    return queryString ? `?${queryString}` : '';
   }
 }
 
