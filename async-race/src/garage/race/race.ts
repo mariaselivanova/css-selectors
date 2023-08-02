@@ -62,14 +62,8 @@ export default class RaceBtn extends ButtonView {
       const winnerTime = +winner.animationDuration.toFixed(2);
       try {
         const findWinner = await api.getWinner(winner.carId);
-        const currentTime = findWinner.time;
-        const currentWins = findWinner.wins;
-        let newTime;
-        if (currentTime > winnerTime) {
-          newTime = winnerTime;
-        } else {
-          newTime = currentTime;
-        }
+        const { wins: currentWins, time: currentTime } = findWinner;
+        const newTime = currentTime > winnerTime ? winnerTime : currentTime;
         const newWins = currentWins + 1;
         await api.updateWinner(winner.carId, newWins, newTime);
       } catch {
