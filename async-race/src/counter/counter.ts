@@ -11,7 +11,7 @@ export default class Counter extends View {
     this.counterType = counterType;
   }
 
-  public getCount(num: number): void {
+  public setCount(num: number): void {
     this.count = num;
     this.setTextContent(`${this.counterType}: ${this.count}`);
   }

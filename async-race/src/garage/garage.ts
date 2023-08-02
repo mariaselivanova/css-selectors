@@ -45,7 +45,7 @@ export default class Garage extends View {
       const carData: CarResponse[] = await api.getAllCars(page, ITEMS_PER_PAGE);
       const totalCarAmount = parseInt(api.headers['X-Total-Count'], 10);
       this.totalPages = Math.ceil(totalCarAmount / ITEMS_PER_PAGE);
-      this.counter.getCount(totalCarAmount);
+      this.counter.setCount(totalCarAmount);
 
       const carElements: HTMLElement[] = carData.map((car) => {
         const carView = new CarView(car.id, car.name, car.color);
