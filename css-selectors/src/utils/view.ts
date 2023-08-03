@@ -14,14 +14,12 @@ export default class View {
   }
 
   private addClasses(classes: string[]): void {
-    classes.forEach((className) => {
-      if (this.element) {
-        this.element.classList.add(className);
-      }
-    });
+    if (this.element) {
+      this.element.classList.add(...classes);
+    }
   }
 
-  public setTextContent(text: string):void {
+  public setTextContent(text: string): void {
     if (this.element) {
       this.element.textContent = text;
     }
@@ -31,7 +29,7 @@ export default class View {
     return this.element || document.createElement(this.tag);
   }
 
-  public addElements(children: HTMLElement[]):void {
+  public addElements(children: HTMLElement[]): void {
     children.forEach((child) => this.element?.append(child));
   }
 
