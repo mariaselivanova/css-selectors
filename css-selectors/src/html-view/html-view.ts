@@ -12,7 +12,7 @@ hljs.registerLanguage('html', html);
 export default class HtmlView extends View {
   private code: View;
 
-  private tags: { [key: string]: HTMLElement[] };
+  private tags: Record<string, HTMLElement[]>;
 
   private highlightImage: ((id: number) => void) | undefined;
 
@@ -47,13 +47,13 @@ export default class HtmlView extends View {
     this.code.addElements([closingDiv]);
   }
 
-  private static createDiv(classes: string[], text: string):HTMLElement {
+  private static createDiv(classes: string[], text: string): HTMLElement {
     const div = new View('div', classes);
     div.setTextContent(text);
     return div.getElement();
   }
 
-  private processTag(tag: TagObj, classes: string[]):void {
+  private processTag(tag: TagObj, classes: string[]): void {
     if (!tag.child) {
       const newTag = createTag(
         `<${tag.name}${tag.idAttribute ? ` id='${tag.idAttribute}'` : ''}${tag.classAttribute ? ` class='${tag.classAttribute}'` : ''}/>`,
