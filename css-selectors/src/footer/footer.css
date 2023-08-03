@@ -36,6 +36,7 @@
   background-repeat: no-repeat;
   background-size: contain;
   transition: transform 0.5s ease;
+  filter: invert(1);
 }
 
 .github-logo:hover,
