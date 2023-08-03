@@ -6,7 +6,7 @@ import { createImageDiv } from './board-utils';
 export default class BoardView extends View {
   public task: HTMLElement;
 
-  private images: { [key: string]: HTMLElement };
+  private images: Record<string, HTMLElement>;
 
   public imagesContainer: View;
 
@@ -32,7 +32,7 @@ export default class BoardView extends View {
     this.deleteMarkupHighlight = callback;
   }
 
-  public updateContent(chosenLevelObj: Level):void {
+  public updateContent(chosenLevelObj: Level): void {
     this.imagesContainer.removeContent();
     this.images = {};
     this.task.textContent = chosenLevelObj.task;
@@ -84,7 +84,7 @@ export default class BoardView extends View {
     }
   }
 
-  public setCorrectAnswerAnimation():void {
+  public setCorrectAnswerAnimation(): void {
     Object.values(this.images).forEach((image) => {
       image.classList.remove('strobe');
       image.classList.add('fade-out');
@@ -94,7 +94,7 @@ export default class BoardView extends View {
     });
   }
 
-  public setWrongAnswerAnimation():void {
+  public setWrongAnswerAnimation(): void {
     Object.values(this.images).forEach((image) => {
       image.classList.add('shake');
       setTimeout(() => {
