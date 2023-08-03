@@ -1,18 +1,22 @@
 .help-btn {
-  width: 60px;
-  height: 30px;
   position: absolute;
   top: 10px;
   left: -70px;
+  z-index: 10;
+
+  width: 60px;
+  height: 30px;
+
+  font-weight: bold;
+  color: #aaa;
+
+  background: #323030;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-weight: bold;
-  background: #323030;
-  color: #aaa;
   box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+
   transition: box-shadow 0.2s, background 0.2s;
-  z-index: 10;
 }
 
 .help-btn:hover {
@@ -22,10 +26,13 @@
 
 @media screen and (max-width: 800px) {
   .help-btn {
+    left: -50px;
+    top: 5px;
+
     width: 45px;
     height: 25px;
-    left: -50px;
+
     font-size: 10px;
-    top: 5px;
+
   }
 }

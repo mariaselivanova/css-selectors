@@ -1,27 +1,34 @@
 .css-view {
+  position: relative;
+
   display: grid;
-  grid-template-areas: 'cssheader cssheader'
-                       'counter input'
-                       'counter comment';
+  grid-template-areas:
+    'cssheader cssheader'
+    'counter input'
+    'counter comment';
   grid-template-columns: 29px minmax(100px, 471px);
   grid-template-rows: 50px 105px 200px;
-  position: relative;
-  background: #1d1f21;
+
   color: #aaa;
+
+  background: #1d1f21;
 }
 
 .css-comment {
   grid-area: comment;
   margin-left: 5px;
-  font-size: 17px;
+
   font-family: monospace;
+  font-size: 17px;
+
   opacity: 0.5;
 }
 
 @media screen and (max-width: 800px) {
-  .css-comment  {
+  .css-comment {
     display: none;
   }
+
   .css-view {
     grid-template-rows: 50px 80px 140px;
   }

@@ -5,16 +5,18 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 50px;
+  grid-area: board;
+  overflow: hidden;
+
   font-size: 30px;
   font-weight: bold;
   color: #aaa;
+
   background-image: url('../assets/images/background.jpg');
   background-position: center;
-  background-size: cover;
   background-repeat: no-repeat;
-  grid-area: board;
-  gap: 50px;
-  overflow: hidden;
+  background-size: cover;
 }
 
 .game-board p {
@@ -25,13 +27,14 @@
 .images-container {
   display: flex;
   flex-direction: row;
-  width: 100%;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 
 .image-wrapper {
   position: relative;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,22 +44,26 @@
 
 .image {
   display: block;
+
   background-position: center;
-  background-size: 70%;
   background-repeat: no-repeat;
+  background-size: 70%;
 }
 
 .span {
-  display: none;
   position: absolute;
   top: -30px;
-  font-size: 12px;
-  font-family: monospace;
-  font-weight: normal;
-  background-color: #ffffff;
-  padding: 2px 5px;
   z-index: 3;
+
+  display: none;
+  padding: 2px 5px;
+
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: normal;
   text-align: center;
+
+  background-color: #ffffff;
 }
 
 .hovered+span {
@@ -68,9 +75,9 @@
 }
 
 .parent {
-  z-index: 2;
   position: absolute;
   bottom: 0;
+  z-index: 2;
 }
 
 .child {
@@ -80,59 +87,70 @@
 /* animals */
 
 .crab {
-  background-image: url(../assets/images/crab.png);
-  height: 174px;
   width: 200px;
+  height: 174px;
+
+  background-image: url(../assets/images/crab.png);
 }
 
 .seal {
-  background-image: url(../assets/images/seal.png);
-  height: 153px;
   width: 200px;
+  height: 153px;
+
+  background-image: url(../assets/images/seal.png);
 }
 
 .jellyfish-blue {
-  background-image: url(../assets/images/blue-jellyfish.png);
-  height: 234px;
   width: 200px;
+  height: 234px;
+
+  background-image: url(../assets/images/blue-jellyfish.png);
 }
 
 .jellyfish-white {
-  background-image: url(../assets/images/white-jellyfish.png);
-  height: 210px;
   width: 200px;
+  height: 210px;
+
+  background-image: url(../assets/images/white-jellyfish.png);
 }
 
 .seaweed {
-  background-image: url(../assets/images/weed.png);
-  height: 150px;
   width: 100px;
+  height: 150px;
+
+  background-image: url(../assets/images/weed.png);
 }
 
 .coral-blue {
-  background-image: url(../assets/images/corall-blue.svg);
-  height: 140px;
   bottom: 0;
+
   width: 120px;
+  height: 140px;
+
+  background-image: url(../assets/images/corall-blue.svg);
 }
 
 .coral-red {
-  background-image: url(../assets/images/corall-red.svg);
-  height: 120px;
   bottom: 0;
+
   width: 90px;
+  height: 120px;
+
+  background-image: url(../assets/images/corall-red.svg);
 }
 
 .seal-small {
-  background-image: url(../assets/images/seal.png);
-  height: 100px;
   width: 120px;
+  height: 100px;
+
+  background-image: url(../assets/images/seal.png);
 }
 
 .crab-small {
-  background-image: url(../assets/images/crab.png);
-  height: 87px;
   width: 100px;
+  height: 87px;
+
+  background-image: url(../assets/images/crab.png);
 }
 
 @media screen and (max-width: 950px) {
@@ -155,39 +173,39 @@
   }
 
   .crab {
-    height: 100px;
     width: 100px;
+    height: 100px;
   }
 
   .seal {
-    height: 80px;
     width: 76px;
+    height: 80px;
   }
 
   .jellyfish-blue,
   .jellyfish-white {
-    height: 120px;
     width: 76px;
+    height: 120px;
   }
 
   .seaweed {
-    height: 70px;
     width: 40px;
+    height: 70px;
   }
 
   .seal-small {
-    height: 130px;
     width: 40px;
+    height: 130px;
   }
 
   .crab-small {
-    height: 60px;
     width: 60px;
+    height: 60px;
   }
 
   .coral-red,
   .coral-blue {
-    height: 65px;
     width: 50px;
+    height: 65px;
   }
 }

@@ -2,21 +2,24 @@
 
 body {
   display: grid;
-  min-height: 100vh;
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: rgb(27, 27, 34);
   justify-content: center;
-  margin: 0 auto;
   grid-template-columns: minmax(175px, 500px) minmax(175px, 500px) minmax(100px, 200px);
   grid-template-rows: 350px 360px auto;
-  grid-template-areas: 'board board levels'
-                       'css html levels'
-                       'footer footer footer';
+  grid-template-areas:
+    'board board levels'
+    'css html levels'
+    'footer footer footer';
+  min-height: 100vh;
+  margin: 0 auto;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  background-color: rgb(27, 27, 34);
 }
 
 
 @media screen and (max-width: 800px) {
-  body  {
+  body {
     grid-template-rows: 350px 325px auto;
   }
 }

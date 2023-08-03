@@ -3,12 +3,14 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background: #333;
-  color: #aaa;
-  font-size: 15px;
-  font-weight: bold;
   padding: 0 20px;
   box-sizing: border-box;
+
+  font-size: 15px;
+  font-weight: bold;
+  color: #aaa;
+
+  background: #333;
 }
 
 .path {

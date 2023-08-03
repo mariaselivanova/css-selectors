@@ -3,13 +3,16 @@
   width: 70px;
   height: 40px;
   margin-left: -20px;
+
+  font-weight: bold;
+  color: #aaa;
+
+  background: #323030;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-weight: bold;
-  background: #323030;
-  color: #aaa;
   box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+
   transition: box-shadow 0.2s, background 0.2s;
 }
 
@@ -24,4 +27,3 @@
     width: 60px;
   }
 }
-

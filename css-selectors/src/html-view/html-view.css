@@ -1,24 +1,28 @@
 .html-view {
-  color: #666;
-  background: #1d1f21;
-  grid-area: html;
-  cursor: default;
   display: grid;
-  grid-template-areas: 'htmlheader htmlheader'
-                       'counter code';
+  grid-template-areas:
+    'htmlheader htmlheader'
+    'counter code';
   grid-template-columns: 30px minmax(100px, 471px);
   grid-template-rows: 50px auto;
+  grid-area: html;
+
+  color: #666;
+
+  background: #1d1f21;
+  cursor: default;
 }
 
 .code {
-  grid-area: code;
   display: flex;
   flex-direction: column;
-  font-size: 16px;
-  line-height: 125%;
+  width: 100%;
   padding-left: 5px;
   padding-top: 5px;
-  width: 100%;
+  grid-area: code;
+
+  font-size: 16px;
+  line-height: 125%;
 }
 
 .inner-div {

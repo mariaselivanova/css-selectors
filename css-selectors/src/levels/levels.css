@@ -1,14 +1,17 @@
 .levels-table {
+  position: relative;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  position: relative;
   padding: 20px 0 0 25px;
-  font-size: 20px;
   gap: 20px;
-  background-color: #131317;
-  color: #aaa;
   grid-area: levels;
+
+  font-size: 20px;
+  color: #aaa;
+
+  background-color: #131317;
 }
 
 .link {
@@ -17,8 +20,8 @@
 
 .link::before {
   content: '✔ ';
-  color: #aaa;
   font-size: 15px;
+  color: #aaa;
 }
 
 .link_active {
@@ -37,8 +40,8 @@
 
 .solved-with-help::after {
   content: ' *';
-  color: #aaa;
   font-size: 13px;
+  color: #aaa;
 }
 
 .note {
@@ -50,6 +53,7 @@
   .levels-table {
     font-size: 15px;
   }
+
   .note {
     font-size: 10px;
   }

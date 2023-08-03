@@ -1,42 +1,46 @@
 .footer {
-  grid-area: footer;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  width: 30%;
   justify-self: end;
-  padding: 7px 0;
+  width: 30%;
+  padding: 7px 20px 0 0;
   gap: 10px;
+  grid-area: footer;
+
   font-size: 13px;
   font-weight: bold;
-  padding-right: 20px;
 }
 
 .year {
-  color: #aaa;
   margin: 0;
+  color: #aaa;
 }
 
 .github-logo {
-  background-image: url('../assets/images/github-mark-white.svg');
-  height: 27px;
   width: 24px;
+  height: 27px;
+
+  background-image: url('../assets/images/github-mark-white.svg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+
   transition: transform 0.5s ease;
 }
 
 .course-logo {
-  background-image: url('../assets/images/rs_school_js.svg');
-  height: 20px;
   width: 60px;
+  height: 20px;
+
+  background-image: url('../assets/images/rs_school_js.svg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  transition: transform 0.5s ease;
   filter: invert(1);
+
+  transition: transform 0.5s ease;
 }
 
 .github-logo:hover,

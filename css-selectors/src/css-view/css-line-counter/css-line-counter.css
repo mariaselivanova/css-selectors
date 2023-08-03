@@ -1,17 +1,19 @@
 .css-line-counter {
+  height: 305px;
+  padding: 5px 7px 0 7px;
   grid-area: counter;
+
   font-family: monospace;
   font-size: 17px;
   color: #aaa;
+
   background: #1d1f21;
   border-right: solid 1px #333;
-  padding: 5px 7px 0 7px;
-  height: 305px;
 }
 
 @media screen and (max-width: 800px) {
-  .css-line-counter   {
-    font-size: 15px;
+  .css-line-counter {
     height: 270px;
+    font-size: 15px;
   }
 }
