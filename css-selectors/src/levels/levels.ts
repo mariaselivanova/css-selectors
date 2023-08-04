@@ -1,6 +1,6 @@
 import './levels.css';
 import { levelsArray } from '../utils/levelsArray';
-import { Level } from '../utils/types';
+import { ElementTag, Level } from '../utils/types';
 import Board from '../game-board/board';
 import View from '../utils/view';
 import HtmlView from '../html-view/html-view';
@@ -34,7 +34,7 @@ export default class Levels extends View {
   private isHelped: HTMLElement | undefined;
 
   constructor(board: Board, htmlView: HtmlView, markup: Markup) {
-    super('section', ['levels-table']);
+    super(ElementTag.SECTION, ['levels-table']);
     this.board = board;
     this.markup = markup;
     this.htmlView = htmlView;
@@ -46,12 +46,12 @@ export default class Levels extends View {
   }
 
   private setContent(levels: Level[]): void {
-    const note = new View('p', ['note']);
+    const note = new View(ElementTag.PARAGRAPH, ['note']);
     note.setTextContent('* - solved with help');
     const helpArray = getHelpArray();
     const progressArray = getProgressArray();
     levels.forEach((level: Level) => {
-      const link = new View('a', ['link']);
+      const link = new View(ElementTag.LINK, ['link']);
       link.setTextContent(`Level ${level.number}`);
       const linkElement = link.getElement();
       if (helpArray.includes(level.number)) {

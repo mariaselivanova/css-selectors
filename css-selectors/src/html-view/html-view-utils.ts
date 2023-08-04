@@ -1,8 +1,8 @@
-import { TagObj } from '../utils/types';
+import { ElementTag, TagObj } from '../utils/types';
 import View from '../utils/view';
 
 export function createTag(textContent: string, classes: string[]): View {
-  const tag = new View('div', ['inner-div', ...classes]);
+  const tag = new View(ElementTag.DIV, ['inner-div', ...classes]);
   tag.setTextContent(textContent);
   return tag;
 }

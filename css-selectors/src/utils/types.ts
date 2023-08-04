@@ -16,4 +16,16 @@ export interface TagObj {
   child: TagObj | null;
 }
 
+export enum ElementTag {
+  DIV = 'div',
+  BUTTON = 'button',
+  INPUT = 'input',
+  SECTION = 'section',
+  CODE = 'code',
+  PARAGRAPH = 'p',
+  LINK = 'a',
+  FOOTER = 'footer',
+  SPAN = 'span',
+}
+
 export type ButtonTypes = 'submit' | 'reset' | 'button';

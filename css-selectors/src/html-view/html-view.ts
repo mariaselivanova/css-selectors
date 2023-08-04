@@ -1,6 +1,6 @@
 import hljs from 'highlight.js/lib/core';
 import html from 'highlight.js/lib/languages/xml';
-import { Level, TagObj } from '../utils/types';
+import { ElementTag, Level, TagObj } from '../utils/types';
 import View from '../utils/view';
 import './html-view.css';
 import HtmlHeader from './html-header/html-header';
@@ -19,9 +19,9 @@ export default class HtmlView extends View {
   private deleteImageHighlight: ((id: number) => void) | undefined;
 
   constructor() {
-    super('section', ['html-view']);
+    super(ElementTag.SECTION, ['html-view']);
     this.tags = {};
-    this.code = new View('code', ['code']);
+    this.code = new View(ElementTag.CODE, ['code']);
     this.code.getElement().addEventListener('mouseover', (e) => this.handleTagMouseOver(e));
     this.code.getElement().addEventListener('mouseout', (e) => this.handleTagMouseOut(e));
     const header = new HtmlHeader();
@@ -48,7 +48,7 @@ export default class HtmlView extends View {
   }
 
   private static createDiv(classes: string[], text: string): HTMLElement {
-    const div = new View('div', classes);
+    const div = new View(ElementTag.DIV, classes);
     div.setTextContent(text);
     return div.getElement();
   }

@@ -1,15 +1,17 @@
+import { ElementTag } from './types';
+
 export default class View {
   public element: HTMLElement | undefined;
 
-  private tag: string;
+  private tag: ElementTag;
 
-  constructor(tag: string, classes: string[]) {
+  constructor(tag: ElementTag, classes: string[]) {
     this.element = View.createElement(tag);
     this.addClasses(classes);
     this.tag = tag;
   }
 
-  private static createElement(tag: string): HTMLElement {
+  private static createElement(tag: ElementTag): HTMLElement {
     return document.createElement(tag);
   }
 

@@ -1,5 +1,5 @@
 import './board.css';
-import { Level } from '../utils/types';
+import { ElementTag, Level } from '../utils/types';
 import View from '../utils/view';
 import { createImageDiv } from './board-utils';
 import { ANIMATION_DELAY } from '../utils/constants';
@@ -16,10 +16,10 @@ export default class BoardView extends View {
   private deleteMarkupHighlight: ((id: number) => void) | undefined;
 
   constructor() {
-    super('section', ['game-board']);
+    super(ElementTag.SECTION, ['game-board']);
     this.images = {};
     this.task = document.createElement('p');
-    this.imagesContainer = new View('div', ['images-container']);
+    this.imagesContainer = new View(ElementTag.DIV, ['images-container']);
     this.imagesContainer.getElement().addEventListener('mouseover', (e) => this.handleImageMouseOver(e));
     this.imagesContainer.getElement().addEventListener('mouseout', (e) => this.handleImageMouseOut(e));
     this.element?.append(this.task, this.imagesContainer.getElement());

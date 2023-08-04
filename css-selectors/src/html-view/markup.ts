@@ -1,9 +1,9 @@
-import { Level } from '../utils/types';
+import { ElementTag, Level } from '../utils/types';
 import View from '../utils/view';
 
 export default class Markup extends View {
   constructor() {
-    super('div', ['sea']);
+    super(ElementTag.DIV, ['sea']);
   }
 
   public updateContent(chosenLevelObj: Level): void {

@@ -1,10 +1,11 @@
+import { ElementTag } from './types';
 import View from './view';
 
 export default class InputView extends View {
   public element: HTMLInputElement | undefined;
 
   constructor(classes: string[]) {
-    super('input', classes);
+    super(ElementTag.INPUT, classes);
     this.setInputType('text');
   }
 
