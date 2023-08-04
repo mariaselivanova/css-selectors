@@ -1,6 +1,8 @@
 import hljs from 'highlight.js/lib/core';
 import html from 'highlight.js/lib/languages/xml';
-import { ElementTag, Level, TagObj } from '../utils/types';
+import {
+  Classes, Level, TagObj, ElementTag,
+} from '../utils/types';
 import View from '../utils/view';
 import './html-view.css';
 import HtmlHeader from './html-header/html-header';
@@ -93,7 +95,7 @@ export default class HtmlView extends View {
             this.highlightImage(+tagId);
           }
           this.tags[tagId]?.forEach((element) => {
-            element.classList.add('highlighted');
+            element.classList.add(Classes.HIGHLIGHTED);
           });
         }
       }
@@ -111,7 +113,7 @@ export default class HtmlView extends View {
             this.deleteImageHighlight(+tagId);
           }
           this.tags[tagId]?.forEach((element) => {
-            element.classList.remove('highlighted');
+            element.classList.remove(Classes.HIGHLIGHTED);
           });
         }
       }
@@ -120,13 +122,13 @@ export default class HtmlView extends View {
 
   public highlightMarkupElement(id: number): void {
     this.tags[id].forEach((element) => {
-      element.classList.add('highlighted');
+      element.classList.add(Classes.HIGHLIGHTED);
     });
   }
 
   public deleteMarkupHighlight(id: number): void {
     this.tags[id].forEach((element) => {
-      element.classList.remove('highlighted');
+      element.classList.remove(Classes.HIGHLIGHTED);
     });
   }
 

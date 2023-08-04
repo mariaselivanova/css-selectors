@@ -1,4 +1,4 @@
-import { ElementTag, TagObj } from '../utils/types';
+import { Classes, TagObj, ElementTag } from '../utils/types';
 import View from '../utils/view';
 
 export function createImageDiv(tag: TagObj): {
@@ -13,7 +13,7 @@ export function createImageDiv(tag: TagObj): {
   const wrapperElement = wrapper.getElement();
   const imageElement = image.getElement();
   if (tag.strobe) {
-    image.getElement().classList.add('strobe');
+    image.getElement().classList.add(Classes.STROBE);
   }
   wrapper.getElement().append(imageElement, span.getElement());
   return { wrapperElement, imageElement };

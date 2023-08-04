@@ -28,4 +28,15 @@ export enum ElementTag {
   SPAN = 'span',
 }
 
+export enum Classes {
+  STROBE = 'strobe',
+  HOVERED = 'hovered',
+  FADEOUT = 'fade-out',
+  SHAKE = 'shake',
+  HIGHLIGHTED = 'highlighted',
+  SOLVED_WITH_HELP = 'solved-with-help',
+  SOLVED = 'link_solved',
+  ACTIVE = 'link_active',
+}
+
 export type ButtonTypes = 'submit' | 'reset' | 'button';

@@ -1,6 +1,6 @@
 import './levels.css';
 import { levelsArray } from '../utils/levelsArray';
-import { ElementTag, Level } from '../utils/types';
+import { Classes, ElementTag, Level } from '../utils/types';
 import Board from '../game-board/board';
 import View from '../utils/view';
 import HtmlView from '../html-view/html-view';
@@ -55,10 +55,10 @@ export default class Levels extends View {
       link.setTextContent(`Level ${level.number}`);
       const linkElement = link.getElement();
       if (helpArray.includes(level.number)) {
-        linkElement.classList.add('solved-with-help');
+        linkElement.classList.add(Classes.SOLVED_WITH_HELP);
       }
       if (progressArray.includes(level.number)) {
-        linkElement.classList.add('link_solved');
+        linkElement.classList.add(Classes.SOLVED);
       }
       if (linkElement) {
         this.levelLinks.push(linkElement);
@@ -80,7 +80,7 @@ export default class Levels extends View {
     this.selectedLevelElement = element;
     this.levelLinks.forEach((level: HTMLElement) => Levels.setNotSelectedLevel(level));
     if (element) {
-      element.classList.add('link_active');
+      element.classList.add(Classes.ACTIVE);
       this.selectedLevel = parseInt(element.textContent?.substring(5) ? element.textContent.substring(5) : '1', 10);
       localStorage.setItem('currentLevel', this.selectedLevel.toString());
       const chosenLevelObj = levelsArray.find((level) => level.number === this.selectedLevel);
@@ -96,16 +96,16 @@ export default class Levels extends View {
   }
 
   private static setNotSelectedLevel(element: HTMLElement): void {
-    element.classList.remove('link_active');
+    element.classList.remove(Classes.ACTIVE);
   }
 
   public changeLevelStatus(): void {
-    this.selectedLevelElement?.classList.add('link_solved');
+    this.selectedLevelElement?.classList.add(Classes.SOLVED);
     addToProgress(this.selectedLevel);
   }
 
   private findUnsolvedLevel(): HTMLElement | undefined {
-    return this.levelLinks.find((item) => !item.classList.contains('link_solved'));
+    return this.levelLinks.find((item) => !item.classList.contains(Classes.SOLVED));
   }
 
   public goToNextLevel(): void {
@@ -118,11 +118,13 @@ export default class Levels extends View {
       this.board.handleWin();
       return;
     }
-    const nextLevel = this.levelLinks.slice(this.selectedLevel).find((item) => !item.classList.contains('link_solved'));
+    const nextLevel = this.levelLinks.slice(this.selectedLevel)
+      .find((item) => !item.classList.contains(Classes.SOLVED));
     if (nextLevel) {
       this.setSelectedLevel(nextLevel);
     } else {
-      const previousLevel = this.levelLinks.slice(0, this.selectedLevel).find((item) => !item.classList.contains('link_solved'));
+      const previousLevel = this.levelLinks.slice(0, this.selectedLevel)
+        .find((item) => !item.classList.contains(Classes.SOLVED));
       if (previousLevel) {
         this.setSelectedLevel(previousLevel);
       } else {
@@ -133,8 +135,8 @@ export default class Levels extends View {
 
   public resetProgress(): void {
     this.levelLinks.forEach((link) => {
-      link.classList.remove('link_solved');
-      link.classList.remove('solved-with-help');
+      link.classList.remove(Classes.SOLVED);
+      link.classList.remove(Classes.SOLVED_WITH_HELP);
     });
     localStorage.clear();
     this.setSelectedLevel(this.levelLinks[0]);
@@ -154,7 +156,7 @@ export default class Levels extends View {
 
   public checkHelp(): void {
     if (this.isHelped === this.selectedLevelElement) {
-      this.selectedLevelElement?.classList.add('solved-with-help');
+      this.selectedLevelElement?.classList.add(Classes.SOLVED_WITH_HELP);
       addToHelp(this.selectedLevel);
     }
   }
