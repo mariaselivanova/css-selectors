@@ -2,6 +2,7 @@ import './board.css';
 import { Level } from '../utils/types';
 import View from '../utils/view';
 import { createImageDiv } from './board-utils';
+import { ANIMATION_DELAY } from '../utils/constants';
 
 export default class BoardView extends View {
   public task: HTMLElement;
@@ -90,7 +91,7 @@ export default class BoardView extends View {
       image.classList.add('fade-out');
       setTimeout(() => {
         image.classList.remove('fade-out');
-      }, 1000);
+      }, ANIMATION_DELAY);
     });
   }
 
@@ -99,7 +100,7 @@ export default class BoardView extends View {
       image.classList.add('shake');
       setTimeout(() => {
         image.classList.remove('shake');
-      }, 1000);
+      }, ANIMATION_DELAY);
     });
   }
 

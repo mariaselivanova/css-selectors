@@ -12,6 +12,7 @@ import {
   getSelectedLevel,
 } from './localStorage';
 import Markup from '../html-view/markup';
+import { ANIMATION_DELAY } from '../utils/constants';
 
 const TOTAL_LEVELS_NUM = 10;
 
@@ -162,16 +163,16 @@ export default class Levels extends View {
     this.isHelped = this.selectedLevelElement;
   }
 
-  public handleCorrectAnswer():void {
+  public handleCorrectAnswer(): void {
     this.board.setCorrectAnswerAnimation();
     setTimeout(() => {
       this.checkHelp();
       this.changeLevelStatus();
       this.goToNextLevel();
-    }, 1000);
+    }, ANIMATION_DELAY);
   }
 
-  public handleWrongAnswer():void {
+  public handleWrongAnswer(): void {
     this.board.setWrongAnswerAnimation();
   }
 }
