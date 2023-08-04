@@ -5,7 +5,7 @@ import View from '../utils/view';
 import './html-view.css';
 import HtmlHeader from './html-header/html-header';
 import HtmlLineCounter from './html-line-counter/html-line-counter';
-import { createTag } from './html-view-utils';
+import { createTag, getTag } from './html-view-utils';
 
 hljs.registerLanguage('html', html);
 
@@ -55,17 +55,11 @@ export default class HtmlView extends View {
 
   private processTag(tag: TagObj, classes: string[]): void {
     if (!tag.child) {
-      const newTag = createTag(
-        `<${tag.name}${tag.idAttribute ? ` id='${tag.idAttribute}'` : ''}${tag.classAttribute ? ` class='${tag.classAttribute}'` : ''}/>`,
-        [...classes],
-      );
+      const newTag = createTag(getTag(tag, false), [...classes]);
       this.pushTagElement(tag.id, newTag.getElement());
       this.code.addElements([newTag.getElement()]);
     } else {
-      const newOpenTag = createTag(
-        `<${tag.name}${tag.idAttribute ? ` id='${tag.idAttribute}'` : ''}${tag.classAttribute ? ` class='${tag.classAttribute}'` : ''}>`,
-        [],
-      );
+      const newOpenTag = createTag(getTag(tag, true), []);
       this.pushTagElement(tag.id, newOpenTag.getElement());
       this.code.addElements([newOpenTag.getElement()]);
       if (Array.isArray(tag.child)) {
